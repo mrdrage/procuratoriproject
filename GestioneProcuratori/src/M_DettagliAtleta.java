@@ -39,11 +39,11 @@ public class M_DettagliAtleta extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Ecco i dettagli dell'atleta: ");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
-		lblNewLabel.setBounds(10, 11, 465, 35);
-		contentPane.add(lblNewLabel);
+		JLabel DettagliAtleta = new JLabel("Ecco i dettagli dell'atleta: ");
+		DettagliAtleta.setHorizontalAlignment(SwingConstants.CENTER);
+		DettagliAtleta.setFont(new Font("Verdana", Font.PLAIN, 20));
+		DettagliAtleta.setBounds(10, 11, 465, 35);
+		contentPane.add(DettagliAtleta);
 		
 		JLabel Nome_L = new JLabel("Nome:");
 		Nome_L.setFont(new Font("Tahoma", Font.PLAIN, 15));
