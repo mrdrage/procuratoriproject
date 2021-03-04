@@ -1,3 +1,5 @@
+package GUI;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
@@ -9,7 +11,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-public class ErroreDataSponsor extends JDialog {
+public class M_ErroreDataSponsor extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -21,7 +23,7 @@ public class ErroreDataSponsor extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ErroreDataSponsor() {
+	public M_ErroreDataSponsor() {
 		setBounds(100, 100, 450, 183);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(250, 235, 215));

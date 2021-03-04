@@ -1,3 +1,5 @@
+package GUI;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
@@ -6,12 +8,11 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 import java.awt.Color;
 
-public class M_PNonTrovato extends JDialog {
+public class M_ProcuratoreInseritoOk extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -23,19 +24,18 @@ public class M_PNonTrovato extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public M_PNonTrovato() {
-		setBounds(100, 100, 292, 160);
+	public M_ProcuratoreInseritoOk() {
+		setBounds(100, 100, 383, 151);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(253, 245, 230));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel PNonTrovato_L = new JLabel("Procuratore non trovato!");
-			PNonTrovato_L.setForeground(new Color(0, 0, 0));
-			PNonTrovato_L.setBounds(10, 0, 273, 86);
-			PNonTrovato_L.setFont(new Font("Verdana", Font.ITALIC, 20));
-			contentPanel.add(PNonTrovato_L);
+			JLabel PInseritoOk_L = new JLabel("Procuratore inserito correttamente.");
+			PInseritoOk_L.setFont(new Font("Verdana", Font.ITALIC, 20));
+			PInseritoOk_L.setBounds(10, 0, 377, 95);
+			contentPanel.add(PInseritoOk_L);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -44,10 +44,6 @@ public class M_PNonTrovato extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton ok_B = new JButton("OK");
-				ok_B.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
 				ok_B.setActionCommand("OK");
 				buttonPane.add(ok_B);
 				getRootPane().setDefaultButton(ok_B);
