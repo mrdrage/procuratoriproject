@@ -15,10 +15,10 @@ public class DBConnection
 	private static DBConnection instance;
 	private Connection connection = null;
 	private final String USERNAME = "dbproject";
-	private final String PASSWORD = "dbprogectadmin";
+	private final String PASSWORD = "dbprojectadmin";
 	private final String IP = "dbprocuratori1.c1r3woxfz75h.us-east-2.rds.amazonaws.com";
 	private final String PORT = "5432";
-	private String url = "jdbc:postgresql://" + IP + ":" + PORT + "/ProgettoOOBD";
+	private String url = "jdbc:postgresql://" + IP + ":" + PORT + "/dbprocuratori";
 
 	private DBConnection() throws SQLException
 	{
