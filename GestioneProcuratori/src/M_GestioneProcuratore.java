@@ -146,5 +146,11 @@ public class M_GestioneProcuratore extends JFrame {
 		Contratti_B.setBackground(new Color(0, 0, 0));
 		Contratti_B.setBounds(401, 179, 207, 38);
 		contentPane.add(Contratti_B);
+		
+		JButton Atleti_B = new JButton("Atleti");
+		Atleti_B.setBackground(new Color(0, 0, 0));
+		Atleti_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Atleti_B.setBounds(401, 228, 207, 43);
+		contentPane.add(Atleti_B);
 	}
 }
