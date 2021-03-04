@@ -1,0 +1,124 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Color;
+
+public class M_AggiungiContrattoClub extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField DataInizio_TF;
+	private JTextField DataFine_TF;
+	private JTextField StipendioAtleta_TF;
+	private JTextField BonusStagione_TF;
+	private JTextField GuadagnoBonus_TF;
+	private JTextField VincoloContrattuale_TF;
+
+	/**
+	 * Launch the application.
+	 */
+
+	/**
+	 * Create the frame.
+	 */
+	public M_AggiungiContrattoClub() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 502, 504);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(250, 235, 215));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel AggiungiContrattoClub_L = new JLabel("Aggiungi un contratto Club");
+		AggiungiContrattoClub_L.setFont(new Font("Verdana", Font.PLAIN, 25));
+		AggiungiContrattoClub_L.setHorizontalAlignment(SwingConstants.CENTER);
+		AggiungiContrattoClub_L.setBounds(10, 11, 489, 28);
+		contentPane.add(AggiungiContrattoClub_L);
+		
+		JLabel DataInizio_L = new JLabel("Data di inizio:");
+		DataInizio_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		DataInizio_L.setBounds(10, 62, 143, 19);
+		contentPane.add(DataInizio_L);
+		
+		JLabel DataFine_L = new JLabel("Data di fine:");
+		DataFine_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		DataFine_L.setBounds(10, 92, 153, 19);
+		contentPane.add(DataFine_L);
+		
+		JLabel StipendioAtleta_L = new JLabel("Stipendio dell'atleta:");
+		StipendioAtleta_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		StipendioAtleta_L.setBounds(10, 122, 174, 19);
+		contentPane.add(StipendioAtleta_L);
+		
+		JLabel BonusStagione_L = new JLabel("Bonus stagionali:");
+		BonusStagione_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		BonusStagione_L.setBounds(10, 152, 153, 19);
+		contentPane.add(BonusStagione_L);
+		
+		JLabel GuadagnoBonus_L = new JLabel("Guadagno bonus dell'atleta:");
+		GuadagnoBonus_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		GuadagnoBonus_L.setBounds(10, 271, 216, 19);
+		contentPane.add(GuadagnoBonus_L);
+		
+		JLabel VincoliContrattuali_L = new JLabel("Vincoli contrattuali:");
+		VincoliContrattuali_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		VincoliContrattuali_L.setBounds(10, 317, 163, 19);
+		contentPane.add(VincoliContrattuali_L);
+		
+		DataInizio_TF = new JTextField();
+		DataInizio_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		DataInizio_TF.setBounds(254, 63, 119, 20);
+		contentPane.add(DataInizio_TF);
+		DataInizio_TF.setColumns(10);
+		
+		DataFine_TF = new JTextField();
+		DataFine_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		DataFine_TF.setBounds(254, 93, 119, 20);
+		contentPane.add(DataFine_TF);
+		DataFine_TF.setColumns(10);
+		
+		StipendioAtleta_TF = new JTextField();
+		StipendioAtleta_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		StipendioAtleta_TF.setBounds(254, 123, 119, 20);
+		contentPane.add(StipendioAtleta_TF);
+		StipendioAtleta_TF.setColumns(10);
+		
+		BonusStagione_TF = new JTextField();
+		BonusStagione_TF.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		BonusStagione_TF.setBounds(254, 153, 216, 88);
+		contentPane.add(BonusStagione_TF);
+		BonusStagione_TF.setColumns(10);
+		
+		GuadagnoBonus_TF = new JTextField();
+		GuadagnoBonus_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		GuadagnoBonus_TF.setBounds(254, 272, 119, 20);
+		contentPane.add(GuadagnoBonus_TF);
+		GuadagnoBonus_TF.setColumns(10);
+		
+		VincoloContrattuale_TF = new JTextField();
+		VincoloContrattuale_TF.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		VincoloContrattuale_TF.setBounds(254, 318, 216, 88);
+		contentPane.add(VincoloContrattuale_TF);
+		VincoloContrattuale_TF.setColumns(10);
+		
+		JButton Avanti_B = new JButton("Avanti");
+		Avanti_B.setBackground(new Color(0, 0, 0));
+		Avanti_B.setBounds(406, 433, 63, 23);
+		contentPane.add(Avanti_B);
+		
+		JButton Indietro_B = new JButton("Indietro");
+		Indietro_B.setBackground(new Color(0, 0, 0));
+		Indietro_B.setBounds(325, 433, 71, 23);
+		contentPane.add(Indietro_B);
+	}
+
+}
