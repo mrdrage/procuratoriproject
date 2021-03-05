@@ -33,9 +33,7 @@ public class M_NuovoProcuratore extends JFrame {
 	private JTextField DataNMese_TF;
 	private JTextField DataNAnno_TF;
 
-	/**
-	 * Launch the application.
-	 */
+
 
 
 	/**
