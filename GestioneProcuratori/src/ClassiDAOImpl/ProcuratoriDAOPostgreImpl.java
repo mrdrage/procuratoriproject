@@ -1,15 +1,18 @@
 package ClassiDAOImpl;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
 
 import ClassiDAO.ProcuratoriDAO;
+import Starter.DateUtilities;
 import entita.Procuratori;
 
 public class ProcuratoriDAOPostgreImpl implements ProcuratoriDAO {
+	private DateUtilities DataUtil= new DateUtilities();
 	
     private Connection connection;
     private PreparedStatement InserisciProcuratoreDB_PS;
@@ -47,7 +50,7 @@ public class ProcuratoriDAOPostgreImpl implements ProcuratoriDAO {
 		InserisciProcuratoreDB_PS.setString(4, procuratore.getNumeroTelefonico());
 		InserisciProcuratoreDB_PS.setString(5, procuratore.getNumeroTelefonico2());
 		InserisciProcuratoreDB_PS.setString(6, procuratore.getEmail());
-		InserisciProcuratoreDB_PS.setDate(7, procuratore.getDataN());
+		InserisciProcuratoreDB_PS.setDate(7, DataUtil.convertUtilToSql(procuratore.getDataN()));
 		
 		InserisciProcuratoreDB_PS.executeUpdate();
 }
