@@ -2,6 +2,7 @@ package GUI;
 
 import Starter.Controller;
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -10,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.TextField;
+
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -22,6 +25,7 @@ public class M_CercaProcuratore extends JFrame {
 	private JPanel contentPane;
 	private JComboBox CercaProcuratore_CO;
 	Controller controller;
+	TextField TF = new TextField();
 
 	/**
 	 * Launch the application.
@@ -59,6 +63,7 @@ public class M_CercaProcuratore extends JFrame {
 		CercaProcuratore_CO.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		CercaProcuratore_CO.setBounds(85, 67, 234, 23);
 		contentPane.add(CercaProcuratore_CO);
+		
 		
 		
 	}
