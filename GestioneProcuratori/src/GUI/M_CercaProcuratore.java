@@ -11,11 +11,12 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 public class M_CercaProcuratore extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField InserisciProcuratore_TF;
+	private JComboBox CercaProcuratore_CO;
 
 	/**
 	 * Launch the application.
@@ -27,7 +28,7 @@ public class M_CercaProcuratore extends JFrame {
 	 */
 	public M_CercaProcuratore() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 446, 146);
+		setBounds(100, 100, 446, 174);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(253, 245, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -39,13 +40,13 @@ public class M_CercaProcuratore extends JFrame {
 		CercaProcuratore_L.setBounds(105, 11, 192, 45);
 		contentPane.add(CercaProcuratore_L);
 		
-		InserisciProcuratore_TF = new JTextField();
-		InserisciProcuratore_TF.setBounds(52, 67, 233, 20);
-		contentPane.add(InserisciProcuratore_TF);
-		InserisciProcuratore_TF.setColumns(10);
-		
 		JButton CercaProcuratore_B = new JButton("Cerca");
-		CercaProcuratore_B.setBounds(295, 66, 61, 23);
+		CercaProcuratore_B.setBounds(337, 101, 61, 23);
 		contentPane.add(CercaProcuratore_B);
+		
+		CercaProcuratore_CO = new JComboBox();
+		CercaProcuratore_CO.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		CercaProcuratore_CO.setBounds(85, 67, 234, 23);
+		contentPane.add(CercaProcuratore_CO);
 	}
 }
