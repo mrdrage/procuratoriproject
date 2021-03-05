@@ -3,6 +3,7 @@ package Starter;
 import GUI.*;
 
 
+
 import java.util.List;
 
 import ClassiDAOImpl.ProcuratoriDAOPostgreImpl;
@@ -16,8 +17,10 @@ import java.sql.*;
 
 import DBconfig.DBConnection;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;  
 import java.util.Date;  
+
 
 public class Controller {
 	M_DataProcuratoreErrata DataProcuratoreErrata = null;
@@ -25,9 +28,11 @@ public class Controller {
 	M_Benvenuto Benvenuto = null;
 	M_NuovoProcuratore NuovoProcuratore = null;
 	ProcuratoriDAOPostgreImpl ProcuratoriDAOpostgreImpl= null;
+	M_ErroreDatabase ErroreDatabase = null;
+	M_ProcuratoreInseritoOk ProcuratoreInseritoOk = null;
 	
 	public void NuovoProcuratore(String Nome,String Cognome,String CodiceFiscale,String NumeroTelefono,String NumeroTelefono2,String Email,
-			String DataNGiorno, String DataNMese, String DataNAnno) {
+			String DataNGiorno, String DataNMese, String DataNAnno)  {
 		
 		Procuratori procuratore = new Procuratori();
 		
@@ -40,21 +45,30 @@ public class Controller {
 		procuratore.setNumeroTelefonico2(NumeroTelefono2);
 		procuratore.setEmail(Email);
 		
-		String DataNascita = DataNGiorno + DataNMese + DataNAnno;
-		SimpleDateFormat formatoData1 = new SimpleDateFormat("dd/MM/yyyy");  
-		Date Data1 = formatoData1.parse(DataNascita);  
-		procuratore.setDataN(Data1);
+ 	    String DataNascita = DataNAnno  + DataNMese +DataNGiorno ;
+     	procuratore.setDataN(DataNascita);
+ 	
+//		SimpleDateFormat formatoData1 = new SimpleDateFormat("dd/MM/yyyy");  
+//		Date Data1 = formatoData1.parse(DataNascita);  
+		//procuratore.setDataN(Data1);
 		}
 		catch (Exception e) {
 			DataProcuratoreErrata.setVisible(true);
-		}
+		} 
 		
 		try {
 				ProcuratoriDAOpostgreImpl.InserisciProcuratoreDB(procuratore);
 				
 		}catch (SQLException e) {
-			
+			 
+			    
+		} catch (ParseException e) {
+			   ErroreDatabase.setVisible(true);
+			   e.printStackTrace();
 		}
+		
+		NuovoProcuratore.setVisible(false);
+		ProcuratoreInseritoOk.setVisible(true);		
 		
 	
 		
@@ -112,7 +126,21 @@ public class Controller {
 			CercaProcuratore = new M_CercaProcuratore(this);
 			Benvenuto = new M_Benvenuto(this);
 			NuovoProcuratore = new M_NuovoProcuratore(this);
-		//	ProcuratoreDAO = new ProcuratoriDAOPostgreImpl();
+			ErroreDatabase = new M_ErroreDatabase(this);
+			ProcuratoreInseritoOk = new M_ProcuratoreInseritoOk(this);
+			
+			
+			try {
+				DBConnection dbconnection = null;
+				dbconnection = DBConnection.getInstance();
+				Connection connection = dbconnection.getConnection();	
+				ProcuratoriDAOpostgreImpl = new ProcuratoriDAOPostgreImpl(connection);
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		 
 			Benvenuto.setVisible(true);
 		}
 	public static void main(String[] args) {

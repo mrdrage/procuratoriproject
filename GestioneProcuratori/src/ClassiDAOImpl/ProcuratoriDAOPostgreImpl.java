@@ -1,18 +1,18 @@
 package ClassiDAOImpl;
-
+	//MSTSVT98B27F839L
 import java.sql.Connection;
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 
 import ClassiDAO.ProcuratoriDAO;
-import Starter.DateUtilities;
 import entita.Procuratori;
 
 public class ProcuratoriDAOPostgreImpl implements ProcuratoriDAO {
-	private DateUtilities DataUtil= new DateUtilities();
 	
     private Connection connection;
     private PreparedStatement InserisciProcuratoreDB_PS;
@@ -43,15 +43,20 @@ public class ProcuratoriDAOPostgreImpl implements ProcuratoriDAO {
 	}
 
 	@Override
-	public void InserisciProcuratoreDB(Procuratori procuratore) throws SQLException {
+	public void InserisciProcuratoreDB(Procuratori procuratore) throws SQLException, ParseException {
 		InserisciProcuratoreDB_PS.setString(1, procuratore.getNome());
 		InserisciProcuratoreDB_PS.setString(2, procuratore.getCognome());
 		InserisciProcuratoreDB_PS.setString(3, procuratore.getCodiceFiscale());
 		InserisciProcuratoreDB_PS.setString(4, procuratore.getNumeroTelefonico());
 		InserisciProcuratoreDB_PS.setString(5, procuratore.getNumeroTelefonico2());
 		InserisciProcuratoreDB_PS.setString(6, procuratore.getEmail());
-		InserisciProcuratoreDB_PS.setDate(7, DataUtil.convertiDataInSql(procuratore.getDataN()));
 		
+	//	
+		    SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+	        Date parsed = (Date) format.parse(procuratore.getDataN());
+	        java.sql.Date sql = new java.sql.Date(parsed.getTime());
+	    InserisciProcuratoreDB_PS.setDate(7, parsed);
+	    
 		InserisciProcuratoreDB_PS.executeUpdate();
 }
 	

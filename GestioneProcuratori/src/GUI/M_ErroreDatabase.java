@@ -7,23 +7,25 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 
 public class M_ErroreDatabase extends JDialog {
-
+    
+    Controller controller = null;
+     
 	private final JPanel contentPanel = new JPanel();
-
-	/**
-	 * Launch the application.
-	 */
-
-
+   
+	
 	/**
 	 * Create the dialog.
 	 */
-	public M_ErroreDatabase() {
+	public M_ErroreDatabase(Controller c) {
+		controller = c;
 		setBounds(100, 100, 336, 134);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

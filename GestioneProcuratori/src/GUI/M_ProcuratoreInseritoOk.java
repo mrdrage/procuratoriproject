@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -14,17 +17,16 @@ import java.awt.Color;
 
 public class M_ProcuratoreInseritoOk extends JDialog {
 
+	Controller controller = null;
+	
 	private final JPanel contentPanel = new JPanel();
-
-	/**
-	 * Launch the application.
-	 */
 
 
 	/**
 	 * Create the dialog.
 	 */
-	public M_ProcuratoreInseritoOk() {
+	public M_ProcuratoreInseritoOk(Controller c) {
+		controller = c;
 		setBounds(100, 100, 383, 151);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(253, 245, 230));

@@ -10,7 +10,7 @@ public class Procuratori {
 	private String NumeroTelefonico;
 	private String NumeroTelefonico2;
 	private String Email;
-	private Date DataN;
+	private String DataN;
 	
 	
 	
@@ -62,10 +62,10 @@ public class Procuratori {
 		Email = email;
 	}
 	
-	public Date getDataN () {
+	public String getDataN () {
 		return DataN;
 	}
-	public void setDataN(Date data) {
+	public void setDataN(String data) {
 		DataN = data;
 	}
 	
