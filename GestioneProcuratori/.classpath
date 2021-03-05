@@ -8,7 +8,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="postgresql-42.2.18.jar"/>
-	<classpathentry kind="lib" path="postgresql-42.2.19.jar"/>
+	<classpathentry kind="lib" path="postgresql-42.2.18.jar"/>
+	<classpathentry exported="true" kind="lib" path="postgresql-42.2.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
