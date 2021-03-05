@@ -92,7 +92,10 @@ public class M_NuovoProcuratore extends JFrame {
 		Avanti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				controller.NuovoProcuratore (Nome_TF.getText(), Cognome_TF.getText(), CodiceFiscale_TF.getText(), NumeroTelefono_TF.getText(), NumeroTelefono2_TF.getText(),Email_TF.getText(),DataNGiorno_TF.getText());
+				controller.NuovoProcuratore (Nome_TF.getText(), Cognome_TF.getText(), CodiceFiscale_TF.getText(), 
+						NumeroTelefono_TF.getText(), NumeroTelefono2_TF.getText(),Email_TF.getText(),DataNGiorno_TF.getText(),
+						DataNMese_TF.getText(),DataNAnno_TF.getText());
+				
 			}
 		});
 		Avanti_B.setBounds(260, 467, 89, 23);

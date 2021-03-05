@@ -1,6 +1,8 @@
 package Starter;
 
 import GUI.*;
+
+
 import java.util.List;
 import entita.*;
 import java.sql.SQLException;
@@ -12,14 +14,19 @@ import java.sql.*;
 
 import DBconfig.DBConnection;
 
+import java.text.SimpleDateFormat;  
+import java.util.Date;  
+
 public class Controller {
-	
+	Date d = null;
 	M_CercaProcuratore CercaProcuratore = null;  
 	M_Benvenuto Benvenuto = null;
 	M_NuovoProcuratore NuovoProcuratore = null;
 		
 	
-	public void NuovoProcuratore(String Nome,String Cognome,String CodiceFiscale,String NumeroTelefono,String NumeroTelefono2,String Email,String DataN) {
+	public void NuovoProcuratore(String Nome,String Cognome,String CodiceFiscale,String NumeroTelefono,String NumeroTelefono2,String Email,
+			String DataNGiorno, String DataNMese, String DataNAnno) {
+		try {
 		Procuratori procuratore = new Procuratori();
 		procuratore.setNome(Nome);
 		procuratore.setCognome(Cognome);
@@ -27,8 +34,15 @@ public class Controller {
 		procuratore.setNumeroTelefonico(NumeroTelefono);
 		procuratore.setNumeroTelefonico2(NumeroTelefono2);
 		procuratore.setEmail(Email);
-		//procuratore.setDataN(DataN);
 		
+		String DataNascita = DataNGiorno + DataNMese + DataNAnno;
+		SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy");  
+		Date date1=formatter1.parse(DataNascita);  
+		procuratore.setDataN(date1);
+		}
+		catch (Exception e) {
+			
+		}
 		
 		
 		

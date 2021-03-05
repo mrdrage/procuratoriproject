@@ -1,6 +1,6 @@
 package entita;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Procuratori {
 //N.B. Non ci sono REGEX nei setter poichè sono già presenti lato DB(CodiceFiscale, NumeroTelefonico, email, NumeroTelefonico2)
@@ -11,6 +11,8 @@ public class Procuratori {
 	private String NumeroTelefonico2;
 	private String Email;
 	private Date DataN;
+	
+	
 	
 	public String getNome() {
 		return Nome;
@@ -60,14 +62,15 @@ public class Procuratori {
 		Email = email;
 	}
 	
-	public Date getDataN() {
+	public Date getDataN () {
 		return DataN;
 	}
-	
-	public void setDataN(Date dataN) {
-	//	if (!dataN.equals("a%_b"))
-		DataN = dataN;
+	public void setDataN(Date data) {
+		DataN = data;
 	}
+	
+	
+	
 	
 	
 }
