@@ -1,5 +1,7 @@
 package GUI;
 
+
+import Starter.Controller;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -11,9 +13,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class M_NuovoProcuratore extends JFrame {
 
+	Controller controller = null;
+	
+	
 	private JPanel contentPane;
 	private JTextField NumeroTelefono2_TF;
 	private JTextField Email_TF;
@@ -31,7 +38,10 @@ public class M_NuovoProcuratore extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public M_NuovoProcuratore() {
+	public M_NuovoProcuratore(Controller c) {
+		
+		controller = c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 379, 542);
 		contentPane = new JPanel();
@@ -80,6 +90,11 @@ public class M_NuovoProcuratore extends JFrame {
 		contentPane.add(Avanti_B);
 		
 		JButton Annulla_B = new JButton("Annulla");
+		Annulla_B.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.AnnullaInserimentoProcuratore();
+			}
+		});
 		Annulla_B.setBounds(161, 467, 89, 23);
 		contentPane.add(Annulla_B);
 		

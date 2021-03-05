@@ -1,5 +1,6 @@
 package GUI;
 
+import Starter.Controller;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -17,7 +18,8 @@ import java.awt.event.ActionEvent;
 public class M_Benvenuto extends JFrame {
 
 	private JPanel contentPane;
-	String prova ="prova combo";
+	Controller controller = null;
+	
 	
 
 	/**
@@ -28,7 +30,10 @@ public class M_Benvenuto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public M_Benvenuto() {
+	public M_Benvenuto(Controller c) {
+		
+		controller = c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 361, 224);
 		contentPane = new JPanel();
@@ -44,21 +49,29 @@ public class M_Benvenuto extends JFrame {
 		contentPane.add(Benvenuto_L);
 		
 		JButton InserisciProcuratore_B = new JButton("Inserisci Procuratore");
+		InserisciProcuratore_B.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				c.InserisciProcuratore();
+			}
+		});
 		InserisciProcuratore_B.setToolTipText("");
 		InserisciProcuratore_B.setForeground(new Color(0, 0, 0));
 		InserisciProcuratore_B.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		InserisciProcuratore_B.setBackground(new Color(0, 0, 0));
+		InserisciProcuratore_B.setBackground(new Color(255, 255, 255));
 		InserisciProcuratore_B.setBounds(78, 72, 179, 32);
 		contentPane.add(InserisciProcuratore_B);
 		
-		JButton CercaProcuratore_B = new JButton("Cerca Procuratore");
-		CercaProcuratore_B.setForeground(new Color(0, 0, 0));
+		JButton CercaProcuratore_B = new JButton("Cerca procuratore");
 		CercaProcuratore_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				c.IniziaRicerca();
 			}
 		});
-		CercaProcuratore_B.setBackground(new Color(0, 0, 0));
-		CercaProcuratore_B.setBounds(78, 115, 179, 32);
+		CercaProcuratore_B.setBackground(new Color(255, 255, 255));
+		CercaProcuratore_B.setBounds(78, 113, 179, 32);
+		contentPane.add(CercaProcuratore_B);
+		
+		
 		
 	}
 }

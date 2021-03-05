@@ -15,13 +15,24 @@ import DBconfig.DBConnection;
 public class Controller {
 	
 	M_CercaProcuratore MCP = null;  
-	String prova;
+	M_Benvenuto B = null;
+	M_NuovoProcuratore NP = null;
 		
+	
+	public void InserisciProcuratore() {
+		B.setVisible(false);
+		NP.setVisible(true);
+	}
+	
+	public void AnnullaInserimentoProcuratore() {
+		NP.setVisible(false);
+		B.setVisible(true);
+	}
 	
 	public void IniziaRicerca () {
 		
-		MCP.setVisible (false);
-		
+		B.setVisible (false);
+		MCP.setVisible(true);
 		
 	}
 	
@@ -51,11 +62,15 @@ public class Controller {
 	
      public Controller (){
 			MCP = new M_CercaProcuratore(this);
+			B = new M_Benvenuto(this);
+			NP = new M_NuovoProcuratore(this);
 			
+			B.setVisible(true);
 		}
 	public static void main(String[] args) {
 
 		Controller C = new Controller();
+		
 		
 	}
 

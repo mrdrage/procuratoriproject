@@ -52,7 +52,7 @@ public class M_CercaProcuratore extends JFrame {
 				controller.IniziaRicerca();
 			}
 		});
-		CercaProcuratore_B.setBounds(337, 101, 61, 23);
+		CercaProcuratore_B.setBounds(329, 101, 69, 23);
 		contentPane.add(CercaProcuratore_B);
 		
 		CercaProcuratore_CO = new JComboBox();
