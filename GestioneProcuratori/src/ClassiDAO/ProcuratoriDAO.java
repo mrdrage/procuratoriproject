@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface ProcuratoriDAO {
 	
-	boolean TrovaProcuratore(String CodiceFiscale) throws SQLException;
-	Procuratori getInfoProcuratore (String CodiceFiscale) throws SQLException;
-    List<Procuratori> getProcuratori () throws SQLException;
-    void InserisciProcuratoreDB (Procuratori procuratore) throws SQLException,ParseException;
+//	boolean TrovaProcuratore(String CodiceFiscale) throws SQLException;
+//	Procuratori getInfoProcuratore (String CodiceFiscale) throws SQLException;
+//    List<Procuratori> getProcuratori () throws SQLException;
+    public void InserisciProcuratoreDB (Procuratori procuratore) throws SQLException;
 }

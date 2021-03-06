@@ -3,7 +3,7 @@ package entita;
 import java.util.Date;
 
 public class Procuratori {
-//N.B. Non ci sono REGEX nei setter poichè sono già presenti lato DB(CodiceFiscale, NumeroTelefonico, email, NumeroTelefonico2)
+
 	private String Nome;
 	private String Cognome;
 	private String CodiceFiscale;
@@ -65,8 +65,8 @@ public class Procuratori {
 	public String getDataN () {
 		return DataN;
 	}
-	public void setDataN(String data) {
-		DataN = data;
+	public void setDataN(String String) {
+		DataN = String;
 	}
 	
 	

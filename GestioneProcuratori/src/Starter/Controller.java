@@ -63,9 +63,6 @@ public class Controller {
 		}catch (SQLException e) {
 			 
 			    
-		} catch (ParseException e) {
-			   ErroreDatabase.setVisible(true);
-			   e.printStackTrace();
 		}
 		
 		NuovoProcuratore.setVisible(false);
@@ -134,7 +131,7 @@ public class Controller {
 				DBConnection dbconnection = null;
 				dbconnection = DBConnection.getInstance();
 				Connection connection = dbconnection.getConnection();	
-				ProcuratoriDAOpostgreImpl = new ProcuratoriDAOPostgreImpl(connection);
+				ProcuratoriDAO = new ProcuratoriDAOPostgreImpl(connection);
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
