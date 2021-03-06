@@ -16,7 +16,7 @@ public class ProcuratoriDAOPostgreImpl implements ProcuratoriDAO {
 	
     private Connection connection;
     private PreparedStatement InserisciProcuratoreDB_PS;
-    String SQLSt = "INSERT INTO Procuratori VALUES (?, ?, ?, ?, ?, ?, ?::date)";
+    String SQLSt = "INSERT INTO Procuratori (nome, cognome, codicefiscale, numerotelefonico, numerotelefonico2, email, datan, codprocuratori) VALUES (?, ?, ?, ?, ?, ?, ?::date, 5)";
     
 	public ProcuratoriDAOPostgreImpl(Connection connection) throws SQLException {
 		this.connection = connection;
@@ -51,6 +51,7 @@ public class ProcuratoriDAOPostgreImpl implements ProcuratoriDAO {
 		InserisciProcuratoreDB_PS.setString(5, procuratore.getNumeroTelefonico2());
 		InserisciProcuratoreDB_PS.setString(6, procuratore.getEmail());
 	    InserisciProcuratoreDB_PS.setString(7, procuratore.getDataN());
+	  
 	    
 		InserisciProcuratoreDB_PS.executeUpdate();
 }

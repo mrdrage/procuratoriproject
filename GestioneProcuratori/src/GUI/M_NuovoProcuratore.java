@@ -25,13 +25,11 @@ public class M_NuovoProcuratore extends JFrame {
 	private JPanel contentPane;
 	private JTextField NumeroTelefono2_TF;
 	private JTextField Email_TF;
-	private JTextField DataNGiorno_TF;
+	private JTextField DataN_TF;
 	private JTextField NumeroTelefono_TF;
 	private JTextField CodiceFiscale_TF;
 	private JTextField Cognome_TF;
 	private JTextField Nome_TF;
-	private JTextField DataNMese_TF;
-	private JTextField DataNAnno_TF;
 
 
 
@@ -91,8 +89,7 @@ public class M_NuovoProcuratore extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				controller.NuovoProcuratore (Nome_TF.getText(), Cognome_TF.getText(), CodiceFiscale_TF.getText(), 
-						NumeroTelefono_TF.getText(), NumeroTelefono2_TF.getText(),Email_TF.getText(),DataNGiorno_TF.getText(),
-						DataNMese_TF.getText(),DataNAnno_TF.getText());
+						NumeroTelefono_TF.getText(), NumeroTelefono2_TF.getText(),Email_TF.getText(),DataN_TF.getText());
 				
 			}
 		});
@@ -124,10 +121,10 @@ public class M_NuovoProcuratore extends JFrame {
 		contentPane.add(Email_TF);
 		Email_TF.setColumns(10);
 		
-		DataNGiorno_TF = new JTextField();
-		DataNGiorno_TF.setBounds(194, 320, 29, 20);
-		contentPane.add(DataNGiorno_TF);
-		DataNGiorno_TF.setColumns(10);
+		DataN_TF = new JTextField();
+		DataN_TF.setBounds(194, 320, 145, 20);
+		contentPane.add(DataN_TF);
+		DataN_TF.setColumns(10);
 		
 		NumeroTelefono_TF = new JTextField();
 		NumeroTelefono_TF.setBounds(194, 202, 145, 20);
@@ -148,28 +145,6 @@ public class M_NuovoProcuratore extends JFrame {
 		Nome_TF.setBounds(194, 79, 145, 20);
 		contentPane.add(Nome_TF);
 		Nome_TF.setColumns(10);
-		
-		DataNMese_TF = new JTextField();
-		DataNMese_TF.setBounds(238, 320, 40, 20);
-		contentPane.add(DataNMese_TF);
-		DataNMese_TF.setColumns(10);
-		
-		DataNAnno_TF = new JTextField();
-		DataNAnno_TF.setBounds(288, 320, 51, 20);
-		contentPane.add(DataNAnno_TF);
-		DataNAnno_TF.setColumns(10);
-		
-		JLabel DataN1_L = new JLabel("/");
-		DataN1_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		DataN1_L.setHorizontalAlignment(SwingConstants.CENTER);
-		DataN1_L.setBounds(219, 323, 20, 14);
-		contentPane.add(DataN1_L);
-		
-		JLabel DataN2_L = new JLabel("/");
-		DataN2_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		DataN2_L.setHorizontalAlignment(SwingConstants.CENTER);
-		DataN2_L.setBounds(260, 323, 46, 14);
-		contentPane.add(DataN2_L);
 		
 		
 	}

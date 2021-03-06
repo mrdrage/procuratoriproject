@@ -37,7 +37,7 @@ public class Controller {
 	}
 	
 	public void NuovoProcuratore(String Nome,String Cognome,String CodiceFiscale,String NumeroTelefono,String NumeroTelefono2,String Email,
-			String DataNGiorno, String DataNMese, String DataNAnno)  {
+			String DataN)  {
 		
 		Procuratori procuratore = new Procuratori();
 		
@@ -49,9 +49,7 @@ public class Controller {
 		procuratore.setNumeroTelefonico(NumeroTelefono);
 		procuratore.setNumeroTelefonico2(NumeroTelefono2);
 		procuratore.setEmail(Email);
-		
- 	    String DataNascita = DataNAnno  + DataNMese +DataNGiorno ;
-     	procuratore.setDataN(DataNascita);
+     	procuratore.setDataN(DataN);
  	
 // aggiungere il try prima del catch per DataProcuratoreErrata
 		}

@@ -57,7 +57,7 @@ public class M_Benvenuto extends JFrame {
 		InserisciProcuratore_B.setToolTipText("");
 		InserisciProcuratore_B.setForeground(new Color(0, 0, 0));
 		InserisciProcuratore_B.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		InserisciProcuratore_B.setBackground(Color.BLACK);
+		InserisciProcuratore_B.setBackground(new Color(255, 255, 255));
 		InserisciProcuratore_B.setBounds(78, 72, 179, 32);
 		contentPane.add(InserisciProcuratore_B);
 		
@@ -67,7 +67,7 @@ public class M_Benvenuto extends JFrame {
 				//Caricare tutti i procuratori nella combobox
 			}
 		});
-		CercaProcuratore_B.setBackground(Color.BLACK);
+		CercaProcuratore_B.setBackground(new Color(255, 255, 255));
 		CercaProcuratore_B.setBounds(78, 113, 179, 32);
 		contentPane.add(CercaProcuratore_B);
 		
