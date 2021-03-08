@@ -29,7 +29,7 @@ public class Controller {
 		
 		PreparedStatement DatiProcuratore, InserisciP,inserisciA;
 		ResultSet rs;
-		int RowCount=0,codAtleta = 3, codCollab = 1;
+		int RowCount=0;
 		
 		
 		try {
