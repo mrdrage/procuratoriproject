@@ -51,7 +51,6 @@ public class Controller {
 		procuratore.setEmail(Email);
      	procuratore.setDataN(DataN);
  	
-// aggiungere il try prima del catch per DataProcuratoreErrata
 		}
 		catch (Exception e) {
 			DataProcuratoreErrata.setVisible(true);
