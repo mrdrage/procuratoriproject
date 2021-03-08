@@ -48,16 +48,16 @@ public class DBBuilder
 
                 if (!tableExists("procuratori")) {
                     String sql = "CREATE TABLE procuratori "
-                                + "(CodProcuratore CHAR(4) not NULL, "
-                    		    + " Nome VARCHAR(20) not NULL, "
+                                + "(Nome VARCHAR(20) not NULL, "
                                 + " Cognome VARCHAR(20) not NULL, "
                     		    + " CodiceFiscale CHAR(16), "
                                 + " NumeroTelefonico CHAR(10), "
                     		    + " NumeroTelefonico2 CHAR(10), "
                                 + " Email VARCHAR(20) not NULL, "
                     		    + " DataN DATE, "
+                                + " CodProcuratore int not NULL, "
                                 + " CONSTRAINT pkprocuratore PRIMARY KEY(CodProcuratore), "
-                    		    + " CONSTRAINT uqprocuratore UNIQUE (CodiceFiscale), "
+                    		    + " CONSTRAINT uqprocuratore UNIQUE (CodiceFiscale) "
                                 + ");";
                     result = st.executeUpdate(sql);
                     st.close();
@@ -89,16 +89,18 @@ public class DBBuilder
 
                 if (!tableExists("atleti")) {
                     String sql = "CREATE TABLE atleti "
-                                +  "(CodCollaborazione CHAR(4), "
-                    		    +  " Nome VARCHAR(20) not NULL, "
+                                
+                    		    +  " (Nome VARCHAR(20) not NULL, "
                                 +  " Cognome VARCHAR(20) not NULL, "
                     		    +  " Nazione VARCHAR(20) not NULL, "
                                 +  " CodiceFiscale CHAR(16) not NULL, "
                     		    +  " Sport VARCHAR(20) not NULL,  "
                                 +  " ClubAttuale VARCHAR(20) not NULL,  "
                     		    +  " SerieClub VARCHAR(20) not NULL, "
+                                +  " CodCollaborazione int, "
+                    		    +  " CodAtleti int, "
                                 +  " CONSTRAINT pkatleti PRIMARY KEY(CodAtleta), "
-                    		    +  "CONSTRAINT uqatleti UNIQUE (CodiceFiscale), "
+                    		    +  " CONSTRAINT uqatleti UNIQUE (CodiceFiscale) "
                                 +  ");";
 
                     result = st.executeUpdate(sql);
@@ -118,13 +120,89 @@ public class DBBuilder
         return result;
     }
     
-    public int createTableAtleti() throws ConnectionException{
-    
-    
-    }
+    public int createTableCollaborazione() throws ConnectionException{
+    	
+    	int result = -1;
+         
+
+         if(connectionExists())
+         {
+             try {
+                 Statement st = connection.createStatement();
+
+                 if (!tableExists("collaborazione")) {
+                     String sql = "CREATE TABLE collaborazione "
+                    		       + "DataInizio DATE not NULL, "
+                    		       + "DataFine DATE not NULL, "
+                    		       + "StipendioMensileProcuratore Float not NULL, "
+                    		       + "CodCollaborazione int, "
+                    		       + "CodAtleti int not NULL, "
+                    		       + "CodProcuratori int not NULL, "
+                    		       + "CONSTRAINT pkcollab PRIMARY KEY (CodCollaborazione), "
+                    		       + "CONSTRAINT fkcollab1 FOREIGN KEY (CodProcuratori) REFERENCES PROCURATORI (CodProcuratori), "
+                    		       + "CONSTRAINT fkcollab2 FOREIGN KEY (CodAtleti) REFERENCES ATLETI (CodAtleti) "
+                    		       + ");";
+                     
+                     result = st.executeUpdate(sql);
+                     st.close();
+
+                 } else
+                     System.out.println("Table collaborazione already exists!");
+             }
+             catch(SQLException ex)
+             {
+                 System.out.println("SQL Exception in creation table collaborazione: "+ex);
+             }
+         }
+         else
+             throw new ConnectionException("A connection must exist!");
+
+         return result;
+     }
+
+    public int createTableContrattoClub() throws ConnectionException{
+
+        int result = -1;
+
+        if(connectionExists())
+        {
+            try {
+                Statement st = connection.createStatement();
+
+                if (!tableExists("contrattoclub")) {
+                    String sql = "CREATE TABLE contrattoclub "
+                                    + "(DataInizio DATE not NULL, "
+                    		        + " DataFine DATE not NULL, "
+                                    + "StipendioAtleta Float not NULL, "
+                    		        + " BonusStagione VARCHAR(200), "
+                                    + " GuadagnoBonus Float, "
+                    		        + " VincoloContrattuale VARCHAR(200), "
+                                    + " CodTransazioneClub int, "
+                    		        + " CodAtleti int not NULL, "
+                                    + " CONSTRAINT pkclub PRIMARY KEY (CodTransazioneClub), "
+                    		        + " CONSTRAINT fkclub FOREIGN KEY (CodAtleti) REFERENCES ATLETI (CodAtleti) "
+                                    + " );";
+                    
+                    result = st.executeUpdate(sql);
+                    st.close();
+
+                } else
+                    System.out.println("Table contrattoclub already exists!");
+            }
+            catch(SQLException ex)
+            {
+                System.out.println("SQL Exception in creation table contrattoclub: "+ex);
+            }
+
+        }
+        else
+            throw new ConnectionException("A connection must exist!");
+
+        return result;
     }
 
-    public int createTableDocente() throws ConnectionException
+
+    public int createTableContrattoSponsor() throws ConnectionException
     {
 
         int result = -1;
@@ -134,23 +212,29 @@ public class DBBuilder
             try {
                 Statement st = connection.createStatement();
 
-                if (!tableExists("docente")) {
-                    String sql = "CREATE TABLE docente " +
-                            "(cf VARCHAR(16) not NULL, " +
-                            " nome VARCHAR(255), " +
-                            " cognome VARCHAR(255), " +
-                            " email VARCHAR(255), " +
-                            " PRIMARY KEY ( cf ));";
-
+                if (!tableExists("contrattosponsor")) {
+                    String sql = "CREATE TABLE contrattosponsor "
+                                    + "(DataInizio DATE not NULL, "
+                    		        + " DataFine DATE not NULL, "
+                                    + " GuadagnoAtleta Float not NULL, "
+                    		        + " TipologiaSponsor VARCHAR(40), "
+                                    + " MarcaSponsor VARCHAR(40) not NULL, "
+                                    + " VincoliContrattuali VARCHAR(200) not NULL,"
+                                    + " CodTransazioneSponsor int,"
+                                    + " CodAtleti int not NULL, "
+                                    + " CONSTRAINT pksponsor PRIMARY KEY (CodTransazioneSponsor), "
+                                    + " CONSTRAINT fksponsor  FOREIGN KEY (CodAtleti) REFERENCES ATLETI (CodAtleti) "
+                                    + " );";
+                    
                     result = st.executeUpdate(sql);
                     st.close();
 
                 } else
-                    System.out.println("Table docente already exists!");
+                    System.out.println("Table contrattosponsor already exists!");
             }
             catch(SQLException ex)
             {
-                System.out.println("SQL Exception in creation table docente: "+ex);
+                System.out.println("SQL Exception in creation table contrattosponsor: "+ex);
             }
 
         }
@@ -159,5 +243,84 @@ public class DBBuilder
 
         return result;
     }
+
+    public int createTableGettoneNazionale() throws ConnectionException
+    {
+
+        int result = -1;
+
+        if(connectionExists())
+        {
+            try {
+                Statement st = connection.createStatement();
+
+                if (!tableExists("gettonenazionale")) {
+                    String sql = "CREATE TABLE gettonenazionale "
+                                    + "(Data DATE not NULL, "
+                    		        + " Presenza boolean not NULL, "
+                    		        + " Guadagno Float not NULL, "
+                    		        + " CodAtleti int, "
+                    		        + " CONSTRAINT pkgettone PRIMARY KEY (CodAtleti, Data), "
+                    		        + " CONSTRAINT fkgettone FOREIGN KEY (CodAtleti) REFERENCES ATLETI (CodAtleti) "
+                    		        + ");"; 
+                    
+                    result = st.executeUpdate(sql);
+                    st.close();
+
+                } else
+                    System.out.println("Table gettonenazionale already exists!");
+            }
+            catch(SQLException ex)
+            {
+                System.out.println("SQL Exception in creation table gettonenazionale: "+ex);
+            }
+
+        }
+        else
+            throw new ConnectionException("A connection must exist!");
+
+        return result;
+    }
+
+    public int createTablenazionale() throws ConnectionException
+    {
+
+        int result = -1;
+
+        if(connectionExists())
+        {
+            try {
+                Statement st = connection.createStatement();
+
+                if (!tableExists("nazionale")) {
+                    String sql = "CREATE TABLE nazionale "
+                                    + "(Data DATE not NULL, "
+                                    + "CodAtleti int not NULL, "
+                                    + "CONSTRAINT fknazionale1 FOREIGN KEY (CodAtleti) REFERENCES ATLETI (CodAtleti), "
+                                    + "CONSTRAINT fknazionale2 FOREIGN KEY (Date) REFERENCES GETTONENAZIONALE(Date)"
+                    		        + " );";
+                    
+                    result = st.executeUpdate(sql);
+                    st.close();
+
+                } else
+                    System.out.println("Table nazionale already exists!");
+            }
+            catch(SQLException ex)
+            {
+                System.out.println("SQL Exception in creation table nazionale: "+ex);
+            }
+
+        }
+        else
+            throw new ConnectionException("A connection must exist!");
+
+        return result;
+    }
+    
+    
 }
+
+
+
 

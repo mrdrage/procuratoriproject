@@ -21,10 +21,6 @@ import java.util.Date;
 public class Controller {
 	
 
-<<<<<<< HEAD
-=======
-	
->>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
 
 	public static void main(String[] args) throws SQLException {
 
