@@ -4,18 +4,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import DBconfig.DBConnection;
+import entita.Procuratori;
 
-public class ProcuratoriDAO {{
+public interface ProcuratoriDAO {
 	
+	public int InserisciProcuratore(Procuratori procuratore) throws SQLException;
+
 	
-//	try {
-//	Connection conn= null;
-//	DBConnection dbc = DBConnection.getInstance();
-//	conn = dbc.getConnection();
-//	
-//	}catch (SQLException e) {
-//		System.out.println ("errore§?");
-//	}
-	
- }}
+ }
 
