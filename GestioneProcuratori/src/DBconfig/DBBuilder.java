@@ -80,7 +80,7 @@ public class DBBuilder
     {
 
         int result = -1;
-        String a;
+        
 
         if(connectionExists())
         {

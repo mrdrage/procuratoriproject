@@ -38,7 +38,7 @@ public class DBConnection  {
 
 	public Connection getConnection()
 	{
-		String a;
+		
 		return connection;
 	}
 
