@@ -2,12 +2,14 @@ package Starter;
 
 import GUI.*;
 
+
 import java.util.List;
 
 import entita.*;
 
 import java.rmi.AccessException;
 import java.sql.*;
+import java.sql.Types;
 
 import DBconfig.DBConnection;
 
@@ -27,7 +29,8 @@ public class Controller {
 		
 		PreparedStatement DatiProcuratore, InserisciP,inserisciA;
 		ResultSet rs;
-		int RowCount=0;
+		int RowCount=0,codAtleta = 3, codCollab = 1;
+		
 		
 		try {
 			Connection conn= null;
@@ -35,7 +38,7 @@ public class Controller {
 			conn = dbc.getConnection();
 			DatiProcuratore = conn.prepareStatement("SELECT * FROM procuratori");
 			InserisciP = conn.prepareStatement("INSERT INTO procuratori VALUES (?,?,?,?,?,?,?,?) ");
-			inserisciA = conn.prepareStatement("INSERT INTO Atleti VALUES (?,?,?,?,?,?,?.?,?)");
+			inserisciA = conn.prepareStatement("INSERT INTO Atleti VALUES (?,?,?,?,?,?,?,?,?)");
 			rs = DatiProcuratore.executeQuery();
 			
 			while(rs.next()) {
@@ -55,6 +58,7 @@ public class Controller {
 //			InserisciP.setString(7, "2000-12-30");
 //			InserisciP.setInt(8, 0007);
 			
+			
 
 			inserisciA.setString(1, "asdrubale");
       		inserisciA.setString(2, "lini");
@@ -64,7 +68,7 @@ public class Controller {
 			inserisciA.setString(6, "napulegno");
 			inserisciA.setString(7, "SerieA");
 			inserisciA.setInt(8, 3);
-			inserisciA.setInt(9,1);
+			inserisciA.setObject(9,codCollab);
 
 
 
@@ -79,6 +83,7 @@ public class Controller {
 			}catch (SQLException e) {
 				e.printStackTrace();
 				System.out.println ("errore§? " + e.getMessage());
+				return;
 			}
 		
 		
