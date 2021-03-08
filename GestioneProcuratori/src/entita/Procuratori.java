@@ -1,5 +1,6 @@
 package entita;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Procuratori {
@@ -10,9 +11,9 @@ public class Procuratori {
 	private String NumeroTelefonico;
 	private String NumeroTelefonico2;
 	private String Email;
-	private int DataN;
+	private Timestamp DataN;
 	
-	public Procuratori(String nome, String cognome, String codicefiscale, String numerotelefonico, String numerotelefonico2, String email, int datan)
+	public Procuratori(String nome, String cognome, String codicefiscale, String numerotelefonico, String numerotelefonico2, String email, Timestamp datan)
 	{
 		this.Nome  = nome;
 		this.Cognome = cognome;
@@ -71,10 +72,10 @@ public class Procuratori {
 		Email = email;
 	}
 	
-	public int getDataN () {
+	public Timestamp getDataN () {
 		return DataN;
 	}
-	public void setDataN(int datan) {
+	public void setDataN(Timestamp datan) {
 		DataN = datan;
 	}
 	

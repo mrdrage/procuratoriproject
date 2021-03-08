@@ -1,26 +1,19 @@
 package Starter;
 
-import GUI.*;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import java.util.List;
-
-import entita.*;
-
-import java.rmi.AccessException;
-import java.sql.*;
-import java.sql.Types;
-
+import ClassiDAOImpl.ProcuratoriDAOPostgresImpl;
 import DBconfig.DBConnection;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;  
-import java.util.Date;  
+
 
 
 public class Controller {
 	
-
 
 	public static void main(String[] args) throws SQLException {
 
@@ -48,14 +41,14 @@ public class Controller {
 
 			}
 			
-//			InserisciP.setString(1, "asdrubale");
-//			InserisciP.setString(2, "lini");
-//			InserisciP.setString(3, "12345678901qwdog");
-//			InserisciP.setString(4, "081888999");
-//			InserisciP.setString(5, "042134055");
-//			InserisciP.setString(6, "asfdur");
-//			InserisciP.setString(7, "2000-12-30");
-//			InserisciP.setInt(8, 0007);
+			InserisciP.setString(1, "asdrubale");
+			InserisciP.setString(2, "lini");
+			InserisciP.setString(3, "12345678901qwdog");
+			InserisciP.setString(4, "081888999");
+			InserisciP.setString(5, "042134055");
+			InserisciP.setString(6, "asfdur");
+			InserisciP.setString(7, "2000-12-30");
+			InserisciP.setInt(8, 0007);
 			
 			
 
