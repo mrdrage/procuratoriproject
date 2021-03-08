@@ -87,32 +87,41 @@ public class DBBuilder
             try {
                 Statement st = connection.createStatement();
 
-                if (!tableExists("esame")) {
-                    String sql = "CREATE TABLE esame " +
-                            "(cod_esame VARCHAR(9) not NULL, " +
-                            " denominazione VARCHAR(255), " +
-                            " docente VARCHAR(255), " +
-                            " cfu int, " +
-                            " PRIMARY KEY ( cod_esame ), " +
-                            " CONSTRAINT  fk_docente " +
-                            " FOREIGN KEY(docente) " +
-                            " REFERENCES docente(cf));";
+                if (!tableExists("atleti")) {
+                    String sql = "CREATE TABLE atleti "
+                                +  "(CodCollaborazione CHAR(4), "
+                    		    +  " Nome VARCHAR(20) not NULL, "
+                                +  " Cognome VARCHAR(20) not NULL, "
+                    		    +  " Nazione VARCHAR(20) not NULL, "
+                                +  " CodiceFiscale CHAR(16) not NULL, "
+                    		    +  " Sport VARCHAR(20) not NULL,  "
+                                +  " ClubAttuale VARCHAR(20) not NULL,  "
+                    		    +  " SerieClub VARCHAR(20) not NULL, "
+                                +  " CONSTRAINT pkatleti PRIMARY KEY(CodAtleta), "
+                    		    +  "CONSTRAINT uqatleti UNIQUE (CodiceFiscale), "
+                                +  ");";
 
                     result = st.executeUpdate(sql);
                     st.close();
 
                 } else
-                    System.out.println("Table esame already exists!");
+                    System.out.println("Table atleti already exists!");
             }
             catch(SQLException ex)
             {
-                System.out.println("SQL Exception in creation table esame: "+ex);
+                System.out.println("SQL Exception in creation table atleti: "+ex);
             }
         }
         else
             throw new ConnectionException("A connection must exist!");
 
         return result;
+    }
+    
+    public int createTableAtleti() throws ConnectionException{
+    
+    
+    }
     }
 
     public int createTableDocente() throws ConnectionException
