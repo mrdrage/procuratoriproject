@@ -11,9 +11,9 @@ public class Procuratori {
 	private String NumeroTelefonico;
 	private String NumeroTelefonico2;
 	private String Email;
-	private Timestamp DataN;
+	private Date DataN;
 	
-	public Procuratori(String nome, String cognome, String codicefiscale, String numerotelefonico, String numerotelefonico2, String email, Timestamp datan)
+	public Procuratori(String nome, String cognome, String codicefiscale, String numerotelefonico, String numerotelefonico2, String email, Date parsedate)
 	{
 		this.Nome  = nome;
 		this.Cognome = cognome;
@@ -21,7 +21,7 @@ public class Procuratori {
 		this.NumeroTelefonico = numerotelefonico;
 		this.NumeroTelefonico2 = numerotelefonico2;
 		this.Email = email;
-		this.DataN = datan;
+		this.DataN = parsedate;
 	}
 	
 	public String getNome() {
@@ -72,10 +72,10 @@ public class Procuratori {
 		Email = email;
 	}
 	
-	public Timestamp getDataN () {
+	public Date getDataN () {
 		return DataN;
 	}
-	public void setDataN(Timestamp datan) {
+	public void setDataN(Date datan) {
 		DataN = datan;
 	}
 	

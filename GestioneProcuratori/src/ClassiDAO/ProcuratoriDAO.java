@@ -8,7 +8,7 @@ import entita.Procuratori;
 
 public interface ProcuratoriDAO {
 	
-	public int InserisciProcuratore(Procuratori procuratore) throws SQLException;
+	public void InserisciProcuratore(Procuratori procuratore) throws SQLException;
 
 	
  }
