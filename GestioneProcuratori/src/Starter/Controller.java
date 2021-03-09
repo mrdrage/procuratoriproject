@@ -29,7 +29,7 @@ public class Controller {
 		java.sql.Date sqlDate = new java.sql.Date(parsedate.getTime());
 //	Controller C = new Controller();
 		
-//		PreparedStatement DatiProcuratore, InserisciP,inserisciA;
+//		PreparedStatement DatiProcuratore, InserisciP,inserisciA
 //		ResultSet rs;
 //		int RowCount=0;
 		Procuratori procuratore = new Procuratori("sevio","mast","CF1234567890edfg","9911088189","1234567890","sani@mail.it",parsedate);

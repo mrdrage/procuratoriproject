@@ -31,7 +31,7 @@ public class ProcuratoriDAOPostgresImpl {
 		InserisciProcuratorePS.setString(4, procuratore.getNumeroTelefonico());
 		InserisciProcuratorePS.setString(5, procuratore.getNumeroTelefonico2());
 		InserisciProcuratorePS.setString(6, procuratore.getEmail());
-		//conversione della data di procuratore formato java.util, ad una data java.sql per poter usare "setDate"
+		//conversione della data di procuratore formato java.util, ad una data java.sql per poter usare "setDate".
 		java.sql.Date sqlDate = new java.sql.Date(procuratore.getDataN().getTime());
 		InserisciProcuratorePS.setDate(7,sqlDate);
 		InserisciProcuratorePS.setInt(8, 0012);
