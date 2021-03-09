@@ -29,7 +29,7 @@ public class Controller {
 			DBConnection dbc = DBConnection.getInstance();
 			conn = dbc.getConnection();
 			DatiProcuratore = conn.prepareStatement("SELECT * FROM procuratori");
-			InserisciP = conn.prepareStatement("INSERT INTO procuratori VALUES (?,?,?,?,?,?,?,?) ");
+			InserisciP = conn.prepareStatement("INSERT INTO procuratori VALUES (?,?,?,?,?,?,?::date,?) ");
 			inserisciA = conn.prepareStatement("INSERT INTO Atleti VALUES (?,?,?,?,?,?,?,?,?)");
 			rs = DatiProcuratore.executeQuery();
 			
@@ -43,33 +43,33 @@ public class Controller {
 			
 			InserisciP.setString(1, "asdrubale");
 			InserisciP.setString(2, "lini");
-			InserisciP.setString(3, "12345678901qwdog");
+			InserisciP.setString(3, "12345678901ryuog");
 			InserisciP.setString(4, "081888999");
 			InserisciP.setString(5, "042134055");
 			InserisciP.setString(6, "asfdur");
 			InserisciP.setString(7, "2000-12-30");
-			InserisciP.setInt(8, 0007);
+			InserisciP.setInt(8, 9);
+			InserisciP.executeUpdate();
 			
-			
-
-			inserisciA.setString(1, "asdrubale");
-      		inserisciA.setString(2, "lini");
-			inserisciA.setString(4, "12345678901qwdog");
-			inserisciA.setString(3, "italiana");
-			inserisciA.setString(5, "pallone");
-			inserisciA.setString(6, "napulegno");
-			inserisciA.setString(7, "SerieA");
-			inserisciA.setInt(8, 3);
-			inserisciA.setObject(9,codCollab);
-
+//
+//			inserisciA.setString(1, "asdrubale");
+//      		inserisciA.setString(2, "lini");
+//			inserisciA.setString(4, "12345678901qwdog");
+//			inserisciA.setString(3, "italiana");
+//			inserisciA.setString(5, "pallone");
+//			inserisciA.setString(6, "napulegno");
+//			inserisciA.setString(7, "SerieA");
+//			inserisciA.setInt(8, 3);
+//			inserisciA.setObject(9,5);
 
 
 
 
 
 
-			//RowCount = InserisciP.executeUpdate();
-			inserisciA.executeUpdate();
+
+		
+		//	inserisciA.executeUpdate();
 			
 			
 			}catch (SQLException e) {
