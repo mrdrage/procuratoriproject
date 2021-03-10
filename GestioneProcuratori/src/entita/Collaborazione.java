@@ -8,6 +8,14 @@ public class Collaborazione {
 	private Date DataFine;
 	private double StipendioMensile;
 	
+	public Collaborazione(Date dataInizio, Date dataFine, double stipendioMensile) {
+		DataInizio = dataInizio;
+		DataFine = dataFine;
+		StipendioMensile = stipendioMensile;
+	}
+	
+	
+	
 	public Date getDataFine() {
 		return DataFine;
 	}

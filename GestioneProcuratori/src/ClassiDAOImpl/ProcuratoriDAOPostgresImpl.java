@@ -14,14 +14,14 @@ public class ProcuratoriDAOPostgresImpl {
 	
 	
 	private Connection connection;
-	private PreparedStatement InserisciProcuratorePS, getAllProcuratori, getAllCFProcuratori;
+	private PreparedStatement InserisciProcuratore, getAllProcuratori, getAllCFProcuratori;
 	
 	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException
 	{
 		this.connection = connection;
 		
 		
-		InserisciProcuratorePS = connection.prepareStatement("INSERT INTO procuratori VALUES (?,?,?,?,?,?,?,?) ");
+		InserisciProcuratore = connection.prepareStatement("INSERT INTO procuratori VALUES (?,?,?,?,?,?,?,?) ");
 		getAllProcuratori = connection.prepareStatement("SELECT * FROM procuratori");
 		getAllCFProcuratori = connection.prepareStatement("SELECT codicefiscale FROM procuratori");
 		
@@ -32,18 +32,18 @@ public class ProcuratoriDAOPostgresImpl {
 	
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException {
 		
-		InserisciProcuratorePS.setString(1, procuratore.getNome());
-		InserisciProcuratorePS.setString(2, procuratore.getCognome());
-		InserisciProcuratorePS.setString(3, procuratore.getCodiceFiscale());
-		InserisciProcuratorePS.setString(4, procuratore.getNumeroTelefonico());
-		InserisciProcuratorePS.setString(5, procuratore.getNumeroTelefonico2());
-		InserisciProcuratorePS.setString(6, procuratore.getEmail());
+		InserisciProcuratore.setString(1, procuratore.getNome());
+		InserisciProcuratore.setString(2, procuratore.getCognome());
+		InserisciProcuratore.setString(3, procuratore.getCodiceFiscale());
+		InserisciProcuratore.setString(4, procuratore.getNumeroTelefonico());
+		InserisciProcuratore.setString(5, procuratore.getNumeroTelefonico2());
+		InserisciProcuratore.setString(6, procuratore.getEmail());
 		//conversione della data di procuratore formato java.util, ad una data java.sql per poter usare "setDate".
 		java.sql.Date sqlDate = new java.sql.Date(procuratore.getDataN().getTime());
-		InserisciProcuratorePS.setDate(7,sqlDate);
-		InserisciProcuratorePS.setInt(8, 0012);
+		InserisciProcuratore.setDate(7,sqlDate);
+		InserisciProcuratore.setInt(8, 0012);
 		
-	    InserisciProcuratorePS.executeUpdate();
+	    InserisciProcuratore.executeUpdate();
 		
 	}
 	
