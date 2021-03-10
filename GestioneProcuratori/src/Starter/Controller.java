@@ -27,6 +27,7 @@ public class Controller {
 		SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd");
 		Date parsedate = format.parse("2000-01-01");
 		java.sql.Date sqlDate = new java.sql.Date(parsedate.getTime());
+		
 //	Controller C = new Controller();
 		
 //		PreparedStatement DatiProcuratore, InserisciP,inserisciA
@@ -39,14 +40,20 @@ public class Controller {
 			DBConnection dbc = DBConnection.getInstance();
 			conn = dbc.getConnection();
 			
-			ProcuratoriDAOPostgresImpl procuaratoriDAOPostgresImpl  = new ProcuratoriDAOPostgresImpl(conn);
+//			ProcuratoriDAOPostgresImpl procuaratoriDAOPostgresImpl  = new ProcuratoriDAOPostgresImpl(conn);
+			ProcuratoriDAOPostgresImpl procuratoriDAOPostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
+			
+ 
+ System.out.println(procuratoriDAOPostgresImpl.getAllCFProcuratori());
+ System.out.println(procuratoriDAOPostgresImpl.getAllProcuratori());
 
-			procuaratoriDAOPostgresImpl.InserisciProcuratore(procuratore);
+//			procuaratoriDAOPostgresImpl.InserisciProcuratore(procuratore);
+			
 	
 			
 			}catch (SQLException e) {
 				e.printStackTrace();
-				System.out.println ("erroreÂ§? " + e.getMessage());
+				System.out.println ("errore§? " + e.getMessage());
 				return;
 			}
 		

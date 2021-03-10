@@ -2,7 +2,10 @@ package ClassiDAOImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import Starter.Controller;
 import entita.Procuratori;
@@ -11,7 +14,7 @@ public class ProcuratoriDAOPostgresImpl {
 	
 	
 	private Connection connection;
-	private PreparedStatement InserisciProcuratorePS;
+	private PreparedStatement InserisciProcuratorePS, getAllProcuratori, getAllCFProcuratori;
 	
 	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException
 	{
@@ -19,8 +22,12 @@ public class ProcuratoriDAOPostgresImpl {
 		
 		
 		InserisciProcuratorePS = connection.prepareStatement("INSERT INTO procuratori VALUES (?,?,?,?,?,?,?,?) ");
+		getAllProcuratori = connection.prepareStatement("Select * FROM procuratori");
+		getAllCFProcuratori = connection.prepareStatement("Select codicefiscale FROM procuratori");
 		
 	}
+	
+	
 	
 	
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException {
@@ -40,5 +47,31 @@ public class ProcuratoriDAOPostgresImpl {
 		
 	}
 	
-
+ public List<Procuratori> getAllProcuratori() throws SQLException{
+	 
+	 ResultSet rs  = getAllProcuratori.executeQuery();
+	 List<Procuratori> lista = new ArrayList<Procuratori>();
+	 while(rs.next())
+	 {
+		 Procuratori p = new Procuratori(rs.getString("nome"), rs.getString("cognome"), rs.getString("codicefiscale"), rs.getString("numerotelefonico"), rs.getString("numerotelefonico2"), rs.getString("email"), rs.getDate("datan"));
+		 lista.add(p);
+	 }
+	 rs.close();
+	 return lista;
+ }
+	
+ public List<String> getAllCFProcuratori() throws SQLException{
+	
+	 ResultSet rs = getAllCFProcuratori.executeQuery();
+	 List<String> lista = new ArrayList<String>();
+	 
+	 while(rs.next()) {
+		 String f = rs.getString(1);
+		 lista.add(f);
+	 }
+	 
+	 rs.close();
+	 return lista;
+ }
+	
 }
