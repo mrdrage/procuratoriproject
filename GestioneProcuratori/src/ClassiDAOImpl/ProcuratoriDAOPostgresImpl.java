@@ -47,7 +47,7 @@ public class ProcuratoriDAOPostgresImpl {
 		
 	}
 	
- public List<Procuratori> getAllProcuratori() throws SQLException{
+    public List<Procuratori> getAllProcuratori() throws SQLException{
 	 
 	 ResultSet rs  = getAllProcuratori.executeQuery();
 	 List<Procuratori> lista = new ArrayList<Procuratori>();
@@ -60,7 +60,7 @@ public class ProcuratoriDAOPostgresImpl {
 	 return lista;
  }
 	
- public List<String> getAllCFProcuratori() throws SQLException{
+    public List<String> getAllCFProcuratori() throws SQLException{
 	
 	 ResultSet rs = getAllCFProcuratori.executeQuery();
 	 List<String> lista = new ArrayList<String>();

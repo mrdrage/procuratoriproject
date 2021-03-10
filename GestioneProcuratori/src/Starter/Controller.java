@@ -45,7 +45,13 @@ public class Controller {
 			
  
  System.out.println(procuratoriDAOPostgresImpl.getAllCFProcuratori());
- System.out.println(procuratoriDAOPostgresImpl.getAllProcuratori());
+ 
+ for(Procuratori PR:procuratoriDAOPostgresImpl.getAllProcuratori()) {
+	 System.out.print(PR.getNome());
+	 System.out.print(PR.getCognome());
+	 System.out.print(" ");
+ }
+// System.out.println(procuratoriDAOPostgresImpl.getAllProcuratori());
 
 //			procuaratoriDAOPostgresImpl.InserisciProcuratore(procuratore);
 			

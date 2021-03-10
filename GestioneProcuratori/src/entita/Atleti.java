@@ -10,6 +10,18 @@ public class Atleti {
 	private String ClubAttuale;
 	private String SerieClub;
 	
+	public Atleti(String nome, String cognome, String nazione, String codicefiscale, String sport, String clubattuale, String serieclub) {
+		this.Nome = nome;
+		this.Cognome = cognome;
+		this.Nazione = nazione;
+		this.CodiceFiscale = codicefiscale;
+		this.Sport = sport;
+		this.ClubAttuale = clubattuale;
+		this.SerieClub = serieclub;
+	}
+	
+	
+	
 	public String getNome() {
 		return Nome;
 	}
