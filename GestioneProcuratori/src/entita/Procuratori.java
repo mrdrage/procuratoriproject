@@ -80,6 +80,9 @@ public class Procuratori {
 		DataN = datan;
 	}
 	
+	public void StampaProcuratore () {
+		System.out.println(Nome+" "+ Cognome+" "+ CodiceFiscale);
+	}
 	
 	
 	

@@ -22,8 +22,8 @@ public class ProcuratoriDAOPostgresImpl {
 		
 		
 		InserisciProcuratorePS = connection.prepareStatement("INSERT INTO procuratori VALUES (?,?,?,?,?,?,?,?) ");
-		getAllProcuratori = connection.prepareStatement("Select * FROM procuratori");
-		getAllCFProcuratori = connection.prepareStatement("Select codicefiscale FROM procuratori");
+		getAllProcuratori = connection.prepareStatement("SELECT * FROM procuratori");
+		getAllCFProcuratori = connection.prepareStatement("SELECT codicefiscale FROM procuratori");
 		
 	}
 	
@@ -47,31 +47,31 @@ public class ProcuratoriDAOPostgresImpl {
 		
 	}
 	
- public List<Procuratori> getAllProcuratori() throws SQLException{
+    public List<Procuratori> getAllProcuratori() throws SQLException{
 	 
-	 ResultSet rs  = getAllProcuratori.executeQuery();
-	 List<Procuratori> lista = new ArrayList<Procuratori>();
-	 while(rs.next())
-	 {
-		 Procuratori p = new Procuratori(rs.getString("nome"), rs.getString("cognome"), rs.getString("codicefiscale"), rs.getString("numerotelefonico"), rs.getString("numerotelefonico2"), rs.getString("email"), rs.getDate("datan"));
-		 lista.add(p);
-	 }
-	 rs.close();
-	 return lista;
- }
+	   ResultSet rs  = getAllProcuratori.executeQuery();
+	   List<Procuratori> lista = new ArrayList<Procuratori>();
+	   while(rs.next())
+	   {
+		   Procuratori p = new Procuratori(rs.getString("nome"), rs.getString("cognome"), rs.getString("codicefiscale"), rs.getString("numerotelefonico"), rs.getString("numerotelefonico2"), rs.getString("email"), rs.getDate("datan"));
+		   lista.add(p);
+	   }
+	   rs.close();
+	   return lista;
+   }
 	
- public List<String> getAllCFProcuratori() throws SQLException{
+   public List<String> getAllCFProcuratori() throws SQLException{
 	
-	 ResultSet rs = getAllCFProcuratori.executeQuery();
-	 List<String> lista = new ArrayList<String>();
+	   ResultSet rs = getAllCFProcuratori.executeQuery();
+	   List<String> lista = new ArrayList<String>();
 	 
-	 while(rs.next()) {
-		 String f = rs.getString(1);
-		 lista.add(f);
-	 }
+	   while(rs.next()) {
+	  	   String f = rs.getString(1);
+		   lista.add(f);
+	   }
 	 
-	 rs.close();
-	 return lista;
- }
+	   rs.close();
+	   return lista;
+   }  
 	
 }
