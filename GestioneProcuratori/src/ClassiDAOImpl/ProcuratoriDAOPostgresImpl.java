@@ -60,11 +60,10 @@ public class ProcuratoriDAOPostgresImpl {
 	   return lista;
    }
 	
-<<<<<<< HEAD
-    public List<String> getAllCFProcuratori() throws SQLException{
-=======
+
+
    public List<String> getAllCFProcuratori() throws SQLException{
->>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
+
 	
 	   ResultSet rs = getAllCFProcuratori.executeQuery();
 	   List<String> lista = new ArrayList<String>();

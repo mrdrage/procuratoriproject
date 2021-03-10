@@ -63,7 +63,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 
 	@Override
 	public void InserisciCollaborazione(Collaborazione collaborazione, int CodProcuratori, int CodAtleti) throws SQLException {
-		//inserisco anche i codici relativi ad atleta e procuratore, poichÃ¨ richiesti dal DB
+		//inserisco anche i codici relativi ad atleta e procuratore, poiché richiesti dal DB
 		InserisciCollaborazione.setDate(1, collaborazione.getDataInizio());
 		InserisciCollaborazione.setDate(2, collaborazione.getDataFine());
 		InserisciCollaborazione.setDouble(3, collaborazione.getStipendioMensile());

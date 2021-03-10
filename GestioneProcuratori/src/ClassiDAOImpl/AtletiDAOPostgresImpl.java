@@ -38,13 +38,20 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		return lista;
 	}
 	
-	public List<Atleti> getAllAtletiByProcuratore() throws SQLException{
+	public List<Atleti> getAtletiByProcuratore(int codcollaborazione) throws SQLException{
+		getAtletiByProcuratorePS.setInt(1, codcollaborazione);
+		ResultSet rs = getAtletiByProcuratorePS.executeQuery();
+		List<Atleti> lista = new ArrayList<Atleti>();
+		while(rs.next()) {
+			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"), rs.getString("serieclub"));
+			lista.add(a);
+		}
 		
 		
-		return null;
+		return lista;
 	}
 	
-	public void inserisciAtleta(Atleti atleta) throws SQLException{
+	public void inserisciAtleta(Atleti atleta, int codcollaborazione, int codatleti) throws SQLException{
 		inserisciAtletaPS.setString(1, atleta.getNome());
 		inserisciAtletaPS.setString(2, atleta.getCognome());
 		inserisciAtletaPS.setString(3, atleta.getNazione());
@@ -55,11 +62,9 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 	}
 
 
-	@Override
-	public void inserisciAtleta() throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 
 	
 	}
