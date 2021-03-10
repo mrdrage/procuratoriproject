@@ -82,6 +82,7 @@ public class Procuratori {
 	
 	public void StampaProcuratore () {
 		System.out.println(Nome+" "+ Cognome+" "+ CodiceFiscale);
+		
 	}
 	
 	

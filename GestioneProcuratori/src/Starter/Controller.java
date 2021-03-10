@@ -51,9 +51,9 @@ public class Controller {
  
             System.out.println(procuratoriDAOPostgresImpl.getAllCFProcuratori());
             
+            
             for (Procuratori PR: procuratoriDAOPostgresImpl.getAllProcuratori()) {
             	PR.StampaProcuratore();
-
             }
 	
 			
