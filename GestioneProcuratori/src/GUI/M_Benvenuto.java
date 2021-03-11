@@ -17,8 +17,10 @@ import java.awt.event.ActionEvent;
 
 public class M_Benvenuto extends JFrame {
 
-	private JPanel contentPane;
 	Controller controller = null;
+
+	private JPanel contentPane;
+	
 	
 	
 
@@ -51,7 +53,7 @@ public class M_Benvenuto extends JFrame {
 		JButton InserisciProcuratore_B = new JButton("Inserisci Procuratore");
 		InserisciProcuratore_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				controller.InserisciProcuratore();
+     			controller.IniziaInserimentoProcuratore();
 			}
 		});
 		InserisciProcuratore_B.setToolTipText("");

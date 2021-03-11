@@ -4,6 +4,7 @@ package Starter;
 import java.sql.Connection;
 
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,7 @@ import java.util.List;
 import ClassiDAO.ProcuratoriDAO;
 import ClassiDAOImpl.ProcuratoriDAOPostgresImpl;
 import DBconfig.DBConnection;
+import GUI.*;
 import entita.Procuratori;
 
 
@@ -23,22 +25,37 @@ import entita.Procuratori;
 
 public class Controller {
 	
-//	ProcuratoriDAOPostgresImpl procuaratoriDAOPostgresImpl = null;
+	      M_NuovoProcuratore NuovoProcuratore = null;
+	      M_Benvenuto Benvenuto = null;
+	      
+     public Controller () {
+    	 
+	      
+	      
+     
+     }
+     
+     public void IniziaInserimentoProcuratore () {
+    	 Benvenuto.setVisible(false);
+    	 NuovoProcuratore.setVisible(true);
+    	 
+     }
+     
+     public void InserisciProcuratoreDB (String  nome, String Cognome, String CF, String Ntel, String Ntel2, String email, Date dataN) {
+    	 
+     }
 
 	public static void main(String[] args) throws SQLException, ParseException {
 
-	//	List<Procuratori> Pr = new ArrayList <Procuratori>();
+		
+	
 		
 		SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd");
 		Date parsedate = format.parse("2000-01-01");
 		java.sql.Date sqlDate = new java.sql.Date(parsedate.getTime());
 		
-//	Controller C = new Controller();
-		
-//		PreparedStatement DatiProcuratore, InserisciP,inserisciA
-//		ResultSet rs;
-//		int RowCount=0;
-		Procuratori procuratore = new Procuratori("sevio","mast","CF1234567890edfg","9911088189","1234567890","sani@mail.it",parsedate);
+
+		Procuratori procuratore = new Procuratori("sevio","mast","CF1234569890edfg","9911088189","1234567890","sani@mail.it",parsedate);
 		
 		try {
 			Connection conn= null;
@@ -48,11 +65,18 @@ public class Controller {
 //			ProcuratoriDAOPostgresImpl procuaratoriDAOPostgresImpl  = new ProcuratoriDAOPostgresImpl(conn);
 			ProcuratoriDAOPostgresImpl procuratoriDAOPostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
 			
+			procuratoriDAOPostgresImpl.InserisciProcuratore(procuratore);
  
+<<<<<<< HEAD
 // System.out.println(procuratoriDAOPostgresImpl.getAllProcuratori());
+=======
+>>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
 
+<<<<<<< HEAD
 //			procuaratoriDAOPostgresImpl.InserisciProcuratore(procuratore);
 				
+=======
+>>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
 			
 			}catch (SQLException e) {
 				e.printStackTrace();
