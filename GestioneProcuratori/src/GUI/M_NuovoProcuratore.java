@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
@@ -88,8 +90,14 @@ public class M_NuovoProcuratore extends JFrame {
 		Avanti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-//				controller.InserisciProcuratoreDB(Nome_TF.getText(), Cognome_TF.getText(), CodiceFiscale_TF.getText(), 
-//						NumeroTelefono_TF.getText(), NumeroTelefono2_TF.getText(),Email_TF.getText(),DataN_TF.getText());
+				
+				try {
+					controller.InserisciProcuratoreDB(Nome_TF.getText(), Cognome_TF.getText(), CodiceFiscale_TF.getText(), 
+							NumeroTelefono_TF.getText(), NumeroTelefono2_TF.getText(),Email_TF.getText(), DataN_TF.getText());
+				} catch (SQLException | ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});

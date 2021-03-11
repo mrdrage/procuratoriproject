@@ -14,7 +14,10 @@ public class ProcuratoriDAOPostgresImpl {
 	
 	
 	private Connection connection;
-	private PreparedStatement InserisciProcuratore, getAllProcuratori, getAllCFProcuratori,getCodProcuratore;
+	private PreparedStatement InserisciProcuratore;
+	private PreparedStatement getAllProcuratori;
+	private PreparedStatement getAllCFProcuratori;
+	private PreparedStatement getCodProcuratore;
 	
 	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException
 	{
