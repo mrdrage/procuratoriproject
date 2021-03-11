@@ -16,13 +16,13 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	
 
 	private Connection connection;
-	private PreparedStatement InserisciCollaborazione, getAllCollaborazioni, getAllCollaborazioniByProcuratore;
+	private PreparedStatement InserisciCollaborazione, getAllCollaborazioni, getAllCollaborazioniByProcuratore,getCodCollaborazione;
 	
 	public CollaborazioneDAOPostgresImpl(Connection connection) throws SQLException
 	{
 		this.connection = connection;
 		
-		
+		getCodCollaborazione = connection.prepareStatement("SELECT MAX(codCollaborazione) FROM collaborazione ");
 		
 		getAllCollaborazioni = connection.prepareStatement("SELECT * FROM collaborazione");
 		getAllCollaborazioniByProcuratore = connection.prepareStatement("SELECT * FROM collaborazione WHERE codprocuratore = ? ");
@@ -63,10 +63,16 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 
 	@Override
 	public void InserisciCollaborazione(Collaborazione collaborazione, int CodProcuratori, int CodAtleti) throws SQLException {
-		//inserisco anche i codici relativi ad atleta e procuratore, poiché richiesti dal DB
+		int CodC = 0;
+		//inserisco anche i codici relativi ad atleta e procuratore, poichï¿½ richiesti dal DB
 		InserisciCollaborazione.setDate(1, collaborazione.getDataInizio());
 		InserisciCollaborazione.setDate(2, collaborazione.getDataFine());
 		InserisciCollaborazione.setDouble(3, collaborazione.getStipendioMensile());
+		
+		ResultSet CodiceCollaborazione = getCodCollaborazione.executeQuery();
+		CodC = CodiceCollaborazione.getInt("codCollaborazione");
+		InserisciCollaborazione.setInt(4, CodC + 1);
+		
 		//Codici estratti dal controller usando i metodi di  ProcuratoriDAOPostgresImpl
 		InserisciCollaborazione.setInt(5, CodAtleti);
         InserisciCollaborazione.setInt(6, CodProcuratori);

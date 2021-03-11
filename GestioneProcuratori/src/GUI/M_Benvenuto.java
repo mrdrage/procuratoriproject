@@ -22,12 +22,6 @@ public class M_Benvenuto extends JFrame {
 	private JPanel contentPane;
 	
 	
-	
-
-	/**
-	 * Launch the application.
-	 */
-	
 
 	/**
 	 * Create the frame.

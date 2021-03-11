@@ -20,11 +20,11 @@ public class ProcuratoriDAOPostgresImpl {
 	{
 		this.connection = connection;
 		
-		
+		getCodProcuratore = connection.prepareStatement("SELECT MAX(codProcuratori) FROM Procuratori ");
+
 		InserisciProcuratore = connection.prepareStatement("INSERT INTO procuratori VALUES (?,?,?,?,?,?,?,?) ");
 		getAllProcuratori = connection.prepareStatement("SELECT * FROM procuratori");
 		getAllCFProcuratori = connection.prepareStatement("SELECT codicefiscale FROM procuratori");
-		getCodProcuratore = connection.prepareStatement("SELECT MAX(codProcuratore) FROM Procuratori ");
 	}
 	
 	
@@ -45,6 +45,7 @@ public class ProcuratoriDAOPostgresImpl {
 		//Prendo il valore massimo del codiceProcuratori che è anche l'ultomo poichè è gestito da una sequence sul DB
 		ResultSet CodiceProcuratore = getCodProcuratore.executeQuery();
 		codP = CodiceProcuratore.getInt("codprocuratori");
+		
         InserisciProcuratore.setInt(8, codP + 1);
 		
 	    InserisciProcuratore.executeUpdate();
