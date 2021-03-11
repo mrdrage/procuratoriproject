@@ -34,7 +34,7 @@ public class ProcuratoriDAOPostgresImpl {
 	
 	
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException {
-		int codP=0;
+		int codP=44;
 		InserisciProcuratore.setString(1, procuratore.getNome());
 		InserisciProcuratore.setString(2, procuratore.getCognome());
 		InserisciProcuratore.setString(3, procuratore.getCodiceFiscale());
@@ -46,10 +46,13 @@ public class ProcuratoriDAOPostgresImpl {
 		InserisciProcuratore.setDate(7,sqlDate);
 		
 		//Prendo il valore massimo del codiceProcuratori che è anche l'ultomo poichè è gestito da una sequence sul DB
-		ResultSet CodiceProcuratore = getCodProcuratore.executeQuery();
-		codP = CodiceProcuratore.getInt("codprocuratori");
-		
-        InserisciProcuratore.setInt(8, codP + 1);
+//		ResultSet CodiceProcuratore = getCodProcuratore.executeQuery();
+//		
+//		while (CodiceProcuratore.next()) {
+//		      codP = CodiceProcuratore.getInt(8);
+//		}
+//		codP++;
+        InserisciProcuratore.setInt(8, codP);
 		
 	    InserisciProcuratore.executeUpdate();
 		

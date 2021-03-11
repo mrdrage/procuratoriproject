@@ -93,7 +93,7 @@ public class M_NuovoProcuratore extends JFrame {
 				
 				try {
 					controller.InserisciProcuratoreDB(Nome_TF.getText(), Cognome_TF.getText(), CodiceFiscale_TF.getText(), 
-							NumeroTelefono_TF.getText(), NumeroTelefono2_TF.getText(),Email_TF.getText(), DataN_TF.getText());
+							NumeroTelefono_TF.getText(), NumeroTelefono2_TF.getText(),Email_TF.getText(), DataN_TF.getText(), controller.getProcuratoriDAO());
 				} catch (SQLException | ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

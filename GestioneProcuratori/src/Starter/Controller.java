@@ -24,24 +24,16 @@ import entita.Procuratori;
 
 
 public class Controller {
-	      ProcuratoriDAOPostgresImpl ProcuratoriDAOPostgresImpl = null;
+	
+	      ProcuratoriDAOPostgresImpl ProcuratoriDAOpostgresImpl;
 	      M_NuovoProcuratore NuovoProcuratore = null;
 	      M_Benvenuto Benvenuto = null;
 	      
-     public Controller () {
+	      
+	      
+     public Controller (Connection connection) throws SQLException {
     	 
-    	 try {
- 			Connection conn= null;
- 			DBConnection dbc = DBConnection.getInstance();
- 			conn = dbc.getConnection();
- 			
- 			ProcuratoriDAOPostgresImpl procuratoridao = new ProcuratoriDAOPostgresImpl(conn);
- 			
- 			}catch (SQLException e) {
- 				e.printStackTrace();
- 				System.out.println ("errore�? " + e.getMessage());
- 				return;
- 			}
+      //    ProcuratoriDAOPostgresImpl procuratoridao = new ProcuratoriDAOPostgresImpl(connection);
     	  
 	      Benvenuto = new M_Benvenuto(this);
 	      NuovoProcuratore = new M_NuovoProcuratore(this);
@@ -55,20 +47,50 @@ public class Controller {
     	 
      }
      
-     public void InserisciProcuratoreDB (String nome, String cognome, String CF, String Ntel, String Ntel2, String email, String dataN) throws SQLException, ParseException {
+     public void InserisciProcuratoreDB (String nome, String cognome, String CF, String Ntel, String Ntel2, String email, String dataN, ProcuratoriDAOPostgresImpl PD) throws SQLException, ParseException {
     	
     	 
     	SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
  		Date parsedate = format.parse(dataN);
     	 
-     Procuratori procuratore = new Procuratori(nome, cognome, CF, Ntel, Ntel2, email, parsedate);
+        Procuratori procuratore = new Procuratori(nome, cognome, CF, Ntel, Ntel2, email, parsedate);
     	 
-    	 ProcuratoriDAOPostgresImpl.InserisciProcuratore(procuratore);
+        PD.InserisciProcuratore(procuratore);
      }
+     
+     public void setProcuratoriDAO(ProcuratoriDAOPostgresImpl PD) {
+    	 ProcuratoriDAOpostgresImpl = PD;
+     }
+     
+     public ProcuratoriDAOPostgresImpl getProcuratoriDAO() {
+    	 return ProcuratoriDAOpostgresImpl; 	  
+     }
+     
 
-	public static void main(String[] args) throws SQLException, ParseException {
+	public static void main(String[] args) throws SQLException, ParseException 
+	{
+		ProcuratoriDAOPostgresImpl ProcuratoriDAOpostgresImpl; 
 
-		Controller controller = new Controller();
+		try {
+ 			Connection conn= null;
+ 			DBConnection dbc = DBConnection.getInstance();
+ 			conn = dbc.getConnection();
+ 			
+ 		    ProcuratoriDAOpostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
+ 		    
+ 			Controller controller = new Controller(conn);
+ 			
+ 			controller.setProcuratoriDAO(ProcuratoriDAOpostgresImpl);
+ 			
+ 			}catch (SQLException e) {
+ 				e.printStackTrace();
+ 				System.out.println ("errore�? " + e.getMessage());
+ 				return;
+ 			}
+    	  
+		
+ 			
+		
 	   
 		
 //		
