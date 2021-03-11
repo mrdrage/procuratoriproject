@@ -49,27 +49,10 @@ public class Controller {
 			ProcuratoriDAOPostgresImpl procuratoriDAOPostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
 			
  
-<<<<<<< HEAD
- System.out.println(procuratoriDAOPostgresImpl.getAllCFProcuratori());
- 
- for(Procuratori PR:procuratoriDAOPostgresImpl.getAllProcuratori()) {
-	 System.out.print(PR.getNome());
-	 System.out.print(PR.getCognome());
-	 System.out.print(" ");
- }
 // System.out.println(procuratoriDAOPostgresImpl.getAllProcuratori());
 
 //			procuaratoriDAOPostgresImpl.InserisciProcuratore(procuratore);
-			
-=======
-            System.out.println(procuratoriDAOPostgresImpl.getAllCFProcuratori());
-            
-            
-            for (Procuratori PR: procuratoriDAOPostgresImpl.getAllProcuratori()) {
-            	PR.StampaProcuratore();
-            }
->>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
-	
+				
 			
 			}catch (SQLException e) {
 				e.printStackTrace();
