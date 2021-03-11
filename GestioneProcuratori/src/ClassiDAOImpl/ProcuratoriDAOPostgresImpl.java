@@ -14,7 +14,7 @@ public class ProcuratoriDAOPostgresImpl {
 	
 	
 	private Connection connection;
-	private PreparedStatement InserisciProcuratore, getAllProcuratori, getAllCFProcuratori;
+	private PreparedStatement InserisciProcuratore, getAllProcuratori, getAllCFProcuratori,getCodProcuratore;
 	
 	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException
 	{
@@ -24,14 +24,14 @@ public class ProcuratoriDAOPostgresImpl {
 		InserisciProcuratore = connection.prepareStatement("INSERT INTO procuratori VALUES (?,?,?,?,?,?,?,?) ");
 		getAllProcuratori = connection.prepareStatement("SELECT * FROM procuratori");
 		getAllCFProcuratori = connection.prepareStatement("SELECT codicefiscale FROM procuratori");
-		
+		getCodProcuratore = connection.prepareStatement("SELECT MAX(codProcuratore) FROM Procuratori ");
 	}
 	
 	
 	
 	
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException {
-		
+		int codP=0;
 		InserisciProcuratore.setString(1, procuratore.getNome());
 		InserisciProcuratore.setString(2, procuratore.getCognome());
 		InserisciProcuratore.setString(3, procuratore.getCodiceFiscale());
@@ -41,7 +41,11 @@ public class ProcuratoriDAOPostgresImpl {
 		//conversione della data di procuratore formato java.util, ad una data java.sql per poter usare "setDate".
 		java.sql.Date sqlDate = new java.sql.Date(procuratore.getDataN().getTime());
 		InserisciProcuratore.setDate(7,sqlDate);
-		InserisciProcuratore.setInt(8, 0012);
+		
+		//Prendo il valore massimo del codiceProcuratori che è anche l'ultomo poichè è gestito da una sequence sul DB
+		ResultSet CodiceProcuratore = getCodProcuratore.executeQuery();
+		codP = CodiceProcuratore.getInt("codprocuratori");
+        InserisciProcuratore.setInt(8, codP + 1);
 		
 	    InserisciProcuratore.executeUpdate();
 		
