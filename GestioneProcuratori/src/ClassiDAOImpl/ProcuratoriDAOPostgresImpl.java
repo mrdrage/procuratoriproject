@@ -19,8 +19,7 @@ public class ProcuratoriDAOPostgresImpl {
 	private PreparedStatement getAllCFProcuratori;
 	private PreparedStatement getCodProcuratore;
 	
-	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException
-	{
+	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException{
 		this.connection = connection;
 		
 		getCodProcuratore = connection.prepareStatement("SELECT MAX(codProcuratori) FROM Procuratori ");
@@ -34,7 +33,7 @@ public class ProcuratoriDAOPostgresImpl {
 	
 	
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException {
-		int codP=44;
+		int codP=35;
 		InserisciProcuratore.setString(1, procuratore.getNome());
 		InserisciProcuratore.setString(2, procuratore.getCognome());
 		InserisciProcuratore.setString(3, procuratore.getCodiceFiscale());

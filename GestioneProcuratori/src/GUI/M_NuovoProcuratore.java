@@ -33,6 +33,7 @@ public class M_NuovoProcuratore extends JFrame {
 	private JTextField Cognome_TF;
 	private JTextField Nome_TF;
 
+	//private M_ProcuratoreInseritoOk OK;
 
 
 
@@ -93,14 +94,28 @@ public class M_NuovoProcuratore extends JFrame {
 				
 				try {
 					controller.InserisciProcuratoreDB(Nome_TF.getText(), Cognome_TF.getText(), CodiceFiscale_TF.getText(), 
-							NumeroTelefono_TF.getText(), NumeroTelefono2_TF.getText(),Email_TF.getText(), DataN_TF.getText(), controller.getProcuratoriDAO());
+							NumeroTelefono_TF.getText(), NumeroTelefono2_TF.getText(),Email_TF.getText(), DataN_TF.getText());
 				} catch (SQLException | ParseException e1) {
-					// TODO Auto-generated catch block
+                     //finestre di errore, non so come far uscire una finestra a seconda dell'eccezione
 					e1.printStackTrace();
 				}
 				
+				//svuoto i campi dopo che è stato premuto avanti
+				Nome_TF.setText("");
+				Cognome_TF.setText("");
+				CodiceFiscale_TF.setText("");
+				NumeroTelefono_TF.setText("");
+				NumeroTelefono2_TF.setText("");
+				Email_TF.setText("");
+				DataN_TF.setText("");
+			
+				//messaggio di inserimento effettuato 
+				//OK.setVisible(true);
+				
+				
 			}
 		});
+		
 		Avanti_B.setBounds(260, 467, 89, 23);
 		contentPane.add(Avanti_B);
 		

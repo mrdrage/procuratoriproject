@@ -28,6 +28,7 @@ public class M_ProcuratoreInseritoOk extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	
 	public M_ProcuratoreInseritoOk(Controller c) {
 		controller = c;
 		setBounds(100, 100, 383, 151);

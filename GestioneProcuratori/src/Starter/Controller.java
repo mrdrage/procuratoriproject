@@ -28,34 +28,41 @@ public class Controller {
 	      ProcuratoriDAOPostgresImpl ProcuratoriDAOpostgresImpl;
 	      M_NuovoProcuratore NuovoProcuratore = null;
 	      M_Benvenuto Benvenuto = null;
-	      
+	      M_ProcuratoreInseritoOk ProcuratoreInseritoOK;
 	      
 	      
      public Controller (Connection connection) throws SQLException {
     	 
-      //    ProcuratoriDAOPostgresImpl procuratoridao = new ProcuratoriDAOPostgresImpl(connection);
-    	  
+     
+    	  //Avvio dell'app
 	      Benvenuto = new M_Benvenuto(this);
-	      NuovoProcuratore = new M_NuovoProcuratore(this);
 	      Benvenuto.setVisible(true);
+	      
+	      
+	      NuovoProcuratore = new M_NuovoProcuratore(this);
+	      ProcuratoreInseritoOK = new M_ProcuratoreInseritoOk(this);
      
      }
      
      public void IniziaInserimentoProcuratore () {
+    	 
     	 Benvenuto.setVisible(false);
     	 NuovoProcuratore.setVisible(true);
     	 
      }
      
-     public void InserisciProcuratoreDB (String nome, String cognome, String CF, String Ntel, String Ntel2, String email, String dataN, ProcuratoriDAOPostgresImpl PD) throws SQLException, ParseException {
+     public void InserisciProcuratoreDB (String nome, String cognome, String CF, String Ntel, String Ntel2, String email, String dataN) throws SQLException, ParseException {
     	
-    	 
+    	//Conversione da String a Date della dataN
     	SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
  		Date parsedate = format.parse(dataN);
     	 
         Procuratori procuratore = new Procuratori(nome, cognome, CF, Ntel, Ntel2, email, parsedate);
     	 
-        PD.InserisciProcuratore(procuratore);
+        ProcuratoriDAOpostgresImpl.InserisciProcuratore(procuratore);
+        
+        //Se tutto va bene
+        ProcuratoreInseritoOK.setVisible(true);
      }
      
      public void setProcuratoriDAO(ProcuratoriDAOPostgresImpl PD) {

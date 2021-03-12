@@ -26,6 +26,7 @@ public class M_Benvenuto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public M_Benvenuto(Controller c) {
 		
 		controller = c;
