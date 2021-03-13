@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -17,6 +20,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 
 public class M_NuovaCollaborazione extends JFrame {
+	
+	Controller controller = null;
 
 	private JPanel contentPane;
 	private JTextField DataInizio_TF;
@@ -31,7 +36,10 @@ public class M_NuovaCollaborazione extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public M_NuovaCollaborazione() {
+	public M_NuovaCollaborazione(Controller c) {
+		
+		controller  = c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 381, 286);
 		contentPane = new JPanel();
