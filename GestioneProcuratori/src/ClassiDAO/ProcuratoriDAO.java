@@ -10,7 +10,7 @@ import entita.Procuratori;
 public interface ProcuratoriDAO {
 	
 	public List<Procuratori> getAllProcuratori() throws SQLException;
-	public List<Procuratori> getAllCFProcuratori() throws SQLException;
+	public List<String> getAllCFProcuratori() throws SQLException;
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException;
 	
 	

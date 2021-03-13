@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ClassiDAO.ProcuratoriDAO;
 import Starter.Controller;
 import entita.Procuratori;
 
-public class ProcuratoriDAOPostgresImpl {
+public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	
 	
 	private Connection connection;

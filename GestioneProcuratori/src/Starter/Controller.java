@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,9 +18,11 @@ import java.util.List;
 import ClassiDAO.ProcuratoriDAO;
 import ClassiDAOImpl.AtletiDAOPostgresImpl;
 import ClassiDAOImpl.ProcuratoriDAOPostgresImpl;
+import ClassiDAOImpl.CollaborazioneDAOPostgresImpl;
 import DBconfig.DBConnection;
 import GUI.*;
 import entita.Atleti;
+import entita.Collaborazione;
 import entita.Procuratori;
 
 
@@ -27,8 +30,10 @@ import entita.Procuratori;
 
 public class Controller {
 	
-	      ProcuratoriDAOPostgresImpl ProcuratoriDAOpostgresImpl;
+	      ProcuratoriDAOPostgresImpl ProcuratoriDAOPostgresImpl;
+	      CollaborazioneDAOPostgresImpl CollaborazioneDAOPostgresImpl;
 	      AtletiDAOPostgresImpl AtletiDAOPostgresImpl;
+	      
 	      M_NuovoProcuratore NuovoProcuratore = null;
 	      M_Benvenuto Benvenuto = null;
 	      M_ProcuratoreInseritoOk ProcuratoreInseritoOK;
@@ -67,7 +72,7 @@ public class Controller {
     	 
         Procuratori procuratore = new Procuratori(nome, cognome, CF, Ntel, Ntel2, email, parsedate);
     	 
-        ProcuratoriDAOpostgresImpl.InserisciProcuratore(procuratore);
+        ProcuratoriDAOPostgresImpl.InserisciProcuratore(procuratore);
         
         //Se tutto va bene
         ProcuratoreInseritoOK.setVisible(true);
@@ -85,13 +90,36 @@ public class Controller {
 		//Se tutto va bene
         NuovaCollaborazione.setVisible(true);
      }
+    
+     
+     public void InserisciCollaborazioneDB(String datainizio, String datafine, Timestamp timestamp) throws ParseException, SQLException {
+    	SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
+  		Date dataInizio = format.parse(datainizio);
+  		Date dataFine = format.parse(datafine);
+  		
+  		Collaborazione collaborazione = new Collaborazione(dataInizio, dataFine, timestamp);
+  		
+  		int codprocuratori = 0;
+  		int codatleti = 0;
+  		
+  		CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione, codprocuratori, codatleti);
+     }
+     
+     
+     
+     
+     
+     
+     
+     
+     
      
      public void setProcuratoriDAO(ProcuratoriDAOPostgresImpl PD) {
-    	 ProcuratoriDAOpostgresImpl = PD;
+    	 ProcuratoriDAOPostgresImpl = PD;
      }
      
      public ProcuratoriDAOPostgresImpl getProcuratoriDAO() {
-    	 return ProcuratoriDAOpostgresImpl; 	  
+    	 return ProcuratoriDAOPostgresImpl; 	  
      }
      
 

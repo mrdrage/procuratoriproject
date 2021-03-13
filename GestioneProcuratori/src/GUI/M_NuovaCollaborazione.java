@@ -16,8 +16,15 @@ import javax.swing.JComboBox;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JTextPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class M_NuovaCollaborazione extends JFrame {
 	
@@ -26,7 +33,7 @@ public class M_NuovaCollaborazione extends JFrame {
 	private JPanel contentPane;
 	private JTextField DataInizio_TF;
 	private JTextField DataFine_TF;
-	private JTextField StipendioMensile_TF;
+	private JSpinner StipendioMensile_D;
 
 	/**
 	 * Launch the application.
@@ -87,7 +94,32 @@ public class M_NuovaCollaborazione extends JFrame {
 		JButton Avanti_B = new JButton("Avanti");
 		Avanti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				//Se é gia presente una collaborazione con i dati inseriti, apre la dialog ErroreCollaborazionePresente
+				
+				
+				// Errore nel convertire double in getText
+				
+				Date date = (Date) StipendioMensile_D.getValue();
+				Timestamp timestamp = new Timestamp(date.getTime());
+				try {
+					
+					controller.InserisciCollaborazioneDB(DataInizio_TF.getText(), DataFine_TF.getText(), timestamp);
+				} catch (SQLException e1) {
+                     //finestre di errore
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				//svuoto i campi
+				DataInizio_TF.setText("");
+				DataFine_TF.setText("");
+				
+				
+				
+				
 				//Altrimenti apre la finestra ListaCollaborazioni
 				//setVisible(false);
 			}
@@ -111,11 +143,6 @@ public class M_NuovaCollaborazione extends JFrame {
 		contentPane.add(DataFine_TF);
 		DataFine_TF.setColumns(10);
 		
-		StipendioMensile_TF = new JTextField();
-		StipendioMensile_TF.setBounds(227, 151, 108, 20);
-		contentPane.add(StipendioMensile_TF);
-		StipendioMensile_TF.setColumns(10);
-		
 		JComboBox Atleta_CB = new JComboBox();
 		Atleta_CB.setBounds(227, 65, 108, 18);
 		contentPane.add(Atleta_CB);
@@ -123,5 +150,10 @@ public class M_NuovaCollaborazione extends JFrame {
 		JList list = new JList();
 		list.setBounds(135, 11, 1, 1);
 		contentPane.add(list);
+		
+		JSpinner StipendioMensile_D = new JSpinner();
+		StipendioMensile_D.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
+		StipendioMensile_D.setBounds(227, 151, 69, 16);
+		contentPane.add(StipendioMensile_D);
 	}
 }

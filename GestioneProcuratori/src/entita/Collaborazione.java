@@ -1,21 +1,26 @@
 package entita;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class Collaborazione {
 
 	private Date DataInizio;
 	private Date DataFine;
-	private double StipendioMensile;
+	private Timestamp StipendioMensile;
 	
-	public Collaborazione(Date dataInizio, Date dataFine, double stipendioMensile) {
-		DataInizio = dataInizio;
-		DataFine = dataFine;
-		StipendioMensile = stipendioMensile;
+	public Collaborazione(Date parsedate1, Date parsedate2, Timestamp timestamp) {
+		this.DataInizio = parsedate1;
+		this.DataFine = parsedate2;
+		this.StipendioMensile = timestamp;
 	}
 	
 	
 	
+	
+
+
+
 	public Date getDataFine() {
 		return DataFine;
 	}
@@ -24,11 +29,11 @@ public class Collaborazione {
 		DataFine = dataFine;
 	}
 	
-	public double getStipendioMensile() {
+	public Timestamp getStipendioMensile() {
 		return StipendioMensile;
 	}
 	
-	public void setStipendioMensile(double stipendioMensile) {
+	public void setStipendioMensile(Timestamp stipendioMensile) {
 		StipendioMensile = stipendioMensile;
 	}
 	
