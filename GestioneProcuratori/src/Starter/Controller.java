@@ -15,9 +15,11 @@ import java.util.Date;
 import java.util.List;
 
 import ClassiDAO.ProcuratoriDAO;
+import ClassiDAOImpl.AtletiDAOPostgresImpl;
 import ClassiDAOImpl.ProcuratoriDAOPostgresImpl;
 import DBconfig.DBConnection;
 import GUI.*;
+import entita.Atleti;
 import entita.Procuratori;
 
 
@@ -26,9 +28,13 @@ import entita.Procuratori;
 public class Controller {
 	
 	      ProcuratoriDAOPostgresImpl ProcuratoriDAOpostgresImpl;
+	      AtletiDAOPostgresImpl AtletiDAOPostgresImpl;
 	      M_NuovoProcuratore NuovoProcuratore = null;
 	      M_Benvenuto Benvenuto = null;
 	      M_ProcuratoreInseritoOk ProcuratoreInseritoOK;
+	      
+	      M_NuovoAtletaCollab NuovoAtletaCollab = null;
+	      M_NuovaCollaborazione NuovaCollaborazione = null;
 	      
 	      
      public Controller (Connection connection) throws SQLException {
@@ -41,6 +47,8 @@ public class Controller {
 	      
 	      NuovoProcuratore = new M_NuovoProcuratore(this);
 	      ProcuratoreInseritoOK = new M_ProcuratoreInseritoOk(this);
+	      
+	      NuovoAtletaCollab = new M_NuovoAtletaCollab(this);
      
      }
      
@@ -63,6 +71,19 @@ public class Controller {
         
         //Se tutto va bene
         ProcuratoreInseritoOK.setVisible(true);
+     }
+     
+     
+     public void InserisciAtletaDB(String nome, String cognome, String nazione, String codicefiscale, String sport, String clubattuale, String serieclub) throws SQLException {
+    	 Atleti atleta = new Atleti(nome, cognome, nazione, codicefiscale, sport, clubattuale, serieclub);
+    	 
+    	int codcollaborazione = 0;
+		int codatleti = 0;
+		
+		AtletiDAOPostgresImpl.inserisciAtleta(atleta, codcollaborazione, codatleti);
+		
+		//Se tutto va bene
+        NuovaCollaborazione.setVisible(true);
      }
      
      public void setProcuratoriDAO(ProcuratoriDAOPostgresImpl PD) {

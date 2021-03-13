@@ -1,4 +1,4 @@
-package entita;
+ package entita;
 
 public class Atleti {
 

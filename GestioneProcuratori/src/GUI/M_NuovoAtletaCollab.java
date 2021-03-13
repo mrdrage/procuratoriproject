@@ -6,21 +6,28 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 public class M_NuovoAtletaCollab extends JFrame {
+	
+	Controller controller = null;
 
 	private JPanel contentPane;
 	private JTextField Nome_TF;
 	private JTextField Cognome_TF;
 	private JTextField Nazione_TF;
-	private JTextField CodiceFisclae_TF;
+	private JTextField CodiceFiscale_TF;
 	private JTextField Sport_TF;
 	private JTextField ClubAttuale_TF;
 	private JTextField SerieClub_TF;
@@ -33,7 +40,10 @@ public class M_NuovoAtletaCollab extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public M_NuovoAtletaCollab() {
+	public M_NuovoAtletaCollab(Controller c) {
+		
+		controller = c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 283, 407);
 		contentPane = new JPanel();
@@ -101,11 +111,11 @@ public class M_NuovoAtletaCollab extends JFrame {
 		contentPane.add(Nazione_TF);
 		Nazione_TF.setColumns(10);
 		
-		CodiceFisclae_TF = new JTextField();
-		CodiceFisclae_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		CodiceFisclae_TF.setBounds(131, 157, 117, 20);
-		contentPane.add(CodiceFisclae_TF);
-		CodiceFisclae_TF.setColumns(10);
+		CodiceFiscale_TF = new JTextField();
+		CodiceFiscale_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		CodiceFiscale_TF.setBounds(131, 157, 117, 20);
+		contentPane.add(CodiceFiscale_TF);
+		CodiceFiscale_TF.setColumns(10);
 		
 		Sport_TF = new JTextField();
 		Sport_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -139,9 +149,28 @@ public class M_NuovoAtletaCollab extends JFrame {
 		JButton btnNewButton_1 = new JButton("Avanti");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 				//Se é giá presente un atleta con i dati inseriti, appare la dialog ErroreAtletaPresente
 				//oppure
 				//Carica i dati inseriti nel database
+				try {
+					controller.InserisciAtletaDB(Nome_TF.getText(), Cognome_TF.getText(), Nazione_TF.getText(), 
+							CodiceFiscale_TF.getText(), Sport_TF.getText(),ClubAttuale_TF.getText(), SerieClub_TF.getText());
+				} catch (SQLException e1) {
+                     //finestre di errore
+					e1.printStackTrace();
+				}
+				
+				//svuoto i campi dopo che é stato premuto avanti
+				Nome_TF.setText("");
+				Cognome_TF.setText("");
+				CodiceFiscale_TF.setText("");
+				Sport_TF.setText("");
+				ClubAttuale_TF.setText("");
+				SerieClub_TF.setText("");
+				
+				
 				//Dopodiché apre la finestra NuovaCollaborazione, caricando prima i dati dal DB di Atleti per popolare la combobox in NuovaCollaborazione
 				//setVisible(false);
 			}
