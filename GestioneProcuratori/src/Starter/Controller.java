@@ -5,6 +5,7 @@ import java.sql.Connection;
 
 
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import ClassiDAO.ProcuratoriDAO;
@@ -25,13 +27,13 @@ import entita.Procuratori;
 
 public class Controller {
 	
-	      ProcuratoriDAOPostgresImpl ProcuratoriDAOpostgresImpl;
-	      M_NuovoProcuratore NuovoProcuratore = null;
-	      M_Benvenuto Benvenuto = null;
+	      public ProcuratoriDAOPostgresImpl ProcuratoriDAOpostgresImpl;
+	      M_NuovoProcuratore NuovoProcuratore;
+	      M_Benvenuto Benvenuto;
 	      M_ProcuratoreInseritoOk ProcuratoreInseritoOK;
+	      M_CercaProcuratore CercaProcuratore;
 	      
-	      
-     public Controller (Connection connection) throws SQLException {
+     public Controller () throws SQLException {
     	 
      
     	  //Avvio dell'app
@@ -41,7 +43,7 @@ public class Controller {
 	      
 	      NuovoProcuratore = new M_NuovoProcuratore(this);
 	      ProcuratoreInseritoOK = new M_ProcuratoreInseritoOk(this);
-     
+	      CercaProcuratore = new M_CercaProcuratore(this);
      }
      
      public void IniziaInserimentoProcuratore () {
@@ -63,7 +65,38 @@ public class Controller {
         
         //Se tutto va bene
         ProcuratoreInseritoOK.setVisible(true);
+        
+      
+        
      }
+     
+     public void RicercaProcuratori () throws SQLException {
+    	 
+    	 Benvenuto.setVisible(false);
+    	 List<Procuratori> procuratori = new ArrayList<Procuratori>();
+    	 List<String> InfoProcuratori = new ArrayList<String>();
+    	 
+    	 //prelevo dal DB i procuratori	 
+    	 procuratori = ProcuratoriDAOpostgresImpl.getAllProcuratori();
+    	 //estrapolo le info dai procuratori 
+         Iterator<Procuratori> i = procuratori.iterator();
+    	 
+    	       while (i.hasNext()) {  
+    		        Procuratori p = i.next();
+    		        InfoProcuratori.add(p.getInfoProcuratore());
+    	       }
+    	       
+    	 //li imposto sulla combobox
+         CercaProcuratore.setProcuratoriComboBox(InfoProcuratori);
+    	 //visualizzo la  finestra 
+   	     CercaProcuratore.setVisible(true);
+    		 
+    	
+    		 
+    	 
+    	 
+     }
+     
      
      public void setProcuratoriDAO(ProcuratoriDAOPostgresImpl PD) {
     	 ProcuratoriDAOpostgresImpl = PD;
@@ -76,18 +109,18 @@ public class Controller {
 
 	public static void main(String[] args) throws SQLException, ParseException 
 	{
-		ProcuratoriDAOPostgresImpl ProcuratoriDAOpostgresImpl; 
+	//	ProcuratoriDAOPostgresImpl procuratoriDAOpostgresImpl; 
 
 		try {
  			Connection conn= null;
  			DBConnection dbc = DBConnection.getInstance();
  			conn = dbc.getConnection();
  			
- 		    ProcuratoriDAOpostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
+ 			ProcuratoriDAOPostgresImpl  procuratoriDAOpostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
  		    
- 			Controller controller = new Controller(conn);
+ 			Controller controller = new Controller();
  			
- 			controller.setProcuratoriDAO(ProcuratoriDAOpostgresImpl);
+ 			controller.setProcuratoriDAO(procuratoriDAOpostgresImpl);
  			
  			}catch (SQLException e) {
  				e.printStackTrace();

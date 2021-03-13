@@ -33,7 +33,7 @@ public class ProcuratoriDAOPostgresImpl {
 	
 	
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException {
-		int codP=35;
+		int codP=9;
 		InserisciProcuratore.setString(1, procuratore.getNome());
 		InserisciProcuratore.setString(2, procuratore.getCognome());
 		InserisciProcuratore.setString(3, procuratore.getCodiceFiscale());
