@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import javax.swing.JTextPane;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -18,6 +21,8 @@ import java.awt.event.ActionEvent;
 
 public class M_GestioneProcuratore extends JFrame {
 
+	Controller controller = null;
+	
 	private JPanel contentPane;
 	private JTextField NumeroTelefono2;
 	private JTextField NumeroTelefono_TF;
@@ -35,7 +40,9 @@ public class M_GestioneProcuratore extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public M_GestioneProcuratore() {
+	public M_GestioneProcuratore(Controller c) {
+		controller  = c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 688, 455);
 		contentPane = new JPanel();

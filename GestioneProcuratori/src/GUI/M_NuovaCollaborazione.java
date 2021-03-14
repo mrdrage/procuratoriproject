@@ -33,7 +33,7 @@ public class M_NuovaCollaborazione extends JFrame {
 	private JPanel contentPane;
 	private JTextField DataInizio_TF;
 	private JTextField DataFine_TF;
-	private JSpinner StipendioMensile_D;
+	private JTextField StipendioMensile_TF;
 
 	/**
 	 * Launch the application.
@@ -98,30 +98,26 @@ public class M_NuovaCollaborazione extends JFrame {
 				//Se é gia presente una collaborazione con i dati inseriti, apre la dialog ErroreCollaborazionePresente
 				
 				
-				// Errore nel convertire double in getText
+				double stipendiomensile = Double.parseDouble(StipendioMensile_TF.getText());
 				
-				Date date = (Date) StipendioMensile_D.getValue();
-				Timestamp timestamp = new Timestamp(date.getTime());
 				try {
 					
-					controller.InserisciCollaborazioneDB(DataInizio_TF.getText(), DataFine_TF.getText(), timestamp);
-				} catch (SQLException e1) {
+					controller.InserisciCollaborazioneDB(DataInizio_TF.getText(), DataFine_TF.getText(), stipendiomensile);
+				} catch (SQLException | ParseException e1) {
                      //finestre di errore
-					e1.printStackTrace();
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
 				//svuoto i campi
 				DataInizio_TF.setText("");
 				DataFine_TF.setText("");
-				
-				
+				StipendioMensile_TF.setText("");
 				
 				
 				//Altrimenti apre la finestra ListaCollaborazioni
-				//setVisible(false);
+				setVisible(false);
+				controller.ApriGestioneProcuratore();
+				
 			}
 		});
 		Avanti_B.setBackground(new Color(0, 0, 0));
@@ -151,9 +147,9 @@ public class M_NuovaCollaborazione extends JFrame {
 		list.setBounds(135, 11, 1, 1);
 		contentPane.add(list);
 		
-		JSpinner StipendioMensile_D = new JSpinner();
-		StipendioMensile_D.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
-		StipendioMensile_D.setBounds(227, 151, 69, 16);
-		contentPane.add(StipendioMensile_D);
+		StipendioMensile_TF = new JTextField();
+		StipendioMensile_TF.setBounds(227, 151, 86, 20);
+		contentPane.add(StipendioMensile_TF);
+		StipendioMensile_TF.setColumns(10);
 	}
 }

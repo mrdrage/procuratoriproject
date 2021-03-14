@@ -34,6 +34,7 @@ public class Controller {
 	      CollaborazioneDAOPostgresImpl CollaborazioneDAOPostgresImpl;
 	      AtletiDAOPostgresImpl AtletiDAOPostgresImpl;
 	      
+	      M_GestioneProcuratore GestioneProcuratore = null;
 	      M_NuovoProcuratore NuovoProcuratore = null;
 	      M_Benvenuto Benvenuto = null;
 	      M_ProcuratoreInseritoOk ProcuratoreInseritoOK;
@@ -49,7 +50,7 @@ public class Controller {
 	      Benvenuto = new M_Benvenuto(this);
 	      Benvenuto.setVisible(true);
 	      
-	      
+	      GestioneProcuratore = new M_GestioneProcuratore(this);
 	      NuovoProcuratore = new M_NuovoProcuratore(this);
 	      ProcuratoreInseritoOK = new M_ProcuratoreInseritoOk(this);
 	      
@@ -62,6 +63,10 @@ public class Controller {
     	 Benvenuto.setVisible(false);
     	 NuovoProcuratore.setVisible(true);
     	 
+     }
+     
+     public void ApriGestioneProcuratore() {
+    	 GestioneProcuratore.setVisible(true);
      }
      
      public void InserisciProcuratoreDB (String nome, String cognome, String CF, String Ntel, String Ntel2, String email, String dataN) throws SQLException, ParseException {
@@ -92,12 +97,12 @@ public class Controller {
      }
     
      
-     public void InserisciCollaborazioneDB(String datainizio, String datafine, Timestamp timestamp) throws ParseException, SQLException {
+     public void InserisciCollaborazioneDB(String datainizio, String datafine, double stipendiomensile) throws ParseException, SQLException {
     	SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
   		Date dataInizio = format.parse(datainizio);
   		Date dataFine = format.parse(datafine);
   		
-  		Collaborazione collaborazione = new Collaborazione(dataInizio, dataFine, timestamp);
+  		Collaborazione collaborazione = new Collaborazione(dataInizio, dataFine, stipendiomensile);
   		
   		int codprocuratori = 0;
   		int codatleti = 0;

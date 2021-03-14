@@ -7,12 +7,12 @@ public class Collaborazione {
 
 	private Date DataInizio;
 	private Date DataFine;
-	private Timestamp StipendioMensile;
+	private double StipendioMensile;
 	
-	public Collaborazione(Date parsedate1, Date parsedate2, Timestamp timestamp) {
+	public Collaborazione(Date parsedate1, Date parsedate2, double stipendiomensile) {
 		this.DataInizio = parsedate1;
 		this.DataFine = parsedate2;
-		this.StipendioMensile = timestamp;
+		this.StipendioMensile = stipendiomensile;
 	}
 	
 	
@@ -29,11 +29,11 @@ public class Collaborazione {
 		DataFine = dataFine;
 	}
 	
-	public Timestamp getStipendioMensile() {
+	public double getStipendioMensile() {
 		return StipendioMensile;
 	}
 	
-	public void setStipendioMensile(Timestamp stipendioMensile) {
+	public void setStipendioMensile(double stipendioMensile) {
 		StipendioMensile = stipendioMensile;
 	}
 	

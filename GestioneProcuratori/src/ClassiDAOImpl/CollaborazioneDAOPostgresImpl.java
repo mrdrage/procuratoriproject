@@ -42,8 +42,9 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		ResultSet rs = getAllCollaborazioni.executeQuery();
 		List <Collaborazione> CollabList = new ArrayList<Collaborazione>();
 		
+	
 		while (rs.next()) {
-			Collaborazione C = new Collaborazione (rs.getDate(1), rs.getDate(2), rs.getTimestamp(3));
+			Collaborazione C = new Collaborazione (rs.getDate(1), rs.getDate(2), rs.getDouble(3));
 			CollabList.add(C);
 		}
 		return CollabList;
@@ -60,7 +61,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		
 		while (rs.next()) {
 			//rs.getTimestamp prima era rs.getDouble
-			Collaborazione C = new Collaborazione (rs.getDate(1), rs.getDate(2), rs.getTimestamp(3));
+			Collaborazione C = new Collaborazione (rs.getDate(1), rs.getDate(2), rs.getDouble(3));
 			CollabList.add(C);
 		}
 		
@@ -77,7 +78,8 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		java.sql.Date sqlDataFine = new java.sql.Date(collaborazione.getDataFine().getTime());
 		InserisciCollaborazione.setDate(2, sqlDataFine);
 		
-		InserisciCollaborazione.setTimestamp(3, collaborazione.getStipendioMensile());
+		
+		InserisciCollaborazione.setDouble(3, collaborazione.getStipendioMensile());
 		
 		
 		
