@@ -1,8 +1,11 @@
 package GUI;
 
 import Starter.Controller;
-
-
+import entita.Procuratori;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -15,28 +18,30 @@ import java.awt.TextField;
 
 import javax.swing.JTextField;
 import java.awt.Color;
+
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class M_CercaProcuratore extends JFrame {
-
-	private JPanel contentPane;
-	private JComboBox CercaProcuratore_CO;
+    
 	Controller controller = null;
+	//public ArrayList <Procuratori> P =new ArrayList<Procuratori>();
+ 	
+	private JPanel contentPane;
+	private JComboBox<String> CercaProcuratore_CO;
 	TextField TF = new TextField();
 
-	/**
-	 * Launch the application.
-	 */
-
+	
 
 	/**
 	 * Create the frame.
 	 */
 	public M_CercaProcuratore(Controller c) {
 		controller = c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 446, 174);
 		contentPane = new JPanel();
@@ -60,7 +65,8 @@ public class M_CercaProcuratore extends JFrame {
 		CercaProcuratore_B.setBounds(329, 101, 69, 23);
 		contentPane.add(CercaProcuratore_B);
 		
-		CercaProcuratore_CO = new JComboBox();
+		
+	    CercaProcuratore_CO = new JComboBox <String>();
 		CercaProcuratore_CO.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		CercaProcuratore_CO.setBounds(85, 67, 234, 23);
 		contentPane.add(CercaProcuratore_CO);
@@ -68,4 +74,12 @@ public class M_CercaProcuratore extends JFrame {
 		
 		
 	}
+	
+	public void setProcuratoriComboBox (List<String> procuratori) {
+		Iterator<String> i = procuratori.iterator();
+		while (i.hasNext()) {
+		     CercaProcuratore_CO.addItem(i.next()); 
+		}
+	}
+  
 }

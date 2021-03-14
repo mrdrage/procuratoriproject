@@ -13,6 +13,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class M_Benvenuto extends JFrame {
@@ -62,7 +63,12 @@ public class M_Benvenuto extends JFrame {
 		CercaProcuratore_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Caricare tutti i procuratori nella combobox
-			}
+				try {
+				    controller.RicercaProcuratori();
+			    }catch(SQLException E) {
+				    E.printStackTrace();
+			    }
+ 			}
 		});
 		CercaProcuratore_B.setBackground(new Color(255, 255, 255));
 		CercaProcuratore_B.setBounds(78, 113, 179, 32);

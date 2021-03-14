@@ -85,6 +85,9 @@ public class Procuratori {
 		
 	}
 	
+	public String getInfoProcuratore () {
+		return Nome+ " "+ Cognome +" "+ CodiceFiscale;
+	}
 	
 	
 	

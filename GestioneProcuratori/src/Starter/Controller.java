@@ -5,6 +5,7 @@ import java.sql.Connection;
 
 
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import ClassiDAO.ProcuratoriDAO;
@@ -32,6 +34,7 @@ import entita.Procuratori;
 
 public class Controller {
 	
+<<<<<<< HEAD
 	      ProcuratoriDAOPostgresImpl ProcuratoriDAOPostgresImpl;
 	      CollaborazioneDAOPostgresImpl CollaborazioneDAOPostgresImpl;
 	      AtletiDAOPostgresImpl AtletiDAOPostgresImpl;
@@ -39,11 +42,23 @@ public class Controller {
 	      M_GestioneProcuratore GestioneProcuratore = null;
 	      M_NuovoProcuratore NuovoProcuratore = null;
 	      M_Benvenuto Benvenuto = null;
+=======
+
+	      ProcuratoriDAOPostgresImpl ProcuratoriDAOpostgresImpl;
+	      AtletiDAOPostgresImpl AtletiDAOPostgresImpl; 
+	      M_NuovoProcuratore NuovoProcuratore;
+	      M_Benvenuto Benvenuto;
+	          
+>>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
 	      M_ProcuratoreInseritoOk ProcuratoreInseritoOK;
+	      M_CercaProcuratore CercaProcuratore;
+	      M_NuovoAtletaCollab NuovoAtletaCollab;
+	      M_NuovaCollaborazione NuovaCollaborazione;
 	      
-	      M_NuovoAtletaCollab NuovoAtletaCollab = null;
-	      M_NuovaCollaborazione NuovaCollaborazione = null;
+     public Controller () throws SQLException {
+	
 	      
+<<<<<<< HEAD
 	      M_ListaCollaborazioni ListaCollaborazioni = null;
 	      
 	      M_AggiungiContrattoClub AggiungiContrattoClub = null;
@@ -52,6 +67,9 @@ public class Controller {
 	      
      public Controller (Connection connection) throws SQLException {
     	 
+=======
+
+>>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
      
     	  //Avvio dell'app
 	      Benvenuto = new M_Benvenuto(this);
@@ -60,6 +78,9 @@ public class Controller {
 	      GestioneProcuratore = new M_GestioneProcuratore(this);
 	      NuovoProcuratore = new M_NuovoProcuratore(this);
 	      ProcuratoreInseritoOK = new M_ProcuratoreInseritoOk(this);
+
+	      CercaProcuratore = new M_CercaProcuratore(this);
+
 	      
 	      NuovoAtletaCollab = new M_NuovoAtletaCollab(this);
 	      
@@ -68,6 +89,7 @@ public class Controller {
 	      AggiungiContrattoClub = new M_AggiungiContrattoClub(this);
 	      AggiungiContrattoSponsor = new M_AggiungiContrattoSponsor(this);
      
+
      }
      
      public void IniziaInserimentoProcuratore () {
@@ -100,11 +122,43 @@ public class Controller {
         
         //Se tutto va bene
         ProcuratoreInseritoOK.setVisible(true);
+        
+      
+        
      }
      
+
+     public void RicercaProcuratori () throws SQLException {
+    	 
+    	 Benvenuto.setVisible(false);
+    	 List<Procuratori> procuratori = new ArrayList<Procuratori>();
+    	 List<String> InfoProcuratori = new ArrayList<String>();
+    	 
+    	 //prelevo dal DB i procuratori	 
+    	 procuratori = ProcuratoriDAOpostgresImpl.getAllProcuratori();
+    	 //estrapolo le info dai procuratori 
+         Iterator<Procuratori> i = procuratori.iterator();
+    	 
+    	       while (i.hasNext()) {  
+    		        Procuratori p = i.next();
+    		        InfoProcuratori.add(p.getInfoProcuratore());
+    	       }
+    	       
+    	 //li imposto sulla combobox
+         CercaProcuratore.setProcuratoriComboBox(InfoProcuratori);
+    	 //visualizzo la  finestra 
+   	     CercaProcuratore.setVisible(true);
+    		 
+    	
+    		 
+    	 
+    	 
+     }
+     
+
      
      public void InserisciAtletaDB(String nome, String cognome, String nazione, String codicefiscale, String sport, String clubattuale, String serieclub) throws SQLException {
-    	 Atleti atleta = new Atleti(nome, cognome, nazione, codicefiscale, sport, clubattuale, serieclub);
+        Atleti atleta = new Atleti(nome, cognome, nazione, codicefiscale, sport, clubattuale, serieclub);
     	 
     	int codcollaborazione = 0;
 		int codatleti = 0;
@@ -114,6 +168,7 @@ public class Controller {
 		//Se tutto va bene
         NuovaCollaborazione.setVisible(true);
      }
+<<<<<<< HEAD
     
      
      public void InserisciCollaborazioneDB(String datainizio, String datafine, double stipendiomensile) throws ParseException, SQLException {
@@ -152,6 +207,9 @@ public class Controller {
      
      
      
+=======
+
+>>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
      
      public void setProcuratoriDAO(ProcuratoriDAOPostgresImpl PD) {
     	 ProcuratoriDAOPostgresImpl = PD;
@@ -164,18 +222,18 @@ public class Controller {
 
 	public static void main(String[] args) throws SQLException, ParseException 
 	{
-		ProcuratoriDAOPostgresImpl ProcuratoriDAOpostgresImpl; 
+	//	ProcuratoriDAOPostgresImpl procuratoriDAOpostgresImpl; 
 
 		try {
  			Connection conn= null;
  			DBConnection dbc = DBConnection.getInstance();
  			conn = dbc.getConnection();
  			
- 		    ProcuratoriDAOpostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
+ 			ProcuratoriDAOPostgresImpl  procuratoriDAOpostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
  		    
- 			Controller controller = new Controller(conn);
+ 			Controller controller = new Controller();
  			
- 			controller.setProcuratoriDAO(ProcuratoriDAOpostgresImpl);
+ 			controller.setProcuratoriDAO(procuratoriDAOpostgresImpl);
  			
  			}catch (SQLException e) {
  				e.printStackTrace();
