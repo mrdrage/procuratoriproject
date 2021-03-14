@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -16,7 +19,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class M_ListaCollaborazioni extends JFrame {
-
+ 
+	Controller controller = null;
+	
 	private JPanel contentPane;
 
 	/**
@@ -27,7 +32,9 @@ public class M_ListaCollaborazioni extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public M_ListaCollaborazioni() {
+	public M_ListaCollaborazioni(Controller c) {
+		controller = c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 612, 474);
 		contentPane = new JPanel();

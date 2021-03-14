@@ -12,6 +12,16 @@ public class ContrattoSponsor {
 	private String MarcaSponsor;
 	private String VincoliContrattuali;
 	
+	public ContrattoSponsor (Date datainizio, Date datafine, double guadagno, double percentualeprocuratore, String tipologiasponsor, String marcasponsor, String vincolicontrattuali) {
+		this.DataInizio = datainizio;
+		this.DataFine = datafine;
+		this.Guadagno = guadagno;
+		this.PercentualeProcuratore = percentualeprocuratore;
+		this.TipologiaSponsor = tipologiasponsor;
+		this.MarcaSponsor = marcasponsor;
+		this.VincoliContrattuali = vincolicontrattuali;
+	}
+	
 	public Date getDataInizio() {
 		return DataInizio;
 	}

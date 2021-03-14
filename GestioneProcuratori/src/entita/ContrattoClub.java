@@ -1,6 +1,6 @@
 package entita;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class ContrattoClub {
 
@@ -10,6 +10,15 @@ public class ContrattoClub {
 	private String BonusStagione;
 	private double GuadagnoBonus;
 	private String VincoloContrattuale;
+	
+	public ContrattoClub(Date datainizio, Date datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolocontrattuale) {
+		this.DataInizio = datainizio; 
+		this.DataFine = datafine;
+		this.StipendioAtletaStagione = stipendioatletastagione;
+		this.BonusStagione = bonusstagione;
+		this.GuadagnoBonus = guadagnobonus;
+		this.VincoloContrattuale = vincolocontrattuale; 
+	}
 	
 	public Date getDataInizio() {
 		return DataInizio;

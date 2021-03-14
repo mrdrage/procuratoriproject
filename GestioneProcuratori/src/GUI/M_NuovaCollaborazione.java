@@ -116,7 +116,7 @@ public class M_NuovaCollaborazione extends JFrame {
 				
 				//Altrimenti apre la finestra ListaCollaborazioni
 				setVisible(false);
-				controller.ApriGestioneProcuratore();
+				controller.ApriListaCollaborazioni();
 				
 			}
 		});

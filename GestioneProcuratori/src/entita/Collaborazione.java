@@ -1,6 +1,6 @@
 package entita;
 
-import java.sql.Timestamp;
+
 import java.util.Date;
 
 public class Collaborazione {

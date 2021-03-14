@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -16,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class M_AggiungiContrattoSponsor extends JFrame {
+	
+	Controller controller = null;
 
 	private JPanel contentPane;
 	private JTextField DataInizio_TF;
@@ -34,7 +39,10 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public M_AggiungiContrattoSponsor() {
+	public M_AggiungiContrattoSponsor(Controller c) {
+		
+		controller = c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 555, 520);
 		contentPane = new JPanel();

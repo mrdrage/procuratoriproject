@@ -19,10 +19,12 @@ import ClassiDAO.ProcuratoriDAO;
 import ClassiDAOImpl.AtletiDAOPostgresImpl;
 import ClassiDAOImpl.ProcuratoriDAOPostgresImpl;
 import ClassiDAOImpl.CollaborazioneDAOPostgresImpl;
+import ClassiDAOImpl.ContrattiDAOPostgresImpl;
 import DBconfig.DBConnection;
 import GUI.*;
 import entita.Atleti;
 import entita.Collaborazione;
+import entita.ContrattoClub;
 import entita.Procuratori;
 
 
@@ -42,6 +44,11 @@ public class Controller {
 	      M_NuovoAtletaCollab NuovoAtletaCollab = null;
 	      M_NuovaCollaborazione NuovaCollaborazione = null;
 	      
+	      M_ListaCollaborazioni ListaCollaborazioni = null;
+	      
+	      M_AggiungiContrattoClub AggiungiContrattoClub = null;
+	      M_AggiungiContrattoSponsor AggiungiContrattoSponsor = null;
+	      
 	      
      public Controller (Connection connection) throws SQLException {
     	 
@@ -55,6 +62,11 @@ public class Controller {
 	      ProcuratoreInseritoOK = new M_ProcuratoreInseritoOk(this);
 	      
 	      NuovoAtletaCollab = new M_NuovoAtletaCollab(this);
+	      
+	      ListaCollaborazioni = new M_ListaCollaborazioni(this);
+	      
+	      AggiungiContrattoClub = new M_AggiungiContrattoClub(this);
+	      AggiungiContrattoSponsor = new M_AggiungiContrattoSponsor(this);
      
      }
      
@@ -66,7 +78,14 @@ public class Controller {
      }
      
      public void ApriGestioneProcuratore() {
+    	 //Dobbiamo passargli prima i dati del procuratore scelto in precedenza
     	 GestioneProcuratore.setVisible(true);
+     }
+     
+     public void ApriListaCollaborazioni() {
+    	 
+    	 //Dobbiamo passargli prima i dati delle collaborazioni del procuratore scelto in precedenza
+    	 ListaCollaborazioni.setVisible(true);
      }
      
      public void InserisciProcuratoreDB (String nome, String cognome, String CF, String Ntel, String Ntel2, String email, String dataN) throws SQLException, ParseException {
@@ -108,6 +127,21 @@ public class Controller {
   		int codatleti = 0;
   		
   		CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione, codprocuratori, codatleti);
+     }
+     
+     public void InserisciContrattoClubDB(String datainizio, String datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolocontrattuale ) throws ParseException {
+    	 SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
+    	 Date dataInizio = format.parse(datainizio);
+    	 Date dataFine = format.parse(datafine);
+    	 
+    	 ContrattoClub contrattoclub = new ContrattoClub(dataInizio, dataFine, stipendioatletastagione, bonusstagione, guadagnobonus, vincolocontrattuale);
+    	 
+    	 int codtransazioneclub = 0;
+		 int codatleti = 1;
+		
+		 //Non mi legge il metodo scritto in  ContrattiDAO
+//		 ContrattiDAOPostgresImpl
+    	 
      }
      
      

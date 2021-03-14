@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
@@ -17,6 +20,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class M_AggiungiContrattoClub extends JFrame {
+	
+	Controller controller = null;
 
 	private JPanel contentPane;
 	private JTextField DataInizio_TF;
@@ -33,7 +38,10 @@ public class M_AggiungiContrattoClub extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public M_AggiungiContrattoClub() {
+	public M_AggiungiContrattoClub(Controller c) {
+		
+		controller = c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 502, 504);
 		contentPane = new JPanel();
