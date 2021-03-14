@@ -34,7 +34,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	
 	
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException {
-<<<<<<< HEAD
+
 		int codP=35;
 		inserisciProcuratorePS.setString(1, procuratore.getNome());
 		inserisciProcuratorePS.setString(2, procuratore.getCognome());
@@ -42,15 +42,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 		inserisciProcuratorePS.setString(4, procuratore.getNumeroTelefonico());
 		inserisciProcuratorePS.setString(5, procuratore.getNumeroTelefonico2());
 		inserisciProcuratorePS.setString(6, procuratore.getEmail());
-=======
-		int codP=9;
-		InserisciProcuratore.setString(1, procuratore.getNome());
-		InserisciProcuratore.setString(2, procuratore.getCognome());
-		InserisciProcuratore.setString(3, procuratore.getCodiceFiscale());
-		InserisciProcuratore.setString(4, procuratore.getNumeroTelefonico());
-		InserisciProcuratore.setString(5, procuratore.getNumeroTelefonico2());
-		InserisciProcuratore.setString(6, procuratore.getEmail());
->>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
+
 		//conversione della data di procuratore formato java.util, ad una data java.sql per poter usare "setDate".
 		java.sql.Date sqlDate = new java.sql.Date(procuratore.getDataN().getTime());
 		inserisciProcuratorePS.setDate(7,sqlDate);

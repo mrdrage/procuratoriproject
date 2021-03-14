@@ -33,43 +33,29 @@ import entita.Procuratori;
 
 
 public class Controller {
-	
-<<<<<<< HEAD
+
 	      ProcuratoriDAOPostgresImpl ProcuratoriDAOPostgresImpl;
 	      CollaborazioneDAOPostgresImpl CollaborazioneDAOPostgresImpl;
 	      AtletiDAOPostgresImpl AtletiDAOPostgresImpl;
+	      ContrattiDAOPostgresImpl ContrattiDAOPostgresImpl;
 	      
 	      M_GestioneProcuratore GestioneProcuratore = null;
 	      M_NuovoProcuratore NuovoProcuratore = null;
 	      M_Benvenuto Benvenuto = null;
-=======
 
-	      ProcuratoriDAOPostgresImpl ProcuratoriDAOpostgresImpl;
-	      AtletiDAOPostgresImpl AtletiDAOPostgresImpl; 
-	      M_NuovoProcuratore NuovoProcuratore;
-	      M_Benvenuto Benvenuto;
-	          
->>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
+
 	      M_ProcuratoreInseritoOk ProcuratoreInseritoOK;
 	      M_CercaProcuratore CercaProcuratore;
 	      M_NuovoAtletaCollab NuovoAtletaCollab;
 	      M_NuovaCollaborazione NuovaCollaborazione;
 	      
-     public Controller () throws SQLException {
-	
-	      
-<<<<<<< HEAD
-	      M_ListaCollaborazioni ListaCollaborazioni = null;
-	      
-	      M_AggiungiContrattoClub AggiungiContrattoClub = null;
-	      M_AggiungiContrattoSponsor AggiungiContrattoSponsor = null;
+	      M_ListaCollaborazioni ListaCollaborazioni; 
+	      M_AggiungiContrattoClub AggiungiContrattoClub;
+	      M_AggiungiContrattoSponsor AggiungiContrattoSponsor;
 	      
 	      
      public Controller (Connection connection) throws SQLException {
-    	 
-=======
 
->>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
      
     	  //Avvio dell'app
 	      Benvenuto = new M_Benvenuto(this);
@@ -135,7 +121,7 @@ public class Controller {
     	 List<String> InfoProcuratori = new ArrayList<String>();
     	 
     	 //prelevo dal DB i procuratori	 
-    	 procuratori = ProcuratoriDAOpostgresImpl.getAllProcuratori();
+    	 procuratori = ProcuratoriDAOPostgresImpl.getAllProcuratori();
     	 //estrapolo le info dai procuratori 
          Iterator<Procuratori> i = procuratori.iterator();
     	 
@@ -168,7 +154,7 @@ public class Controller {
 		//Se tutto va bene
         NuovaCollaborazione.setVisible(true);
      }
-<<<<<<< HEAD
+
     
      
      public void InserisciCollaborazioneDB(String datainizio, String datafine, double stipendiomensile) throws ParseException, SQLException {
@@ -184,7 +170,7 @@ public class Controller {
   		CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione, codprocuratori, codatleti);
      }
      
-     public void InserisciContrattoClubDB(String datainizio, String datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolocontrattuale ) throws ParseException {
+     public void InserisciContrattoClubDB(String datainizio, String datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolocontrattuale ) throws ParseException, SQLException {
     	 SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
     	 Date dataInizio = format.parse(datainizio);
     	 Date dataFine = format.parse(datafine);
@@ -195,21 +181,11 @@ public class Controller {
 		 int codatleti = 1;
 		
 		 //Non mi legge il metodo scritto in  ContrattiDAO
-//		 ContrattiDAOPostgresImpl
+		 ContrattiDAOPostgresImpl.inserisciContrattoClub(contrattoclub, codtransazioneclub, codatleti);
     	 
      }
      
-     
-     
-     
-     
-     
-     
-     
-     
-=======
-
->>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
+    
      
      public void setProcuratoriDAO(ProcuratoriDAOPostgresImpl PD) {
     	 ProcuratoriDAOPostgresImpl = PD;
@@ -231,7 +207,7 @@ public class Controller {
  			
  			ProcuratoriDAOPostgresImpl  procuratoriDAOpostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
  		    
- 			Controller controller = new Controller();
+ 			Controller controller = new Controller(conn);
  			
  			controller.setProcuratoriDAO(procuratoriDAOpostgresImpl);
  			
