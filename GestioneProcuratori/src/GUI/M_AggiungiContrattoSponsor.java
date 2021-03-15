@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 public class M_AggiungiContrattoSponsor extends JFrame {
@@ -29,7 +31,7 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 	private JTextField PercentualeProcuratore_TF;
 	private JTextField TipologiaSponsor_TF;
 	private JTextField MarcaSponsor_TF;
-	private JTextField VincoloContrattuale_TF;
+	private JTextField VincoliContrattuali_TF;
 
 	/**
 	 * Launch the application.
@@ -128,19 +130,33 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 		contentPane.add(MarcaSponsor_TF);
 		MarcaSponsor_TF.setColumns(10);
 		
-		VincoloContrattuale_TF = new JTextField();
-		VincoloContrattuale_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		VincoloContrattuale_TF.setBounds(288, 273, 242, 125);
-		contentPane.add(VincoloContrattuale_TF);
-		VincoloContrattuale_TF.setColumns(10);
+		VincoliContrattuali_TF = new JTextField();
+		VincoliContrattuali_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		VincoliContrattuali_TF.setBounds(288, 273, 242, 125);
+		contentPane.add(VincoliContrattuali_TF);
+		VincoliContrattuali_TF.setColumns(10);
 		
 		JButton Avanti_B = new JButton("Avanti");
 		Avanti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Se cé un errore nella data, appare la dialog ErroreDataSponsor
-				//oppure
+				
+				
+				double guadagno = Double.parseDouble(Guadagno_TF.getText());
+				double percentualeprocuratore = Double.parseDouble(PercentualeProcuratore_TF.getText());
+				
+				
+				//Viene inserito  il contratto
+				
+				try {
+					controller.InserisciContrattoSponsorDB(DataInizio_TF.getText(), DataFine_TF.getText(), guadagno, percentualeprocuratore, TipologiaSponsor_TF.getText(), MarcaSponsor_TF.getText(), VincoliContrattuali_TF.getText());
+				} catch (ParseException | SQLException e1) {
+					// finestre di errore
+					//Se cé un errore nella data, appare la dialog ErroreDataSponsor
+					e1.printStackTrace();
+				}
 				//Appare la dialog ContrattoSponsorInserito
-				//setVisible(false)
+				c.ContrattoSponsorInseritoCorrettamente();
+				setVisible(false);
 			}
 		});
 		Avanti_B.setBackground(new Color(0, 0, 0));

@@ -95,10 +95,8 @@ public class M_NuovaCollaborazione extends JFrame {
 		Avanti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Se é gia presente una collaborazione con i dati inseriti, apre la dialog ErroreCollaborazionePresente
 				
-				
-				double stipendiomensile = Double.parseDouble(StipendioMensile_TF.getText());
+                double stipendiomensile = Double.parseDouble(StipendioMensile_TF.getText());
 				
 				try {
 					
@@ -108,13 +106,17 @@ public class M_NuovaCollaborazione extends JFrame {
 					e1.printStackTrace();
 				}
 				
+				//Se é gia presente una collaborazione con i dati inseriti, apre la dialog ErroreCollaborazionePresente
+				
+				
+				
 				//svuoto i campi
 				DataInizio_TF.setText("");
 				DataFine_TF.setText("");
 				StipendioMensile_TF.setText("");
 				
 				
-				//Altrimenti apre la finestra ListaCollaborazioni
+				//Se tutto va bene, si apre la finestra ListaCollaborazioni
 				setVisible(false);
 				controller.ApriListaCollaborazioni();
 				

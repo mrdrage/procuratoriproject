@@ -7,11 +7,18 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class M_ContrattoSponsorInserito extends JDialog {
+	
+	Controller controller = null;
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -23,7 +30,9 @@ public class M_ContrattoSponsorInserito extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public M_ContrattoSponsorInserito() {
+	public M_ContrattoSponsorInserito(Controller c) {
+		controller = c;
+		
 		setBounds(100, 100, 549, 152);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(250, 235, 215));
@@ -38,6 +47,11 @@ public class M_ContrattoSponsorInserito extends JDialog {
 		}
 		{
 			JButton Ok_B = new JButton("Ok");
+			Ok_B.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					setVisible(false);
+				}
+			});
 			Ok_B.setBackground(new Color(0, 0, 0));
 			Ok_B.setBounds(467, 80, 45, 23);
 			contentPanel.add(Ok_B);

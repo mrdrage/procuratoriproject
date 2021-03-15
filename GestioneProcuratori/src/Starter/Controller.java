@@ -27,6 +27,7 @@ import GUI.*;
 import entita.Atleti;
 import entita.Collaborazione;
 import entita.ContrattoClub;
+import entita.ContrattoSponsor;
 import entita.Procuratori;
 
 
@@ -46,12 +47,16 @@ public class Controller {
 
 	      M_ProcuratoreInseritoOk ProcuratoreInseritoOK;
 	      M_CercaProcuratore CercaProcuratore;
+	      
 	      M_NuovoAtletaCollab NuovoAtletaCollab;
 	      M_NuovaCollaborazione NuovaCollaborazione;
+	      M_ListaCollaborazioni ListaCollaborazioni;
 	      
-	      M_ListaCollaborazioni ListaCollaborazioni; 
 	      M_AggiungiContrattoClub AggiungiContrattoClub;
 	      M_AggiungiContrattoSponsor AggiungiContrattoSponsor;
+	      M_ContrattoClubEsistente ContrattoClubEsistente;
+	      M_ContrattoClubInserito ContrattoClubInserito;
+	      M_ContrattoSponsorInserito ContrattoSponsorInserito;
 	      
 	      
      public Controller (Connection connection) throws SQLException {
@@ -64,16 +69,17 @@ public class Controller {
 	      GestioneProcuratore = new M_GestioneProcuratore(this);
 	      NuovoProcuratore = new M_NuovoProcuratore(this);
 	      ProcuratoreInseritoOK = new M_ProcuratoreInseritoOk(this);
-
 	      CercaProcuratore = new M_CercaProcuratore(this);
 
 	      
 	      NuovoAtletaCollab = new M_NuovoAtletaCollab(this);
-	      
 	      ListaCollaborazioni = new M_ListaCollaborazioni(this);
 	      
 	      AggiungiContrattoClub = new M_AggiungiContrattoClub(this);
 	      AggiungiContrattoSponsor = new M_AggiungiContrattoSponsor(this);
+	      ContrattoClubEsistente = new M_ContrattoClubEsistente(this);
+	      ContrattoClubInserito = new M_ContrattoClubInserito(this);
+	      ContrattoSponsorInserito = new M_ContrattoSponsorInserito(this);
      
 
      }
@@ -83,6 +89,18 @@ public class Controller {
     	 Benvenuto.setVisible(false);
     	 NuovoProcuratore.setVisible(true);
     	 
+     }
+     
+     public void IniziaInserimentoContrattoClub() {
+    	 AggiungiContrattoClub.setVisible(true);
+     }
+     
+     public void ContrattoClubInseritoCorrettamente() {
+    	 ContrattoClubInserito.setVisible(true);
+     }
+     
+     public void ContrattoSponsorInseritoCorrettamente() {
+    	 ContrattoSponsorInserito.setVisible(true);
      }
      
      public void ApriGestioneProcuratore() {
@@ -170,20 +188,35 @@ public class Controller {
   		CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione, codprocuratori, codatleti);
      }
      
-     public void InserisciContrattoClubDB(String datainizio, String datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolocontrattuale ) throws ParseException, SQLException {
+     public void InserisciContrattoClubDB(String datainizio, String datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolicontrattuali ) throws ParseException, SQLException {
     	 SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
     	 Date dataInizio = format.parse(datainizio);
     	 Date dataFine = format.parse(datafine);
     	 
-    	 ContrattoClub contrattoclub = new ContrattoClub(dataInizio, dataFine, stipendioatletastagione, bonusstagione, guadagnobonus, vincolocontrattuale);
+    	 ContrattoClub contrattoclub = new ContrattoClub(dataInizio, dataFine, stipendioatletastagione, bonusstagione, guadagnobonus, vincolicontrattuali);
     	 
     	 int codtransazioneclub = 0;
 		 int codatleti = 1;
 		
-		 //Non mi legge il metodo scritto in  ContrattiDAO
+		 
 		 ContrattiDAOPostgresImpl.inserisciContrattoClub(contrattoclub, codtransazioneclub, codatleti);
     	 
      }
+     
+     public void InserisciContrattoSponsorDB(String datainizio, String datafine, double guadagno, double percentualeprocuratore, String tipologiasponsor, String marcasponsor, String vincolicontrattuali) throws ParseException, SQLException {
+    	 SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
+    	 Date dataInizio = format.parse(datainizio);
+    	 Date dataFine = format.parse(datafine);
+    	 
+    	 ContrattoSponsor contrattosponsor = new ContrattoSponsor(dataInizio, dataFine, guadagno, percentualeprocuratore,  tipologiasponsor, marcasponsor, vincolicontrattuali);
+    	 
+    	 int codtransazionesponsor = 0;
+    	 int codatleti = 0;
+    	 
+    	 ContrattiDAOPostgresImpl.inserisciContrattoSponsor(contrattosponsor, codtransazionesponsor, codatleti);
+     }
+     
+     
      
     
      

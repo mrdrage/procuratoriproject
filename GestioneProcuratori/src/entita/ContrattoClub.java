@@ -9,15 +9,15 @@ public class ContrattoClub {
 	private double StipendioAtletaStagione;
 	private String BonusStagione;
 	private double GuadagnoBonus;
-	private String VincoloContrattuale;
+	private String VincoliContrattuali;
 	
-	public ContrattoClub(Date datainizio, Date datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolocontrattuale) {
+	public ContrattoClub(Date datainizio, Date datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolicontrattuali) {
 		this.DataInizio = datainizio; 
 		this.DataFine = datafine;
 		this.StipendioAtletaStagione = stipendioatletastagione;
 		this.BonusStagione = bonusstagione;
 		this.GuadagnoBonus = guadagnobonus;
-		this.VincoloContrattuale = vincolocontrattuale; 
+		this.VincoliContrattuali = vincolicontrattuali; 
 	}
 	
 	public Date getDataInizio() {
@@ -61,11 +61,11 @@ public class ContrattoClub {
 	}
 	
 	public String getVincoloContrattuale() {
-		return VincoloContrattuale;
+		return VincoliContrattuali;
 	}
 	
 	public void setVincoloContrattuale(String vincoloContrattuale) {
-		VincoloContrattuale = vincoloContrattuale;
+		VincoliContrattuali = vincoloContrattuale;
 	}
 	
 	

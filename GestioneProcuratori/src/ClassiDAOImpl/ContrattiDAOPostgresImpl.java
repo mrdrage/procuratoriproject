@@ -9,6 +9,7 @@ import Starter.Controller;
 
 import ClassiDAO.ContrattiDAO;
 import entita.ContrattoClub;
+import entita.ContrattoSponsor;
 
 public class ContrattiDAOPostgresImpl implements ContrattiDAO {
 	
@@ -50,4 +51,32 @@ public class ContrattiDAOPostgresImpl implements ContrattiDAO {
 		inserisciContrattoClubPS.executeUpdate();
 	}
 
+
+
+
+public void inserisciContrattoSponsor(ContrattoSponsor contrattosponsor, int codtransazionesponsor, int codatleti) throws SQLException {
+	
+	java.sql.Date datainizio = new java.sql.Date(contrattosponsor.getDataInizio().getTime());
+	inserisciContrattoSponsorPS.setDate(1, datainizio);
+	
+	java.sql.Date datafine = new java.sql.Date(contrattosponsor.getDataFine().getTime());
+	inserisciContrattoSponsorPS.setDate(2, datafine);
+	
+	inserisciContrattoSponsorPS.setDouble(3, contrattosponsor.getGuadagno());
+	inserisciContrattoSponsorPS.setDouble(4, contrattosponsor.getPercentualeProcuratore());
+	inserisciContrattoSponsorPS.setString(5, contrattosponsor.getTipologiaSponsor());
+	inserisciContrattoSponsorPS.setString(6, contrattosponsor.getMarcaSponsor());
+	inserisciContrattoSponsorPS.setString(7, contrattosponsor.getVincoliContrattuali());
+	
+	// Gestire codici codtransazionesponsor e codatleti
+	
+	codtransazionesponsor = 0;
+	inserisciContrattoSponsorPS.setInt(8, codtransazionesponsor);
+	codatleti = 0;
+	inserisciContrattoSponsorPS.setInt(9, codatleti);
+	
+	inserisciContrattoSponsorPS.executeUpdate();
+	
+	
+ }
 }

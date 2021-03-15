@@ -7,12 +7,16 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
 public class M_ContrattoClubInserito extends JDialog {
+	Controller controller = null;
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -23,7 +27,9 @@ public class M_ContrattoClubInserito extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public M_ContrattoClubInserito() {
+	public M_ContrattoClubInserito(Controller c) {
+		controller = c;
+		
 		setBounds(100, 100, 501, 148);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(250, 235, 215));

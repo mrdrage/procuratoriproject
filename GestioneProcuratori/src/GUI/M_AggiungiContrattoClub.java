@@ -17,6 +17,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 
 public class M_AggiungiContrattoClub extends JFrame {
@@ -125,10 +127,26 @@ public class M_AggiungiContrattoClub extends JFrame {
 		JButton Avanti_B = new JButton("Avanti");
 		Avanti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Se cé un errore nella data, appare la dialog ErroreDataClub
-				//oppure
-				//Appare la dialog ContrattoClubInserito
-				//setVisible(false)
+				
+				double stipendioatleta = Double.parseDouble(StipendioAtleta_TF.getText());
+				double guadagnobonus = Double.parseDouble(GuadagnoBonus_TF.getText());
+				
+				//Se l'atleta selezionato ha giá un contratto club, appare la finestra M_checkclub
+				//oppure viene inserito  il contratto
+				
+				try {
+					controller.InserisciContrattoClubDB(DataInizio_TF.getText(), DataFine_TF.getText(), stipendioatleta, BonusStagione_TF.getText(), guadagnobonus, VincoloContrattuale_TF.getText());
+				} catch (ParseException | SQLException e1) {
+					// finestre di errore
+					//Se cé un errore nella data, appare la dialog ErroreDataClub
+					e1.printStackTrace();
+				}
+				
+				//oppure appare la dialog ContrattoClubInserito
+				setVisible(false);
+				c.ContrattoClubInseritoCorrettamente();
+				
+				
 			}
 		});
 		Avanti_B.setBackground(new Color(0, 0, 0));
