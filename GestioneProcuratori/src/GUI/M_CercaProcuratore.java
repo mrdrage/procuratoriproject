@@ -58,6 +58,7 @@ public class M_CercaProcuratore extends JFrame {
 		JButton CercaProcuratore_B = new JButton("Cerca");
 		CercaProcuratore_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				c.ApriGestioneProcuratore();
 				//Apre GestioneProcuratore con i dati del procuratore inserito
 				setVisible(false);
 			}
