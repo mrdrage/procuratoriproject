@@ -23,6 +23,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class M_CercaProcuratore extends JFrame {
@@ -59,7 +60,12 @@ public class M_CercaProcuratore extends JFrame {
 		CercaProcuratore_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Apre GestioneProcuratore con i dati del procuratore inserito
-				setVisible(false);
+				try {
+				controller.VisualizzaInfoProcuratore((String) CercaProcuratore_CO.getSelectedItem());
+				//setVisible(false);
+				}catch (SQLException e3) {
+					
+				}
 			}
 		});
 		CercaProcuratore_B.setBounds(329, 101, 69, 23);

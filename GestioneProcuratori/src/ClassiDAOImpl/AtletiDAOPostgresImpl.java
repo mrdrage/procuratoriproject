@@ -12,8 +12,9 @@ import entita.Atleti;
 
 public class AtletiDAOPostgresImpl implements AtletiDAO {
 	private Connection connection;
-	private PreparedStatement  getAllAtleti, getAtletiByProcuratorePS, inserisciAtletaPS;
-	
+	private PreparedStatement  getAllAtleti;
+	private PreparedStatement  getAtletiByProcuratorePS;
+	private PreparedStatement  inserisciAtletaPS;
 	
 	public AtletiDAOPostgresImpl(Connection connection) throws SQLException {
 		

@@ -19,6 +19,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	private PreparedStatement getAllProcuratori;
 	private PreparedStatement getAllCFProcuratori;
 	private PreparedStatement getCodProcuratore;
+	private PreparedStatement getProcuratoreByCf;
 	
 	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException{
 		this.connection = connection;
@@ -28,6 +29,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 		inserisciProcuratorePS = connection.prepareStatement("INSERT INTO procuratori VALUES (?,?,?,?,?,?,?,?) ");
 		getAllProcuratori = connection.prepareStatement("SELECT * FROM procuratori");
 		getAllCFProcuratori = connection.prepareStatement("SELECT codicefiscale FROM procuratori");
+		getProcuratoreByCf = connection.prepareStatement("SELECT * FROM procuratori WHERE codicefiscale = ?");
 	}
 	
 	
@@ -89,5 +91,17 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	   rs.close();
 	   return lista;
    }  
+   
+   public Procuratori getProcuratoreByCf (String CodiceFiscale) throws SQLException {
+	  // Procuratori procuratore = new Procuratori();
+	   getProcuratoreByCf.setString(1, CodiceFiscale);
+	   ResultSet rs = getProcuratoreByCf.executeQuery();
+	   //Essendo il cf unico basta utilizzare solo una volta il next(), che punterà quindi all'unica tupla presente
+	   rs.next();
+	   Procuratori procuratore = new Procuratori(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7));
+	  
+	   
+	   return procuratore;
+   }
 	
 }
