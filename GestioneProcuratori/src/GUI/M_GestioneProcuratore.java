@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Starter.Controller;
+import entita.Procuratori;
 
 import javax.swing.JTextPane;
 import javax.swing.JFormattedTextField;
@@ -24,18 +25,13 @@ public class M_GestioneProcuratore extends JFrame {
 	Controller controller = null;
 	
 	private JPanel contentPane;
-	private JTextField NumeroTelefono2;
+	private JTextField NumeroTelefono2_TF;
 	private JTextField NumeroTelefono_TF;
 	private JTextField CodiceFiscale_TF;
 	private JTextField Cognome_TF;
 	private JTextField Nome_TF;
 	private JTextField Email_TF;
 	private JTextField DataN_TF;
-
-	/**
-	 * Launch the application.
-	 */
-
 
 	/**
 	 * Create the frame.
@@ -91,12 +87,12 @@ public class M_GestioneProcuratore extends JFrame {
 		DataN_L.setBounds(10, 287, 143, 25);
 		contentPane.add(DataN_L);
 		
-		NumeroTelefono2 = new JTextField();
-		NumeroTelefono2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		NumeroTelefono2.setEditable(false);
-		NumeroTelefono2.setBounds(163, 219, 113, 20);
-		contentPane.add(NumeroTelefono2);
-		NumeroTelefono2.setColumns(10);
+		NumeroTelefono2_TF = new JTextField();
+		NumeroTelefono2_TF.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		NumeroTelefono2_TF.setEditable(false);
+		NumeroTelefono2_TF.setBounds(163, 219, 113, 20);
+		contentPane.add(NumeroTelefono2_TF);
+		NumeroTelefono2_TF.setColumns(10);
 		
 		NumeroTelefono_TF = new JTextField();
 		NumeroTelefono_TF.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -143,7 +139,7 @@ public class M_GestioneProcuratore extends JFrame {
 		JButton Collaborazioni_B = new JButton("Collaborazioni");
 		Collaborazioni_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Se non é presente nessuna collaborazione, apre la dialog NessunaCollaborazione
+				//Se non ï¿½ presente nessuna collaborazione, apre la dialog NessunaCollaborazione
 				//oppure
 				//Apre la finestra ListaCollaborazioni
 				//setVisible(false);
@@ -190,5 +186,15 @@ public class M_GestioneProcuratore extends JFrame {
 		Atleti_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Atleti_B.setBounds(401, 228, 207, 43);
 		contentPane.add(Atleti_B);
+	}
+	
+	public void setProcuratore (Procuratori procuratore) {
+		Nome_TF.setText(procuratore.getNome());
+		Cognome_TF.setText(procuratore.getCognome());
+		CodiceFiscale_TF.setText(procuratore.getCodiceFiscale());
+		NumeroTelefono_TF.setText(procuratore.getNumeroTelefonico());
+		NumeroTelefono2_TF.setText(procuratore.getNumeroTelefonico2());
+		Email_TF.setText(procuratore.getEmail());
+		
 	}
 }

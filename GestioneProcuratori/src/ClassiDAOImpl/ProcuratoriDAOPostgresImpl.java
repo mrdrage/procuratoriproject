@@ -19,15 +19,19 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	private PreparedStatement getAllProcuratori;
 	private PreparedStatement getAllCFProcuratori;
 	private PreparedStatement getCodProcuratore;
+	private PreparedStatement getProcuratoreByCf;
 	
 	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException{
 		this.connection = connection;
 		
-		getCodProcuratore = connection.prepareStatement("SELECT MAX(codProcuratori) FROM Procuratori ");
+	//	getCodProcuratore = connection.prepareStatement("SELECT MAX(codProcuratori) FROM Procuratori ");
 
-		inserisciProcuratorePS = connection.prepareStatement("INSERT INTO procuratori VALUES (?,?,?,?,?,?,?,?) ");
+		inserisciProcuratorePS = connection.prepareStatement("INSERT INTO procuratori(nome,cognome,codicefiscale,numerotelefonico,"
+				+ "numerotelefonico2,email,datan,codprocuratori)"
+				+ " VALUES (?,?,?,?,?,?,?,nextval('s_procuratoripk')");
 		getAllProcuratori = connection.prepareStatement("SELECT * FROM procuratori");
 		getAllCFProcuratori = connection.prepareStatement("SELECT codicefiscale FROM procuratori");
+		getProcuratoreByCf = connection.prepareStatement("SELECT * FROM procuratori WHERE codicefiscale = ?");
 	}
 	
 	
@@ -35,7 +39,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException {
 
-		int codP=35;
+	//	int codP;
 		inserisciProcuratorePS.setString(1, procuratore.getNome());
 		inserisciProcuratorePS.setString(2, procuratore.getCognome());
 		inserisciProcuratorePS.setString(3, procuratore.getCodiceFiscale());
@@ -54,7 +58,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 //		      codP = CodiceProcuratore.getInt(8);
 //		}
 //		codP++;
-        inserisciProcuratorePS.setInt(8, codP);
+      //  inserisciProcuratorePS.setInt(8, codP);
 		
 	    inserisciProcuratorePS.executeUpdate();
 		
@@ -89,5 +93,17 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	   rs.close();
 	   return lista;
    }  
+   
+   public Procuratori getProcuratoreByCf (String CodiceFiscale) throws SQLException {
+	  // Procuratori procuratore = new Procuratori();
+	   getProcuratoreByCf.setString(1, CodiceFiscale);
+	   ResultSet rs = getProcuratoreByCf.executeQuery();
+	   //Essendo il cf unico basta utilizzare solo una volta il next(), che punterà quindi all'unica tupla presente
+	   rs.next();
+	   Procuratori procuratore = new Procuratori(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7));
+	  
+	   
+	   return procuratore;
+   }
 	
 }

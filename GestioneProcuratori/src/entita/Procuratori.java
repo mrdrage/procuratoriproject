@@ -25,6 +25,10 @@ public class Procuratori {
 		this.DataN = parsedate;
 	}
 	
+	public Procuratori() {
+		
+	}
+	
 	public String getNome() {
 		return Nome;
 	}

@@ -34,24 +34,23 @@ import entita.Procuratori;
 
 
 public class Controller {
-
+          //Daos usate
 	      ProcuratoriDAOPostgresImpl ProcuratoriDAOPostgresImpl;
 	      CollaborazioneDAOPostgresImpl CollaborazioneDAOPostgresImpl;
 	      AtletiDAOPostgresImpl AtletiDAOPostgresImpl;
 	      ContrattiDAOPostgresImpl ContrattiDAOPostgresImpl;
-	      
+	      //Finestre procuratori
+	      M_Benvenuto Benvenuto = null; 
 	      M_GestioneProcuratore GestioneProcuratore = null;
 	      M_NuovoProcuratore NuovoProcuratore = null;
-	      M_Benvenuto Benvenuto = null;
-
-
 	      M_ProcuratoreInseritoOk ProcuratoreInseritoOK;
 	      M_CercaProcuratore CercaProcuratore;
-	      
+	    
+	      //Finestre collaborazioni
 	      M_NuovoAtletaCollab NuovoAtletaCollab;
 	      M_NuovaCollaborazione NuovaCollaborazione;
 	      M_ListaCollaborazioni ListaCollaborazioni;
-	      
+	      //Finestre contratti
 	      M_AggiungiContrattoClub AggiungiContrattoClub;
 	      M_AggiungiContrattoSponsor AggiungiContrattoSponsor;
 	      M_ContrattoClubEsistente ContrattoClubEsistente;
@@ -103,10 +102,10 @@ public class Controller {
     	 ContrattoSponsorInserito.setVisible(true);
      }
      
-     public void ApriGestioneProcuratore() {
-    	 //Dobbiamo passargli prima i dati del procuratore scelto in precedenza
-    	 GestioneProcuratore.setVisible(true);
-     }
+//     public void ApriGestioneProcuratore() {
+//    	 //Dobbiamo passargli prima i dati del procuratore scelto in precedenza
+//    	 GestioneProcuratore.setVisible(true);
+//     }
      
      public void ApriListaCollaborazioni() {
     	 
@@ -146,7 +145,7 @@ public class Controller {
     	 
     	       while (i.hasNext()) {  
     		        Procuratori p = i.next();
-    		        InfoProcuratori.add(p.getInfoProcuratore());
+    		        InfoProcuratori.add(p.getNome()+" "+p.getCognome()+" "+p.getCodiceFiscale());
     	       }
     	       
     	 //li imposto sulla combobox
@@ -158,6 +157,24 @@ public class Controller {
     	
     		 
     	 
+    	 
+     }
+     
+     public void VisualizzaInfoProcuratore (String InfoProcuratore) throws SQLException {
+    	 Procuratori procuratore = new Procuratori();
+    	 
+    	 CercaProcuratore.setVisible(false);
+    	 //Ricavo il codice fiscale
+    	 String CfProcuratore = InfoProcuratore;
+    	 CfProcuratore.substring(InfoProcuratore.length()-16);
+    	 //lo passo al dao ottenendo tutte le info in un ogetto Procuratori
+    	 procuratore = ProcuratoriDAOPostgresImpl.getProcuratoreByCf(CfProcuratore);
+    	 //setto la scheda del procuratore
+    	 GestioneProcuratore.setProcuratore(procuratore);
+    	 
+    	 
+    	 //visualizzio la finestra
+    	 GestioneProcuratore.setVisible(true);
     	 
      }
      
