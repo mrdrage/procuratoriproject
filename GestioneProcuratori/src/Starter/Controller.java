@@ -140,6 +140,7 @@ public class Controller {
     	 
     	 //prelevo dal DB i procuratori	 
     	 procuratori = ProcuratoriDAOPostgresImpl.getAllProcuratori();
+    	 
     	 //estrapolo le info dai procuratori 
          Iterator<Procuratori> i = procuratori.iterator();
     	 
@@ -150,6 +151,7 @@ public class Controller {
     	       
     	 //li imposto sulla combobox
          CercaProcuratore.setProcuratoriComboBox(InfoProcuratori);
+         
     	 //visualizzo la  finestra 
    	     CercaProcuratore.setVisible(true);
     		 
