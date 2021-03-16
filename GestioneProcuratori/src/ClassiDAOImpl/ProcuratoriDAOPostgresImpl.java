@@ -28,7 +28,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 
 		inserisciProcuratorePS = connection.prepareStatement("INSERT INTO procuratori(nome,cognome,codicefiscale,numerotelefonico,"
 				+ "numerotelefonico2,email,datan,codprocuratori)"
-				+ " VALUES (?,?,?,?,?,?,?,s_procuratoripk.nextval");
+				+ " VALUES (?,?,?,?,?,?,?,nextval('s_procuratoripk')");
 		getAllProcuratori = connection.prepareStatement("SELECT * FROM procuratori");
 		getAllCFProcuratori = connection.prepareStatement("SELECT codicefiscale FROM procuratori");
 		getProcuratoreByCf = connection.prepareStatement("SELECT * FROM procuratori WHERE codicefiscale = ?");

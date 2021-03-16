@@ -102,10 +102,10 @@ public class Controller {
     	 ContrattoSponsorInserito.setVisible(true);
      }
      
-     public void ApriGestioneProcuratore() {
-    	 //Dobbiamo passargli prima i dati del procuratore scelto in precedenza
-    	 GestioneProcuratore.setVisible(true);
-     }
+//     public void ApriGestioneProcuratore() {
+//    	 //Dobbiamo passargli prima i dati del procuratore scelto in precedenza
+//    	 GestioneProcuratore.setVisible(true);
+//     }
      
      public void ApriListaCollaborazioni() {
     	 
