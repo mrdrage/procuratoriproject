@@ -18,6 +18,8 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 
 public class M_GestioneProcuratore extends JFrame {
@@ -196,5 +198,10 @@ public class M_GestioneProcuratore extends JFrame {
 		NumeroTelefono2_TF.setText(procuratore.getNumeroTelefonico2());
 		Email_TF.setText(procuratore.getEmail());
 		
+		
+		//Conversione da Date a String
+		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		String dataN = formatter.format(procuratore.getDataN());
+		DataN_TF.setText(dataN);
 	}
 }

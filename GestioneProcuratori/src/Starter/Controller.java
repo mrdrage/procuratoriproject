@@ -167,6 +167,9 @@ public class Controller {
     	 //Ricavo il codice fiscale
     	 String CfProcuratore = InfoProcuratore;
     	 CfProcuratore.substring(InfoProcuratore.length()-16);
+    	 //Split della stringa poi ti spiego
+    	 String[] cfs = CfProcuratore.split(" ");
+    	 String CfProcuratoreSplit = cfs[2] ;
     	 //lo passo al dao ottenendo tutte le info in un ogetto Procuratori
     	 procuratore = ProcuratoriDAOPostgresImpl.getProcuratoreByCf(CfProcuratore);
     	 //setto la scheda del procuratore
