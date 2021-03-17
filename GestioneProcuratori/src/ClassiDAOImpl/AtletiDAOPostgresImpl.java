@@ -13,16 +13,18 @@ import entita.Atleti;
 public class AtletiDAOPostgresImpl implements AtletiDAO {
 	private Connection connection;
 	private PreparedStatement  getAllAtleti;
-	private PreparedStatement  getAtletiByProcuratorePS;
+	private PreparedStatement  getAtletiByIDCollaborazione;
 	private PreparedStatement  inserisciAtletaPS;
+
 	
 	public AtletiDAOPostgresImpl(Connection connection) throws SQLException {
 		
 		this.connection = connection;
 		
 		getAllAtleti = connection.prepareStatement("SELECT * from atleti");
-		getAtletiByProcuratorePS = connection.prepareStatement("SELECT * from atleti WHERE procuratore = ?");
+		getAtletiByIDCollaborazione = connection.prepareStatement("SELECT * from atleti WHERE codcollaborazione= ?");
 		inserisciAtletaPS = connection.prepareStatement("INSERT INTO atleti VALUES (?, ?, ?, ?, ?, ?, ?)");
+		
 		
 	}
 	
@@ -39,17 +41,16 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		return lista;
 	}
 	
-	public List<Atleti> getAtletiByProcuratore(int codcollaborazione) throws SQLException{
-		getAtletiByProcuratorePS.setInt(1, codcollaborazione);
-		ResultSet rs = getAtletiByProcuratorePS.executeQuery();
-		List<Atleti> lista = new ArrayList<Atleti>();
+	public Atleti getAtletiByIDCollaborazione(int codcollaborazione) throws SQLException{
+		Atleti atleta = new Atleti();
+		getAtletiByIDCollaborazione.setInt(1, codcollaborazione);
+		ResultSet rs = getAtletiByIDCollaborazione.executeQuery();
 		while(rs.next()) {
 			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"), rs.getString("serieclub"));
-			lista.add(a);
+			atleta = a;
 		}
-		
-		
-		return lista;
+	
+		return atleta;
 	}
 	
 	public void inserisciAtleta(Atleti atleta, int codcollaborazione, int codatleti) throws SQLException{

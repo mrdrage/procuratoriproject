@@ -32,7 +32,6 @@ import entita.Procuratori;
 
 
 
-
 public class Controller {
           //Daos usate
 	      ProcuratoriDAOPostgresImpl ProcuratoriDAOPostgresImpl;

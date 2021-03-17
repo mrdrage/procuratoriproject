@@ -20,6 +20,10 @@ public class Atleti {
 		this.SerieClub = serieclub;
 	}
 	
+	public Atleti() {
+		
+	}
+	
 	
 	
 	public String getNome() {
