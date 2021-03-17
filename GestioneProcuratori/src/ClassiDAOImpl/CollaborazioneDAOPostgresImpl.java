@@ -15,7 +15,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	
 
 	private Connection connection;
-	private PreparedStatement InserisciCollaborazione, getAllCollaborazioni, getAllCollaborazioniByProcuratore;
+	private PreparedStatement InserisciCollaborazione, getAllCollaborazioni, getAllCollaborazioniByProcuratore, getIDCollaborazioniByProcuratore;
 	
 	
 	
@@ -30,7 +30,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		getAllCollaborazioni = connection.prepareStatement("SELECT * FROM collaborazione");
 		getAllCollaborazioniByProcuratore = connection.prepareStatement("SELECT * FROM collaborazione WHERE codprocuratori = ? ");
 		InserisciCollaborazione = connection.prepareStatement("INSERT INTO collaborazione VALUES (?,?,?,?,?,?) ");
-		
+		getIDCollaborazioniByProcuratore = connection.prepareStatement("SELECT codcollaborazione FROM collaborazione where codprocuratori = ?");
 	}
 	
 	
@@ -50,6 +50,22 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		return CollabList;
 	}
 
+	
+	public List<Integer> getIDCollaborazioniByProcuratore(int CodProcuratori) throws SQLException{
+		//Passo il codice procuratore all'interrogazione
+		getIDCollaborazioniByProcuratore.setInt(1, CodProcuratori);
+		
+		//Metto nella lista tutti i codici collaborazioni relativi ad un procuratore
+		List <Integer> CollabIDList = new ArrayList <Integer>();
+		
+		ResultSet rs = getIDCollaborazioniByProcuratore.executeQuery();
+		while(rs.next()) {
+			int codprocuratori = rs.getInt(6);
+			CollabIDList.add(codprocuratori);
+		}
+		
+		return CollabIDList;
+	}
 	
 	public List<Collaborazione> getAllCollaborazioniByProcuratore(int CodProcuratori) throws SQLException {
 		//Passo il codice procuratore all'interrogazione

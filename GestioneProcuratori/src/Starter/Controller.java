@@ -55,11 +55,17 @@ public class Controller {
 	      M_ContrattoClubEsistente ContrattoClubEsistente;
 	      M_ContrattoClubInserito ContrattoClubInserito;
 	      M_ContrattoSponsorInserito ContrattoSponsorInserito;
+		  
 	      
+	      private int codprocuratori;
+
 	      
-     public Controller (Connection connection) throws SQLException {
+   
+
+	public Controller () throws SQLException {
 
      
+    	 
     	  //Avvio dell'app
 	      Benvenuto = new M_Benvenuto(this);
 	      Benvenuto.setVisible(true);
@@ -79,7 +85,7 @@ public class Controller {
 	      ContrattoClubInserito = new M_ContrattoClubInserito(this);
 	      ContrattoSponsorInserito = new M_ContrattoSponsorInserito(this);
      
-
+	      
      }
      
      public void IniziaInserimentoProcuratore () {
@@ -106,7 +112,12 @@ public class Controller {
 //    	 GestioneProcuratore.setVisible(true);
 //     }
      
-     public void ApriListaCollaborazioni() {
+     public void ApriListaCollaborazioni() throws SQLException {
+    	 
+    	 List<Collaborazione> collaborazioni = new ArrayList<Collaborazione>();
+    	 
+    	 //Prendo le collaborazioni dal DB
+    	 collaborazioni = CollaborazioneDAOPostgresImpl.getAllCollaborazioniByProcuratore(getCodprocuratori());
     	 
     	 //Dobbiamo passargli prima i dati delle collaborazioni del procuratore scelto in precedenza
     	 ListaCollaborazioni.setVisible(true);
@@ -126,7 +137,6 @@ public class Controller {
         ProcuratoreInseritoOK.setVisible(true);
         
       
-        
      }
      
 
@@ -183,6 +193,13 @@ public class Controller {
     	 //visualizzio la finestra
     	 GestioneProcuratore.setVisible(true);
     	 
+    	 //Prendo il codiceprocuratori dal codice fiscale del procuratore
+//    	 
+//    	 setCodprocuratori(ProcuratoriDAOPostgresImpl.getIDProcuratoreByCf(CfProcuratoreSplit));
+//    	 
+//    	 System.out.println(getCodprocuratori());
+    	 
+
      }
      
      
@@ -256,6 +273,14 @@ public class Controller {
     	 return ProcuratoriDAOPostgresImpl; 	  
      }
      
+     public int getCodprocuratori() {
+			return codprocuratori;
+		}
+
+		public void setCodprocuratori(int codprocuratori) {
+			this.codprocuratori = codprocuratori;
+		}
+     
 
 	public static void main(String[] args) throws SQLException, ParseException 
 	{
@@ -268,7 +293,7 @@ public class Controller {
  			
  			ProcuratoriDAOPostgresImpl  procuratoriDAOpostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
  		    
- 			Controller controller = new Controller(conn);
+ 			Controller controller = new Controller();
  			
  			controller.setProcuratoriDAO(procuratoriDAOpostgresImpl);
  			
