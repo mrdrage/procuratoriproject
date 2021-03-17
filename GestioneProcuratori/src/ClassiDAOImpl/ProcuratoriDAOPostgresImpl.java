@@ -25,7 +25,6 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException{
 		this.connection = connection;
 		
-	//	getCodProcuratore = connection.prepareStatement("SELECT MAX(codProcuratori) FROM Procuratori ");
 
 		inserisciProcuratorePS = connection.prepareStatement("INSERT INTO procuratori(nome,cognome,codicefiscale,numerotelefonico,"
 				+ "numerotelefonico2,email,datan,codprocuratori)"
