@@ -20,11 +20,11 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	private PreparedStatement getAllCFProcuratori;
 	private PreparedStatement getCodProcuratore;
 	private PreparedStatement getProcuratoreByCf;
+	private PreparedStatement getIDProcuratoreByCf;
 	
 	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException{
 		this.connection = connection;
 		
-	//	getCodProcuratore = connection.prepareStatement("SELECT MAX(codProcuratori) FROM Procuratori ");
 
 		inserisciProcuratorePS = connection.prepareStatement("INSERT INTO procuratori(nome,cognome,codicefiscale,numerotelefonico,"
 				+ "numerotelefonico2,email,datan,codprocuratori)"
@@ -32,6 +32,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 		getAllProcuratori = connection.prepareStatement("SELECT * FROM procuratori");
 		getAllCFProcuratori = connection.prepareStatement("SELECT codicefiscale FROM procuratori");
 		getProcuratoreByCf = connection.prepareStatement("SELECT * FROM procuratori WHERE codicefiscale = ?");
+		getIDProcuratoreByCf = connection.prepareStatement("SELECT codprocuratori FROM procuratori where codicefiscale = ?");
 	}
 	
 	
@@ -108,5 +109,18 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	   
 	   return procuratore;
    }
-	
+   
+   public int getIDProcuratoreByCf (String CodiceFiscale) throws SQLException {
+	  
+	   getProcuratoreByCf.setString(1, CodiceFiscale);
+	   ResultSet rs = getIDProcuratoreByCf.executeQuery();
+	   int codprocuratori = 0;
+	   
+	   while(rs.next()) {
+	   codprocuratori = rs.getInt(8);
+	   }
+	   
+	   return codprocuratori;
+   
+   }
 }

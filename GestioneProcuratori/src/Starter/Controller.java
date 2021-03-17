@@ -139,6 +139,7 @@ public class Controller {
     	 
     	 //prelevo dal DB i procuratori	 
     	 procuratori = ProcuratoriDAOPostgresImpl.getAllProcuratori();
+    	 
     	 //estrapolo le info dai procuratori 
          Iterator<Procuratori> i = procuratori.iterator();
     	 
@@ -149,12 +150,11 @@ public class Controller {
     	       
     	 //li imposto sulla combobox
          CercaProcuratore.setProcuratoriComboBox(InfoProcuratori);
+         
     	 //visualizzo la  finestra 
    	     CercaProcuratore.setVisible(true);
     		 
     	
-    		 
-    	 
     	 
      }
      
@@ -163,18 +163,30 @@ public class Controller {
     	 
     	 CercaProcuratore.setVisible(false);
     	 //Ricavo il codice fiscale
-//    	 String CfProcuratore = InfoProcuratore;
-//    	 CfProcuratore.substring(InfoProcuratore.length()-16);
+
+    	 String CfProcuratore = InfoProcuratore;
+    	 
+    	 //Split della stringa poi ti spiego
+    	 String[] cfs = CfProcuratore.split(" ");
+    	 String CfProcuratoreSplit = cfs[2] ;
+    	 
     	 //lo passo al dao ottenendo tutte le info in un ogetto Procuratori
-    	 procuratore = ProcuratoriDAOPostgresImpl.getProcuratoreByCf(InfoProcuratore);
+    	 procuratore = ProcuratoriDAOPostgresImpl.getProcuratoreByCf(CfProcuratoreSplit);
     	 //setto la scheda del procuratore
     	 GestioneProcuratore.setProcuratore(procuratore);
+    	 
+    	 //getidprocuratorebycf 
+    	 //utilizziamo l id per le collaborazioni
+    	 // utilizziamo l id per gli atleti
+    	 // utilizziamo l id degli atleti per i contratti
     	 
     	 
     	 //visualizzio la finestra
     	 GestioneProcuratore.setVisible(true);
     	 
      }
+     
+     
      
 
      

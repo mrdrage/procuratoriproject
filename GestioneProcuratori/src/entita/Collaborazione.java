@@ -16,6 +16,9 @@ public class Collaborazione {
 	}
 	
 	
+	// mi prendo tutti gli stipendi e li metto in una variabile
+	// lista di contratto sponsor degli atleti per procuratore
+	// mi prendo una lista di guadagni e percentuali di tutti gli atleti per un procuratore
 	
 	
 
