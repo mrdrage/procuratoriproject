@@ -8,7 +8,7 @@ import entita.Atleti;
 public interface AtletiDAO {
 
 	public List<Atleti> getAllAtleti() throws SQLException;
-	public List<Atleti> getAtletiByProcuratore(int codcollaborazione) throws SQLException;
+	public Atleti getAtletiByIDCollaborazione(int codcollaborazione) throws SQLException;
 	
 	public void inserisciAtleta(Atleti atleta, int codcollaborazione, int codatleti) throws SQLException;
 	

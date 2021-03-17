@@ -142,6 +142,8 @@ public class M_GestioneProcuratore extends JFrame {
 		JButton Collaborazioni_B = new JButton("Collaborazioni");
 		Collaborazioni_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 				//Se non � presente nessuna collaborazione, apre la dialog NessunaCollaborazione
 				//oppure
 				//Apre la finestra ListaCollaborazioni
@@ -150,7 +152,7 @@ public class M_GestioneProcuratore extends JFrame {
 			}
 		});
 		Collaborazioni_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Collaborazioni_B.setBackground(new Color(0, 0, 0));
+		Collaborazioni_B.setBackground(Color.WHITE);
 		Collaborazioni_B.setBounds(401, 71, 207, 43);
 		contentPane.add(Collaborazioni_B);
 		
@@ -162,7 +164,7 @@ public class M_GestioneProcuratore extends JFrame {
 			}
 		});
 		Guadagni_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Guadagni_B.setBackground(new Color(0, 0, 0));
+		Guadagni_B.setBackground(Color.WHITE);
 		Guadagni_B.setBounds(401, 125, 207, 38);
 		contentPane.add(Guadagni_B);
 		
@@ -174,7 +176,7 @@ public class M_GestioneProcuratore extends JFrame {
 			}
 		});
 		Contratti_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Contratti_B.setBackground(new Color(0, 0, 0));
+		Contratti_B.setBackground(Color.WHITE);
 		Contratti_B.setBounds(401, 179, 207, 38);
 		contentPane.add(Contratti_B);
 		
@@ -185,7 +187,7 @@ public class M_GestioneProcuratore extends JFrame {
 				//setVisible(false);
 			}
 		});
-		Atleti_B.setBackground(new Color(0, 0, 0));
+		Atleti_B.setBackground(Color.WHITE);
 		Atleti_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Atleti_B.setBounds(401, 228, 207, 43);
 		contentPane.add(Atleti_B);

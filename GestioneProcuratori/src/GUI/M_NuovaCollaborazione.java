@@ -118,7 +118,7 @@ public class M_NuovaCollaborazione extends JFrame {
 				
 				//Se tutto va bene, si apre la finestra ListaCollaborazioni
 				setVisible(false);
-				controller.ApriListaCollaborazioni();
+				//controller.ApriListaCollaborazioni();
 				
 			}
 		});

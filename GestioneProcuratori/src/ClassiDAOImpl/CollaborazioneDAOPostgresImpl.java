@@ -15,7 +15,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	
 
 	private Connection connection;
-	private PreparedStatement InserisciCollaborazione, getAllCollaborazioni, getAllCollaborazioniByProcuratore,getCodCollaborazione;
+	private PreparedStatement InserisciCollaborazione, getAllCollaborazioni, getAllCollaborazioniByProcuratore, getIDCollaborazioniByProcuratore;
 	
 	
 	
@@ -25,12 +25,12 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	{
 		this.connection = connection;
 		
-		getCodCollaborazione = connection.prepareStatement("SELECT MAX(codCollaborazione) FROM collaborazione ");
+		
 		
 		getAllCollaborazioni = connection.prepareStatement("SELECT * FROM collaborazione");
-		getAllCollaborazioniByProcuratore = connection.prepareStatement("SELECT * FROM collaborazione WHERE codprocuratore = ? ");
+		getAllCollaborazioniByProcuratore = connection.prepareStatement("SELECT * FROM collaborazione WHERE codprocuratori = ? ");
 		InserisciCollaborazione = connection.prepareStatement("INSERT INTO collaborazione VALUES (?,?,?,?,?,?) ");
-		
+		getIDCollaborazioniByProcuratore = connection.prepareStatement("SELECT codcollaborazione FROM collaborazione where codprocuratori = ?");
 	}
 	
 	
@@ -51,16 +51,33 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	}
 
 	
-	public List<Collaborazione> getAllCollaborazioniByProcuratore(int CodProcuratore) throws SQLException {
+	public List<Integer> getIDCollaborazioniByProcuratore(int CodProcuratori) throws SQLException{
 		//Passo il codice procuratore all'interrogazione
-		getAllCollaborazioniByProcuratore.setInt(1, CodProcuratore);
+		getIDCollaborazioniByProcuratore.setInt(1, CodProcuratori);
+		
+		//Metto nella lista tutti i codici collaborazioni relativi ad un procuratore
+		List <Integer> CollabIDList = new ArrayList <Integer>();
+		
+		ResultSet rs = getIDCollaborazioniByProcuratore.executeQuery();
+		while(rs.next()) {
+			int codprocuratori = rs.getInt(6);
+			CollabIDList.add(codprocuratori);
+		}
+		
+		return CollabIDList;
+	}
+	
+	public List<Collaborazione> getAllCollaborazioniByProcuratore(int CodProcuratori) throws SQLException {
+		//Passo il codice procuratore all'interrogazione
+		getAllCollaborazioniByProcuratore.setInt(1, CodProcuratori);
+		
 		//Metto in questa lista quindi le collaborazioni relative a questo procuratore
 		List <Collaborazione> CollabList = new ArrayList<Collaborazione>();
 		
 		ResultSet rs = getAllCollaborazioniByProcuratore.executeQuery();
 		
 		while (rs.next()) {
-			//rs.getTimestamp prima era rs.getDouble
+			
 			Collaborazione C = new Collaborazione (rs.getDate(1), rs.getDate(2), rs.getDouble(3));
 			CollabList.add(C);
 		}
