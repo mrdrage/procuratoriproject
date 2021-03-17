@@ -144,7 +144,7 @@ public class Controller {
     	 
     	       while (i.hasNext()) {  
     		        Procuratori p = i.next();
-    		        InfoProcuratori.add(p.getNome()+" "+p.getCognome()+" "+p.getCodiceFiscale());
+    		        InfoProcuratori.add(p.getCodiceFiscale());
     	       }
     	       
     	 //li imposto sulla combobox
@@ -163,10 +163,10 @@ public class Controller {
     	 
     	 CercaProcuratore.setVisible(false);
     	 //Ricavo il codice fiscale
-    	 String CfProcuratore = InfoProcuratore;
-    	 CfProcuratore.substring(InfoProcuratore.length()-16);
+//    	 String CfProcuratore = InfoProcuratore;
+//    	 CfProcuratore.substring(InfoProcuratore.length()-16);
     	 //lo passo al dao ottenendo tutte le info in un ogetto Procuratori
-    	 procuratore = ProcuratoriDAOPostgresImpl.getProcuratoreByCf(CfProcuratore);
+    	 procuratore = ProcuratoriDAOPostgresImpl.getProcuratoreByCf(InfoProcuratore);
     	 //setto la scheda del procuratore
     	 GestioneProcuratore.setProcuratore(procuratore);
     	 
