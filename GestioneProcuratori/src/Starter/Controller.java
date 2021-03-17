@@ -144,7 +144,7 @@ public class Controller {
     	 
     	       while (i.hasNext()) {  
     		        Procuratori p = i.next();
-    		        InfoProcuratori.add(p.getNome()+" "+p.getCognome()+" "+p.getCodiceFiscale());
+    		        InfoProcuratori.add(p.getCodiceFiscale());
     	       }
     	       
     	 //li imposto sulla combobox
@@ -162,6 +162,7 @@ public class Controller {
     	 
     	 CercaProcuratore.setVisible(false);
     	 //Ricavo il codice fiscale
+
     	 String CfProcuratore = InfoProcuratore;
     	 
     	 //Split della stringa poi ti spiego

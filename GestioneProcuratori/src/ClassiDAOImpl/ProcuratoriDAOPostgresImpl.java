@@ -96,13 +96,16 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
    }  
    
    public Procuratori getProcuratoreByCf (String CodiceFiscale) throws SQLException {
-	  // Procuratori procuratore = new Procuratori();
+	  
+	   Procuratori procuratore = new Procuratori();
 	   getProcuratoreByCf.setString(1, CodiceFiscale);
 	   ResultSet rs = getProcuratoreByCf.executeQuery();
 	   //Essendo il cf unico basta utilizzare solo una volta il next(), che punterà quindi all'unica tupla presente
-	   rs.next();
-	   Procuratori procuratore = new Procuratori(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7));
-	  
+	   while(rs.next()) {
+	   Procuratori p = new Procuratori(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7));
+	   procuratore = p;
+	   System.out.println("spumeggianteeee");
+	   }
 	   
 	   return procuratore;
    }

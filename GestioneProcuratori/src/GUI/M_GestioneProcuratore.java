@@ -27,6 +27,7 @@ public class M_GestioneProcuratore extends JFrame {
 	Controller controller = null;
 	
 	private JPanel contentPane;
+	
 	private JTextField NumeroTelefono2_TF;
 	private JTextField NumeroTelefono_TF;
 	private JTextField CodiceFiscale_TF;
@@ -197,6 +198,8 @@ public class M_GestioneProcuratore extends JFrame {
 		NumeroTelefono_TF.setText(procuratore.getNumeroTelefonico());
 		NumeroTelefono2_TF.setText(procuratore.getNumeroTelefonico2());
 		Email_TF.setText(procuratore.getEmail());
+	//	DataN_TF.setText(procuratore.getDataN().toString());
+		
 		
 		
 		//Conversione da Date a String
