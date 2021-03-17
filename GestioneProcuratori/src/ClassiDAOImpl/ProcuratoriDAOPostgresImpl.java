@@ -40,15 +40,15 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 		getAllProcuratori = connection.prepareStatement("SELECT * FROM procuratori");
 		getAllCFProcuratori = connection.prepareStatement("SELECT codicefiscale FROM procuratori");
 		getProcuratoreByCf = connection.prepareStatement("SELECT * FROM procuratori WHERE codicefiscale = ?");
-		getIDProcuratoreByCf = connection.prepareStatement("SELECT codprocuratori FROM procuratori where codicefiscale = ?");
+		getIDProcuratoreByCf = connection.prepareStatement("SELECT codprocuratori FROM procuratori  WHERE codicefiscale = ?");
 	}
 	
 	
-	public <T extends Number> T nextval(Sequence<T> sequence) {
-		  Field<T> nextval = sequence.nextval();
-		  return select(nextval).fetchOne(nextval);
-		}
-	
+//	public <T extends Number> T nextval(Sequence<T> sequence) {
+//		  Field<T> nextval = sequence.nextval();
+//		  return select(nextval).fetchOne(nextval);
+//		}
+//	
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException {
 
 	//	int codP;
@@ -111,11 +111,12 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	   Procuratori procuratore = new Procuratori();
 	   getProcuratoreByCf.setString(1, CodiceFiscale);
 	   ResultSet rs = getProcuratoreByCf.executeQuery();
+	   
 	   //Essendo il cf unico basta utilizzare solo una volta il next(), che punterà quindi all'unica tupla presente
 	   while(rs.next()) {
 	   Procuratori p = new Procuratori(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7));
 	   procuratore = p;
-	   System.out.println("spumeggianteeee");
+	
 	   }
 	   
 	   return procuratore;
@@ -129,6 +130,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	   
 	   while(rs.next()) {
 	   codprocuratori = rs.getInt(8);
+	   System.out.println("SPUMMEGGIANTEE");
 	   }
 	   
 	   return codprocuratori;

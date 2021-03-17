@@ -18,6 +18,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
@@ -142,13 +143,17 @@ public class M_GestioneProcuratore extends JFrame {
 		JButton Collaborazioni_B = new JButton("Collaborazioni");
 		Collaborazioni_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+				controller.ApriListaCollaborazioni();
 				
 				//Se non � presente nessuna collaborazione, apre la dialog NessunaCollaborazione
 				//oppure
 				//Apre la finestra ListaCollaborazioni
 				//setVisible(false);
-				
+				}catch(SQLException e3) {
+					
+					e3.printStackTrace();
+				}
 			}
 		});
 		Collaborazioni_B.setFont(new Font("Tahoma", Font.PLAIN, 18));

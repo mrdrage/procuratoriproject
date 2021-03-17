@@ -16,6 +16,9 @@ import javax.swing.JList;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class M_ListaCollaborazioni extends JFrame {
@@ -24,11 +27,7 @@ public class M_ListaCollaborazioni extends JFrame {
 	
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
 	
-
 	/**
 	 * Create the frame.
 	 */
@@ -74,4 +73,7 @@ public class M_ListaCollaborazioni extends JFrame {
 		Indietro_B.setBounds(514, 401, 72, 23);
 		contentPane.add(Indietro_B);
 	}
+	
+/
+	
 }
