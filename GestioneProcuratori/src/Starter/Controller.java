@@ -171,9 +171,14 @@ public class Controller {
     	 String[] cfs = CfProcuratore.split(" ");
     	 String CfProcuratoreSplit = cfs[2] ;
     	 //lo passo al dao ottenendo tutte le info in un ogetto Procuratori
-    	 procuratore = ProcuratoriDAOPostgresImpl.getProcuratoreByCf(CfProcuratore);
+    	 procuratore = ProcuratoriDAOPostgresImpl.getProcuratoreByCf(CfProcuratoreSplit);
     	 //setto la scheda del procuratore
     	 GestioneProcuratore.setProcuratore(procuratore);
+    	 
+    	 //getidprocuratorebycf 
+    	 //utilizziamo l id per le collaborazioni
+    	 // utilizziamo l id per gli atleti
+    	 // utilizziamo l id degli atleti per i contratti
     	 
     	 
     	 //visualizzio la finestra
