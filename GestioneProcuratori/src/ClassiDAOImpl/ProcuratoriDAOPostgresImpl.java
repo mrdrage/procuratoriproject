@@ -1,17 +1,25 @@
 package ClassiDAOImpl;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sound.midi.Sequence;
+
+import org.postgresql.core.Field;
+
 import ClassiDAO.ProcuratoriDAO;
 import Starter.Controller;
 import entita.Procuratori;
 
 public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
+	
+	
+	
 	
 	
 	private Connection connection;
@@ -36,7 +44,10 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	}
 	
 	
-	
+	public <T extends Number> T nextval(Sequence<T> sequence) {
+		  Field<T> nextval = sequence.nextval();
+		  return select(nextval).fetchOne(nextval);
+		}
 	
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException {
 

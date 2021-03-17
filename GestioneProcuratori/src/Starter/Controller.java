@@ -145,7 +145,7 @@ public class Controller {
     	 
     	       while (i.hasNext()) {  
     		        Procuratori p = i.next();
-    		        InfoProcuratori.add(p.getCodiceFiscale());
+    		        InfoProcuratori.add(p.getCognome()+" "+p.getNome()+" "+p.getCodiceFiscale());
     	       }
     	       
     	 //li imposto sulla combobox
