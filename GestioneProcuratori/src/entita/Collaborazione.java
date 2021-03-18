@@ -46,4 +46,6 @@ public class Collaborazione {
 	public void setDataInizio(Date dataInizio) {
 		DataInizio = dataInizio;
 	}
+	
+	
 }

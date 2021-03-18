@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -16,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class M_SelezionaAtletaContratto extends JFrame {
+	Controller controller = null;
 
 	private JPanel contentPane;
 
@@ -26,7 +30,8 @@ public class M_SelezionaAtletaContratto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public M_SelezionaAtletaContratto() {
+	public M_SelezionaAtletaContratto(Controller c) {
+		controller = c;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 448, 245);
 		contentPane = new JPanel();
@@ -54,7 +59,8 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		JButton VisualizzaContratti_B = new JButton("Visualizza i contratti");
 		VisualizzaContratti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Apre la finestra VisualizzaContrattiAtleta, caricando prima i contratti relativi a quell'atleta
+				controller.iniziaRicercaContrattiAtleta();
+				//Apre la finestra SelezionaAtletaContratto, caricando prima i contratti relativi a quell'atleta
 				//setVisible(false);
 			}
 		});

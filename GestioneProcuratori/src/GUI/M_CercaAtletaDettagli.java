@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -16,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class M_CercaAtletaDettagli extends JFrame {
+	Controller controller = null;
 
 	private JPanel contentPane;
 
@@ -27,7 +31,8 @@ public class M_CercaAtletaDettagli extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public M_CercaAtletaDettagli() {
+	public M_CercaAtletaDettagli(Controller c) {
+		controller = c;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 451, 210);
 		contentPane = new JPanel();
