@@ -145,9 +145,6 @@ public class M_NuovaCollaborazione extends JFrame {
 		Atleta_CB.setBounds(227, 65, 108, 18);
 		contentPane.add(Atleta_CB);
 		
-		JList list = new JList();
-		list.setBounds(135, 11, 1, 1);
-		contentPane.add(list);
 		
 		StipendioMensile_TF = new JTextField();
 		StipendioMensile_TF.setBounds(227, 151, 86, 20);

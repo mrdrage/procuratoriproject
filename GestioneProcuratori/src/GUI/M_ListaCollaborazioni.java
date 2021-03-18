@@ -52,24 +52,28 @@ public class M_ListaCollaborazioni extends JFrame {
 		contentPane.add(ListaCollaborazioni_list);
 		
 		JButton Aggiungi_B = new JButton("Aggiungi collaborazione");
+		Aggiungi_B.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		Aggiungi_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				
 				//Apre la finestra NuovoAtletaCollab
 				//setVisible(false);
 			}
 		});
-		Aggiungi_B.setBackground(Color.BLACK);
-		Aggiungi_B.setBounds(20, 376, 145, 23);
+		Aggiungi_B.setBackground(Color.WHITE);
+		Aggiungi_B.setBounds(20, 376, 166, 37);
 		contentPane.add(Aggiungi_B);
 		
 		JButton Indietro_B = new JButton("Indietro");
 		Indietro_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Torna alla finestra GestioneProcuratore
-				//setVisible(false);
+				controller.TornaAGestioneProcuratore();
+				setVisible(false);
+				
 			}
 		});
-		Indietro_B.setBackground(Color.BLACK);
+		Indietro_B.setBackground(Color.WHITE);
 		Indietro_B.setBounds(514, 401, 72, 23);
 		contentPane.add(Indietro_B);
 	}

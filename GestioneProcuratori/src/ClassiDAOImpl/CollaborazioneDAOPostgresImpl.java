@@ -24,9 +24,9 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	public CollaborazioneDAOPostgresImpl(Connection connection) throws SQLException
 	{
 		this.connection = connection;
+
 		getMaxId = connection.prepareStatement("SELECT MAX(codcollaborazione) FROM collaborazione");
 
-		
 		
 		getAllCollaborazioni = connection.prepareStatement("SELECT * FROM collaborazione");
 		getAllCollaborazioniByProcuratore = connection.prepareStatement("SELECT * FROM collaborazione WHERE codprocuratori = ? ");
@@ -71,7 +71,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		
 		ResultSet rs = getIDCollaborazioniByProcuratore.executeQuery();
 		while(rs.next()) {
-			int codprocuratori = rs.getInt(6);
+			int codprocuratori = rs.getInt(1);
 			CollabIDList.add(codprocuratori);
 		}
 		
@@ -97,9 +97,10 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	}
 
 	
+
 	public void InserisciCollaborazione(Collaborazione collaborazione, int CodProcuratori, int CodAtleti) throws SQLException {
 		int CodC = getNextCod();
-		
+
 		//inserisco anche i codici relativi ad atleta e procuratore, poich� richiesti dal DB
 		java.sql.Date sqlDataInizio = new java.sql.Date(collaborazione.getDataInizio().getTime());
 		InserisciCollaborazione.setDate(1, sqlDataInizio);
