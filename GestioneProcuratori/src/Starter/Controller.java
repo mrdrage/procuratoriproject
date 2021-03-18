@@ -58,7 +58,7 @@ public class Controller {
 		  
 	      
 	      public int codprocuratori;
-	      public String codiceFiscaleProcuratore;
+	   
 
 	      
    
@@ -170,12 +170,14 @@ public class Controller {
 
     	 String CfProcuratore = InfoProcuratore;
     	 
-    	 //Split della stringa poi ti spiego
+    	 //Split della stringa
     	 String[] cfs = CfProcuratore.split(" ");
     	 String CfProcuratoreSplit = cfs[2] ;
     	
-    	 //lo passo al dao ottenendo tutte le info in un ogetto Procuratori
+    	 //lo passo al dao ottenendo tutte le info in un oggetto Procuratori grazie alla query
     	 procuratore = ProcuratoriDAOPostgresImpl.getProcuratoreByCf(CfProcuratoreSplit);
+    	 
+    	 
     	 //setto la scheda del procuratore
     	 GestioneProcuratore.setProcuratore(procuratore);
     	 
@@ -184,17 +186,13 @@ public class Controller {
     	 // utilizziamo l id per gli atleti
     	 // utilizziamo l id degli atleti per i contratti
     	 
-    	 //setto il cf
-    	 setCodiceFiscaleProcuratore(CfProcuratoreSplit);
-    	 
-    	 
+    
     	 //visualizzio la finestra
     	 GestioneProcuratore.setVisible(true);
-    	 System.out.println(CfProcuratoreSplit);
     	 //Prendo il codiceprocuratori dal codice fiscale del procuratore
-    	 
-//    	 setCodprocuratori(ProcuratoriDAOPostgresImpl.getIDProcuratoreByCf(CfProcuratoreSplit));    	 
-//    	 System.out.println(getCodprocuratori());    	 
+          setCodprocuratori(ProcuratoriDAOPostgresImpl.getIDProcuratoreByCf(CfProcuratoreSplit));
+          System.out.println(codprocuratori);
+    	  System.out.println(CfProcuratoreSplit);
 
      }
      
@@ -235,12 +233,7 @@ public class Controller {
     	 //Dichiarazioni
     	 int codP;
     	 List<Collaborazione> collaborazioni = new ArrayList<Collaborazione>();
-    	 //Recupero cod dal db usando il cf
-    	 codP = ProcuratoriDAOPostgresImpl.getIDProcuratoreByCf(codiceFiscaleProcuratore);
-    	 
-    	 
-    	 //Prendo le collaborazioni dal DB
-    	 collaborazioni = CollaborazioneDAOPostgresImpl.getAllCollaborazioniByProcuratore(codP);
+    	
     	 
     	 //Dobbiamo passargli prima i dati delle collaborazioni del procuratore scelto in precedenza
     	 ListaCollaborazioni.setVisible(true);
@@ -295,14 +288,7 @@ public class Controller {
 	 public void setCodprocuratori(int codprocuratori) {
 			this.codprocuratori = codprocuratori;
 		}
-	 
-	 public String getCodiceFiscaleProcuratore() {
-			return codiceFiscaleProcuratore;
-		}
 
-	 public void setCodiceFiscaleProcuratore(String codiceFiscaleProcuratore) {
-			this.codiceFiscaleProcuratore = codiceFiscaleProcuratore;
-		}
      
 
 	public static void main(String[] args) throws SQLException, ParseException 

@@ -74,6 +74,5 @@ public class M_ListaCollaborazioni extends JFrame {
 		contentPane.add(Indietro_B);
 	}
 	
-/
 	
 }
