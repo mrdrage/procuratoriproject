@@ -251,7 +251,7 @@ public class Controller {
 		 int codatleti = 1;
 		
 		 
-		 ContrattiDAOPostgresImpl.inserisciContrattoClub(contrattoclub, codtransazioneclub, codatleti);
+		 ContrattiDAOPostgresImpl.inserisciContrattoClub(contrattoclub, codatleti);
     	 
      }
      
@@ -265,7 +265,7 @@ public class Controller {
     	 int codtransazionesponsor = 0;
     	 int codatleti = 0;
     	 
-    	 ContrattiDAOPostgresImpl.inserisciContrattoSponsor(contrattosponsor, codtransazionesponsor, codatleti);
+    	 ContrattiDAOPostgresImpl.inserisciContrattoSponsor(contrattosponsor, codatleti);
      }
      
      

@@ -7,7 +7,7 @@ import entita.ContrattoSponsor;
 
 public interface ContrattiDAO {
 
-	public void inserisciContrattoClub(ContrattoClub contrattoclub, int codtransazioneclub, int  codatleti) throws SQLException;
-	public void inserisciContrattoSponsor(ContrattoSponsor contrattosponsor, int codtransazionesponsor, int codatleti)  throws SQLException;
+	public void inserisciContrattoClub(ContrattoClub contrattoclub, int  codatleti) throws SQLException;
+	public void inserisciContrattoSponsor(ContrattoSponsor contrattosponsor, int codatleti)  throws SQLException;
 	
 }

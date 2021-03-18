@@ -19,9 +19,6 @@ public class M_SelezionaAtletaContratto extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
 
 	/**
 	 * Create the frame.

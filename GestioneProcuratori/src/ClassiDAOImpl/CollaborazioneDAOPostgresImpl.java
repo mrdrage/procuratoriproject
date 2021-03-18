@@ -15,16 +15,17 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	
 
 	private Connection connection;
-	private PreparedStatement InserisciCollaborazione, getAllCollaborazioni, getAllCollaborazioniByProcuratore, getIDCollaborazioniByProcuratore;
-	
-	
-	
-	
+	private PreparedStatement InserisciCollaborazione;
+	private PreparedStatement getAllCollaborazioni;
+	private PreparedStatement getAllCollaborazioniByProcuratore;
+	private PreparedStatement getIDCollaborazioniByProcuratore;
+	private PreparedStatement getMaxId;
 
 	public CollaborazioneDAOPostgresImpl(Connection connection) throws SQLException
 	{
 		this.connection = connection;
-		
+		getMaxId = connection.prepareStatement("SELECT MAX(codcollaborazione) FROM collaborazione");
+
 		
 		
 		getAllCollaborazioni = connection.prepareStatement("SELECT * FROM collaborazione");
@@ -33,7 +34,17 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		getIDCollaborazioniByProcuratore = connection.prepareStatement("SELECT codcollaborazione FROM collaborazione where codprocuratori = ?");
 	}
 	
-	
+	private int getNextCod () throws SQLException {
+		int codCollab = 0;
+		ResultSet rs = getMaxId.executeQuery();
+		
+		while (rs.next()) {
+			codCollab = rs.getInt(1);
+		}
+		codCollab++;
+       
+		return codCollab;
+	}
 	
 
 	
@@ -87,24 +98,17 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 
 	
 	public void InserisciCollaborazione(Collaborazione collaborazione, int CodProcuratori, int CodAtleti) throws SQLException {
-		int CodC = 0;
-		//inserisco anche i codici relativi ad atleta e procuratore, poiché richiesti dal DB
+		int CodC = getNextCod();
+		
+		//inserisco anche i codici relativi ad atleta e procuratore, poichï¿½ richiesti dal DB
 		java.sql.Date sqlDataInizio = new java.sql.Date(collaborazione.getDataInizio().getTime());
 		InserisciCollaborazione.setDate(1, sqlDataInizio);
-		
 		java.sql.Date sqlDataFine = new java.sql.Date(collaborazione.getDataFine().getTime());
 		InserisciCollaborazione.setDate(2, sqlDataFine);
 		
-		
 		InserisciCollaborazione.setDouble(3, collaborazione.getStipendioMensile());
-		
-		
-		
-//		ResultSet CodiceCollaborazione = getCodCollaborazione.executeQuery();
-//		CodC = CodiceCollaborazione.getInt("codCollaborazione");
-//		InserisciCollaborazione.setInt(4, CodC + 1);
-		//Codici estratti dal controller usando i metodi di  ProcuratoriDAOPostgresImpl
-		
+		//inserimento codici
+		InserisciCollaborazione.setInt(4, CodC);
 		InserisciCollaborazione.setInt(5, CodAtleti);
         InserisciCollaborazione.setInt(6, CodProcuratori);
 		

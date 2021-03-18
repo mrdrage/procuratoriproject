@@ -18,12 +18,7 @@ import java.awt.event.ActionEvent;
 public class M_CercaAtletaDettagli extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
 	
-
 	/**
 	 * Create the frame.
 	 */

@@ -29,29 +29,43 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	private PreparedStatement getCodProcuratore;
 	private PreparedStatement getProcuratoreByCf;
 	private PreparedStatement getIDProcuratoreByCf;
+	private PreparedStatement getMaxId;
+	private PreparedStatement isNewId;
 	
 	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException{
 		this.connection = connection;
-		
+		getMaxId = connection.prepareStatement("SELECT MAX(codprocuratori) FROM procuratori");
 
 		inserisciProcuratorePS = connection.prepareStatement("INSERT INTO procuratori(nome,cognome,codicefiscale,numerotelefonico,"
 				+ "numerotelefonico2,email,datan,codprocuratori)"
-				+ " VALUES (?,?,?,?,?,?,?,nextval('s_procuratoripk')");
+				+ " VALUES (?,?,?,?,?,?,?,?)");
 		getAllProcuratori = connection.prepareStatement("SELECT * FROM procuratori");
 		getAllCFProcuratori = connection.prepareStatement("SELECT codicefiscale FROM procuratori");
 		getProcuratoreByCf = connection.prepareStatement("SELECT * FROM procuratori WHERE codicefiscale = ?");
 		getIDProcuratoreByCf = connection.prepareStatement("SELECT codprocuratori FROM procuratori WHERE codicefiscale = ?");
+		
+	//	isNewId = connection.prepareStatement("SELECT MAX(codprocuratori)  FROM procuratori WHERE ? NOT IN (SELECT codprocuratori FROM procuratori) ");
 	}
 	
 	
-//	public <T extends Number> T nextval(Sequence<T> sequence) {
-//		  Field<T> nextval = sequence.nextval();
-//		  return select(nextval).fetchOne(nextval);
-//		}
-//	
+	
+	private int getNextCod () throws SQLException {
+		int codP = 0;
+		ResultSet rs = getMaxId.executeQuery();
+		
+		while (rs.next()) {
+			codP = rs.getInt(1);
+		}
+		codP++;
+       
+		return codP;
+	}
+	
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException {
-
-	//	int codP;
+        //prendo il nextval 
+		int codP=getNextCod();
+		
+		
 		inserisciProcuratorePS.setString(1, procuratore.getNome());
 		inserisciProcuratorePS.setString(2, procuratore.getCognome());
 		inserisciProcuratorePS.setString(3, procuratore.getCodiceFiscale());
@@ -62,15 +76,9 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 		//conversione della data di procuratore formato java.util, ad una data java.sql per poter usare "setDate".
 		java.sql.Date sqlDate = new java.sql.Date(procuratore.getDataN().getTime());
 		inserisciProcuratorePS.setDate(7,sqlDate);
+		inserisciProcuratorePS.setInt(8,codP);
 		
-		//Prendo il valore massimo del codiceProcuratori che è anche l'ultomo poichè è gestito da una sequence sul DB
-//		ResultSet CodiceProcuratore = getCodProcuratore.executeQuery();
-//		
-//		while (CodiceProcuratore.next()) {
-//		      codP = CodiceProcuratore.getInt(8);
-//		}
-//		codP++;
-      //  inserisciProcuratorePS.setInt(8, codP);
+       
 		
 	    inserisciProcuratorePS.executeUpdate();
 		
