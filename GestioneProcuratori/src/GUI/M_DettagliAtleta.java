@@ -6,6 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+import entita.Atleti;
+import entita.Procuratori;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -13,10 +18,13 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 
 public class M_DettagliAtleta extends JFrame {
 
+	Controller controller;
 	private JPanel contentPane;
 	private JTextField Nome_TF;
 	private JTextField Cognome_TF;
@@ -34,7 +42,8 @@ public class M_DettagliAtleta extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public M_DettagliAtleta() {
+	public M_DettagliAtleta(Controller c) {
+		controller = c;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 501, 517);
 		contentPane = new JPanel();
@@ -154,6 +163,22 @@ public class M_DettagliAtleta extends JFrame {
 		GestisciGettoneNazionale_B.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		GestisciGettoneNazionale_B.setBounds(108, 392, 253, 35);
 		contentPane.add(GestisciGettoneNazionale_B);
+		
+		JButton Indietro_B = new JButton("Indietro");
+		Indietro_B.setBounds(10, 438, 117, 29);
+		contentPane.add(Indietro_B);
 	}
-
+	
+	public void setAtleta (Atleti atleta) {
+		Nome_TF.setText(atleta.getNome());
+		Cognome_TF.setText(atleta.getCognome());
+		Nazione_TF.setText(atleta.getNazione());
+		CodiceFiscale_TF.setText(atleta.getCodiceFiscale());
+		Sport_TF.setText(atleta.getSport());
+		ClubAttuale_TF.setText(atleta.getClubAttuale());
+		SerieClub_TF.setText(atleta.getSerieClub());
+        
+				
+		
+	}
 }

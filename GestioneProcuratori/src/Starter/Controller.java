@@ -40,12 +40,12 @@ public class Controller {
 	      ContrattiDAOPostgresImpl ContrattiDAOPostgresImpl;
 	      
 	      //Finestre procuratori
-	      M_Benvenuto Benvenuto = null; 
-	      M_GestioneProcuratore GestioneProcuratore = null;
-	      M_NuovoProcuratore NuovoProcuratore = null;
+	      M_Benvenuto Benvenuto; 
+	      M_GestioneProcuratore GestioneProcuratore;
+	      M_NuovoProcuratore NuovoProcuratore;
 	      M_ProcuratoreInseritoOk ProcuratoreInseritoOK;
 	      M_CercaProcuratore CercaProcuratore;
-	    
+	      M_DettagliAtleta DettagliAtleta;
 	      //Finestre collaborazioni
 	      M_NuovoAtletaCollab NuovoAtletaCollab;
 	      M_NuovaCollaborazione NuovaCollaborazione;
@@ -78,13 +78,14 @@ public class Controller {
     	  //Avvio dell'app
 	      Benvenuto = new M_Benvenuto(this);
 	      Benvenuto.setVisible(true);
-	      
+	      //Finestre Procuratori
 	      GestioneProcuratore = new M_GestioneProcuratore(this);
 	      NuovoProcuratore = new M_NuovoProcuratore(this);
 	      ProcuratoreInseritoOK = new M_ProcuratoreInseritoOk(this);
 	      CercaProcuratore = new M_CercaProcuratore(this);
-
-	      
+	    
+	      //Finestre Atleti
+	      DettagliAtleta = new M_DettagliAtleta(this);
 	      NuovoAtletaCollab = new M_NuovoAtletaCollab(this);
 	      ListaCollaborazioni = new M_ListaCollaborazioni(this);
 	      
@@ -213,14 +214,38 @@ public class Controller {
      
      
      
-
-     //Metodi Atleti
-     
+     /**
+ 	 * METODI ATLETI
+ 	 */
      public void iniziaRicercaContrattiAtleta() {
     	 SelezionaAtletacontratto.setVisible(true);
      }
      
-     public void iniziaRicercaDettagliAtleta() {
+     public void iniziaRicercaDettagliAtleta() throws SQLException {
+    	 GestioneProcuratore.setVisible(false);
+    	 
+         //Dichiarazioni
+    	 List<Integer>listacollaborazioni;
+         listacollaborazioni = CollaborazioneDAOPostgresImpl.getIDCollaborazioniByProcuratore(codprocuratori);
+         List<Atleti> atleti = new ArrayList<Atleti>();
+         List<String> ListaAtleti = new ArrayList<String>();
+         Iterator<Integer> iCollab= listacollaborazioni.iterator();
+         Iterator<Atleti> iAtleti = atleti.iterator();
+         
+         //Prende gli atleti dalle collaborazioni del procuratore scelto in precedenza
+    	 while(iCollab.hasNext()) {
+    		 atleti.add(AtletiDAOPostgresImpl.getAtletiByIDCollaborazione(iCollab.next()));
+    	 }
+    	 
+    	 //Prende le info degli atleti in stringhe da passare alla finestra CercaAtletiDettagli
+    	 while (iAtleti.hasNext()) {
+    		 Atleti a = iAtleti.next();
+    		 ListaAtleti.add(a.getNome()+" "+a.getCognome()+" "+a.getCodiceFiscale());
+    	 }
+    	 //Setto la combo box
+    	 CercaAtletaDettagli.setAtletiComboBox(ListaAtleti);
+    	 
+    	 //Visualizzo la finestra
     	 CercaAtletaDettagli.setVisible(true);
      }
      
@@ -238,9 +263,28 @@ public class Controller {
 		//Se tutto va bene
         NuovaCollaborazione.setVisible(true);
      }
+     
+     public void VisualizzaInfoAtleta(String InfoAtleta) throws SQLException {
+    	 CercaAtletaDettagli.setVisible(false);
+    	 
+    	 Atleti atleta = new Atleti();
+    	 String CfAtleta = InfoAtleta;
+    	 //Split della stringa
+    	 String[] cfs = CfAtleta.split(" ");
+    	 String CfAtletaSplit = cfs[2] ;
+    	 
+    	 atleta = AtletiDAOPostgresImpl.getAtletaByCf(CfAtletaSplit);
+    	 
+    	 DettagliAtleta.setAtleta(atleta);
+    	 
+    	 DettagliAtleta.setVisible(true);
+    	 
+ 	}
 
     
-     //Metodi Collaborazioni 
+     /**
+ 	 * METODI COLLABORAZIONI
+ 	 */
      
      public void iniziaInserimentoCollaborazione() {
     	 NuovaCollaborazione.setVisible(true);
@@ -271,11 +315,7 @@ public class Controller {
     	 
     	 //Dichiarazioni
 
-         List<Collaborazione>listacollaborazioni;
          
-         listacollaborazioni = CollaborazioneDAOPostgresImpl.getAllCollaborazioniByProcuratore(codprocuratori);
-         
-        
               
     	
     	 
@@ -376,11 +416,12 @@ public class Controller {
  			
  			ProcuratoriDAOPostgresImpl  procuratoriDAOpostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
  			CollaborazioneDAOPostgresImpl collaborazioneDAOPostgresImpl = new CollaborazioneDAOPostgresImpl(conn);
- 		    
+ 			AtletiDAOPostgresImpl atletiDAOPostgresImpl = new AtletiDAOPostgresImpl(conn);
  			Controller controller = new Controller();
  			
  			controller.setCollaborazioneDAOPostgresImpl(collaborazioneDAOPostgresImpl);
  			controller.setProcuratoriDAO(procuratoriDAOpostgresImpl);
+ 			controller.setAtletiDAOPostgresImpl(atletiDAOPostgresImpl); 
  			
  			}catch (SQLException e) {
  				e.printStackTrace();
@@ -420,4 +461,7 @@ public class Controller {
 		
 		
 	}
+
+
+	
 }

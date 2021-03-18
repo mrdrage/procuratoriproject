@@ -13,7 +13,6 @@ import entita.Procuratori;
 
 public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	
-
 	private Connection connection;
 	private PreparedStatement InserisciCollaborazione;
 	private PreparedStatement getAllCollaborazioni;

@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import javax.swing.JLabel;
 import javax.swing.JList;
 import java.awt.Color;
@@ -15,17 +18,18 @@ import javax.swing.JButton;
 
 public class M_VisualizzaContrattiAtleta extends JFrame {
 
+	Controller controller;
+	
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
 
 
 	/**
 	 * Create the frame.
 	 */
-	public M_VisualizzaContrattiAtleta() {
+	public M_VisualizzaContrattiAtleta(Controller c) {
+		controller = c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 699, 613);
 		contentPane = new JPanel();

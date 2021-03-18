@@ -25,7 +25,7 @@ import java.awt.event.ActionEvent;
 
 public class M_GestioneProcuratore extends JFrame {
 
-	Controller controller = null;
+	Controller controller;
 	
 	private JPanel contentPane;
 	
@@ -189,7 +189,13 @@ public class M_GestioneProcuratore extends JFrame {
 		JButton Atleti_B = new JButton("Atleti");
 		Atleti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			controller.iniziaRicercaDettagliAtleta();
+				
+			try {
+				controller.iniziaRicercaDettagliAtleta();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			setVisible(false);
 			// caricando tutti gli atleti del procuratore nella combobox
 				//setVisible(false);
@@ -208,10 +214,8 @@ public class M_GestioneProcuratore extends JFrame {
 		NumeroTelefono_TF.setText(procuratore.getNumeroTelefonico());
 		NumeroTelefono2_TF.setText(procuratore.getNumeroTelefonico2());
 		Email_TF.setText(procuratore.getEmail());
-	//	DataN_TF.setText(procuratore.getDataN().toString());
-		
-		
-		
+
+				
 		//Conversione da Date a String
 		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		String dataN = formatter.format(procuratore.getDataN());

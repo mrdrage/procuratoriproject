@@ -19,7 +19,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class M_SelezionaAtletaContratto extends JFrame {
-	Controller controller = null;
+	
+	Controller controller;
 
 	private JPanel contentPane;
 
@@ -50,7 +51,7 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		
 		JButton Indietro_B = new JButton("Indietro");
 		Indietro_B.setBackground(new Color(0, 0, 0));
-		Indietro_B.setBounds(345, 177, 71, 23);
+		Indietro_B.setBounds(302, 177, 114, 23);
 		contentPane.add(Indietro_B);
 		
 		JButton VisualizzaContratti_B = new JButton("Visualizza i contratti");
@@ -62,7 +63,7 @@ public class M_SelezionaAtletaContratto extends JFrame {
 			}
 		});
 		VisualizzaContratti_B.setBackground(new Color(0, 0, 0));
-		VisualizzaContratti_B.setBounds(10, 109, 127, 23);
+		VisualizzaContratti_B.setBounds(10, 109, 214, 23);
 		contentPane.add(VisualizzaContratti_B);
 		
 		JButton InserisciContrattoClub_B = new JButton("Inserisci contratto Club");
@@ -73,7 +74,7 @@ public class M_SelezionaAtletaContratto extends JFrame {
 				//setVisible(false);
 			}
 		});
-		InserisciContrattoClub_B.setBounds(10, 143, 144, 23);
+		InserisciContrattoClub_B.setBounds(10, 143, 214, 23);
 		contentPane.add(InserisciContrattoClub_B);
 		
 		JButton InserisciContrattoSponsor_B = new JButton("Inserisci contratto Sponsor");
@@ -84,7 +85,7 @@ public class M_SelezionaAtletaContratto extends JFrame {
 			}
 		});
 		InserisciContrattoSponsor_B.setBackground(new Color(0, 0, 0));
-		InserisciContrattoSponsor_B.setBounds(10, 177, 161, 23);
+		InserisciContrattoSponsor_B.setBounds(10, 177, 214, 23);
 		contentPane.add(InserisciContrattoSponsor_B);
 	}
 

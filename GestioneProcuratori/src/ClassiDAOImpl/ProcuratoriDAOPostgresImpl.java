@@ -18,10 +18,6 @@ import entita.Procuratori;
 
 public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	
-	
-	
-	
-	
 	private Connection connection;
 	private PreparedStatement inserisciProcuratorePS;
 	private PreparedStatement getAllProcuratori;
