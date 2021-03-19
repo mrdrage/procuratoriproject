@@ -54,8 +54,8 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		contentPane.add(ScegliAtleta_CO);
 		
 		JButton Indietro_B = new JButton("Indietro");
-		Indietro_B.setBackground(new Color(0, 0, 0));
-		Indietro_B.setBounds(302, 177, 114, 23);
+		Indietro_B.setBackground(Color.WHITE);
+		Indietro_B.setBounds(353, 177, 71, 23);
 		contentPane.add(Indietro_B);
 		
 		JButton VisualizzaContratti_B = new JButton("Visualizza i contratti");
@@ -72,19 +72,19 @@ public class M_SelezionaAtletaContratto extends JFrame {
 				//setVisible(false);
 			}
 		});
-		VisualizzaContratti_B.setBackground(new Color(0, 0, 0));
-		VisualizzaContratti_B.setBounds(10, 109, 214, 23);
+		VisualizzaContratti_B.setBackground(Color.WHITE);
+		VisualizzaContratti_B.setBounds(10, 109, 188, 23);
 		contentPane.add(VisualizzaContratti_B);
 		
 		JButton InserisciContrattoClub_B = new JButton("Inserisci contratto Club");
-		InserisciContrattoClub_B.setBackground(new Color(0, 0, 0));
+		InserisciContrattoClub_B.setBackground(Color.WHITE);
 		InserisciContrattoClub_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Apre la finestra AggiungiContrattoClub
 				//setVisible(false);
 			}
 		});
-		InserisciContrattoClub_B.setBounds(10, 143, 214, 23);
+		InserisciContrattoClub_B.setBounds(10, 143, 188, 23);
 		contentPane.add(InserisciContrattoClub_B);
 		
 		JButton InserisciContrattoSponsor_B = new JButton("Inserisci contratto Sponsor");
@@ -94,9 +94,17 @@ public class M_SelezionaAtletaContratto extends JFrame {
 				//setVisible(false);
 			}
 		});
-		InserisciContrattoSponsor_B.setBackground(new Color(0, 0, 0));
-		InserisciContrattoSponsor_B.setBounds(10, 177, 214, 23);
+		InserisciContrattoSponsor_B.setBackground(Color.WHITE);
+		InserisciContrattoSponsor_B.setBounds(10, 177, 188, 23);
 		contentPane.add(InserisciContrattoSponsor_B);
+		
+		JButton Introiti_B = new JButton("Visualizza gli introiti");
+		Introiti_B.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		Introiti_B.setBounds(234, 109, 188, 23);
+		contentPane.add(Introiti_B);
 	}
 
 	
