@@ -161,7 +161,7 @@ public class M_GestioneProcuratore extends JFrame {
 		Collaborazioni_B.setBounds(401, 71, 207, 43);
 		contentPane.add(Collaborazioni_B);
 		
-		JButton Guadagni_B = new JButton("Guadagni");
+		JButton Guadagni_B = new JButton("Lista dei guadagni");
 		Guadagni_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Si apre la finestra ControllaGuadagni
@@ -170,7 +170,7 @@ public class M_GestioneProcuratore extends JFrame {
 		});
 		Guadagni_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Guadagni_B.setBackground(Color.WHITE);
-		Guadagni_B.setBounds(401, 125, 207, 38);
+		Guadagni_B.setBounds(401, 269, 207, 43);
 		contentPane.add(Guadagni_B);
 		
 		JButton Contratti_B = new JButton("Contratti");
@@ -183,7 +183,7 @@ public class M_GestioneProcuratore extends JFrame {
 		});
 		Contratti_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Contratti_B.setBackground(Color.WHITE);
-		Contratti_B.setBounds(401, 179, 207, 38);
+		Contratti_B.setBounds(401, 125, 207, 43);
 		contentPane.add(Contratti_B);
 		
 		JButton Atleti_B = new JButton("Atleti");
@@ -203,7 +203,7 @@ public class M_GestioneProcuratore extends JFrame {
 		});
 		Atleti_B.setBackground(Color.WHITE);
 		Atleti_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Atleti_B.setBounds(401, 228, 207, 43);
+		Atleti_B.setBounds(401, 179, 207, 43);
 		contentPane.add(Atleti_B);
 	}
 	
