@@ -364,10 +364,10 @@ public class Controller {
     	 
     	 ContrattoSponsor contrattosponsor = new ContrattoSponsor(dataInizio, dataFine, guadagno, percentualeprocuratore,  tipologiasponsor, marcasponsor, vincolicontrattuali);
     	 
-    	 int codtransazionesponsor = 0;
-    	 int codatleti = 0;
     	 
-    	 ContrattiDAOPostgresImpl.inserisciContrattoSponsor(contrattosponsor, codatleti);
+    	 
+    	 
+    	 ContrattiDAOPostgresImpl.inserisciContrattoSponsor(contrattosponsor, getCodatleti());
      }
      
      public void VisualizzaInfoContratti() throws SQLException {
@@ -405,6 +405,10 @@ public class Controller {
      public void iniziaRicercaContrattiAtleta(String InfoAtleta) throws SQLException {
     	 SelezionaAtletacontratto.setVisible(false);
     	 
+    	 //Dichiarazioni
+    	 List <ContrattoClub> ContrattiClub;
+    	 List <ContrattoSponsor> ContrattiSponsor;
+    	 
     	 //ricavo il codice fiscale dalla stringa selezionata dalla combobox
     	 String CfAtleta = InfoAtleta;
     	 //Split della stringa
@@ -414,11 +418,19 @@ public class Controller {
     	 //setto il codice atleta selezionato
     	 setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));    
     	 
-    	 //ricavo i contratti club
-    	 ContrattiDAOPostgresImpl.getContrattiClubById(codatleti);
+    	 //ricavo i contratti club e li metto in lista di stringhe
+    	 ContrattiClub = ContrattiDAOPostgresImpl.getContrattiClubById(getCodatleti());
+    	 List<String> Cclub = new ArrayList<String>();
+    	 Iterator<ContrattoClub> i = ContrattiClub.iterator();
+    	 while (i.hasNext()) {
+    		 ContrattoClub c = i.next();
+    		 Cclub.add(c.getDataInizio()+" "+ c.getDataFine()+" "+ c.getStipendioAtletaStagione());
+    	 }
     	 //ricavo i contratti sponsor 
-    	 ContrattiDAOPostgresImpl.getContrattiSponsorById(codatleti);
+    	 ContrattiSponsor = ContrattiDAOPostgresImpl.getContrattiSponsorById(getCodatleti());
     	 
+    	 
+    	 VisualizzaContrattiAtleta.setListaContrattiClub(Cclub);
     	 
     	 
     	 VisualizzaContrattiAtleta.setVisible(true);
@@ -500,13 +512,14 @@ public class Controller {
  			ProcuratoriDAOPostgresImpl  procuratoriDAOpostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
  			CollaborazioneDAOPostgresImpl collaborazioneDAOPostgresImpl = new CollaborazioneDAOPostgresImpl(conn);
  			AtletiDAOPostgresImpl atletiDAOPostgresImpl = new AtletiDAOPostgresImpl(conn);
+ 			ContrattiDAOPostgresImpl contrattiDAOPostgresImpl = new ContrattiDAOPostgresImpl(conn);
+ 			
  			Controller controller = new Controller();
  			
  			controller.setCollaborazioneDAOPostgresImpl(collaborazioneDAOPostgresImpl);
  			controller.setProcuratoriDAO(procuratoriDAOpostgresImpl);
  			controller.setAtletiDAOPostgresImpl(atletiDAOPostgresImpl); 
- 			
- 			
+ 			controller.setContrattiDAOPostgresImpl(contrattiDAOPostgresImpl);
  			
  			}catch (SQLException e) {
  				e.printStackTrace();

@@ -31,9 +31,8 @@ public class ContrattiDAOPostgresImpl implements ContrattiDAO {
 
 		inserisciContrattoClubPS = connection.prepareStatement("INSERT INTO contrattoclub VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 		inserisciContrattoSponsorPS = connection.prepareStatement("INSERT INTO contrattosponsor VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?");
-		//da controllare!
-		getContrattiClubById = connection.prepareStatement("SELECT * FROM contrattoclub WHERE atleta = ?");
-		getContrattiSponsorById = connection.prepareStatement("SELECT * FROM contrattosponsor WHERE atleta = ?");
+		getContrattiClubById = connection.prepareStatement("SELECT * FROM contrattoclub WHERE codatleti = ?");
+		getContrattiSponsorById = connection.prepareStatement("SELECT * FROM contrattosponsor WHERE codatleti = ?");
 		
 	}
 	
