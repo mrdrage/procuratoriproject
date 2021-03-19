@@ -16,6 +16,9 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class M_SelezionaAtletaContratto extends JFrame {
@@ -23,13 +26,14 @@ public class M_SelezionaAtletaContratto extends JFrame {
 	Controller controller;
 
 	private JPanel contentPane;
-
+	private JComboBox<String> ScegliAtleta_CO;
 
 	/**
 	 * Create the frame.
 	 */
 	public M_SelezionaAtletaContratto(Controller c) {
 		controller = c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 448, 245);
 		contentPane = new JPanel();
@@ -44,7 +48,7 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		ScegliAtleta_L.setBounds(10, 0, 414, 51);
 		contentPane.add(ScegliAtleta_L);
 		
-		JComboBox ScegliAtleta_CO = new JComboBox();
+		ScegliAtleta_CO = new JComboBox();
 		ScegliAtleta_CO.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		ScegliAtleta_CO.setBounds(10, 62, 414, 32);
 		contentPane.add(ScegliAtleta_CO);
@@ -57,7 +61,13 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		JButton VisualizzaContratti_B = new JButton("Visualizza i contratti");
 		VisualizzaContratti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.iniziaRicercaContrattiAtleta();
+				
+				try {
+					controller.iniziaRicercaContrattiAtleta((String) ScegliAtleta_CO.getSelectedItem());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				//Apre la finestra SelezionaAtletaContratto, caricando prima i contratti relativi a quell'atleta
 				//setVisible(false);
 			}
@@ -89,4 +99,13 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		contentPane.add(InserisciContrattoSponsor_B);
 	}
 
+	
+	public void setContrattiComboBox(List<String> atleti) {
+
+		Iterator<String> i = atleti.iterator();
+		
+		while (i.hasNext()) {
+			ScegliAtleta_CO.addItem(i.next()); 
+		}
+	}
 }

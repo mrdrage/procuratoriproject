@@ -58,6 +58,7 @@ public class M_CercaAtletaDettagli extends JFrame {
 		JButton Avanti_B = new JButton("Avanti");
 		Avanti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				try {
 					controller.VisualizzaInfoAtleta((String)CercaAtletaDettagli_CB.getSelectedItem());
 				} catch (SQLException e1) {

@@ -20,6 +20,10 @@ public class ContrattoClub {
 		this.VincoliContrattuali = vincolicontrattuali; 
 	}
 	
+	public ContrattoClub() {
+		
+	}
+
 	public Date getDataInizio() {
 		return DataInizio;
 	}

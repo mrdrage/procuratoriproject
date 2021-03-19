@@ -16,7 +16,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 	private Connection connection;
 	private PreparedStatement  getAllAtleti;
 	private PreparedStatement  getAtletiByIDCollaborazione;
-	private PreparedStatement  inserisciAtletaPS;
+	private PreparedStatement  inserisciAtleta;
 	private PreparedStatement  getMaxId;
 	private PreparedStatement  getAtletaByCf;
 	
@@ -27,7 +27,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		
 		getAllAtleti = connection.prepareStatement("SELECT * from atleti");
 		getAtletiByIDCollaborazione = connection.prepareStatement("SELECT * FROM atleti WHERE codcollaborazione = ?");
-		inserisciAtletaPS = connection.prepareStatement("INSERT INTO atleti VALUES (?, ?, ?, ?, ?, ?, ?)");
+		inserisciAtleta = connection.prepareStatement("INSERT INTO atleti VALUES (?, ?, ?, ?, ?, ?, ?)");
 		getAtletaByCf = connection.prepareStatement("SELECT * FROM atleti WHERE codicefiscale = ?");
 		
 	}
@@ -63,45 +63,65 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 	   }
 	
 	public List<Atleti> getAllAtleti() throws SQLException{
+		
 		ResultSet rs = getAllAtleti.executeQuery();
 		List<Atleti> lista = new ArrayList<Atleti>();
+		
 		while(rs.next())
 		{
 			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"), rs.getString("serieclub"));
 			lista.add(a);
 		}
 		rs.close();
+		
 		return lista;
 	}
 	
 	public Atleti getAtletiByIDCollaborazione(int codcollaborazione) throws SQLException{
+		
 		Atleti atleta = new Atleti();
 		getAtletiByIDCollaborazione.setInt(1, codcollaborazione);
 		ResultSet rs = getAtletiByIDCollaborazione.executeQuery();
+		
 		while(rs.next()) {
 			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"), rs.getString("serieclub"));
 			atleta = a;
 		}
-	
+	    rs.close();
+	    
 		return atleta;
 	}
 	
 	public void inserisciAtleta(Atleti atleta, int codcollaborazione, int codatleti) throws SQLException{
 		int CodAtleta = getNextCod();
 		
-		inserisciAtletaPS.setString(1, atleta.getNome());
-		inserisciAtletaPS.setString(2, atleta.getCognome());
-		inserisciAtletaPS.setString(3, atleta.getNazione());
-		inserisciAtletaPS.setString(4, atleta.getCodiceFiscale());
-		inserisciAtletaPS.setString(5, atleta.getSport());
-		inserisciAtletaPS.setString(6, atleta.getClubAttuale());
-		inserisciAtletaPS.setString(7, atleta.getSerieClub());
-		inserisciAtletaPS.setInt(8, CodAtleta);
-		inserisciAtletaPS.setInt(9, codcollaborazione);
+		inserisciAtleta.setString(1, atleta.getNome());
+		inserisciAtleta.setString(2, atleta.getCognome());
+		inserisciAtleta.setString(3, atleta.getNazione());
+		inserisciAtleta.setString(4, atleta.getCodiceFiscale());
+		inserisciAtleta.setString(5, atleta.getSport());
+		inserisciAtleta.setString(6, atleta.getClubAttuale());
+		inserisciAtleta.setString(7, atleta.getSerieClub());
+		inserisciAtleta.setInt(8, CodAtleta);
+		inserisciAtleta.setInt(9, codcollaborazione);
 	}
 
+	
 
-
+	public int getIdAtletaByCf (String CodiceFiscale) throws SQLException {
+		  
+		   getAtletaByCf.setString(1, CodiceFiscale);
+		   ResultSet rs = getAtletaByCf.executeQuery();
+		   int codatleti = 0;
+		   
+		   //Essendo il cf unico basta utilizzare solo una volta il next(), che punterà quindi all'unica tupla presente
+		   while(rs.next()) {
+			   codatleti = rs.getInt(8);
+		   }
+		   rs.close();
+		   
+		   return codatleti;
+	   }
 
 
 

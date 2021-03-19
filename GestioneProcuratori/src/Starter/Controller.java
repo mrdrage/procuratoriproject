@@ -48,6 +48,7 @@ public class Controller {
 	      M_ProcuratoreInseritoOk ProcuratoreInseritoOK;
 	      M_CercaProcuratore CercaProcuratore;
 	      M_DettagliAtleta DettagliAtleta;
+	      
 	      //Finestre collaborazioni
 	      M_NuovoAtletaCollab NuovoAtletaCollab;
 	      M_NuovaCollaborazione NuovaCollaborazione;
@@ -59,14 +60,16 @@ public class Controller {
 	      M_ContrattoClubEsistente ContrattoClubEsistente;
 	      M_ContrattoClubInserito ContrattoClubInserito;
 	      M_ContrattoSponsorInserito ContrattoSponsorInserito;
-	      
+	      M_SelezionaAtletaContratto SelezionaAtletacontratto;
+	      M_VisualizzaContrattiAtleta VisualizzaContrattiAtleta;
 	      //Finestre atleti
 	      M_CercaAtletaDettagli CercaAtletaDettagli;
-	      M_SelezionaAtletaContratto SelezionaAtletacontratto;
-		  
 	      
+		  
+	      //Codice del procuratore selezionato dall'utente in precedenza 
 	      public int codprocuratori;
-	   
+	      public int codatleti;
+	    
 
 	      
    
@@ -80,6 +83,7 @@ public class Controller {
     	  //Avvio dell'app
 	      Benvenuto = new M_Benvenuto(this);
 	      Benvenuto.setVisible(true);
+	      
 	      //Finestre Procuratori
 	      GestioneProcuratore = new M_GestioneProcuratore(this);
 	      NuovoProcuratore = new M_NuovoProcuratore(this);
@@ -93,17 +97,19 @@ public class Controller {
 	      CercaAtletaDettagli = new M_CercaAtletaDettagli(this);
 	      ListaCollaborazioni = new M_ListaCollaborazioni(this);
 	      
+	      //Finestre Contratti
 	      AggiungiContrattoClub = new M_AggiungiContrattoClub(this);
 	      AggiungiContrattoSponsor = new M_AggiungiContrattoSponsor(this);
 	      ContrattoClubEsistente = new M_ContrattoClubEsistente(this);
 	      ContrattoClubInserito = new M_ContrattoClubInserito(this);
 	      ContrattoSponsorInserito = new M_ContrattoSponsorInserito(this);
-     
-	      
+	      SelezionaAtletacontratto = new M_SelezionaAtletaContratto(this);
+	      VisualizzaContrattiAtleta = new M_VisualizzaContrattiAtleta(this);
      }
      
-    
-     //Jdialogs
+	 /**
+  	 * JDIALOGS 
+  	 */
      public void IniziaInserimentoContrattoClub() {
     	 AggiungiContrattoClub.setVisible(true);
      }
@@ -120,7 +126,9 @@ public class Controller {
      
     
      
-      //metodi Procuratori
+     /**
+  	 * METODI PROCURATORI
+  	 */
      public void IniziaInserimentoProcuratore () {
     	 
     	 Benvenuto.setVisible(false);
@@ -218,10 +226,6 @@ public class Controller {
      /**
  	 * METODI ATLETI
  	 */
-     public void iniziaRicercaContrattiAtleta() {
-    	 SelezionaAtletacontratto.setVisible(true);
-     }
-     
      public void iniziaRicercaDettagliAtleta() throws SQLException {
     	 GestioneProcuratore.setVisible(false);
     	 
@@ -277,11 +281,14 @@ public class Controller {
     	 //Split della stringa
     	 String[] cfs = CfAtleta.split(" ");
     	 String CfAtletaSplit = cfs[2] ;
-    	 
+    	 //ottengo l'atleta usando il codice fiscale preso dalla stringa della combobox
     	 atleta = AtletiDAOPostgresImpl.getAtletaByCf(CfAtletaSplit);
     	 
+    	 //setto l'atleta selezionato
+    	 setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));
+    	 //setto l'atleta nei textfield
     	 DettagliAtleta.setAtleta(atleta);
-    	 
+    	 //visualizzo la finestra successiva
     	 DettagliAtleta.setVisible(true);
     	 
  	}
@@ -328,7 +335,9 @@ public class Controller {
     	 ListaCollaborazioni.setVisible(true);
      }
      
-     //Metodi Contratti
+     /**
+  	 * METODI CONTRATTI
+  	 */    
      public void InserisciContrattoClubDB(String datainizio, String datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolicontrattuali ) throws ParseException, SQLException {
     	 SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
     	 Date dataInizio = format.parse(datainizio);
@@ -357,9 +366,59 @@ public class Controller {
     	 ContrattiDAOPostgresImpl.inserisciContrattoSponsor(contrattosponsor, codatleti);
      }
      
+     public void VisualizzaInfoContratti() throws SQLException {
+
+         GestioneProcuratore.setVisible(false);
+         
+         //Dichiarazioni
+    	 List<Integer>listacollaborazioni;
+         listacollaborazioni = CollaborazioneDAOPostgresImpl.getIDCollaborazioniByProcuratore(codprocuratori);
+         List<Atleti> atleti = new ArrayList<Atleti>();
+         List<String> ListaAtleti = new ArrayList<String>();
+      
+        
+         //Prende gli atleti dalle collaborazioni del procuratore scelto in precedenza   
+         Iterator<Integer> iCollab= listacollaborazioni.iterator();
+             while(iCollab.hasNext()) {
+    		 atleti.add(AtletiDAOPostgresImpl.getAtletiByIDCollaborazione(iCollab.next()));
+    		 
+    	 }
+    	 
+    	 //Prende le info degli atleti in stringhe da passare alla finestra CercaAtletiDettagli 
+    	 Iterator<Atleti> iAtleti = atleti.iterator();
+    	 while (iAtleti.hasNext()) {
+    		 Atleti a = iAtleti.next();
+    		 ListaAtleti.add(a.getNome()+" "+a.getCognome()+" "+a.getCodiceFiscale());
+    	 }
+    	 
+    	 //Setto la combo box
+    	 SelezionaAtletacontratto.setContrattiComboBox(ListaAtleti);
+    	 
+    	 //Visualizzo la finestra
+    	 SelezionaAtletacontratto.setVisible(true);
+     }
      
-     
-    
+     public void iniziaRicercaContrattiAtleta(String InfoAtleta) throws SQLException {
+    	 SelezionaAtletacontratto.setVisible(false);
+    	 
+    	 //ricavo il codice fiscale dalla stringa selezionata dalla combobox
+    	 String CfAtleta = InfoAtleta;
+    	 //Split della stringa
+    	 String[] cfs = CfAtleta.split(" ");
+    	 String CfAtletaSplit = cfs[2];
+    	 
+    	 //setto il codice atleta selezionato
+    	 setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));    
+    	 
+    	 //ricavo i contratti club
+    	 ContrattiDAOPostgresImpl.getContrattiClubById(codatleti);
+    	 //ricavo i contratti sponsor 
+    	 ContrattiDAOPostgresImpl.getContrattiSponsorById(codatleti);
+    	 
+    	 
+    	 
+    	 VisualizzaContrattiAtleta.setVisible(true);
+     }
      
      //Getter & Setter
      
@@ -392,23 +451,36 @@ public class Controller {
 			ContrattiDAOPostgresImpl = contrattiDAOPostgresImpl;
 		}
 
-     public void setProcuratoriDAO(ProcuratoriDAOPostgresImpl PD) {
-    	 ProcuratoriDAOPostgresImpl = PD;
-     }
      
-     public ProcuratoriDAOPostgresImpl getProcuratoriDAO() {
-    	 return ProcuratoriDAOPostgresImpl; 	  
-     }
+		public void setProcuratoriDAO(ProcuratoriDAOPostgresImpl PD) {   	 
+			ProcuratoriDAOPostgresImpl = PD;
+		}
      
-     public int getCodprocuratori() {
-			return codprocuratori;
+    
+		public ProcuratoriDAOPostgresImpl getProcuratoriDAO() {	 
+			return ProcuratoriDAOPostgresImpl; 	      
+		}
+     
+     
+		public int getCodprocuratori() {			
+			return codprocuratori;		
 		}
 
-	 public void setCodprocuratori(int codprocuratori) {
-			this.codprocuratori = codprocuratori;
+	 
+		public void setCodprocuratori(int codprocuratori) {			
+			this.codprocuratori = codprocuratori;		
 		}
 
-     
+	
+		public int getCodatleti() {
+			return codatleti;
+		}
+
+		public void setCodatleti(int codatleti) {
+			this.codatleti = codatleti;
+		}
+		
+		
 
 	public static void main(String[] args) throws SQLException, ParseException 
 	{

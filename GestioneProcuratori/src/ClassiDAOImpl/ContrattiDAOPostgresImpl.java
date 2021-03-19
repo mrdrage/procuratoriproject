@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import Starter.Controller;
 
@@ -17,6 +19,8 @@ public class ContrattiDAOPostgresImpl implements ContrattiDAO {
 	private Connection connection;
 	private PreparedStatement inserisciContrattoClubPS;
 	private PreparedStatement inserisciContrattoSponsorPS;
+	private PreparedStatement getContrattiClubById;
+	private PreparedStatement getContrattiSponsorById;
 	private PreparedStatement getMaxIdClub, getMaxIdSponsor;
 	
 	
@@ -27,10 +31,13 @@ public class ContrattiDAOPostgresImpl implements ContrattiDAO {
 
 		inserisciContrattoClubPS = connection.prepareStatement("INSERT INTO contrattoclub VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 		inserisciContrattoSponsorPS = connection.prepareStatement("INSERT INTO contrattosponsor VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?");
-		
+		//da controllare!
+		getContrattiClubById = connection.prepareStatement("SELECT * FROM contrattoclub WHERE atleta = ?");
+		getContrattiSponsorById = connection.prepareStatement("SELECT * FROM contrattosponsor WHERE atleta = ?");
 		
 	}
 	
+	//gestione codici contratti
 	private int getNextCodClub () throws SQLException {
 		int codClub = 0;
 		ResultSet rs = getMaxIdClub.executeQuery();
@@ -79,8 +86,6 @@ public class ContrattiDAOPostgresImpl implements ContrattiDAO {
 
 
 
-
-
 	public void inserisciContrattoSponsor(ContrattoSponsor contrattosponsor, int codatleti) throws SQLException {
 	    //nextval del codice contratto
 		int CodSponsor = getNextCodSponsor();
@@ -104,5 +109,32 @@ public class ContrattiDAOPostgresImpl implements ContrattiDAO {
 	
 	
       }
+	
+	public List<ContrattoClub> getContrattiClubById (int id) throws SQLException {
+		List <ContrattoClub> listaContratti = new ArrayList<ContrattoClub>();
+		
+		getContrattiClubById.setInt (1,id);
+		ResultSet rs = getContrattiClubById.executeQuery();
+		
+		while (rs.next()) {
+			ContrattoClub c = new ContrattoClub(rs.getDate(1), rs.getDate(2), rs.getDouble(3), rs.getString(4), rs.getDouble(5), rs.getString(6));
+			listaContratti.add(c);
+		}
+		return listaContratti;
+	}
+	
+	public List<ContrattoSponsor> getContrattiSponsorById (int id) throws SQLException {
+		List <ContrattoSponsor> listaContratti = new ArrayList<ContrattoSponsor>();
+		
+		getContrattiSponsorById.setInt (1,id);
+		ResultSet rs = getContrattiSponsorById.executeQuery();
+		
+		while (rs.next()) {
+			ContrattoSponsor s = new ContrattoSponsor(rs.getDate(1), rs.getDate(2), rs.getDouble(3), rs.getDouble(4),rs.getString(5), rs.getString(6),rs.getString(7));
+			listaContratti.add(s);
+		}
+		
+		return listaContratti;
+	}
 
 }
