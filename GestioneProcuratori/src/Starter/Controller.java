@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -85,6 +86,7 @@ public class Controller {
 	      CercaProcuratore = new M_CercaProcuratore(this);
 	    
 	      //Finestre Atleti
+	      CercaAtletaDettagli = new M_CercaAtletaDettagli(this);
 	      DettagliAtleta = new M_DettagliAtleta(this);
 	      NuovoAtletaCollab = new M_NuovoAtletaCollab(this);
 	      ListaCollaborazioni = new M_ListaCollaborazioni(this);
@@ -233,11 +235,18 @@ public class Controller {
          Iterator<Atleti> iAtleti = atleti.iterator();
          
          //Prende gli atleti dalle collaborazioni del procuratore scelto in precedenza
+         
+        
+         
     	 while(iCollab.hasNext()) {
     		 atleti.add(AtletiDAOPostgresImpl.getAtletiByIDCollaborazione(iCollab.next()));
     	 }
     	 
+ 
     	 //Prende le info degli atleti in stringhe da passare alla finestra CercaAtletiDettagli
+    	 
+    	
+    		 
     	 while (iAtleti.hasNext()) {
     		 Atleti a = iAtleti.next();
     		 ListaAtleti.add(a.getNome()+" "+a.getCognome()+" "+a.getCodiceFiscale());
