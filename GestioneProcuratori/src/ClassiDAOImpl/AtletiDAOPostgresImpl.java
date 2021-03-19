@@ -26,7 +26,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		getMaxId = connection.prepareStatement("SELECT MAX(codatleti) FROM atleti");
 		
 		getAllAtleti = connection.prepareStatement("SELECT * from atleti");
-		getAtletiByIDCollaborazione = connection.prepareStatement("SELECT * from atleti WHERE codcollaborazione= ?");
+		getAtletiByIDCollaborazione = connection.prepareStatement("SELECT * FROM atleti WHERE codcollaborazione = ?");
 		inserisciAtletaPS = connection.prepareStatement("INSERT INTO atleti VALUES (?, ?, ?, ?, ?, ?, ?)");
 		getAtletaByCf = connection.prepareStatement("SELECT * FROM atleti WHERE codicefiscale = ?");
 		

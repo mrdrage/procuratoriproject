@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import ClassiDAO.ProcuratoriDAO;
 import ClassiDAOImpl.AtletiDAOPostgresImpl;
@@ -87,6 +88,7 @@ public class Controller {
 	      //Finestre Atleti
 	      DettagliAtleta = new M_DettagliAtleta(this);
 	      NuovoAtletaCollab = new M_NuovoAtletaCollab(this);
+	      CercaAtletaDettagli = new M_CercaAtletaDettagli(this);
 	      ListaCollaborazioni = new M_ListaCollaborazioni(this);
 	      
 	      AggiungiContrattoClub = new M_AggiungiContrattoClub(this);
@@ -202,12 +204,9 @@ public class Controller {
     	 GestioneProcuratore.setVisible(true);
     	 //Prendo il codiceprocuratori dal codice fiscale del procuratore
           setCodprocuratori(ProcuratoriDAOPostgresImpl.getIDProcuratoreByCf(CfProcuratoreSplit));
+          
+          //stampe di prova
           System.out.println(codprocuratori);
-
-          
-          
-          
-          
     	  System.out.println(CfProcuratoreSplit);
 
      }
@@ -229,15 +228,18 @@ public class Controller {
          listacollaborazioni = CollaborazioneDAOPostgresImpl.getIDCollaborazioniByProcuratore(codprocuratori);
          List<Atleti> atleti = new ArrayList<Atleti>();
          List<String> ListaAtleti = new ArrayList<String>();
-         Iterator<Integer> iCollab= listacollaborazioni.iterator();
-         Iterator<Atleti> iAtleti = atleti.iterator();
+      
+        
          
-         //Prende gli atleti dalle collaborazioni del procuratore scelto in precedenza
+         //Prende gli atleti dalle collaborazioni del procuratore scelto in precedenza   
+         ListIterator<Integer> iCollab= listacollaborazioni.listIterator();
     	 while(iCollab.hasNext()) {
     		 atleti.add(AtletiDAOPostgresImpl.getAtletiByIDCollaborazione(iCollab.next()));
+    		 
     	 }
     	 
-    	 //Prende le info degli atleti in stringhe da passare alla finestra CercaAtletiDettagli
+    	 //Prende le info degli atleti in stringhe da passare alla finestra CercaAtletiDettagli 
+    	 Iterator<Atleti> iAtleti = atleti.iterator();
     	 while (iAtleti.hasNext()) {
     		 Atleti a = iAtleti.next();
     		 ListaAtleti.add(a.getNome()+" "+a.getCognome()+" "+a.getCodiceFiscale());
