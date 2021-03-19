@@ -60,7 +60,7 @@ public class Controller {
 	      M_ContrattoClubEsistente ContrattoClubEsistente;
 	      M_ContrattoClubInserito ContrattoClubInserito;
 	      M_ContrattoSponsorInserito ContrattoSponsorInserito;
-	      M_SelezionaAtletaContratto SelezionaAtletacontratto;
+	      M_SelezionaAtletaContratto SelezionaAtletaContratto;
 	      M_VisualizzaContrattiAtleta VisualizzaContrattiAtleta;
 	      //Finestre atleti
 	      M_CercaAtletaDettagli CercaAtletaDettagli;
@@ -103,7 +103,7 @@ public class Controller {
 	      ContrattoClubEsistente = new M_ContrattoClubEsistente(this);
 	      ContrattoClubInserito = new M_ContrattoClubInserito(this);
 	      ContrattoSponsorInserito = new M_ContrattoSponsorInserito(this);
-	      SelezionaAtletacontratto = new M_SelezionaAtletaContratto(this);
+	      SelezionaAtletaContratto = new M_SelezionaAtletaContratto(this);
 	      VisualizzaContrattiAtleta = new M_VisualizzaContrattiAtleta(this);
      }
      
@@ -315,6 +315,7 @@ public class Controller {
      }
      
      public void InserisciCollaborazioneDB(String datainizio, String datafine, double stipendiomensile) throws ParseException, SQLException {
+    	 
     	SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
   		Date dataInizio = format.parse(datainizio);
   		Date dataFine = format.parse(datafine);
@@ -350,31 +351,46 @@ public class Controller {
   	 * METODI CONTRATTI
   	 */    
      public void InserisciContrattoClubDB(String datainizio, String datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolicontrattuali ) throws ParseException, SQLException {
+    	 
     	 SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
     	 Date dataInizio = format.parse(datainizio);
     	 Date dataFine = format.parse(datafine);
     	 
     	 ContrattoClub contrattoclub = new ContrattoClub(dataInizio, dataFine, stipendioatletastagione, bonusstagione, guadagnobonus, vincolicontrattuali);
     	 
-    	 int codtransazioneclub = 0;
-		 int codatleti = 1;
+    	
 		
 		 
-		 ContrattiDAOPostgresImpl.inserisciContrattoClub(contrattoclub, codatleti);
+		 ContrattiDAOPostgresImpl.inserisciContrattoClub(contrattoclub, getCodatleti());
+		 
+		 AggiungiContrattoClub.setVisible(false);
     	 
      }
      
      public void InserisciContrattoSponsorDB(String datainizio, String datafine, double guadagno, double percentualeprocuratore, String tipologiasponsor, String marcasponsor, String vincolicontrattuali) throws ParseException, SQLException {
+    	 
     	 SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
     	 Date dataInizio = format.parse(datainizio);
     	 Date dataFine = format.parse(datafine);
     	 
     	 ContrattoSponsor contrattosponsor = new ContrattoSponsor(dataInizio, dataFine, guadagno, percentualeprocuratore,  tipologiasponsor, marcasponsor, vincolicontrattuali);
     	 
-    	 
-    	 
-    	 
     	 ContrattiDAOPostgresImpl.inserisciContrattoSponsor(contrattosponsor, getCodatleti());
+    	 
+    	 AggiungiContrattoSponsor.setVisible(false);
+     }
+     
+     public void InserisciContrattoClub() {
+    	 
+    	 SelezionaAtletaContratto.setVisible(false);
+    	 AggiungiContrattoClub.setVisible(true);
+    	 
+     }
+     
+     public void InserisciContrattoSponsor() {
+    	 
+    	 SelezionaAtletaContratto.setVisible(false);
+    	 AggiungiContrattoSponsor.setVisible(true);
      }
      
      public void VisualizzaInfoContratti() throws SQLException {
@@ -403,14 +419,14 @@ public class Controller {
     	 }
     	 
     	 //Setto la combo box
-    	 SelezionaAtletacontratto.setContrattiComboBox(ListaAtleti);
+    	 SelezionaAtletaContratto.setContrattiComboBox(ListaAtleti);
     	 
     	 //Visualizzo la finestra
-    	 SelezionaAtletacontratto.setVisible(true);
+    	 SelezionaAtletaContratto.setVisible(true);
      }
      
      public void iniziaRicercaContrattiAtleta(String InfoAtleta) throws SQLException {
-    	 SelezionaAtletacontratto.setVisible(false);
+    	 SelezionaAtletaContratto.setVisible(false);
     	 
     	 //Dichiarazioni
     	 List <ContrattoClub> ContrattiClub;

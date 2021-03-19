@@ -55,7 +55,7 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		
 		JButton Indietro_B = new JButton("Indietro");
 		Indietro_B.setBackground(Color.WHITE);
-		Indietro_B.setBounds(353, 177, 71, 23);
+		Indietro_B.setBounds(331, 177, 93, 23);
 		contentPane.add(Indietro_B);
 		
 		JButton VisualizzaContratti_B = new JButton("Visualizza i contratti");
@@ -80,8 +80,7 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		InserisciContrattoClub_B.setBackground(Color.WHITE);
 		InserisciContrattoClub_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Apre la finestra AggiungiContrattoClub
-				//setVisible(false);
+				controller.InserisciContrattoClub();
 			}
 		});
 		InserisciContrattoClub_B.setBounds(10, 143, 188, 23);

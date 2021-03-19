@@ -22,7 +22,7 @@ import java.awt.event.ActionEvent;
 
 public class M_AggiungiContrattoSponsor extends JFrame {
 	
-	Controller controller = null;
+	Controller controller;
 
 	private JPanel contentPane;
 	private JTextField DataInizio_TF;
@@ -32,10 +32,6 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 	private JTextField TipologiaSponsor_TF;
 	private JTextField MarcaSponsor_TF;
 	private JTextField VincoliContrattuali_TF;
-
-	/**
-	 * Launch the application.
-	 */
 
 
 	/**
@@ -151,12 +147,13 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 					controller.InserisciContrattoSponsorDB(DataInizio_TF.getText(), DataFine_TF.getText(), guadagno, percentualeprocuratore, TipologiaSponsor_TF.getText(), MarcaSponsor_TF.getText(), VincoliContrattuali_TF.getText());
 				} catch (ParseException | SQLException e1) {
 					// finestre di errore
-					//Se cé un errore nella data, appare la dialog ErroreDataSponsor
+					//Se cï¿½ un errore nella data, appare la dialog ErroreDataSponsor
 					e1.printStackTrace();
 				}
+				
 				//Appare la dialog ContrattoSponsorInserito
 				c.ContrattoSponsorInseritoCorrettamente();
-				setVisible(false);
+				
 			}
 		});
 		Avanti_B.setBackground(new Color(0, 0, 0));

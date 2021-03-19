@@ -23,7 +23,7 @@ import java.awt.event.ActionEvent;
 
 public class M_AggiungiContrattoClub extends JFrame {
 	
-	Controller controller = null;
+	Controller controller;
 
 	private JPanel contentPane;
 	private JTextField DataInizio_TF;
@@ -32,10 +32,6 @@ public class M_AggiungiContrattoClub extends JFrame {
 	private JTextField BonusStagione_TF;
 	private JTextField GuadagnoBonus_TF;
 	private JTextField VincoloContrattuale_TF;
-
-	/**
-	 * Launch the application.
-	 */
 
 	/**
 	 * Create the frame.
@@ -55,7 +51,7 @@ public class M_AggiungiContrattoClub extends JFrame {
 		JLabel AggiungiContrattoClub_L = new JLabel("Aggiungi un contratto Club");
 		AggiungiContrattoClub_L.setFont(new Font("Verdana", Font.PLAIN, 25));
 		AggiungiContrattoClub_L.setHorizontalAlignment(SwingConstants.CENTER);
-		AggiungiContrattoClub_L.setBounds(10, 11, 489, 28);
+		AggiungiContrattoClub_L.setBounds(10, 11, 489, 39);
 		contentPane.add(AggiungiContrattoClub_L);
 		
 		JLabel DataInizio_L = new JLabel("Data di inizio:");
@@ -131,26 +127,26 @@ public class M_AggiungiContrattoClub extends JFrame {
 				double stipendioatleta = Double.parseDouble(StipendioAtleta_TF.getText());
 				double guadagnobonus = Double.parseDouble(GuadagnoBonus_TF.getText());
 				
-				//Se l'atleta selezionato ha giá un contratto club, appare la finestra M_checkclub
+				//Se l'atleta selezionato ha giï¿½ un contratto club, appare la finestra M_checkclub
 				//oppure viene inserito  il contratto
 				
 				try {
 					controller.InserisciContrattoClubDB(DataInizio_TF.getText(), DataFine_TF.getText(), stipendioatleta, BonusStagione_TF.getText(), guadagnobonus, VincoloContrattuale_TF.getText());
 				} catch (ParseException | SQLException e1) {
 					// finestre di errore
-					//Se cé un errore nella data, appare la dialog ErroreDataClub
+					//Se cï¿½ un errore nella data, appare la dialog ErroreDataClub
 					e1.printStackTrace();
 				}
 				
 				//oppure appare la dialog ContrattoClubInserito
-				setVisible(false);
-				c.ContrattoClubInseritoCorrettamente();
+				
+				controller.ContrattoClubInseritoCorrettamente();
 				
 				
 			}
 		});
 		Avanti_B.setBackground(new Color(0, 0, 0));
-		Avanti_B.setBounds(406, 433, 63, 23);
+		Avanti_B.setBounds(393, 433, 93, 23);
 		contentPane.add(Avanti_B);
 		
 		JButton Indietro_B = new JButton("Indietro");
@@ -161,7 +157,7 @@ public class M_AggiungiContrattoClub extends JFrame {
 			}
 		});
 		Indietro_B.setBackground(new Color(0, 0, 0));
-		Indietro_B.setBounds(325, 433, 71, 23);
+		Indietro_B.setBounds(288, 433, 93, 23);
 		contentPane.add(Indietro_B);
 	}
 

@@ -22,10 +22,12 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class M_CercaAtletaDettagli extends JFrame {
+	
 	Controller controller = null;
 
 	private JPanel contentPane;
 	private JComboBox<String> CercaAtletaDettagli_CB;
+	
 	/**
 	 * Create the frame.
 	 */
