@@ -13,6 +13,8 @@ public interface ProcuratoriDAO {
 	public List<String> getAllCFProcuratori() throws SQLException;
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException;
 	public Procuratori getProcuratoreByCf (String CodiceFiscale) throws SQLException;
+	public double getStipendioMensileProcuratore(int codprocuratori) throws SQLException;
+	public double getGuadagnoSponsorProcuratore(int codatleti) throws SQLException;
 	
 
 	

@@ -29,7 +29,7 @@ public class M_SelezionaAnno extends JFrame {
 	 */
 	public M_SelezionaAnno() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 280, 195);
+		setBounds(100, 100, 280, 176);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 245, 238));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -39,12 +39,12 @@ public class M_SelezionaAnno extends JFrame {
 		JLabel ScegliAnno_L = new JLabel("Seleziona l'anno");
 		ScegliAnno_L.setHorizontalAlignment(SwingConstants.CENTER);
 		ScegliAnno_L.setFont(new Font("Verdana", Font.PLAIN, 20));
-		ScegliAnno_L.setBounds(10, 11, 244, 36);
+		ScegliAnno_L.setBounds(10, 0, 244, 36);
 		contentPane.add(ScegliAnno_L);
 		
 		JComboBox ScegliAnno_CO = new JComboBox();
 		ScegliAnno_CO.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		ScegliAnno_CO.setBounds(10, 76, 131, 22);
+		ScegliAnno_CO.setBounds(69, 47, 131, 22);
 		contentPane.add(ScegliAnno_CO);
 		
 		JButton Annulla_B = new JButton("Annulla");
@@ -55,7 +55,7 @@ public class M_SelezionaAnno extends JFrame {
 				//setVisible(false);
 			}
 		});
-		Annulla_B.setBounds(105, 122, 67, 23);
+		Annulla_B.setBounds(101, 101, 67, 23);
 		contentPane.add(Annulla_B);
 		
 		JButton Cerca_B = new JButton("Cerca");
@@ -68,7 +68,7 @@ public class M_SelezionaAnno extends JFrame {
 			}
 		});
 		Cerca_B.setBackground(new Color(0, 0, 0));
-		Cerca_B.setBounds(187, 122, 67, 23);
+		Cerca_B.setBounds(187, 101, 67, 23);
 		contentPane.add(Cerca_B);
 	}
 

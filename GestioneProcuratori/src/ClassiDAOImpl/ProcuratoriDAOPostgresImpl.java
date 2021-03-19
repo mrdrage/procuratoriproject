@@ -27,6 +27,9 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	private PreparedStatement getIDProcuratoreByCf;
 	private PreparedStatement getMaxId;
 	private PreparedStatement isNewId;
+	private PreparedStatement getStipendioMensileProcuratore;
+	private PreparedStatement getGuadagnoSponsorProcuratore;
+	
 	
 	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException{
 		this.connection = connection;
@@ -39,6 +42,9 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 		getAllCFProcuratori = connection.prepareStatement("SELECT codicefiscale FROM procuratori");
 		getProcuratoreByCf = connection.prepareStatement("SELECT * FROM procuratori WHERE codicefiscale = ?");
 		getIDProcuratoreByCf = connection.prepareStatement("SELECT codprocuratori FROM procuratori WHERE codicefiscale = ?");
+		getStipendioMensileProcuratore = connection.prepareStatement("SELECT stipendiomensileprocuratore FROM collaborazione where codprocuratori = ?");
+		getGuadagnoSponsorProcuratore = connection.prepareStatement("SELECT guadagnoatleta, percentualeprocuratore FROM contrattosponsor where codatleti = ?");
+		
 		
 	//	isNewId = connection.prepareStatement("SELECT MAX(codprocuratori)  FROM procuratori WHERE ? NOT IN (SELECT codprocuratori FROM procuratori) ");
 	}
@@ -140,5 +146,29 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
    }
 	   return codprocuratori;
  }
+   
+   public double getStipendioMensileProcuratore(int codprocuratori) throws SQLException {
+	   getStipendioMensileProcuratore.setInt(1, codprocuratori);
+	   ResultSet rs = getStipendioMensileProcuratore.executeQuery();
+	   double stipendiomensile = 0;
+	   while(rs.next()) {
+		   stipendiomensile = rs.getDouble(1);
+	   }
+	   return stipendiomensile;
+   }
+   
+   public double getGuadagnoSponsorProcuratore(int codatleti) throws SQLException {
+	   getGuadagnoSponsorProcuratore.setInt(1, codatleti);
+	   ResultSet rs = getGuadagnoSponsorProcuratore.executeQuery();
+	   double guadagnoatleta = 0;
+	   double percentualeprocuratore = 0;
+	   double guadagnofinale = 0;
+	   while(rs.next()) {
+		   guadagnoatleta = rs.getDouble(1);
+		   percentualeprocuratore = rs.getDouble(2);
+	   }
+	   guadagnofinale = ((guadagnoatleta*percentualeprocuratore)/100);
+	   return guadagnofinale;
+   }
    
 }

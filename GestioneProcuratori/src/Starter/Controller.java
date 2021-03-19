@@ -80,6 +80,7 @@ public class Controller {
     	  //Avvio dell'app
 	      Benvenuto = new M_Benvenuto(this);
 	      Benvenuto.setVisible(true);
+	      
 	      //Finestre Procuratori
 	      GestioneProcuratore = new M_GestioneProcuratore(this);
 	      NuovoProcuratore = new M_NuovoProcuratore(this);
@@ -295,6 +296,10 @@ public class Controller {
     	 NuovaCollaborazione.setVisible(true);
      }
      
+     public void prova() throws SQLException {
+    	 
+    	 System.out.println(CollaborazioneDAOPostgresImpl.getMesiCollaborazione(1));
+     }
      
      public void InserisciCollaborazioneDB(String datainizio, String datafine, double stipendiomensile) throws ParseException, SQLException {
     	SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
@@ -413,6 +418,8 @@ public class Controller {
 	public static void main(String[] args) throws SQLException, ParseException 
 	{
 	//	ProcuratoriDAOPostgresImpl procuratoriDAOpostgresImpl; 
+		
+		
 
 		try {
  			Connection conn= null;
@@ -427,6 +434,8 @@ public class Controller {
  			controller.setCollaborazioneDAOPostgresImpl(collaborazioneDAOPostgresImpl);
  			controller.setProcuratoriDAO(procuratoriDAOpostgresImpl);
  			controller.setAtletiDAOPostgresImpl(atletiDAOPostgresImpl); 
+ 			
+ 			
  			
  			}catch (SQLException e) {
  				e.printStackTrace();

@@ -4,8 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import ClassiDAO.CollaborazioneDAO;
 import entita.Collaborazione;
@@ -19,6 +24,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	private PreparedStatement getAllCollaborazioniByProcuratore;
 	private PreparedStatement getIDCollaborazioniByProcuratore;
 	private PreparedStatement getMaxId;
+	private PreparedStatement getMesiCollaborazione;
 
 	public CollaborazioneDAOPostgresImpl(Connection connection) throws SQLException
 	{
@@ -30,7 +36,9 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		getAllCollaborazioni = connection.prepareStatement("SELECT * FROM collaborazione");
 		getAllCollaborazioniByProcuratore = connection.prepareStatement("SELECT * FROM collaborazione WHERE codprocuratori = ? ");
 		InserisciCollaborazione = connection.prepareStatement("INSERT INTO collaborazione VALUES (?,?,?,?,?,?) ");
-		getIDCollaborazioniByProcuratore = connection.prepareStatement("SELECT codcollaborazione FROM collaborazione where codprocuratori = ?");
+		getIDCollaborazioniByProcuratore = connection.prepareStatement("SELECT codcollaborazione FROM collaborazione WHERE codprocuratori = ?");
+		getMesiCollaborazione = connection.prepareStatement("SELECT datainizio, datafine FROM collaborazione WHERE codatleti = ?");
+		
 	}
 	
 	private int getNextCod () throws SQLException {
@@ -114,8 +122,29 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		
         InserisciCollaborazione.executeUpdate();
  
-		
-
 	}
-
+	
+	public  long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+	    long diffInMillies = date2.getTime() - date1.getTime();
+	    return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
+	}
+	
+	public long getMesiCollaborazione(int codatleti) throws SQLException {
+		getMesiCollaborazione.setInt(1, codatleti);
+		ResultSet rs = getMesiCollaborazione.executeQuery();
+		Date datainizio = null;
+		Date datafine = null;
+		
+		while(rs.next()) {
+			datainizio = rs.getDate(1);
+			datafine = rs.getDate(2);
+		}
+//		
+//		  java.sql.Date dataInizio = new java.sql.Date(datainizio.getTime());
+//		  java.sql.Date dataFine = new java.sql.Date(datafine.getTime());
+//		
+		  
+		 
+          return (getDateDiff(datainizio,datafine,TimeUnit.HOURS)/720);
+  }
 }

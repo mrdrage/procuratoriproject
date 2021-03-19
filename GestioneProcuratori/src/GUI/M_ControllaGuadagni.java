@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -15,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class M_ControllaGuadagni extends JFrame {
+	Controller controller = null;
 
 	private JPanel contentPane;
 
@@ -26,7 +30,8 @@ public class M_ControllaGuadagni extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public M_ControllaGuadagni() {
+	public M_ControllaGuadagni(Controller c) {
+		controller = c;
 		setBackground(new Color(245, 245, 220));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 263);

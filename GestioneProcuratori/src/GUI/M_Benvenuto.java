@@ -50,6 +50,12 @@ public class M_Benvenuto extends JFrame {
 		InserisciProcuratore_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
      			controller.IniziaInserimentoProcuratore();
+     			try {
+					controller.prova();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		InserisciProcuratore_B.setToolTipText("");
