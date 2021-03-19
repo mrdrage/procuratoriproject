@@ -143,6 +143,7 @@ public class M_GestioneProcuratore extends JFrame {
 		JButton Collaborazioni_B = new JButton("Collaborazioni");
 		Collaborazioni_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				try {
 				controller.ApriListaCollaborazioni();
 				
@@ -177,6 +178,13 @@ public class M_GestioneProcuratore extends JFrame {
 		Contratti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				try {
+					controller.VisualizzaInfoContratti();
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				//Si apre la finestra SelezionaAtletaContratto, caricando gli atleti del procuratore nella combobox
 				//setVisible(false);
 			}
@@ -201,6 +209,7 @@ public class M_GestioneProcuratore extends JFrame {
 				//setVisible(false);
 			}
 		});
+		
 		Atleti_B.setBackground(Color.WHITE);
 		Atleti_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Atleti_B.setBounds(401, 179, 207, 43);
