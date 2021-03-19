@@ -6,6 +6,7 @@ import java.sql.Connection;
 
 
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,10 +14,10 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import ClassiDAO.ProcuratoriDAO;
 import ClassiDAOImpl.AtletiDAOPostgresImpl;
@@ -86,6 +87,7 @@ public class Controller {
 	      CercaProcuratore = new M_CercaProcuratore(this);
 	    
 	      //Finestre Atleti
+	      CercaAtletaDettagli = new M_CercaAtletaDettagli(this);
 	      DettagliAtleta = new M_DettagliAtleta(this);
 	      NuovoAtletaCollab = new M_NuovoAtletaCollab(this);
 	      CercaAtletaDettagli = new M_CercaAtletaDettagli(this);
@@ -231,15 +233,30 @@ public class Controller {
       
         
          
+<<<<<<< HEAD
          //Prende gli atleti dalle collaborazioni del procuratore scelto in precedenza   
          ListIterator<Integer> iCollab= listacollaborazioni.listIterator();
+=======
+         //Prende gli atleti dalle collaborazioni del procuratore scelto in precedenza
+         
+        
+         
+>>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
     	 while(iCollab.hasNext()) {
     		 atleti.add(AtletiDAOPostgresImpl.getAtletiByIDCollaborazione(iCollab.next()));
     		 
     	 }
     	 
+<<<<<<< HEAD
     	 //Prende le info degli atleti in stringhe da passare alla finestra CercaAtletiDettagli 
     	 Iterator<Atleti> iAtleti = atleti.iterator();
+=======
+ 
+    	 //Prende le info degli atleti in stringhe da passare alla finestra CercaAtletiDettagli
+    	 
+    	
+    		 
+>>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
     	 while (iAtleti.hasNext()) {
     		 Atleti a = iAtleti.next();
     		 ListaAtleti.add(a.getNome()+" "+a.getCognome()+" "+a.getCodiceFiscale());
