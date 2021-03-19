@@ -233,30 +233,16 @@ public class Controller {
       
         
          
-<<<<<<< HEAD
+
          //Prende gli atleti dalle collaborazioni del procuratore scelto in precedenza   
-         ListIterator<Integer> iCollab= listacollaborazioni.listIterator();
-=======
-         //Prende gli atleti dalle collaborazioni del procuratore scelto in precedenza
-         
-        
-         
->>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
-    	 while(iCollab.hasNext()) {
+         Iterator<Integer> iCollab= listacollaborazioni.iterator();
+             while(iCollab.hasNext()) {
     		 atleti.add(AtletiDAOPostgresImpl.getAtletiByIDCollaborazione(iCollab.next()));
     		 
     	 }
     	 
-<<<<<<< HEAD
     	 //Prende le info degli atleti in stringhe da passare alla finestra CercaAtletiDettagli 
     	 Iterator<Atleti> iAtleti = atleti.iterator();
-=======
- 
-    	 //Prende le info degli atleti in stringhe da passare alla finestra CercaAtletiDettagli
-    	 
-    	
-    		 
->>>>>>> branch 'main' of https://github.com/mrdrage/procuratoriproject.git
     	 while (iAtleti.hasNext()) {
     		 Atleti a = iAtleti.next();
     		 ListaAtleti.add(a.getNome()+" "+a.getCognome()+" "+a.getCodiceFiscale());
