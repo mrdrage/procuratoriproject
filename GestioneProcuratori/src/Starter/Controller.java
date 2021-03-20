@@ -35,6 +35,7 @@ import entita.Procuratori;
 
 
 public class Controller {
+	
           //Daos usate
 	      ProcuratoriDAOPostgresImpl ProcuratoriDAOPostgresImpl;
 	      CollaborazioneDAOPostgresImpl CollaborazioneDAOPostgresImpl;
@@ -62,6 +63,7 @@ public class Controller {
 	      M_ContrattoSponsorInserito ContrattoSponsorInserito;
 	      M_SelezionaAtletaContratto SelezionaAtletaContratto;
 	      M_VisualizzaContrattiAtleta VisualizzaContrattiAtleta;
+	      
 	      //Finestre atleti
 	      M_CercaAtletaDettagli CercaAtletaDettagli;
 	      
@@ -110,6 +112,7 @@ public class Controller {
 	 /**
   	 * JDIALOGS 
   	 */
+	
      public void IniziaInserimentoContrattoClub() {
     	 AggiungiContrattoClub.setVisible(true);
      }
@@ -129,6 +132,7 @@ public class Controller {
      /**
   	 * METODI PROCURATORI
   	 */
+     
      public void IniziaInserimentoProcuratore () {
     	 
     	 Benvenuto.setVisible(false);
@@ -226,6 +230,7 @@ public class Controller {
      /**
  	 * METODI ATLETI
  	 */
+     
      public void iniziaRicercaDettagliAtleta() throws SQLException {
     	 GestioneProcuratore.setVisible(false);
     	 
@@ -378,16 +383,37 @@ public class Controller {
     	 ContrattiDAOPostgresImpl.inserisciContrattoSponsor(contrattosponsor, getCodatleti());
     	 
     	 AggiungiContrattoSponsor.setVisible(false);
+    	 
+    	 ContrattoClubInseritoCorrettamente();
      }
      
-     public void InserisciContrattoClub() {
+     public void InserisciContrattoClub(String InfoAtleta) throws SQLException {
+    	 
+    	 //ricavo il codice fiscale dalla stringa selezionata dalla combobox
+    	 String CfAtleta = InfoAtleta;
+    	 //Split della stringa
+    	 String[] cfs = CfAtleta.split(" ");
+    	 String CfAtletaSplit = cfs[2];
+    	 
+    	 //setto il codice atleta selezionato
+    	 setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));   
+    	 
     	 
     	 SelezionaAtletaContratto.setVisible(false);
     	 AggiungiContrattoClub.setVisible(true);
     	 
      }
      
-     public void InserisciContrattoSponsor() {
+     public void InserisciContrattoSponsor(String InfoAtleta) throws SQLException {
+    	 
+    	 //ricavo il codice fiscale dalla stringa selezionata dalla combobox
+    	 String CfAtleta = InfoAtleta;
+    	 //Split della stringa
+    	 String[] cfs = CfAtleta.split(" ");
+    	 String CfAtletaSplit = cfs[2];
+    	 
+    	 //setto il codice atleta selezionato
+    	 setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));   
     	 
     	 SelezionaAtletaContratto.setVisible(false);
     	 AggiungiContrattoSponsor.setVisible(true);
@@ -426,6 +452,7 @@ public class Controller {
      }
      
      public void iniziaRicercaContrattiAtleta(String InfoAtleta) throws SQLException {
+    	 
     	 SelezionaAtletaContratto.setVisible(false);
     	 
     	 //Dichiarazioni
@@ -444,18 +471,27 @@ public class Controller {
     	 //ricavo i contratti club e li metto in lista di stringhe
     	 ContrattiClub = ContrattiDAOPostgresImpl.getContrattiClubById(getCodatleti());
     	 List<String> Cclub = new ArrayList<String>();
-    	 Iterator<ContrattoClub> i = ContrattiClub.iterator();
-    	 while (i.hasNext()) {
-    		 ContrattoClub c = i.next();
-    		 Cclub.add(c.getDataInizio()+" "+ c.getDataFine()+" "+ c.getStipendioAtletaStagione());
+    	 Iterator<ContrattoClub> iC = ContrattiClub.iterator();
+    	 while (iC.hasNext()) {
+    		 ContrattoClub c = iC.next();
+    		 Cclub.add(c.getDataInizio()+" "+ c.getDataFine()+" "+ c.getStipendioAtletaStagione()+" "+c.getBonusStagione()+" "+c.getGuadagnoBonus()+" "+c.getVincoloContrattuale());
     	 }
-    	 //ricavo i contratti sponsor 
+    	 
+    	 //ricavo i contratti sponsor e li metto in lista di stringhe
     	 ContrattiSponsor = ContrattiDAOPostgresImpl.getContrattiSponsorById(getCodatleti());
+    	 List<String> CSponsor = new ArrayList<String>();
+    	 Iterator<ContrattoSponsor> iS = ContrattiSponsor.iterator();
+    	 while (iS.hasNext()) {
+    		 ContrattoSponsor c = iS.next();
+    		 CSponsor.add(c.getDataInizio()+" "+ c.getDataFine()+" "+ c.getGuadagno()+" "+c.getPercentualeProcuratore()+" "+c.getTipologiaSponsor()+" "+c.getMarcaSponsor()+" "+c.getVincoliContrattuali());
+    	 }
     	 
-    	 
+    	 //setto le jlist
     	 VisualizzaContrattiAtleta.setListaContrattiClub(Cclub);
     	 
+    	 //VisualizzaContrattiAtleta.setListaContrattiSponsor(CSponsor);
     	 
+    	 //Visualizza la finestra con le info delle jlist
     	 VisualizzaContrattiAtleta.setVisible(true);
      }
      

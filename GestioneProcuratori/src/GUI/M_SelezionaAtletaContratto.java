@@ -64,6 +64,7 @@ public class M_SelezionaAtletaContratto extends JFrame {
 				
 				try {
 					controller.iniziaRicercaContrattiAtleta((String) ScegliAtleta_CO.getSelectedItem());
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -72,6 +73,7 @@ public class M_SelezionaAtletaContratto extends JFrame {
 				//setVisible(false);
 			}
 		});
+		
 		VisualizzaContratti_B.setBackground(Color.WHITE);
 		VisualizzaContratti_B.setBounds(10, 109, 188, 23);
 		contentPane.add(VisualizzaContratti_B);
@@ -80,19 +82,32 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		InserisciContrattoClub_B.setBackground(Color.WHITE);
 		InserisciContrattoClub_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.InserisciContrattoClub();
+				
+				try {
+					controller.InserisciContrattoClub((String) ScegliAtleta_CO.getSelectedItem());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
+		
 		InserisciContrattoClub_B.setBounds(10, 143, 188, 23);
 		contentPane.add(InserisciContrattoClub_B);
 		
 		JButton InserisciContrattoSponsor_B = new JButton("Inserisci contratto Sponsor");
 		InserisciContrattoSponsor_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Apre la finestra AggiungiContrattoSponsor
-				//setVisible(false);
+				
+				try {
+					controller.InserisciContrattoSponsor((String) ScegliAtleta_CO.getSelectedItem());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
+		
 		InserisciContrattoSponsor_B.setBackground(Color.WHITE);
 		InserisciContrattoSponsor_B.setBounds(10, 177, 188, 23);
 		contentPane.add(InserisciContrattoSponsor_B);

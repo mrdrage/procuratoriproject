@@ -27,11 +27,13 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 	
 	private JPanel contentPane;
     private JList<String> ListaContratti_List;
-    private DefaultListModel<String> listmodel = new DefaultListModel<String>();
-
+    private DefaultListModel<String> listmodelClub = new DefaultListModel<String>();
+    private DefaultListModel<String> listmodelSponsor = new DefaultListModel<String>();
+    
 	/**
 	 * Create the frame.
 	 */
+    
 	public M_VisualizzaContrattiAtleta(Controller c) {
 		controller = c;
 		
@@ -49,10 +51,10 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 		ListaContratti_L.setBounds(10, 11, 663, 42);
 		contentPane.add(ListaContratti_L);
 		
-		ListaContratti_List = new JList<String>(listmodel);
+		ListaContratti_List = new JList<String>(listmodelClub);
 		ListaContratti_List.setBounds(10, 81, 330, 453);
 		contentPane.add(ListaContratti_List);
-		
+		//va aggiunta una jlist anche per i contratti sposnor (passandogli listmodelSponsor similmente come fatto coi club
 		JButton Esci_B = new JButton("Esci");
 		Esci_B.setBackground(new Color(0, 0, 0));
 		Esci_B.setBounds(604, 545, 69, 23);
@@ -70,13 +72,24 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 		
 		 Iterator<String> i = contratti.iterator();
 		 while(i.hasNext()) {
-			 listmodel.add(indice, i.next());
+			 listmodelClub.add(indice, i.next());
 		
 			 
-			 indice++;
-
-		 }
+	    indice++;
+	    }
+	}	 
+		
 		 
+	public void setListaContrattiSponsor(List <String> contratti) {
+				
+		int indice = 0;
+				
+		Iterator<String> i = contratti.iterator();
+		while(i.hasNext()) {
+			listmodelSponsor.add(indice, i.next());
+					
+		indice++;	
+		}	 
 		 
 	}
 }

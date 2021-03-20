@@ -132,15 +132,22 @@ public class M_AggiungiContrattoClub extends JFrame {
 				
 				try {
 					controller.InserisciContrattoClubDB(DataInizio_TF.getText(), DataFine_TF.getText(), stipendioatleta, BonusStagione_TF.getText(), guadagnobonus, VincoloContrattuale_TF.getText());
-				} catch (ParseException | SQLException e1) {
+				} catch (ParseException e1) {
 					// finestre di errore
 					//Se c� un errore nella data, appare la dialog ErroreDataClub
 					e1.printStackTrace();
+					System.out.println ("data errata");
+				} catch (SQLException e2) {
+					System.out.println ("errore db");
+					
+				} catch (NumberFormatException e3) {
+					System.out.println ("errore stringa inserita");
+
 				}
 				
 				//oppure appare la dialog ContrattoClubInserito
 				
-				controller.ContrattoClubInseritoCorrettamente();
+				
 				
 				
 			}
