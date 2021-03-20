@@ -28,18 +28,14 @@ import javax.swing.SpinnerNumberModel;
 
 public class M_NuovaCollaborazione extends JFrame {
 	
-	Controller controller = null;
+	Controller controller;
 
 	private JPanel contentPane;
 	private JTextField DataInizio_TF;
 	private JTextField DataFine_TF;
 	private JTextField StipendioMensile_TF;
 
-	/**
-	 * Launch the application.
-	 */
 	
-
 	/**
 	 * Create the frame.
 	 */
@@ -106,7 +102,7 @@ public class M_NuovaCollaborazione extends JFrame {
 					e1.printStackTrace();
 				}
 				
-				//Se é gia presente una collaborazione con i dati inseriti, apre la dialog ErroreCollaborazionePresente
+				//Se ï¿½ gia presente una collaborazione con i dati inseriti, apre la dialog ErroreCollaborazionePresente
 				
 				
 				
@@ -132,6 +128,7 @@ public class M_NuovaCollaborazione extends JFrame {
 				System.out.println("Bravo!");
 			}
 		});
+		
 		DataInizio_TF.setBounds(227, 89, 108, 20);
 		contentPane.add(DataInizio_TF);
 		DataInizio_TF.setColumns(10);
