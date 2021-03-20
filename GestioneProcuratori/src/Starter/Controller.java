@@ -264,6 +264,9 @@ public class Controller {
      }
      
      public void CalcolaGuadagniProcuratore(int codprocuratori) {
+    	
+    	 
+    	 
     	 // Mi prendo lo stipendio mensile
     	 // Moltiplico lo stipendio mensile per i mesi di collaborazione
     	 // Mi prendo i guadagni sponsor

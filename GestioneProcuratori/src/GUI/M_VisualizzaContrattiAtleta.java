@@ -20,13 +20,16 @@ import java.util.List;
 import javax.swing.SwingConstants;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class M_VisualizzaContrattiAtleta extends JFrame {
 
 	Controller controller;
 	
 	private JPanel contentPane;
-    private JList<String> ListaContratti_List;
+	private JList<String> listaContrattiSponsor_List;
+    private JList<String> listaContrattiClub_List;
     private DefaultListModel<String> listmodelClub = new DefaultListModel<String>();
     private DefaultListModel<String> listmodelSponsor = new DefaultListModel<String>();
     
@@ -38,7 +41,7 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 		controller = c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 699, 613);
+		setBounds(100, 100, 1050, 675);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(250, 235, 215));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -46,23 +49,43 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel ListaContratti_L = new JLabel("Contratti Atleta");
+		ListaContratti_L.setBounds(10, 0, 1014, 42);
 		ListaContratti_L.setHorizontalAlignment(SwingConstants.CENTER);
 		ListaContratti_L.setFont(new Font("Verdana", Font.PLAIN, 20));
-		ListaContratti_L.setBounds(10, 11, 663, 42);
 		contentPane.add(ListaContratti_L);
-		
-		ListaContratti_List = new JList<String>(listmodelClub);
-		ListaContratti_List.setBounds(10, 81, 330, 453);
-		contentPane.add(ListaContratti_List);
 		//va aggiunta una jlist anche per i contratti sposnor (passandogli listmodelSponsor similmente come fatto coi club
 		JButton Esci_B = new JButton("Esci");
+		Esci_B.setBounds(943, 602, 69, 23);
 		Esci_B.setBackground(new Color(0, 0, 0));
-		Esci_B.setBounds(604, 545, 69, 23);
 		contentPane.add(Esci_B);
 		
-		JLabel ContrattiClub_L = new JLabel("ContrattiClub");
-		ContrattiClub_L.setBounds(10, 54, 113, 16);
+		JLabel ContrattiClub_L = new JLabel("Contratti club");
+		ContrattiClub_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		ContrattiClub_L.setBounds(10, 267, 122, 16);
 		contentPane.add(ContrattiClub_L);
+		
+		JLabel ContrattiSponsor_L = new JLabel("Contratti sponsor");
+		ContrattiSponsor_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		ContrattiSponsor_L.setBounds(10, 541, 133, 15);
+		contentPane.add(ContrattiSponsor_L);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(990, 475, -42, -134);
+		contentPane.add(scrollPane);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 333, 1014, 197);
+		contentPane.add(scrollPane_1);
+		
+		listaContrattiSponsor_List = new JList<String>(listmodelSponsor);
+		scrollPane_1.setViewportView(listaContrattiSponsor_List);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(10, 67, 1014, 197);
+		contentPane.add(scrollPane_2);
+		
+		listaContrattiClub_List = new JList<String>(listmodelClub);
+		scrollPane_2.setViewportView(listaContrattiClub_List);
 		
 	}
 	
