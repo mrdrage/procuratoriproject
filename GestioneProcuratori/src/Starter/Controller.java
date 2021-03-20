@@ -225,6 +225,48 @@ public class Controller {
 
      }
      
+  public double CalcolaGuadagniCollaborazioneProcuratore(int codprocuratori) throws SQLException {
+    	
+    	// Prendo lo stipendio mensile
+    	 double StipendioMensile = ProcuratoriDAOPostgresImpl.getStipendioMensileProcuratore(getCodprocuratori());
+    	 // Prendo i mesi della collaborazione
+    	 long mesiCollab = CollaborazioneDAOPostgresImpl.getMesiCollaborazione(getCodatleti());
+    	 // Calcolo il guadagno finale della collaborazione
+    	 double GuadagnoFinale = StipendioMensile * mesiCollab;
+    	 
+    	 return GuadagnoFinale;
+    	 // Mi prendo lo stipendio mensile
+    	 // Moltiplico lo stipendio mensile per i mesi di collaborazione
+    	 // Mi prendo i guadagni sponsor
+    	 // Faccio il totale
+     }
+  
+  
+  public double CalcolaGuadagniSponsorProcuratore(int codprocuratori) throws SQLException {
+	  
+	  //Prendo i guadagni sponsor
+	  double GuadagnoFinaleSponsor = ProcuratoriDAOPostgresImpl.getGuadagnoSponsorProcuratore(getCodatleti());
+	  
+	  return GuadagnoFinaleSponsor;
+  }
+  
+  public void VisualizzaIntroitiProcuratore(String InfoAtleta) {
+	  
+	  
+	  VisualizzaContrattiAtleta.setVisible(false);
+	  
+	  //Ti prendi il cf dell'atleta
+	  //Ti prendi il codatleti dal cf
+	  //Settare il cod atleta
+	  
+	  
+  }
+  
+  
+  
+  
+     		 
+     
      
      
      /**
@@ -263,16 +305,7 @@ public class Controller {
     	 CercaAtletaDettagli.setVisible(true);
      }
      
-     public void CalcolaGuadagniProcuratore(int codprocuratori) {
-    	
-    	 
-    	 
-    	 // Mi prendo lo stipendio mensile
-    	 // Moltiplico lo stipendio mensile per i mesi di collaborazione
-    	 // Mi prendo i guadagni sponsor
-    	 // Faccio il totale
-     }
-     
+   
      
      
      
