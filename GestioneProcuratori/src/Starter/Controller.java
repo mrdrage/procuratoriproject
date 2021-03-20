@@ -354,7 +354,8 @@ public class Controller {
      
      /**
   	 * METODI CONTRATTI
-  	 */    
+  	 */   
+     
      public void InserisciContrattoClubDB(String datainizio, String datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolicontrattuali ) throws ParseException, SQLException {
     	 
     	 SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
@@ -474,7 +475,7 @@ public class Controller {
     	 Iterator<ContrattoClub> iC = ContrattiClub.iterator();
     	 while (iC.hasNext()) {
     		 ContrattoClub c = iC.next();
-    		 Cclub.add(c.getDataInizio()+" "+ c.getDataFine()+" "+ c.getStipendioAtletaStagione()+" "+c.getBonusStagione()+" "+c.getGuadagnoBonus()+" "+c.getVincoloContrattuale());
+    		 Cclub.add(c.getDataInizio()+"            "+ c.getDataFine()+"            "+ c.getStipendioAtletaStagione()+"            "+c.getBonusStagione()+"             "+c.getGuadagnoBonus()+"             "+c.getVincoloContrattuale());
     	 }
     	 
     	 //ricavo i contratti sponsor e li metto in lista di stringhe
@@ -483,19 +484,20 @@ public class Controller {
     	 Iterator<ContrattoSponsor> iS = ContrattiSponsor.iterator();
     	 while (iS.hasNext()) {
     		 ContrattoSponsor c = iS.next();
-    		 CSponsor.add(c.getDataInizio()+" "+ c.getDataFine()+" "+ c.getGuadagno()+" "+c.getPercentualeProcuratore()+" "+c.getTipologiaSponsor()+" "+c.getMarcaSponsor()+" "+c.getVincoliContrattuali());
+    		 CSponsor.add(c.getDataInizio()+"             "+ c.getDataFine()+"             "+ c.getGuadagno()+"             "+c.getPercentualeProcuratore()+"             "+c.getTipologiaSponsor()+"             "+c.getMarcaSponsor()+"             "+c.getVincoliContrattuali());
     	 }
     	 
     	 //setto le jlist
-    	 VisualizzaContrattiAtleta.setListaContrattiClub(Cclub);
-    	 
-    	 //VisualizzaContrattiAtleta.setListaContrattiSponsor(CSponsor);
+    	 VisualizzaContrattiAtleta.setListaContrattiClub(Cclub);  	 
+    	 VisualizzaContrattiAtleta.setListaContrattiSponsor(CSponsor);
     	 
     	 //Visualizza la finestra con le info delle jlist
     	 VisualizzaContrattiAtleta.setVisible(true);
      }
      
-     //Getter & Setter
+     /**
+   	 * GETTER & SETTER
+   	 */   
      
      public CollaborazioneDAOPostgresImpl getCollaborazioneDAOPostgresImpl() {
 			return CollaborazioneDAOPostgresImpl;

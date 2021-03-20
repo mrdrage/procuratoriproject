@@ -137,6 +137,7 @@ public class M_AggiungiContrattoClub extends JFrame {
 					//Se c� un errore nella data, appare la dialog ErroreDataClub
 					e1.printStackTrace();
 					System.out.println ("data errata");
+					
 				} catch (SQLException e2) {
 					System.out.println ("errore db");
 					
