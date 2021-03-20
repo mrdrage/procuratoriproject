@@ -274,15 +274,18 @@ public class Controller {
      
      
      public void InserisciAtletaDB(String nome, String cognome, String nazione, String codicefiscale, String sport, String clubattuale, String serieclub) throws SQLException {
-        Atleti atleta = new Atleti(nome, cognome, nazione, codicefiscale, sport, clubattuale, serieclub);
     	 
+        Atleti atleta = new Atleti(nome, cognome, nazione, codicefiscale, sport, clubattuale, serieclub);
+    	//momentaneamente a 0
     	int codcollaborazione = 0;
-		int codatleti = 0;
-		
-		AtletiDAOPostgresImpl.inserisciAtleta(atleta, codcollaborazione, codatleti);
+		//setto il codice atleta localmente		
+    	setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(codicefiscale));
+    	//Lo inserisco nel db
+		AtletiDAOPostgresImpl.inserisciAtleta(atleta, codcollaborazione);
 		
 		//Se tutto va bene
         NuovaCollaborazione.setVisible(true);
+        
      }
      
      public void VisualizzaInfoAtleta(String InfoAtleta) throws SQLException {
@@ -328,11 +331,13 @@ public class Controller {
   		Collaborazione collaborazione = new Collaborazione(dataInizio, dataFine, stipendiomensile);
   		
   		
-  		int codatleti = 0;
+  		
   		
   		//Setto il codatleti dalla scelta della combobox  
   		//Gli passo il codice atleta ed il codice procuratore
-  		CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione, codatleti, codprocuratori);
+  		CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione, getCodatleti(), codprocuratori);
+  		
+  		NuovaCollaborazione.setVisible(false);
      }
      
 
@@ -360,6 +365,16 @@ public class Controller {
     	 ListaCollaborazioni.setVisible(true);
      }
      
+     
+     public void aggiungiCollaborazione() {
+    	 
+    	 ListaCollaborazioni.setVisible(false);
+    	 NuovoAtletaCollab.setVisible(true);
+    	 NuovaCollaborazione.setVisible(true);
+    	 
+    	 
+    	 
+     }
      /**
   	 * METODI CONTRATTI
   	 */   

@@ -10,6 +10,6 @@ public interface AtletiDAO {
 	public List<Atleti> getAllAtleti() throws SQLException;
 	public Atleti getAtletiByIDCollaborazione(int codcollaborazione) throws SQLException;
 	
-	public void inserisciAtleta(Atleti atleta, int codcollaborazione, int codatleti) throws SQLException;
+	public void inserisciAtleta(Atleti atleta, int codcollaborazione) throws SQLException;
 	
 }

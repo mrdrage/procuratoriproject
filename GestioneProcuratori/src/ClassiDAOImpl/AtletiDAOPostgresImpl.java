@@ -92,7 +92,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		return atleta;
 	}
 	
-	public void inserisciAtleta(Atleti atleta, int codcollaborazione, int codatleti) throws SQLException{
+	public void inserisciAtleta(Atleti atleta, int codcollaborazione) throws SQLException{
 		int CodAtleta = getNextCod();
 		
 		inserisciAtleta.setString(1, atleta.getNome());

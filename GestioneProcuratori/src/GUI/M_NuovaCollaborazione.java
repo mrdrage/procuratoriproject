@@ -97,6 +97,7 @@ public class M_NuovaCollaborazione extends JFrame {
 				try {
 					
 					controller.InserisciCollaborazioneDB(DataInizio_TF.getText(), DataFine_TF.getText(), stipendiomensile);
+					
 				} catch (SQLException | ParseException e1) {
                      //finestre di errore
 					e1.printStackTrace();
@@ -112,9 +113,7 @@ public class M_NuovaCollaborazione extends JFrame {
 				StipendioMensile_TF.setText("");
 				
 				
-				//Se tutto va bene, si apre la finestra ListaCollaborazioni
-				setVisible(false);
-				//controller.ApriListaCollaborazioni();
+				
 				
 			}
 		});
