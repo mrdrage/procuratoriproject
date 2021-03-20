@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -26,7 +27,8 @@ public class M_ListaCollaborazioni extends JFrame {
 	Controller controller = null;
 	
 	private JPanel contentPane;
-
+	private JList<String> ListaCollaborazioni_list;
+	private DefaultListModel<String> listmodelCollaborazioni = new DefaultListModel<String>();
 	
 	/**
 	 * Create the frame.
@@ -47,7 +49,7 @@ public class M_ListaCollaborazioni extends JFrame {
 		ListaCollaborazioni_L.setBounds(10, -22, 576, 91);
 		contentPane.add(ListaCollaborazioni_L);
 		
-		JList ListaCollaborazioni_list = new JList();
+		ListaCollaborazioni_list = new JList<String>(listmodelCollaborazioni);
 		ListaCollaborazioni_list.setBounds(10, 56, 576, 309);
 		contentPane.add(ListaCollaborazioni_list);
 		
@@ -78,5 +80,18 @@ public class M_ListaCollaborazioni extends JFrame {
 		contentPane.add(Indietro_B);
 	}
 	
+	 
+	public void setListaCollaborazioni(List <String> collaborazioni) {
+				
+		int indice = 0;
+				
+		Iterator<String> i = collaborazioni.iterator();
+		while(i.hasNext()) {
+			listmodelCollaborazioni.add(indice, i.next());
+					
+		indice++;	
+		}	 
+		 
+	}
 	
 }

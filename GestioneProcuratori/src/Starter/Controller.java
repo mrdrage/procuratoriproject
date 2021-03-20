@@ -376,15 +376,23 @@ public class Controller {
     	
     	 
     	 GestioneProcuratore.setVisible(false);
-    	 ListaCollaborazioni.setVisible(true);
     	 
     	 //Dichiarazioni
-
-         
-              
+    	 List<Collaborazione> collaborazioni = CollaborazioneDAOPostgresImpl.getAllCollaborazioniByProcuratore(getCodprocuratori());
+    	 List<String> listCollaborazioni = new ArrayList<String>();
+    	 Iterator<Collaborazione> iC = collaborazioni.iterator();
+    	 
+    	 while(iC.hasNext()) {
+    		 Collaborazione c = iC.next();
+    		 listCollaborazioni.add(c.getDataInizio()+"  "+c.getDataFine()+"  "+c.getStipendioMensile());
+    		 
+    	 }
+          
+         //setto la jlist 
+    	 ListaCollaborazioni.setListaCollaborazioni(listCollaborazioni);
     	
     	 
-    	 //Dobbiamo passargli prima i dati delle collaborazioni del procuratore scelto in precedenza
+    	 //visualizzo la jlist
     	 ListaCollaborazioni.setVisible(true);
      }
      
