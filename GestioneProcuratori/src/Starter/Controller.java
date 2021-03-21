@@ -141,7 +141,9 @@ public class Controller {
      }
      
      public void TornaAGestioneProcuratore() {
+    	 
     	 GestioneProcuratore.setVisible(true);
+    	 ListaCollaborazioni.setVisible(false);
      }
       
      public void InserisciProcuratoreDB (String nome, String cognome, String CF, String Ntel, String Ntel2, String email, String dataN) throws SQLException, ParseException {

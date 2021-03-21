@@ -9,7 +9,8 @@ import entita.Procuratori;
 public interface CollaborazioneDAO {
 
 	public List<Collaborazione> getAllCollaborazioni() throws SQLException;
+	public List<Integer> getIDCollaborazioniByProcuratore(int CodProcuratori) throws SQLException;
 	public List<Collaborazione> getAllCollaborazioniByProcuratore(int CodProcuratore) throws SQLException;
 	public void InserisciCollaborazione(Collaborazione collaborazione, int CodProcuratore, int CodAtleti) throws SQLException;
-	
+	public long getMesiCollaborazione(int codatleti) throws SQLException;
 }

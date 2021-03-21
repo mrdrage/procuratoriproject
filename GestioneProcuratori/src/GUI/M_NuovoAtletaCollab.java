@@ -35,6 +35,7 @@ public class M_NuovoAtletaCollab extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public M_NuovoAtletaCollab(Controller c) {
 		
 		controller = c;

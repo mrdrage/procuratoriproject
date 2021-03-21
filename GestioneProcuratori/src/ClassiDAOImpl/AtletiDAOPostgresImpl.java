@@ -19,6 +19,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 	private PreparedStatement  inserisciAtleta;
 	private PreparedStatement  getMaxId;
 	private PreparedStatement  getAtletaByCf;
+	private PreparedStatement  getAtletiLiberi;
 	
 	public AtletiDAOPostgresImpl(Connection connection) throws SQLException {
 		
@@ -29,6 +30,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		getAtletiByIDCollaborazione = connection.prepareStatement("SELECT * FROM atleti WHERE codcollaborazione = ?");
 		inserisciAtleta = connection.prepareStatement("INSERT INTO atleti VALUES (?, ?, ?, ?, ?, ?, ?)");
 		getAtletaByCf = connection.prepareStatement("SELECT * FROM atleti WHERE codicefiscale = ?");
+		getAtletiLiberi = connection.prepareStatement("SELECT * FROM atleti WHERE codcollaborazione = null");
 		
 	}
 	
@@ -93,6 +95,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 	}
 	
 	public void inserisciAtleta(Atleti atleta, int codcollaborazione) throws SQLException{
+		
 		int CodAtleta = getNextCod();
 		
 		inserisciAtleta.setString(1, atleta.getNome());
@@ -122,6 +125,20 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		   
 		   return codatleti;
 	   }
+	
+	public List<Atleti> getAtletiLiberi () throws SQLException{
+		
+		List<Atleti> lista = new ArrayList<Atleti>();
+
+		ResultSet rs = getAtletiLiberi.executeQuery();
+		while (rs.next()) {
+			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"), rs.getString("serieclub"));
+			lista.add(a);
+		
+		}
+		
+		return lista;
+	}
 
 
 

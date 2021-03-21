@@ -117,6 +117,7 @@ public class M_NuovaCollaborazione extends JFrame {
 				
 			}
 		});
+		
 		Avanti_B.setBackground(new Color(0, 0, 0));
 		Avanti_B.setBounds(286, 220, 69, 23);
 		contentPane.add(Avanti_B);

@@ -49,7 +49,9 @@ public class M_Benvenuto extends JFrame {
 		JButton InserisciProcuratore_B = new JButton("Inserisci Procuratore");
 		InserisciProcuratore_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
      			controller.IniziaInserimentoProcuratore();
+     			
      			try {
 					controller.prova();
 				} catch (SQLException e1) {
@@ -68,6 +70,7 @@ public class M_Benvenuto extends JFrame {
 		JButton CercaProcuratore_B = new JButton("Cerca procuratore");
 		CercaProcuratore_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				//Caricare tutti i procuratori nella combobox
 				try {
 				    controller.RicercaProcuratori();
@@ -76,6 +79,7 @@ public class M_Benvenuto extends JFrame {
 			    }
  			}
 		});
+		
 		CercaProcuratore_B.setBackground(new Color(255, 255, 255));
 		CercaProcuratore_B.setBounds(78, 113, 179, 32);
 		contentPane.add(CercaProcuratore_B);
