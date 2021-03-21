@@ -52,12 +52,7 @@ public class M_Benvenuto extends JFrame {
 				
      			controller.IniziaInserimentoProcuratore();
      			
-     			try {
-					controller.prova();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+ 
 			}
 		});
 		InserisciProcuratore_B.setToolTipText("");
@@ -68,6 +63,7 @@ public class M_Benvenuto extends JFrame {
 		contentPane.add(InserisciProcuratore_B);
 		
 		JButton CercaProcuratore_B = new JButton("Cerca procuratore");
+		CercaProcuratore_B.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		CercaProcuratore_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

@@ -62,9 +62,9 @@ public class M_NuovoProcuratore extends JFrame {
 		Cognome_L.setBounds(10, 119, 89, 18);
 		contentPane.add(Cognome_L);
 		
-		JLabel CodiceFiscale_L = new JLabel("Codice Fiscale:");
+		JLabel CodiceFiscale_L = new JLabel("Codice Fiscale*:");
 		CodiceFiscale_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		CodiceFiscale_L.setBounds(10, 159, 108, 17);
+		CodiceFiscale_L.setBounds(10, 159, 118, 17);
 		contentPane.add(CodiceFiscale_L);
 		
 		JLabel NumeroTelefono_L = new JLabel("Numero di telefono:");
@@ -95,19 +95,31 @@ public class M_NuovoProcuratore extends JFrame {
 				try {
 					controller.InserisciProcuratoreDB(Nome_TF.getText(), Cognome_TF.getText(), CodiceFiscale_TF.getText(), 
 							NumeroTelefono_TF.getText(), NumeroTelefono2_TF.getText(),Email_TF.getText(), DataN_TF.getText());
+					
+					//svuoto i campi dopo che é stato premuto avanti
+					Nome_TF.setText("");
+					Cognome_TF.setText("");
+					CodiceFiscale_TF.setText("");
+					NumeroTelefono_TF.setText("");
+					NumeroTelefono2_TF.setText("");
+					Email_TF.setText("");
+					DataN_TF.setText("");
+					
+					controller.ProcuratoreInseritoCorrettamente();
+				
 				} catch (SQLException | ParseException e1) {
-                     //finestre di errore, non so come far uscire una finestra a seconda dell'eccezione
+                     controller.ErroreInserimentoDatabase();
 					e1.printStackTrace();
 				}
 				
-				//svuoto i campi dopo che Ã¨ stato premuto avanti
-				Nome_TF.setText("");
-				Cognome_TF.setText("");
-				CodiceFiscale_TF.setText("");
-				NumeroTelefono_TF.setText("");
-				NumeroTelefono2_TF.setText("");
-				Email_TF.setText("");
-				DataN_TF.setText("");
+//				//svuoto i campi dopo che é stato premuto avanti
+//				Nome_TF.setText("");
+//				Cognome_TF.setText("");
+//				CodiceFiscale_TF.setText("");
+//				NumeroTelefono_TF.setText("");
+//				NumeroTelefono2_TF.setText("");
+//				Email_TF.setText("");
+//				DataN_TF.setText("");
 			
 				//messaggio di inserimento effettuato 
 				//OK.setVisible(true);
@@ -168,6 +180,11 @@ public class M_NuovoProcuratore extends JFrame {
 		Nome_TF.setBounds(194, 79, 145, 20);
 		contentPane.add(Nome_TF);
 		Nome_TF.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("*Codice fiscale massimo 16 caratteri");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblNewLabel.setBounds(10, 415, 185, 17);
+		contentPane.add(lblNewLabel);
 		
 		
 	}

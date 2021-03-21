@@ -43,16 +43,17 @@ public class Controller {
 	      ContrattiDAOPostgresImpl ContrattiDAOPostgresImpl;
 	      
 	      //Finestre procuratori
-	      M_Benvenuto Benvenuto; 
+	      M_Benvenuto benvenuto; 
 	      M_GestioneProcuratore GestioneProcuratore;
-	      M_NuovoProcuratore NuovoProcuratore;
-	      M_ProcuratoreInseritoOk ProcuratoreInseritoOK;
+	      M_NuovoProcuratore nuovoProcuratore;
+	      M_ProcuratoreInseritoOk procuratoreInseritoOK;
 	      M_CercaProcuratore CercaProcuratore;
 	      M_DettagliAtleta DettagliAtleta;
+	      M_ErroreDatabase erroreDatabase;
 	      
 	      //Finestre collaborazioni
 	      M_NuovoAtletaCollab NuovoAtletaCollab;
-	      M_NuovaCollaborazione NuovaCollaborazione;
+	      M_NuovaCollaborazione nuovaCollaborazione;
 	      M_ListaCollaborazioni ListaCollaborazioni;
 	      
 	      //Finestre contratti
@@ -66,6 +67,8 @@ public class Controller {
 	      
 	      //Finestre atleti
 	      M_CercaAtletaDettagli CercaAtletaDettagli;
+	      
+	     
 	      
 		  
 	      //Codice del procuratore selezionato dall'utente in precedenza 
@@ -83,14 +86,15 @@ public class Controller {
      
     	 
     	  //Avvio dell'app
-	      Benvenuto = new M_Benvenuto(this);
-	      Benvenuto.setVisible(true);
+	      benvenuto = new M_Benvenuto(this);
+	      benvenuto.setVisible(true);
 	      
 	      //Finestre Procuratori
 	      GestioneProcuratore = new M_GestioneProcuratore(this);
-	      NuovoProcuratore = new M_NuovoProcuratore(this);
-	      ProcuratoreInseritoOK = new M_ProcuratoreInseritoOk(this);
+	      nuovoProcuratore = new M_NuovoProcuratore(this);
+	      procuratoreInseritoOK = new M_ProcuratoreInseritoOk(this);
 	      CercaProcuratore = new M_CercaProcuratore(this);
+	      erroreDatabase = new M_ErroreDatabase(this);
 	    
 	      //Finestre Atleti
 	      CercaAtletaDettagli = new M_CercaAtletaDettagli(this);
@@ -98,6 +102,9 @@ public class Controller {
 	      NuovoAtletaCollab = new M_NuovoAtletaCollab(this);
 	      CercaAtletaDettagli = new M_CercaAtletaDettagli(this);
 	      ListaCollaborazioni = new M_ListaCollaborazioni(this);
+	      
+	      //Finestre Collaborazioni
+	      nuovaCollaborazione = new M_NuovaCollaborazione(this);
 	      
 	      //Finestre Contratti
 	      AggiungiContrattoClub = new M_AggiungiContrattoClub(this);
@@ -125,6 +132,15 @@ public class Controller {
     	 ContrattoSponsorInserito.setVisible(true);
      }
      
+     public void ErroreInserimentoDatabase() {
+    	 erroreDatabase.setVisible(true);
+     }
+     
+     public void ProcuratoreInseritoCorrettamente() {
+    	 procuratoreInseritoOK.setVisible(true);
+    	 nuovoProcuratore.setVisible(false);
+     }
+     
 
      
     
@@ -135,8 +151,8 @@ public class Controller {
      
      public void IniziaInserimentoProcuratore () {
     	 
-    	 Benvenuto.setVisible(false);
-    	 NuovoProcuratore.setVisible(true);
+    	 benvenuto.setVisible(false);
+    	 nuovoProcuratore.setVisible(true);
     	 
      }
      
@@ -144,6 +160,10 @@ public class Controller {
     	 
     	 GestioneProcuratore.setVisible(true);
     	 ListaCollaborazioni.setVisible(false);
+     }
+     
+     public void TornaAllaHome() {
+    	 benvenuto.setVisible(true);
      }
       
      public void InserisciProcuratoreDB (String nome, String cognome, String CF, String Ntel, String Ntel2, String email, String dataN) throws SQLException, ParseException {
@@ -157,7 +177,7 @@ public class Controller {
         ProcuratoriDAOPostgresImpl.InserisciProcuratore(procuratore);
         
         //Se tutto va bene
-        ProcuratoreInseritoOK.setVisible(true);
+      
         
       
      }
@@ -165,7 +185,7 @@ public class Controller {
 
      public void RicercaProcuratori () throws SQLException {
     	 
-    	 Benvenuto.setVisible(false);
+    	 benvenuto.setVisible(false);
     	 List<Procuratori> procuratori = new ArrayList<Procuratori>();
     	 List<String> InfoProcuratori = new ArrayList<String>();
     	 
@@ -322,7 +342,7 @@ public class Controller {
 		AtletiDAOPostgresImpl.inserisciAtleta(atleta, codcollaborazione);
 		
 		//Se tutto va bene
-        NuovaCollaborazione.setVisible(true);
+        nuovaCollaborazione.setVisible(true);
         
      }
      
@@ -351,9 +371,9 @@ public class Controller {
  	 * METODI COLLABORAZIONI
  	 */
      
-     public void iniziaInserimentoCollaborazione() {
-    	 NuovaCollaborazione.setVisible(true);
-     }
+//     public void iniziaInserimentoCollaborazione() {
+//    	 nuovaCollaborazione.setVisible(true);
+//     }
      
      public void prova() throws SQLException {
     	 
@@ -375,7 +395,7 @@ public class Controller {
   		//Gli passo il codice atleta ed il codice procuratore
   		CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione, getCodatleti(), codprocuratori);
   		
-  		NuovaCollaborazione.setVisible(false);
+  		nuovaCollaborazione.setVisible(false);
      }
      
 
@@ -407,11 +427,7 @@ public class Controller {
      public void aggiungiCollaborazione() {
     	 
     	 ListaCollaborazioni.setVisible(false);
-    	 NuovoAtletaCollab.setVisible(true);
-    	 NuovaCollaborazione.setVisible(true);
-    	 
-    	 
-    	 
+    	 NuovoAtletaCollab.setVisible(true);  
      }
      /**
   	 * METODI CONTRATTI

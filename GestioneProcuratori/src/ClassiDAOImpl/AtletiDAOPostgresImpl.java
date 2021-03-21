@@ -28,7 +28,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		
 		getAllAtleti = connection.prepareStatement("SELECT * from atleti");
 		getAtletiByIDCollaborazione = connection.prepareStatement("SELECT * FROM atleti WHERE codcollaborazione = ?");
-		inserisciAtleta = connection.prepareStatement("INSERT INTO atleti VALUES (?, ?, ?, ?, ?, ?, ?)");
+		inserisciAtleta = connection.prepareStatement("INSERT INTO atleti VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		getAtletaByCf = connection.prepareStatement("SELECT * FROM atleti WHERE codicefiscale = ?");
 		getAtletiLiberi = connection.prepareStatement("SELECT * FROM atleti WHERE codcollaborazione = null");
 		

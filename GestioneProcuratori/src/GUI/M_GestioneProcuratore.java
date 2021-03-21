@@ -41,10 +41,11 @@ public class M_GestioneProcuratore extends JFrame {
 	 * Create the frame.
 	 */
 	public M_GestioneProcuratore(Controller c) {
+		setResizable(false);
 		controller  = c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 688, 455);
+		setBounds(100, 100, 688, 391);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(253, 245, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,85 +59,85 @@ public class M_GestioneProcuratore extends JFrame {
 		
 		JLabel Nome_L = new JLabel("Nome:");
 		Nome_L.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		Nome_L.setBounds(10, 71, 143, 25);
+		Nome_L.setBounds(10, 71, 143, 29);
 		contentPane.add(Nome_L);
 		
 		JLabel Cognome_L = new JLabel("Cognome:");
 		Cognome_L.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		Cognome_L.setBounds(10, 107, 143, 25);
+		Cognome_L.setBounds(10, 107, 143, 29);
 		contentPane.add(Cognome_L);
 		
 		JLabel CodiceFiscale_L = new JLabel("Codice Fiscale:");
 		CodiceFiscale_L.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		CodiceFiscale_L.setBounds(10, 143, 143, 25);
+		CodiceFiscale_L.setBounds(10, 143, 143, 29);
 		contentPane.add(CodiceFiscale_L);
 		
 		JLabel NumeroTelefono_L = new JLabel("Numero di telefono:");
 		NumeroTelefono_L.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		NumeroTelefono_L.setBounds(10, 179, 143, 25);
+		NumeroTelefono_L.setBounds(10, 179, 143, 29);
 		contentPane.add(NumeroTelefono_L);
 		
 		JLabel NumeroTelefono2_L = new JLabel("Numero di telefono2:");
 		NumeroTelefono2_L.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		NumeroTelefono2_L.setBounds(10, 215, 143, 25);
+		NumeroTelefono2_L.setBounds(10, 215, 143, 29);
 		contentPane.add(NumeroTelefono2_L);
 		
 		JLabel Email_L = new JLabel("Email:");
 		Email_L.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		Email_L.setBounds(10, 251, 143, 25);
+		Email_L.setBounds(10, 251, 143, 29);
 		contentPane.add(Email_L);
 		
 		JLabel DataN_L = new JLabel("Data di nascita:");
 		DataN_L.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		DataN_L.setBounds(10, 287, 143, 25);
+		DataN_L.setBounds(10, 287, 143, 29);
 		contentPane.add(DataN_L);
 		
 		NumeroTelefono2_TF = new JTextField();
-		NumeroTelefono2_TF.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		NumeroTelefono2_TF.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		NumeroTelefono2_TF.setEditable(false);
-		NumeroTelefono2_TF.setBounds(163, 219, 113, 20);
+		NumeroTelefono2_TF.setBounds(163, 219, 167, 25);
 		contentPane.add(NumeroTelefono2_TF);
 		NumeroTelefono2_TF.setColumns(10);
 		
 		NumeroTelefono_TF = new JTextField();
-		NumeroTelefono_TF.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		NumeroTelefono_TF.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		NumeroTelefono_TF.setEditable(false);
-		NumeroTelefono_TF.setBounds(163, 183, 113, 20);
+		NumeroTelefono_TF.setBounds(163, 183, 167, 25);
 		contentPane.add(NumeroTelefono_TF);
 		NumeroTelefono_TF.setColumns(10);
 		
 		CodiceFiscale_TF = new JTextField();
-		CodiceFiscale_TF.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		CodiceFiscale_TF.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		CodiceFiscale_TF.setEditable(false);
-		CodiceFiscale_TF.setBounds(163, 147, 113, 20);
+		CodiceFiscale_TF.setBounds(163, 147, 167, 25);
 		contentPane.add(CodiceFiscale_TF);
 		CodiceFiscale_TF.setColumns(10);
 		
 		Cognome_TF = new JTextField();
-		Cognome_TF.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		Cognome_TF.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		Cognome_TF.setEditable(false);
-		Cognome_TF.setBounds(163, 111, 113, 20);
+		Cognome_TF.setBounds(163, 111, 167, 25);
 		contentPane.add(Cognome_TF);
 		Cognome_TF.setColumns(10);
 		
 		Nome_TF = new JTextField();
-		Nome_TF.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		Nome_TF.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		Nome_TF.setEditable(false);
-		Nome_TF.setBounds(163, 75, 113, 20);
+		Nome_TF.setBounds(163, 75, 167, 25);
 		contentPane.add(Nome_TF);
 		Nome_TF.setColumns(10);
 		
 		Email_TF = new JTextField();
-		Email_TF.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		Email_TF.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		Email_TF.setEditable(false);
-		Email_TF.setBounds(163, 255, 113, 20);
+		Email_TF.setBounds(163, 255, 167, 25);
 		contentPane.add(Email_TF);
 		Email_TF.setColumns(10);
 		
 		DataN_TF = new JTextField();
-		DataN_TF.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		DataN_TF.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		DataN_TF.setEditable(false);
-		DataN_TF.setBounds(163, 291, 113, 20);
+		DataN_TF.setBounds(163, 291, 167, 25);
 		contentPane.add(DataN_TF);
 		DataN_TF.setColumns(10);
 		
@@ -147,7 +148,7 @@ public class M_GestioneProcuratore extends JFrame {
 				try {
 				controller.ApriListaCollaborazioni();
 				
-				//Se non ï¿½ presente nessuna collaborazione, apre la dialog NessunaCollaborazione
+				//Se non é presente nessuna collaborazione, apre la dialog NessunaCollaborazione
 				//oppure
 				//Apre la finestra ListaCollaborazioni
 				//setVisible(false);
@@ -159,7 +160,7 @@ public class M_GestioneProcuratore extends JFrame {
 		});
 		Collaborazioni_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Collaborazioni_B.setBackground(Color.WHITE);
-		Collaborazioni_B.setBounds(401, 71, 207, 43);
+		Collaborazioni_B.setBounds(438, 71, 207, 43);
 		contentPane.add(Collaborazioni_B);
 		
 		JButton Guadagni_B = new JButton("Lista dei guadagni");
@@ -171,7 +172,7 @@ public class M_GestioneProcuratore extends JFrame {
 		});
 		Guadagni_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Guadagni_B.setBackground(Color.WHITE);
-		Guadagni_B.setBounds(401, 269, 207, 43);
+		Guadagni_B.setBounds(438, 269, 207, 43);
 		contentPane.add(Guadagni_B);
 		
 		JButton Contratti_B = new JButton("Contratti");
@@ -191,7 +192,7 @@ public class M_GestioneProcuratore extends JFrame {
 		});
 		Contratti_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Contratti_B.setBackground(Color.WHITE);
-		Contratti_B.setBounds(401, 125, 207, 43);
+		Contratti_B.setBounds(438, 125, 207, 43);
 		contentPane.add(Contratti_B);
 		
 		JButton Atleti_B = new JButton("Atleti");
@@ -212,7 +213,7 @@ public class M_GestioneProcuratore extends JFrame {
 		
 		Atleti_B.setBackground(Color.WHITE);
 		Atleti_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Atleti_B.setBounds(401, 179, 207, 43);
+		Atleti_B.setBounds(438, 179, 207, 43);
 		contentPane.add(Atleti_B);
 	}
 	

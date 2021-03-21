@@ -13,6 +13,9 @@ import Starter.Controller;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class M_ErroreDatabase extends JDialog {
     
@@ -26,23 +29,35 @@ public class M_ErroreDatabase extends JDialog {
 	 */
 	public M_ErroreDatabase(Controller c) {
 		controller = c;
-		setBounds(100, 100, 336, 134);
+		setBounds(100, 100, 412, 157);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel ErroreDatabase_L = new JLabel("Attenzione, errore database.");
+			JLabel ErroreDatabase_L = new JLabel("Attenzione, inserimento errato.");
+			ErroreDatabase_L.setHorizontalAlignment(SwingConstants.CENTER);
 			ErroreDatabase_L.setFont(new Font("Verdana", Font.PLAIN, 20));
-			ErroreDatabase_L.setBounds(10, 0, 300, 50);
+			ErroreDatabase_L.setBounds(10, 0, 376, 50);
 			contentPanel.add(ErroreDatabase_L);
 		}
 		{
 			JButton Ok_B = new JButton("Ok");
-			Ok_B.setBackground(new Color(0, 0, 0));
-			Ok_B.setBounds(258, 61, 52, 23);
+			Ok_B.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					controller.IniziaInserimentoProcuratore();
+					setVisible(false);
+				}
+			});
+			Ok_B.setBackground(Color.WHITE);
+			Ok_B.setBounds(341, 84, 45, 23);
 			contentPanel.add(Ok_B);
 		}
+		
+		JLabel ErroreDatabase1_L = new JLabel("Controlla i dati e riprova.");
+		ErroreDatabase1_L.setHorizontalAlignment(SwingConstants.CENTER);
+		ErroreDatabase1_L.setFont(new Font("Verdana", Font.PLAIN, 20));
+		ErroreDatabase1_L.setBounds(10, 44, 376, 23);
+		contentPanel.add(ErroreDatabase1_L);
 	}
-
 }
