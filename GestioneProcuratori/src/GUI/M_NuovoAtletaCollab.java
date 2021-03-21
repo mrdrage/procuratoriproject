@@ -33,13 +33,9 @@ public class M_NuovoAtletaCollab extends JFrame {
 	private JTextField SerieClub_TF;
 
 	/**
-	 * Launch the application.
-	 */
-
-
-	/**
 	 * Create the frame.
 	 */
+	
 	public M_NuovoAtletaCollab(Controller c) {
 		
 		controller = c;
@@ -146,23 +142,25 @@ public class M_NuovoAtletaCollab extends JFrame {
 		btnNewButton.setBounds(100, 334, 71, 23);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Avanti");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton Avanti_B = new JButton("Avanti");
+		Avanti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				//Se é giá presente un atleta con i dati inseriti, appare la dialog ErroreAtletaPresente
+				//Se ï¿½ giï¿½ presente un atleta con i dati inseriti, appare la dialog ErroreAtletaPresente
 				//oppure
 				//Carica i dati inseriti nel database
 				try {
+					
 					controller.InserisciAtletaDB(Nome_TF.getText(), Cognome_TF.getText(), Nazione_TF.getText(), 
 							CodiceFiscale_TF.getText(), Sport_TF.getText(),ClubAttuale_TF.getText(), SerieClub_TF.getText());
+					
 				} catch (SQLException e1) {
                      //finestre di errore
 					e1.printStackTrace();
 				}
 				
-				//svuoto i campi dopo che é stato premuto avanti
+				//svuoto i campi dopo che ï¿½ stato premuto avanti
 				Nome_TF.setText("");
 				Cognome_TF.setText("");
 				CodiceFiscale_TF.setText("");
@@ -171,13 +169,14 @@ public class M_NuovoAtletaCollab extends JFrame {
 				SerieClub_TF.setText("");
 				
 				
-				//Dopodiché apre la finestra NuovaCollaborazione, caricando prima i dati dal DB di Atleti per popolare la combobox in NuovaCollaborazione
-				//setVisible(false);
+				//Dopodichï¿½ apre la finestra NuovaCollaborazione, caricando prima i dati dal DB di Atleti per popolare la combobox in NuovaCollaborazione
+				setVisible(false);
 			}
 		});
-		btnNewButton_1.setBackground(new Color(0, 0, 0));
-		btnNewButton_1.setBounds(186, 334, 71, 23);
-		contentPane.add(btnNewButton_1);
+		
+		Avanti_B.setBackground(new Color(0, 0, 0));
+		Avanti_B.setBounds(186, 334, 71, 23);
+		contentPane.add(Avanti_B);
 	}
 
 }

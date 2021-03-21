@@ -25,8 +25,7 @@ public class Collaborazione {
 
 
 	public Collaborazione() {
-		// TODO Auto-generated constructor stub
-	}
+			}
 
 
 	public Date getDataFine() {

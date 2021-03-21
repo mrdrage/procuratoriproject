@@ -26,8 +26,8 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	private PreparedStatement getMaxId;
 	private PreparedStatement getMesiCollaborazione;
 
-	public CollaborazioneDAOPostgresImpl(Connection connection) throws SQLException
-	{
+	public CollaborazioneDAOPostgresImpl(Connection connection) throws SQLException{
+		
 		this.connection = connection;
 
 		getMaxId = connection.prepareStatement("SELECT MAX(codcollaborazione) FROM collaborazione");
@@ -42,6 +42,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	}
 	
 	private int getNextCod () throws SQLException {
+		
 		int codCollab = 0;
 		ResultSet rs = getMaxId.executeQuery();
 		
@@ -56,6 +57,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 
 	
 	public List<Collaborazione> getAllCollaborazioni() throws SQLException {
+		
 		//Svolgo la Query ottenendo tutte le collaboraziioni presenti restituendole in una List
 		ResultSet rs = getAllCollaborazioni.executeQuery();
 		List <Collaborazione> CollabList = new ArrayList<Collaborazione>();
@@ -70,6 +72,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 
 	
 	public List<Integer> getIDCollaborazioniByProcuratore(int CodProcuratori) throws SQLException{
+		
 		//Passo il codice procuratore all'interrogazione
 		getIDCollaborazioniByProcuratore.setInt(1, CodProcuratori);
 		
@@ -86,6 +89,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	}
 	
 	public List<Collaborazione> getAllCollaborazioniByProcuratore(int CodProcuratori) throws SQLException {
+		
 		//Passo il codice procuratore all'interrogazione
 		getAllCollaborazioniByProcuratore.setInt(1, CodProcuratori);
 		
@@ -106,6 +110,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	
 
 	public void InserisciCollaborazione(Collaborazione collaborazione, int CodProcuratori, int CodAtleti) throws SQLException {
+		
 		int CodC = getNextCod();
 
 		//inserisco anche i codici relativi ad atleta e procuratore, poich� richiesti dal DB
@@ -125,12 +130,15 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	}
 	
 	public  long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+		
 	    long diffInMillies = date2.getTime() - date1.getTime();
 	    return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
 	}
 	
 	public long getMesiCollaborazione(int codatleti) throws SQLException {
+		
 		getMesiCollaborazione.setInt(1, codatleti);
+		
 		ResultSet rs = getMesiCollaborazione.executeQuery();
 		Date datainizio = null;
 		Date datafine = null;
