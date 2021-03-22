@@ -31,6 +31,7 @@ public class M_CercaAtletaDettagli extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public M_CercaAtletaDettagli(Controller c) {
 		controller = c;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

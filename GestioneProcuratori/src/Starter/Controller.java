@@ -308,7 +308,7 @@ public class Controller {
          
 
          //Prende gli atleti dalle collaborazioni del procuratore scelto in precedenza   
-         Iterator<Integer> iCollab= listacollaborazioni.iterator();
+         Iterator<Integer> iCollab = listacollaborazioni.iterator();
              while(iCollab.hasNext()) {
     		 atleti.add(AtletiDAOPostgresImpl.getAtletiByIDCollaborazione(iCollab.next()));
     		 
@@ -347,13 +347,15 @@ public class Controller {
      }
      
      public void VisualizzaInfoAtleta(String InfoAtleta) throws SQLException {
+    	 
     	 CercaAtletaDettagli.setVisible(false);
     	 
     	 Atleti atleta = new Atleti();
     	 String CfAtleta = InfoAtleta;
     	 //Split della stringa
     	 String[] cfs = CfAtleta.split(" ");
-    	 String CfAtletaSplit = cfs[2] ;
+    	 String CfAtletaSplit = cfs[2];
+    	 
     	 //ottengo l'atleta usando il codice fiscale preso dalla stringa della combobox
     	 atleta = AtletiDAOPostgresImpl.getAtletaByCf(CfAtletaSplit);
     	 
@@ -424,11 +426,39 @@ public class Controller {
      }
      
      
-     public void aggiungiCollaborazione() {
+     public void aggiungiAtletaCollab() throws SQLException {
     	 
     	 ListaCollaborazioni.setVisible(false);
+    	 
+    	 //visualizzo la finestra per inserire un atleta
     	 NuovoAtletaCollab.setVisible(true);  
+    	 
+    	 
      }
+     
+     public void aggiungiCollaborazione() throws SQLException {
+    	 
+    	 //dichiarazioni
+    	 List<Atleti> listaAtleti;
+    	 List<String> InfoAtleti = new ArrayList<String>();
+    	 
+    	 //ottengo gli atleti senza collaborazioni
+    	 listaAtleti = AtletiDAOPostgresImpl.getAtletiLiberi();
+    	 
+    	 //ricavo le info dagli atleti
+    	 Iterator<Atleti> iA = listaAtleti.iterator();
+    	 while (iA.hasNext()) {
+    		 Atleti a = iA.next();
+    		 InfoAtleti.add(a.getNome()+" "+ a.getCognome()+" "+ a.getCodiceFiscale());
+    	 }
+    	 
+    	 //passo le info alla combobox
+    	 nuovaCollaborazione.setAtletiLiberiComboBox(InfoAtleti);
+    	 
+    	 //visualizzo la finestra per aggiungere la collaborazione
+    	 nuovaCollaborazione.setVisible(true);
+     }
+     
      /**
   	 * METODI CONTRATTI
   	 */   

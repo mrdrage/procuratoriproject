@@ -17,6 +17,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -33,6 +34,7 @@ public class M_ListaCollaborazioni extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public M_ListaCollaborazioni(Controller c) {
 		controller = c;
 		
@@ -57,7 +59,14 @@ public class M_ListaCollaborazioni extends JFrame {
 		Aggiungi_B.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		Aggiungi_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.aggiungiCollaborazione();
+				
+				try {
+					controller.aggiungiAtletaCollab();
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
  				
 			}
 		});
@@ -75,6 +84,7 @@ public class M_ListaCollaborazioni extends JFrame {
 				
 			}
 		});
+		
 		Indietro_B.setBackground(Color.WHITE);
 		Indietro_B.setBounds(514, 401, 72, 23);
 		contentPane.add(Indietro_B);

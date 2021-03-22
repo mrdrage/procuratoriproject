@@ -163,7 +163,7 @@ public class M_NuovoAtletaCollab extends JFrame {
 					e1.printStackTrace();
 				}
 				
-				//svuoto i campi dopo che é stato premuto avanti
+				//svuoto i campi dopo che ï¿½ stato premuto avanti
 				Nome_TF.setText("");
 				Cognome_TF.setText("");
 				CodiceFiscale_TF.setText("");
@@ -173,7 +173,13 @@ public class M_NuovoAtletaCollab extends JFrame {
 				
 				
 				//Dopodichï¿½ apre la finestra NuovaCollaborazione, caricando prima i dati dal DB di Atleti per popolare la combobox in NuovaCollaborazione
-				setVisible(false);
+				try {
+					controller.aggiungiCollaborazione();
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		

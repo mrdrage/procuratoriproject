@@ -20,6 +20,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JTextPane;
@@ -34,11 +36,12 @@ public class M_NuovaCollaborazione extends JFrame {
 	private JTextField DataInizio_TF;
 	private JTextField DataFine_TF;
 	private JTextField StipendioMensile_TF;
-
+	private JComboBox<String> Atleta_CB;
 	
 	/**
 	 * Create the frame.
 	 */
+	
 	public M_NuovaCollaborazione(Controller c) {
 		
 		controller  = c;
@@ -138,7 +141,7 @@ public class M_NuovaCollaborazione extends JFrame {
 		contentPane.add(DataFine_TF);
 		DataFine_TF.setColumns(10);
 		
-		JComboBox Atleta_CB = new JComboBox();
+		Atleta_CB = new JComboBox();
 		Atleta_CB.setBounds(227, 65, 108, 18);
 		contentPane.add(Atleta_CB);
 		
@@ -147,5 +150,13 @@ public class M_NuovaCollaborazione extends JFrame {
 		StipendioMensile_TF.setBounds(227, 151, 86, 20);
 		contentPane.add(StipendioMensile_TF);
 		StipendioMensile_TF.setColumns(10);
+	}
+	
+	public void setAtletiLiberiComboBox (List<String> atleti) {
+		Iterator<String> i = atleti.iterator();
+		
+		while (i.hasNext()) {
+			Atleta_CB.addItem(i.next()); 
+		}
 	}
 }
