@@ -108,7 +108,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		inserisciAtleta.setString(7, atleta.getSerieClub());
 		inserisciAtleta.setInt(8, CodAtleta);
 		
-		
+		inserisciAtleta.executeUpdate();
 	}
 
 	

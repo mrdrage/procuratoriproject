@@ -279,6 +279,7 @@ public class Controller {
 	  return GuadagnoFinaleSponsor;
   }
   
+  
   public void VisualizzaIntroitiProcuratore(String InfoAtleta) throws SQLException {
 	  double GuadagnoCollaborazione = 0;
 	  double GuadagnoSponsor = 0;
@@ -294,7 +295,7 @@ public class Controller {
  	 
  	setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));
  	
-// 	ProcuratoriDAOPostgresImpl.getProcuratoriByID(getCodprocuratori());
+
  	GuadagnoCollaborazione = CalcolaGuadagniCollaborazioneProcuratore(getCodprocuratori());
  	GuadagnoSponsor = CalcolaGuadagniSponsorProcuratore(getCodprocuratori());
  	Totale = GuadagnoCollaborazione + GuadagnoSponsor;
@@ -306,16 +307,19 @@ public class Controller {
  	
  	visualizzaIntroitiProcuratore.setVisible(true);
  	
-	  
-	  //Ti prendi il cf dell'atleta
-	  //Ti prendi il codatleti dal cf
-	  //Settare il cod atleta
-	  
-	  
   }
   
   
-  
+  public void CalcolaListaIntroitiProcuratore() {
+	  
+	  //Prendiamo una lista di collaborazioni in base al codprocuratore
+	  // Dalla lista di collaborazioni, ci ricaviamo i codatleti singolarmente
+	  // Per ogni codatleta, ci calcoliamo guadagni collaborazione, sponsor e totale del procuratore
+	  // Aggiungiamo i risultati ad una lista
+	  // Alla fine otteniamo una lista di atleti con i relativi guadagni del procuratore e la passiamo alla jlist
+	  
+
+  }
   
      		 
      
