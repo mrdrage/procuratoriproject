@@ -404,6 +404,8 @@ public class Controller {
      public void TornaAllaGestioneProcuratore() {
     	 
     	 DettagliAtleta.setVisible(false);
+    	 //ripulisco combobox
+    	 CercaAtletaDettagli.clearAtletiComboBox();
     	 
     	 GestioneProcuratore.setVisible(true);
      }
@@ -525,6 +527,7 @@ public class Controller {
     	 
      }
     
+     
      /**
  	 * METODI COLLABORAZIONI
  	 */
@@ -532,6 +535,23 @@ public class Controller {
 //     public void iniziaInserimentoCollaborazione() {
 //    	 nuovaCollaborazione.setVisible(true);
 //     }
+     
+     public void TornaAlistaCollaborazioni() {
+    
+    	 nuovaCollaborazione.setVisible(false);
+    	 //pulisco la combobox
+    	 nuovaCollaborazione.clearAtletiLiberiComboBox();
+    	 
+    	 ListaCollaborazioni.setVisible(true);
+     }
+     
+     public void TornaAListaCollaborazioni() {
+    	 
+    	 NuovoAtletaCollab.setVisible(false);
+    	 
+    	 ListaCollaborazioni.setVisible(true);
+    	 
+     }
      
      public void tornaAllaListaCollaborazioni () {
     	 ListaCollaborazioni.setVisible(true);

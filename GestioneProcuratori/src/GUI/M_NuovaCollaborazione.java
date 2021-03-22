@@ -82,7 +82,8 @@ public class M_NuovaCollaborazione extends JFrame {
 		JButton Indietro_B = new JButton("Indietro");
 		Indietro_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Torna alla finestra GestioneProcuratore
+
+				controller.TornaAlistaCollaborazioni();
 				//setVisible(false);
 			}
 		});
@@ -161,5 +162,10 @@ public class M_NuovaCollaborazione extends JFrame {
 		while (i.hasNext()) {
 			Atleta_CB.addItem(i.next()); 
 		}
+	}
+	
+	public void clearAtletiLiberiComboBox() {
+		
+		Atleta_CB.removeAllItems();
 	}
 }

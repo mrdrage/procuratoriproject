@@ -137,8 +137,9 @@ public class M_NuovoAtletaCollab extends JFrame {
 		JButton btnNewButton = new JButton("Indietro");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Torna alla finestra GestioneProcuratore
-				//setVisible(false);
+				
+			controller.TornaAListaCollaborazioni();
+				
 			}
 		});
 		btnNewButton.setBackground(new Color(0, 0, 0));

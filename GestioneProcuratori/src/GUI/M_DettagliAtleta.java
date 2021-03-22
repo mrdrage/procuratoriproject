@@ -39,6 +39,7 @@ public class M_DettagliAtleta extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public M_DettagliAtleta(Controller c) {
 		
 		controller = c;
