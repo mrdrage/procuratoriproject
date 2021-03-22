@@ -148,7 +148,7 @@ public class M_GestioneProcuratore extends JFrame {
 				try {
 				controller.ApriListaCollaborazioni();
 				
-				//Se non é presente nessuna collaborazione, apre la dialog NessunaCollaborazione
+				//Se non ï¿½ presente nessuna collaborazione, apre la dialog NessunaCollaborazione
 				//oppure
 				//Apre la finestra ListaCollaborazioni
 				//setVisible(false);
@@ -158,6 +158,7 @@ public class M_GestioneProcuratore extends JFrame {
 				}
 			}
 		});
+		
 		Collaborazioni_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Collaborazioni_B.setBackground(Color.WHITE);
 		Collaborazioni_B.setBounds(438, 71, 207, 43);

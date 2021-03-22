@@ -101,6 +101,11 @@ public class M_NuovaCollaborazione extends JFrame {
 				try {
 					
 					controller.InserisciCollaborazione(DataInizio_TF.getText(), DataFine_TF.getText(), stipendiomensile, InfoAtleta);
+					//svuoto i campi
+				
+					DataInizio_TF.setText("");
+					DataFine_TF.setText("");
+					StipendioMensile_TF.setText("");
 					
 				} catch (SQLException | ParseException e1) {
                      //finestre di errore
@@ -111,10 +116,7 @@ public class M_NuovaCollaborazione extends JFrame {
 				
 				
 				
-				//svuoto i campi
-				DataInizio_TF.setText("");
-				DataFine_TF.setText("");
-				StipendioMensile_TF.setText("");
+				
 				
 				
 				controller.tornaAllaListaCollaborazioni();

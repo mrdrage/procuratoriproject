@@ -119,7 +119,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	public void InserisciCollaborazione(Collaborazione collaborazione, int CodProcuratori, int CodAtleti) throws SQLException {
 		
 		int CodC = getNextCod();
-		CodCollaborazione = CodC;
+		
 
 		//inserisco anche i codici relativi ad atleta e procuratore, poich� richiesti dal DB
 		java.sql.Date sqlDataInizio = new java.sql.Date(collaborazione.getDataInizio().getTime());
@@ -133,8 +133,11 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		InserisciCollaborazione.setInt(5, CodAtleti);
         InserisciCollaborazione.setInt(6, CodProcuratori);
 		
+       
+        CodCollaborazione = CodC;
         
-        
+         System.out.println (CodProcuratori + " "+ CodCollaborazione + " "+CodC);
+         
         InserisciCollaborazione.executeUpdate();
  
         

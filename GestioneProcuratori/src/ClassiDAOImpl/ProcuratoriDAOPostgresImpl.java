@@ -33,7 +33,9 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	
 	
 	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException{
+		
 		this.connection = connection;
+		
 		getMaxId = connection.prepareStatement("SELECT MAX(codprocuratori) FROM procuratori");
 
 		inserisciProcuratorePS = connection.prepareStatement("INSERT INTO procuratori(nome,cognome,codicefiscale,numerotelefonico,"
@@ -119,11 +121,13 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
    }  
    
    public Procuratori getProcuratoreByCf (String CodiceFiscale) throws SQLException {
+	   
 	  
+	   int codprocuratori =0;
 	   Procuratori procuratore = new Procuratori();
 	   getProcuratoreByCf.setString(1, CodiceFiscale);
 	   ResultSet rs = getProcuratoreByCf.executeQuery();
-	   int codprocuratori =0;
+	   
 	   
 	   //Essendo il cf unico basta utilizzare solo una volta il next(), che punterà quindi all'unica tupla presente
 	   while(rs.next()) {
@@ -137,6 +141,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
    }
    
    public Procuratori getProcuratoriByID (int codprocuratori) throws SQLException{
+	   
 	   Procuratori procuratore = new Procuratori();
 	   getProcuratoreByID.setInt(1, codprocuratori);
 	   ResultSet rs = getProcuratoreByID.executeQuery();
