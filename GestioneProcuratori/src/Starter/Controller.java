@@ -66,6 +66,7 @@ public class Controller {
 	      M_SelezionaAtletaContratto SelezionaAtletaContratto;
 	      M_VisualizzaContrattiAtleta VisualizzaContrattiAtleta;
 	      M_ErroreDataClub erroreDataClub;
+	      M_ListaIntroitiProcuratore ListaIntroitiProcuratore;
 	      
 	      //Finestre atleti
 	      M_CercaAtletaDettagli CercaAtletaDettagli;
@@ -118,15 +119,14 @@ public class Controller {
 	      SelezionaAtletaContratto = new M_SelezionaAtletaContratto(this);
 	      VisualizzaContrattiAtleta = new M_VisualizzaContrattiAtleta(this);
 	      erroreDataClub = new M_ErroreDataClub(this);
+	      ListaIntroitiProcuratore = new M_ListaIntroitiProcuratore(this);
      }
      
 	 /**
   	 * JDIALOGS 
   	 */
 	
-     public void IniziaInserimentoContrattoClub() {
-    	 AggiungiContrattoClub.setVisible(true);
-     }
+    
      
      public void ContrattoClubInseritoCorrettamente() {
     	 contrattoClubInserito.setVisible(true);
@@ -259,7 +259,12 @@ public class Controller {
 
      }
      
-  public double CalcolaGuadagniCollaborazioneProcuratore(int codprocuratori) throws SQLException {
+  
+     /**
+  	 * METODI GUADAGNI
+  	 */
+
+     public double CalcolaGuadagniCollaborazioneProcuratore(int codprocuratori) throws SQLException {
     	
     	// Prendo lo stipendio mensile
     	 double StipendioMensile = ProcuratoriDAOPostgresImpl.getStipendioMensileProcuratore(getCodprocuratori());
@@ -273,35 +278,20 @@ public class Controller {
      }
   
  
-  public double CalcolaGuadagniCollaborazioneProcuratore(int codprocuratori, int codAtleta) throws SQLException {
-  	
-  	// Prendo lo stipendio mensile
-  	 double StipendioMensile = ProcuratoriDAOPostgresImpl.getStipendioMensileProcuratore(getCodprocuratori());
-  	 // Prendo i mesi della collaborazione
-  	 long mesiCollab = CollaborazioneDAOPostgresImpl.getMesiCollaborazione(codAtleta);
-  	 // Calcolo il guadagno finale della collaborazione
-  	 double GuadagnoFinale = StipendioMensile * mesiCollab;
-  	 
-  	 return GuadagnoFinale;
-  	
-   }
 
-  public double CalcolaGuadagniSponsorProcuratore(int codprocuratori) throws SQLException {
+
+  
+
+     public double CalcolaGuadagniSponsorProcuratore(int codprocuratori) throws SQLException {
+	   
+    	 //Prendo i guadagni sponsor  
+    	 double GuadagnoFinaleSponsor = ProcuratoriDAOPostgresImpl.getGuadagnoSponsorProcuratore(getCodatleti());
 	  
-	  //Prendo i guadagni sponsor
-	  double GuadagnoFinaleSponsor = ProcuratoriDAOPostgresImpl.getGuadagnoSponsorProcuratore(getCodatleti());
-	  
-	  return GuadagnoFinaleSponsor;
+    	 return GuadagnoFinaleSponsor;
   }
   
 
-  public double CalcolaGuadagniSponsorProcuratore(int codprocuratori, int codAtleta) throws SQLException {
-	  
-	  //Prendo i guadagni sponsor
-	  double GuadagnoFinaleSponsor = ProcuratoriDAOPostgresImpl.getGuadagnoSponsorProcuratore(codAtleta);
-	  
-	  return GuadagnoFinaleSponsor;
-  }
+ 
   
   
   public void VisualizzaIntroitiProcuratore(String InfoAtleta) throws SQLException {
@@ -314,38 +304,40 @@ public class Controller {
 	  
 	  String CfAtleta = InfoAtleta;
  	 
- 	 //Split della stringa
- 	 String[] cfs = CfAtleta.split(" ");
- 	 String CfAtletaSplit = cfs[2] ;
+ 	  //Split della stringa
+ 	  String[] cfs = CfAtleta.split(" ");
+ 	  String CfAtletaSplit = cfs[2] ;
  	 
  	
- 	 setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));
+ 	  setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));
  	
 
- 	GuadagnoCollaborazione = CalcolaGuadagniCollaborazioneProcuratore(getCodprocuratori());
- 	GuadagnoSponsor = CalcolaGuadagniSponsorProcuratore(getCodprocuratori());
- 	Totale = GuadagnoCollaborazione + GuadagnoSponsor;
+ 	  GuadagnoCollaborazione = CalcolaGuadagniCollaborazioneProcuratore(getCodprocuratori());
+ 	  GuadagnoSponsor = CalcolaGuadagniSponsorProcuratore(getCodprocuratori());
+ 	  Totale = GuadagnoCollaborazione + GuadagnoSponsor;
  	
  	
  	
- 	visualizzaIntroitiProcuratore.inserisciCampi(ProcuratoriDAOPostgresImpl.getProcuratoriByID(getCodprocuratori()), GuadagnoCollaborazione, GuadagnoSponsor, Totale);
+ 	  visualizzaIntroitiProcuratore.inserisciCampi(ProcuratoriDAOPostgresImpl.getProcuratoriByID(getCodprocuratori()), GuadagnoCollaborazione, GuadagnoSponsor, Totale);
+ 	 
  	
- 	
- 	visualizzaIntroitiProcuratore.setVisible(true);
+ 	  visualizzaIntroitiProcuratore.setVisible(true);
  	
   }
   
   
   public void CalcolaListaIntroitiProcuratore() throws SQLException {
 	  
+	  GestioneProcuratore.setVisible(false);
+	  
 	  double GuadagnoCollaborazione = 0;
 	  double GuadagnoSponsor = 0;
 	  double Totale = 0;
 	  Atleti atleta = new Atleti();
 	  
-	  int CodAtleta = 0;
-	  //List<double> listaCodici = 
+	  List<String> listaResoconto = new ArrayList<String>(); 
 	  List<Integer> listaCollaborazioni;
+	  
 	  //Prendiamo una lista di collaborazioni in base al codprocuratore
 	  listaCollaborazioni = CollaborazioneDAOPostgresImpl.getIDCollaborazioniByProcuratore(getCodprocuratori());
 	  
@@ -357,25 +349,27 @@ public class Controller {
 		
 		  // Per ogni codatleta, ci calcoliamo guadagni collaborazione, sponsor e totale del procuratore
 		  GuadagnoCollaborazione = CalcolaGuadagniCollaborazioneProcuratore(getCodprocuratori());
-		  GuadagnoSponsor = CalcolaGuadagniSponsorProcuratore(getCodprocuratori());
+     	  GuadagnoSponsor = CalcolaGuadagniSponsorProcuratore(getCodprocuratori());
 		  Totale = GuadagnoCollaborazione + GuadagnoSponsor;
 		  
 		  
 		  atleta = AtletiDAOPostgresImpl.getAtletiByID(getCodatleti());
+		  // Aggiungiamo i risultati ad una lista
+	     // Alla fine otteniamo una lista di atleti con i relativi guadagni del procuratore e la passiamo al la jlist
+		  
+		  listaResoconto.add(atleta.getNome()+" "+atleta.getCognome()+" "+ GuadagnoCollaborazione +" "+ GuadagnoSponsor +" "+ Totale);
 		  
 	  }
-	  
-	  
-	  
+	
 	  
 	 
-	  // Aggiungiamo i risultati ad una lista
-	  // Alla fine otteniamo una lista di atleti con i relativi guadagni del procuratore e la passiamo alla jlist
+	  ListaIntroitiProcuratore.setListaIntroiti(listaResoconto);
 	  
+	  ListaIntroitiProcuratore.setVisible(true);
 
   }
   
-     		 
+
      
      
      
@@ -619,6 +613,10 @@ public class Controller {
   	 */   
      
    
+     public void IniziaInserimentoContrattoClub() {
+    	 AggiungiContrattoClub.setVisible(true);
+     }
+     
      public void InserisciContrattoClubDB(String datainizio, String datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolicontrattuali ) throws ParseException, SQLException {
     	 
     	 SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
@@ -758,6 +756,8 @@ public class Controller {
     	 VisualizzaContrattiAtleta.setVisible(true);
      }
      
+     
+    
      /**
    	 * GETTER & SETTER
    	 */   

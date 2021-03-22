@@ -15,18 +15,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 
 public class M_VisualizzaIntroitiProcuratore extends JFrame {
-	Controller controller = null;
+	
+	Controller controller;
 
 	private JPanel contentPane;
 	private JTextField Procuratore_TF;
 	private JTextField GuadagnoCollab_TF;
 	private JTextField GuadagnoSponsor_TF;
 	private JTextField Totale_TF;
-
-	/**
-	 * Launch the application.
-	 */
-	
 
 	/**
 	 * Create the frame.

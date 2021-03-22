@@ -167,10 +167,16 @@ public class M_GestioneProcuratore extends JFrame {
 		JButton Guadagni_B = new JButton("Lista dei guadagni");
 		Guadagni_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Si apre la finestra ControllaGuadagni
-				//setVisible(false);
+				
+				try {
+					controller.CalcolaListaIntroitiProcuratore();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
+		
 		Guadagni_B.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Guadagni_B.setBackground(Color.WHITE);
 		Guadagni_B.setBounds(438, 269, 207, 43);

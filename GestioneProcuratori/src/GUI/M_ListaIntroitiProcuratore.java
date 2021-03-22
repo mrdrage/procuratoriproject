@@ -11,10 +11,13 @@ import Starter.Controller;
 
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.util.Iterator;
+import java.util.List;
 import java.awt.Color;
 
 public class M_ListaIntroitiProcuratore extends JFrame {
@@ -22,12 +25,16 @@ public class M_ListaIntroitiProcuratore extends JFrame {
 	Controller controller;
 
 	private JPanel contentPane;
+	private JList<String> ListaGuadagni_list;
+	private DefaultListModel<String> listmodelIntroiti = new DefaultListModel<String>();
 
 	/**
 	 * Create the frame.
 	 */
 	public M_ListaIntroitiProcuratore(Controller c) {
+		
 		controller = c;
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 799, 305);
@@ -41,7 +48,7 @@ public class M_ListaIntroitiProcuratore extends JFrame {
 		scrollPane.setBounds(10, 53, 763, 175);
 		contentPane.add(scrollPane);
 		
-		JList ListaGuadagni_list = new JList();
+		ListaGuadagni_list = new JList<String>(listmodelIntroiti);
 		scrollPane.setViewportView(ListaGuadagni_list);
 		
 		JButton Indietro_B = new JButton("Indietro");
@@ -53,5 +60,22 @@ public class M_ListaIntroitiProcuratore extends JFrame {
 		ListaGuadagni_L.setHorizontalAlignment(SwingConstants.CENTER);
 		ListaGuadagni_L.setBounds(10, 11, 763, 31);
 		contentPane.add(ListaGuadagni_L);
+	}
+	
+	public void setListaIntroiti(List <String> introiti) {
+		
+		int indice = 0;
+				
+		Iterator<String> i = introiti.iterator();
+		while(i.hasNext()) {
+			listmodelIntroiti.add(indice, i.next());
+					
+		indice++;	
+		}	 
+		 
+	}
+	
+	public void clearListIntroiti () {
+		listmodelIntroiti.removeAllElements();
 	}
 }
