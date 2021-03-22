@@ -145,14 +145,14 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 				
 				try {
 					controller.InserisciContrattoSponsorDB(DataInizio_TF.getText(), DataFine_TF.getText(), guadagno, percentualeprocuratore, TipologiaSponsor_TF.getText(), MarcaSponsor_TF.getText(), VincoliContrattuali_TF.getText());
+					controller.ContrattoSponsorInseritoCorrettamente();
 				} catch (ParseException | SQLException e1) {
 					// finestre di errore
-					//Se cï¿½ un errore nella data, appare la dialog ErroreDataSponsor
+					//Se cé un errore nella data, appare la dialog ErroreDataSponsor
 					e1.printStackTrace();
 				}
 				
-				//Appare la dialog ContrattoSponsorInserito
-				c.ContrattoSponsorInseritoCorrettamente();
+				
 				
 			}
 		});

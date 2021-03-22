@@ -29,6 +29,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	private PreparedStatement isNewId;
 	private PreparedStatement getStipendioMensileProcuratore;
 	private PreparedStatement getGuadagnoSponsorProcuratore;
+	private PreparedStatement getProcuratoreByID;
 	
 	
 	public ProcuratoriDAOPostgresImpl(Connection connection) throws SQLException{
@@ -44,6 +45,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 		getIDProcuratoreByCf = connection.prepareStatement("SELECT codprocuratori FROM procuratori WHERE codicefiscale = ?");
 		getStipendioMensileProcuratore = connection.prepareStatement("SELECT stipendiomensileprocuratore FROM collaborazione where codprocuratori = ?");
 		getGuadagnoSponsorProcuratore = connection.prepareStatement("SELECT guadagnoatleta, percentualeprocuratore FROM contrattosponsor where codatleti = ?");
+		getProcuratoreByID = connection.prepareStatement("SELECT * from procuratori WHERE codprocuratori = ?");
 		
 		
 	//	isNewId = connection.prepareStatement("SELECT MAX(codprocuratori)  FROM procuratori WHERE ? NOT IN (SELECT codprocuratori FROM procuratori) ");
@@ -132,6 +134,20 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	   }
 	   
 	   return procuratore;
+   }
+   
+   public Procuratori getProcuratoriByID (int codprocuratori) throws SQLException{
+	   Procuratori procuratore = new Procuratori();
+	   getProcuratoreByID.setInt(1, codprocuratori);
+	   ResultSet rs = getProcuratoreByID.executeQuery();
+	   
+	   while(rs.next()) {
+		   Procuratori p = new Procuratori(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7));
+		   procuratore = p;
+	   }
+	   
+	   return procuratore;
+	   
    }
    
    public int getIDProcuratoreByCf (String CodiceFiscale) throws SQLException {

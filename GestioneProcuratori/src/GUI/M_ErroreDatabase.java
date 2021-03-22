@@ -50,7 +50,7 @@ public class M_ErroreDatabase extends JDialog {
 				}
 			});
 			Ok_B.setBackground(Color.WHITE);
-			Ok_B.setBounds(341, 84, 45, 23);
+			Ok_B.setBounds(332, 84, 54, 23);
 			contentPanel.add(Ok_B);
 		}
 		

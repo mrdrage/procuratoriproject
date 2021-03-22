@@ -49,11 +49,12 @@ public class M_ContrattoSponsorInserito extends JDialog {
 			JButton Ok_B = new JButton("Ok");
 			Ok_B.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					controller.TornaASelezionaAtletaContratto();
 					setVisible(false);
 				}
 			});
-			Ok_B.setBackground(new Color(0, 0, 0));
-			Ok_B.setBounds(467, 80, 45, 23);
+			Ok_B.setBackground(Color.WHITE);
+			Ok_B.setBounds(458, 80, 54, 23);
 			contentPanel.add(Ok_B);
 		}
 	}

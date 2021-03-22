@@ -50,6 +50,7 @@ public class Controller {
 	      M_CercaProcuratore CercaProcuratore;
 	      M_DettagliAtleta DettagliAtleta;
 	      M_ErroreDatabase erroreDatabase;
+	      M_VisualizzaIntroitiProcuratore visualizzaIntroitiProcuratore;
 	      
 	      //Finestre collaborazioni
 	      M_NuovoAtletaCollab NuovoAtletaCollab;
@@ -60,10 +61,11 @@ public class Controller {
 	      M_AggiungiContrattoClub AggiungiContrattoClub;
 	      M_AggiungiContrattoSponsor AggiungiContrattoSponsor;
 	      M_ContrattoClubEsistente ContrattoClubEsistente;
-	      M_ContrattoClubInserito ContrattoClubInserito;
+	      M_ContrattoClubInserito contrattoClubInserito;
 	      M_ContrattoSponsorInserito ContrattoSponsorInserito;
 	      M_SelezionaAtletaContratto SelezionaAtletaContratto;
 	      M_VisualizzaContrattiAtleta VisualizzaContrattiAtleta;
+	      M_ErroreDataClub erroreDataClub;
 	      
 	      //Finestre atleti
 	      M_CercaAtletaDettagli CercaAtletaDettagli;
@@ -95,6 +97,7 @@ public class Controller {
 	      procuratoreInseritoOK = new M_ProcuratoreInseritoOk(this);
 	      CercaProcuratore = new M_CercaProcuratore(this);
 	      erroreDatabase = new M_ErroreDatabase(this);
+	      visualizzaIntroitiProcuratore = new M_VisualizzaIntroitiProcuratore(this);
 	    
 	      //Finestre Atleti
 	      CercaAtletaDettagli = new M_CercaAtletaDettagli(this);
@@ -110,10 +113,11 @@ public class Controller {
 	      AggiungiContrattoClub = new M_AggiungiContrattoClub(this);
 	      AggiungiContrattoSponsor = new M_AggiungiContrattoSponsor(this);
 	      ContrattoClubEsistente = new M_ContrattoClubEsistente(this);
-	      ContrattoClubInserito = new M_ContrattoClubInserito(this);
+	      contrattoClubInserito = new M_ContrattoClubInserito(this);
 	      ContrattoSponsorInserito = new M_ContrattoSponsorInserito(this);
 	      SelezionaAtletaContratto = new M_SelezionaAtletaContratto(this);
 	      VisualizzaContrattiAtleta = new M_VisualizzaContrattiAtleta(this);
+	      erroreDataClub = new M_ErroreDataClub(this);
      }
      
 	 /**
@@ -125,7 +129,7 @@ public class Controller {
      }
      
      public void ContrattoClubInseritoCorrettamente() {
-    	 ContrattoClubInserito.setVisible(true);
+    	 contrattoClubInserito.setVisible(true);
      }
      
      public void ContrattoSponsorInseritoCorrettamente() {
@@ -141,7 +145,10 @@ public class Controller {
     	 nuovoProcuratore.setVisible(false);
      }
      
-
+     public void ErroreInserimentoDataContratto() {
+    	 erroreDataClub.setVisible(true);
+     }
+     
      
     
      
@@ -272,10 +279,33 @@ public class Controller {
 	  return GuadagnoFinaleSponsor;
   }
   
-  public void VisualizzaIntroitiProcuratore(String InfoAtleta) {
-	  
+  public void VisualizzaIntroitiProcuratore(String InfoAtleta) throws SQLException {
+	  double GuadagnoCollaborazione = 0;
+	  double GuadagnoSponsor = 0;
+	  double Totale = 0;
 	  
 	  VisualizzaContrattiAtleta.setVisible(false);
+	  
+	  String CfAtleta = InfoAtleta;
+ 	 
+ 	 //Split della stringa
+ 	 String[] cfs = CfAtleta.split(" ");
+ 	 String CfAtletaSplit = cfs[2] ;
+ 	 
+ 	setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));
+ 	
+// 	ProcuratoriDAOPostgresImpl.getProcuratoriByID(getCodprocuratori());
+ 	GuadagnoCollaborazione = CalcolaGuadagniCollaborazioneProcuratore(getCodprocuratori());
+ 	GuadagnoSponsor = CalcolaGuadagniSponsorProcuratore(getCodprocuratori());
+ 	Totale = GuadagnoCollaborazione + GuadagnoSponsor;
+ 	
+ 	
+ 	
+ 	visualizzaIntroitiProcuratore.inserisciCampi(ProcuratoriDAOPostgresImpl.getProcuratoriByID(getCodprocuratori()), GuadagnoCollaborazione, GuadagnoSponsor, Totale);
+ 	
+ 	
+ 	visualizzaIntroitiProcuratore.setVisible(true);
+ 	
 	  
 	  //Ti prendi il cf dell'atleta
 	  //Ti prendi il codatleti dal cf
@@ -294,6 +324,11 @@ public class Controller {
      /**
  	 * METODI ATLETI
  	 */
+  
+  
+  public void TornaASelezionaAtletaContratto() {
+	  SelezionaAtletaContratto.setVisible(true);
+  }
      
      public void iniziaRicercaDettagliAtleta() throws SQLException {
     	 GestioneProcuratore.setVisible(false);
@@ -505,6 +540,7 @@ public class Controller {
   	 * METODI CONTRATTI
   	 */   
      
+   
      public void InserisciContrattoClubDB(String datainizio, String datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolicontrattuali ) throws ParseException, SQLException {
     	 
     	 SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
@@ -534,7 +570,7 @@ public class Controller {
     	 
     	 AggiungiContrattoSponsor.setVisible(false);
     	 
-    	 ContrattoClubInseritoCorrettamente();
+    	 
      }
      
      public void InserisciContrattoClub(String InfoAtleta) throws SQLException {

@@ -158,21 +158,23 @@ public class M_NuovoAtletaCollab extends JFrame {
 					controller.InserisciAtleta(Nome_TF.getText(), Cognome_TF.getText(), Nazione_TF.getText(), 
 							CodiceFiscale_TF.getText(), Sport_TF.getText(),ClubAttuale_TF.getText(), SerieClub_TF.getText());
 					
+					//svuoto i campi dopo che � stato premuto avanti
+					Nome_TF.setText("");
+					Cognome_TF.setText("");
+					CodiceFiscale_TF.setText("");
+					Sport_TF.setText("");
+					ClubAttuale_TF.setText("");
+					SerieClub_TF.setText("");
+					
+					
+					
 				} catch (SQLException e1) {
                      //finestre di errore
 					e1.printStackTrace();
 				}
-				
-				//svuoto i campi dopo che � stato premuto avanti
-				Nome_TF.setText("");
-				Cognome_TF.setText("");
-				CodiceFiscale_TF.setText("");
-				Sport_TF.setText("");
-				ClubAttuale_TF.setText("");
-				SerieClub_TF.setText("");
-				Nazione_TF.setText("");
-				
-				
+
+			
+
 			}
 		});
 		
