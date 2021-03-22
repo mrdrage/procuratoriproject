@@ -22,6 +22,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class M_VisualizzaContrattiAtleta extends JFrame {
 
@@ -54,10 +56,16 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 		ListaContratti_L.setFont(new Font("Verdana", Font.PLAIN, 20));
 		contentPane.add(ListaContratti_L);
 		//va aggiunta una jlist anche per i contratti sposnor (passandogli listmodelSponsor similmente come fatto coi club
-		JButton Esci_B = new JButton("Esci");
-		Esci_B.setBounds(943, 602, 69, 23);
-		Esci_B.setBackground(new Color(0, 0, 0));
-		contentPane.add(Esci_B);
+		JButton Indietro_B = new JButton("Indietro");
+		Indietro_B.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.TornaASelezionaAtletaContratto();
+				setVisible(false);
+			}
+		});
+		Indietro_B.setBounds(928, 602, 84, 23);
+		Indietro_B.setBackground(Color.WHITE);
+		contentPane.add(Indietro_B);
 		
 		JLabel ContrattiClub_L = new JLabel("Contratti club");
 		ContrattiClub_L.setFont(new Font("Tahoma", Font.PLAIN, 16));

@@ -7,12 +7,16 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Starter.Controller;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
 public class M_ErroreDataClub extends JDialog {
+	Controller controller = null;
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -24,7 +28,8 @@ public class M_ErroreDataClub extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public M_ErroreDataClub() {
+	public M_ErroreDataClub(Controller c) {
+		controller = c;
 		setBounds(100, 100, 450, 141);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(250, 235, 215));

@@ -134,7 +134,8 @@ public class M_NuovoProcuratore extends JFrame {
 		JButton Annulla_B = new JButton("Annulla");
 		Annulla_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				c.AnnullaInserimentoProcuratore();
+            controller.TornaAllaHome();
+            setVisible(false);
 			}
 		});
 		

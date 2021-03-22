@@ -30,7 +30,7 @@ public class ContrattiDAOPostgresImpl implements ContrattiDAO {
 		getMaxIdSponsor = connection.prepareStatement("SELECT MAX(codtransazionesponsor) as cod FROM contrattosponsor");
 
 		inserisciContrattoClubPS = connection.prepareStatement("INSERT INTO contrattoclub VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-		inserisciContrattoSponsorPS = connection.prepareStatement("INSERT INTO contrattosponsor VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?");
+		inserisciContrattoSponsorPS = connection.prepareStatement("INSERT INTO contrattosponsor VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		getContrattiClubById = connection.prepareStatement("SELECT * FROM contrattoclub WHERE codatleti = ?");
 		getContrattiSponsorById = connection.prepareStatement("SELECT * FROM contrattosponsor WHERE codatleti = ?");
 		

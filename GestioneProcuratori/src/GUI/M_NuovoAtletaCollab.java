@@ -150,7 +150,7 @@ public class M_NuovoAtletaCollab extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				//Se ï¿½ giï¿½ presente un atleta con i dati inseriti, appare la dialog ErroreAtletaPresente
+				//Se é giá presente un atleta con i dati inseriti, appare la dialog ErroreAtletaPresente
 				//oppure
 				//Carica i dati inseriti nel database
 				try {
@@ -158,28 +158,23 @@ public class M_NuovoAtletaCollab extends JFrame {
 					controller.InserisciAtletaDB(Nome_TF.getText(), Cognome_TF.getText(), Nazione_TF.getText(), 
 							CodiceFiscale_TF.getText(), Sport_TF.getText(),ClubAttuale_TF.getText(), SerieClub_TF.getText());
 					
+					//svuoto i campi dopo che é stato premuto avanti
+					Nome_TF.setText("");
+					Cognome_TF.setText("");
+					CodiceFiscale_TF.setText("");
+					Sport_TF.setText("");
+					ClubAttuale_TF.setText("");
+					SerieClub_TF.setText("");
+					
+					//Dopodiché apre la finestra NuovaCollaborazione, caricando prima i dati dal DB di Atleti per popolare la combobox in NuovaCollaborazione
+					controller.aggiungiCollaborazione();
+					
 				} catch (SQLException e1) {
                      //finestre di errore
 					e1.printStackTrace();
 				}
-				
-				//svuoto i campi dopo che ï¿½ stato premuto avanti
-				Nome_TF.setText("");
-				Cognome_TF.setText("");
-				CodiceFiscale_TF.setText("");
-				Sport_TF.setText("");
-				ClubAttuale_TF.setText("");
-				SerieClub_TF.setText("");
-				
-				
-				//Dopodichï¿½ apre la finestra NuovaCollaborazione, caricando prima i dati dal DB di Atleti per popolare la combobox in NuovaCollaborazione
-				try {
-					controller.aggiungiCollaborazione();
-					
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+			
+			
 			}
 		});
 		

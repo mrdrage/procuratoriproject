@@ -32,6 +32,7 @@ public class M_SelezionaAtletaContratto extends JFrame {
 	 * Create the frame.
 	 */
 	public M_SelezionaAtletaContratto(Controller c) {
+		setResizable(false);
 		controller = c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,6 +55,11 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		contentPane.add(ScegliAtleta_CO);
 		
 		JButton Indietro_B = new JButton("Indietro");
+		Indietro_B.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.TornaAGestioneProcuratore();
+			}
+		});
 		Indietro_B.setBackground(Color.WHITE);
 		Indietro_B.setBounds(331, 177, 93, 23);
 		contentPane.add(Indietro_B);
@@ -115,6 +121,12 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		JButton Introiti_B = new JButton("Visualizza gli introiti");
 		Introiti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					controller.VisualizzaIntroitiProcuratore((String) ScegliAtleta_CO.getSelectedItem());
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		Introiti_B.setBounds(234, 109, 188, 23);
