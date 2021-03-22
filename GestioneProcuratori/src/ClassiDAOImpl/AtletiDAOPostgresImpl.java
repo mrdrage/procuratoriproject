@@ -145,12 +145,16 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 	
 	public void setCodCollaborazione (int codCollaborazione, int codAtleta) throws SQLException {
 		
-		int row=0;
-		
-		setCodCollaborazione.setInt(1, codCollaborazione);
+		int row = 0;
 		setCodCollaborazione.setInt(2, codAtleta);
+		setCodCollaborazione.setInt(1, codCollaborazione);
 		
-		row = setCodCollaborazione.executeUpdate();
+	
+		
+//		setCodCollaborazione.setInt(1, codCollaborazione);
+//		setCodCollaborazione.setInt(2, codAtleta);
+//		
+	row = setCodCollaborazione.executeUpdate();
 		
 	}
 
