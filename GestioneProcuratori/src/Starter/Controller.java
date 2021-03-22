@@ -165,8 +165,13 @@ public class Controller {
      
      public void TornaAGestioneProcuratore() {
     	 
-    	 GestioneProcuratore.setVisible(true);
     	 ListaCollaborazioni.setVisible(false);
+    	
+    	 //pulisco la lista 
+    	 ListaCollaborazioni.clearListCollaborazioni();
+    	 
+    	 GestioneProcuratore.setVisible(true);
+    	 
      }
      
      public void TornaAllaHome() {

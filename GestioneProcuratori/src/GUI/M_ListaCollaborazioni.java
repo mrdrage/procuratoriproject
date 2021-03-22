@@ -104,4 +104,8 @@ public class M_ListaCollaborazioni extends JFrame {
 		 
 	}
 	
+	public void clearListCollaborazioni() {
+		listmodelCollaborazioni.removeAllElements();
+	}
+	
 }
