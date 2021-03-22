@@ -20,6 +20,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 	private PreparedStatement  getMaxId;
 	private PreparedStatement  getAtletaByCf;
 	private PreparedStatement  getAtletiLiberi;
+	private PreparedStatement  setCodCollaborazione;
 	
 	public AtletiDAOPostgresImpl(Connection connection) throws SQLException {
 		
@@ -28,10 +29,10 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		
 		getAllAtleti = connection.prepareStatement("SELECT * from atleti");
 		getAtletiByIDCollaborazione = connection.prepareStatement("SELECT * FROM atleti WHERE codcollaborazione = ?");
-		inserisciAtleta = connection.prepareStatement("INSERT INTO atleti VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		inserisciAtleta = connection.prepareStatement("INSERT INTO atleti VALUES (?, ?, ?, ?, ?, ?, ?, ?, null)");
 		getAtletaByCf = connection.prepareStatement("SELECT * FROM atleti WHERE codicefiscale = ?");
-		getAtletiLiberi = connection.prepareStatement("SELECT * FROM atleti WHERE codcollaborazione = null");
-		
+		getAtletiLiberi = connection.prepareStatement("SELECT * FROM atleti WHERE codcollaborazione is null");
+		setCodCollaborazione = connection.prepareStatement("UPDATE atleti SET codcollaborazione = ? WHERE codatleti = ?");
 	}
 	
 	private int getNextCod () throws SQLException {
@@ -94,7 +95,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		return atleta;
 	}
 	
-	public void inserisciAtleta(Atleti atleta, int codcollaborazione) throws SQLException{
+	public void inserisciAtleta(Atleti atleta) throws SQLException{
 		
 		int CodAtleta = getNextCod();
 		
@@ -106,7 +107,8 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		inserisciAtleta.setString(6, atleta.getClubAttuale());
 		inserisciAtleta.setString(7, atleta.getSerieClub());
 		inserisciAtleta.setInt(8, CodAtleta);
-		inserisciAtleta.setInt(9, codcollaborazione);
+		
+		
 	}
 
 	
@@ -140,6 +142,17 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		return lista;
 	}
 
+	
+	public void setCodCollaborazione (int codCollaborazione, int codAtleta) throws SQLException {
+		
+		int row=0;
+		
+		setCodCollaborazione.setInt(1, codCollaborazione);
+		setCodCollaborazione.setInt(2, codAtleta);
+		
+		row = setCodCollaborazione.executeUpdate();
+		
+	}
 
 
 	

@@ -236,9 +236,9 @@ public class Controller {
     	 // utilizziamo l id degli atleti per i contratti
     	 
     
-    	 //visualizzio la finestra
-    	 GestioneProcuratore.setVisible(true);
-    	 //Prendo il codiceprocuratori dal codice fiscale del procuratore
+    	  //visualizzio la finestra
+    	  GestioneProcuratore.setVisible(true);
+    	  //Prendo il codiceprocuratori dal codice fiscale del procuratore
           setCodprocuratori(ProcuratoriDAOPostgresImpl.getIDProcuratoreByCf(CfProcuratoreSplit));
           
           //stampe di prova
@@ -334,12 +334,12 @@ public class Controller {
      public void InserisciAtletaDB(String nome, String cognome, String nazione, String codicefiscale, String sport, String clubattuale, String serieclub) throws SQLException {
     	 
         Atleti atleta = new Atleti(nome, cognome, nazione, codicefiscale, sport, clubattuale, serieclub);
-    	//momentaneamente a 0
-    	int codcollaborazione = 0;
+    	
 		//setto il codice atleta localmente		
     	setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(codicefiscale));
+    	
     	//Lo inserisco nel db
-		AtletiDAOPostgresImpl.inserisciAtleta(atleta, codcollaborazione);
+		AtletiDAOPostgresImpl.inserisciAtleta(atleta);
 		
 		//Se tutto va bene
         nuovaCollaborazione.setVisible(true);
@@ -377,12 +377,35 @@ public class Controller {
 //    	 nuovaCollaborazione.setVisible(true);
 //     }
      
+     public void tornaAllaListaCollaborazioni () {
+    	 ListaCollaborazioni.setVisible(true);
+     }
+     
      public void prova() throws SQLException {
     	 
     	 System.out.println(CollaborazioneDAOPostgresImpl.getMesiCollaborazione(1));
      }
+       
+     public void InserisciCollaborazione(String datainizio, String datafine, double stipendiomensile, String InfoAtleta) throws ParseException, SQLException {
+    	
+    	 String CfAtleta = InfoAtleta;
+    	 //Split della stringa
+    	 String[] cfs = CfAtleta.split(" ");
+    	 String CfAtletaSplit = cfs[2];
+    	 
+    	 //setto l'atleta selezionato dalla combo box
+    	 setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));
+    	 
+    	 //richiamo il metodo per inseriro sul db
+    	 InserisciCollaborazioneDB (datainizio, datafine, stipendiomensile);
+    	 
+    	 
+    	 nuovaCollaborazione.setVisible(false);
+     }
      
      public void InserisciCollaborazioneDB(String datainizio, String datafine, double stipendiomensile) throws ParseException, SQLException {
+    	 
+    	int CodiceCollaborazione; 
     	 
     	SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
   		Date dataInizio = format.parse(datainizio);
@@ -391,14 +414,16 @@ public class Controller {
   		Collaborazione collaborazione = new Collaborazione(dataInizio, dataFine, stipendiomensile);
   		
   		
-  		
-  		
-  		//Setto il codatleti dalla scelta della combobox  
   		//Gli passo il codice atleta ed il codice procuratore
   		CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione, getCodatleti(), codprocuratori);
+  		//ricavo il codice della collaborazione che sto inserendo
+  		CodiceCollaborazione = CollaborazioneDAOPostgresImpl.getCodiceCollaborazione();
+  		//e lo setto sull'atleta inserito 
+  		AtletiDAOPostgresImpl.setCodCollaborazione(CodiceCollaborazione, getCodatleti());
   		
-  		nuovaCollaborazione.setVisible(false);
      }
+     
+   
      
 
      public void ApriListaCollaborazioni() throws SQLException {
@@ -438,6 +463,8 @@ public class Controller {
      
      public void aggiungiCollaborazione() throws SQLException {
     	 
+    	 NuovoAtletaCollab.setVisible(false);
+    	 
     	 //dichiarazioni
     	 List<Atleti> listaAtleti;
     	 List<String> InfoAtleti = new ArrayList<String>();
@@ -455,8 +482,23 @@ public class Controller {
     	 //passo le info alla combobox
     	 nuovaCollaborazione.setAtletiLiberiComboBox(InfoAtleti);
     	 
+    	 
+    	 
     	 //visualizzo la finestra per aggiungere la collaborazione
     	 nuovaCollaborazione.setVisible(true);
+     }
+     
+    
+     public void InserisciAtleta (String Nome,String Cognome,String Nazione, String CodiceFiscale,String Sport,String ClubAttuale,String SerieClub) throws SQLException {
+    	 
+    	  
+    	 //aggiungo nel db l'atleta
+    	 Atleti atleta = new Atleti(Nome, Cognome, Nazione, CodiceFiscale, Sport, ClubAttuale, SerieClub);
+    	 AtletiDAOPostgresImpl.inserisciAtleta(atleta);
+    	  
+    	 aggiungiCollaborazione();
+    	 
+    	 
      }
      
      /**

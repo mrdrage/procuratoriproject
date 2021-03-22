@@ -155,7 +155,7 @@ public class M_NuovoAtletaCollab extends JFrame {
 				//Carica i dati inseriti nel database
 				try {
 					
-					controller.InserisciAtletaDB(Nome_TF.getText(), Cognome_TF.getText(), Nazione_TF.getText(), 
+					controller.InserisciAtleta(Nome_TF.getText(), Cognome_TF.getText(), Nazione_TF.getText(), 
 							CodiceFiscale_TF.getText(), Sport_TF.getText(),ClubAttuale_TF.getText(), SerieClub_TF.getText());
 					
 				} catch (SQLException e1) {
@@ -170,16 +170,9 @@ public class M_NuovoAtletaCollab extends JFrame {
 				Sport_TF.setText("");
 				ClubAttuale_TF.setText("");
 				SerieClub_TF.setText("");
+				Nazione_TF.setText("");
 				
 				
-				//Dopodich� apre la finestra NuovaCollaborazione, caricando prima i dati dal DB di Atleti per popolare la combobox in NuovaCollaborazione
-				try {
-					controller.aggiungiCollaborazione();
-					
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 			}
 		});
 		

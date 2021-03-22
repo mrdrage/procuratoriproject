@@ -18,6 +18,8 @@ import entita.Procuratori;
 
 public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	
+	private int CodCollaborazione;
+	
 	private Connection connection;
 	private PreparedStatement InserisciCollaborazione;
 	private PreparedStatement getAllCollaborazioni;
@@ -41,6 +43,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		
 	}
 	
+	
 	private int getNextCod () throws SQLException {
 		
 		int codCollab = 0;
@@ -54,6 +57,10 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		return codCollab;
 	}
 	
+	
+	public int getCodiceCollaborazione () {
+		return CodCollaborazione;
+	}
 
 	
 	public List<Collaborazione> getAllCollaborazioni() throws SQLException {
@@ -112,21 +119,25 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	public void InserisciCollaborazione(Collaborazione collaborazione, int CodProcuratori, int CodAtleti) throws SQLException {
 		
 		int CodC = getNextCod();
+		CodCollaborazione = CodC;
 
 		//inserisco anche i codici relativi ad atleta e procuratore, poich� richiesti dal DB
 		java.sql.Date sqlDataInizio = new java.sql.Date(collaborazione.getDataInizio().getTime());
 		InserisciCollaborazione.setDate(1, sqlDataInizio);
 		java.sql.Date sqlDataFine = new java.sql.Date(collaborazione.getDataFine().getTime());
 		InserisciCollaborazione.setDate(2, sqlDataFine);
-		
+	
 		InserisciCollaborazione.setDouble(3, collaborazione.getStipendioMensile());
 		//inserimento codici
 		InserisciCollaborazione.setInt(4, CodC);
 		InserisciCollaborazione.setInt(5, CodAtleti);
         InserisciCollaborazione.setInt(6, CodProcuratori);
 		
+        
+        
         InserisciCollaborazione.executeUpdate();
  
+        
 	}
 	
 	public  long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {

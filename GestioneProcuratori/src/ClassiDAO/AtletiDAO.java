@@ -10,7 +10,7 @@ public interface AtletiDAO {
 	public Atleti getAtletaByCf (String CodiceFiscale) throws SQLException;
 	public List<Atleti> getAllAtleti() throws SQLException;
 	public Atleti getAtletiByIDCollaborazione(int codcollaborazione) throws SQLException;
-	public void inserisciAtleta(Atleti atleta, int codcollaborazione) throws SQLException;
+	public void inserisciAtleta(Atleti atleta) throws SQLException;
 	public int getIdAtletaByCf (String CodiceFiscale) throws SQLException;
 	public List<Atleti> getAtletiLiberi () throws SQLException;
 }

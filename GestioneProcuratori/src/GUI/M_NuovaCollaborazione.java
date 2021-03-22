@@ -94,12 +94,13 @@ public class M_NuovaCollaborazione extends JFrame {
 		Avanti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				String InfoAtleta = (String) Atleta_CB.getSelectedItem();
 				
                 double stipendiomensile = Double.parseDouble(StipendioMensile_TF.getText());
 				
 				try {
 					
-					controller.InserisciCollaborazioneDB(DataInizio_TF.getText(), DataFine_TF.getText(), stipendiomensile);
+					controller.InserisciCollaborazione(DataInizio_TF.getText(), DataFine_TF.getText(), stipendiomensile, InfoAtleta);
 					
 				} catch (SQLException | ParseException e1) {
                      //finestre di errore
@@ -116,7 +117,7 @@ public class M_NuovaCollaborazione extends JFrame {
 				StipendioMensile_TF.setText("");
 				
 				
-				
+				controller.tornaAllaListaCollaborazioni();
 				
 			}
 		});
@@ -141,7 +142,7 @@ public class M_NuovaCollaborazione extends JFrame {
 		contentPane.add(DataFine_TF);
 		DataFine_TF.setColumns(10);
 		
-		Atleta_CB = new JComboBox();
+		Atleta_CB = new JComboBox<String>();
 		Atleta_CB.setBounds(227, 65, 108, 18);
 		contentPane.add(Atleta_CB);
 		
