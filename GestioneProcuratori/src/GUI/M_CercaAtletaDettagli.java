@@ -23,7 +23,7 @@ import java.awt.event.ActionEvent;
 
 public class M_CercaAtletaDettagli extends JFrame {
 	
-	Controller controller = null;
+	Controller controller;
 
 	private JPanel contentPane;
 	private JComboBox<String> CercaAtletaDettagli_CB;
@@ -33,7 +33,9 @@ public class M_CercaAtletaDettagli extends JFrame {
 	 */
 	
 	public M_CercaAtletaDettagli(Controller c) {
+		
 		controller = c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 451, 210);
 		contentPane = new JPanel();
@@ -54,6 +56,12 @@ public class M_CercaAtletaDettagli extends JFrame {
 		contentPane.add(CercaAtletaDettagli_CB);
 		
 		JButton Indietro_B = new JButton("Indietro");
+		Indietro_B.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				controller.TornagestioneProcuratore();
+			}
+		});
 		Indietro_B.setBackground(new Color(0, 0, 0));
 		Indietro_B.setBounds(249, 137, 93, 23);
 		contentPane.add(Indietro_B);
@@ -63,7 +71,9 @@ public class M_CercaAtletaDettagli extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
+					
 					controller.VisualizzaInfoAtleta((String)CercaAtletaDettagli_CB.getSelectedItem());
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -72,6 +82,7 @@ public class M_CercaAtletaDettagli extends JFrame {
 				//setVisible(false);
 			}
 		});
+		
 		Avanti_B.setBackground(new Color(0, 0, 0));
 		Avanti_B.setBounds(352, 137, 71, 23);
 		contentPane.add(Avanti_B);
@@ -83,5 +94,11 @@ public class M_CercaAtletaDettagli extends JFrame {
 		while (i.hasNext()) {
 			CercaAtletaDettagli_CB.addItem(i.next()); 
 		}
+		
+	}
+	
+	public void clearAtletiComboBox () {
+		
+		CercaAtletaDettagli_CB.removeAllItems();
 	}
 }

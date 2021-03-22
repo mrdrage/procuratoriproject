@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,7 @@ import java.awt.event.ActionEvent;
 public class M_DettagliAtleta extends JFrame {
 
 	Controller controller;
+	
 	private JPanel contentPane;
 	private JTextField Nome_TF;
 	private JTextField Cognome_TF;
@@ -35,15 +37,12 @@ public class M_DettagliAtleta extends JFrame {
 	private JTextField SerieClub_TF;
 
 	/**
-	 * Launch the application.
-	 */
-
-
-	/**
 	 * Create the frame.
 	 */
 	public M_DettagliAtleta(Controller c) {
+		
 		controller = c;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 501, 517);
 		contentPane = new JPanel();
@@ -144,10 +143,11 @@ public class M_DettagliAtleta extends JFrame {
 		JButton Ok_B = new JButton("Ok");
 		Ok_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Torna alla finestra GestioneProcuratore
-				//setVisible(false);
+				
+				controller.TornaAllaGestioneProcuratore();
 			}
 		});
+		
 		Ok_B.setBackground(new Color(0, 0, 0));
 		Ok_B.setBounds(423, 444, 52, 23);
 		contentPane.add(Ok_B);
@@ -156,9 +156,16 @@ public class M_DettagliAtleta extends JFrame {
 		GestisciGettoneNazionale_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Apre la finestra GestioneGettoneNazionale, caricando prima i dati del gettone relativo all'atleta di cui si stanno guardando i dettagli
-				//setVisible(false);
+				try {
+					controller.VisualizzaGettoniNazionale();
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
+		
 		GestisciGettoneNazionale_B.setBackground(new Color(0, 0, 0));
 		GestisciGettoneNazionale_B.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		GestisciGettoneNazionale_B.setBounds(108, 392, 253, 35);
@@ -170,6 +177,7 @@ public class M_DettagliAtleta extends JFrame {
 	}
 	
 	public void setAtleta (Atleti atleta) {
+		
 		Nome_TF.setText(atleta.getNome());
 		Cognome_TF.setText(atleta.getCognome());
 		Nazione_TF.setText(atleta.getNazione());

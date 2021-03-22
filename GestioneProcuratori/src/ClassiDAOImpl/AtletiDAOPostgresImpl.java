@@ -9,20 +9,22 @@ import java.util.List;
 
 import ClassiDAO.AtletiDAO;
 import entita.Atleti;
+import entita.GettoneNazionale;
 import entita.Procuratori;
 
 public class AtletiDAOPostgresImpl implements AtletiDAO {
 	
 	private Connection connection;
+	private PreparedStatement  getMaxId;
 	private PreparedStatement  getAllAtleti;
 	private PreparedStatement  getAtletiByIDCollaborazione;
-	private PreparedStatement  inserisciAtleta;
-	private PreparedStatement  getMaxId;
+	private PreparedStatement  inserisciAtleta;	
 	private PreparedStatement  getAtletaByCf;
 	private PreparedStatement  getAtletiLiberi;
 	private PreparedStatement  setCodCollaborazione;
 	private PreparedStatement  getIDAtletiByIDCollaborazione;
 	private PreparedStatement  getAtletiByID;
+	private PreparedStatement  getGettoniNazionali;
 	
 	public AtletiDAOPostgresImpl(Connection connection) throws SQLException {
 		
@@ -37,6 +39,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		setCodCollaborazione = connection.prepareStatement("UPDATE atleti SET codcollaborazione = ? WHERE codatleti = ?");
 		getIDAtletiByIDCollaborazione = connection.prepareStatement("SELECT codatleti FROM atleti WHERE codcollaborazione = ?");
 		getAtletiByID = connection.prepareStatement("SELECT * FROM atleti WHERE codatleti = ?");
+		getGettoniNazionali = connection.prepareStatement("SELECT * FROM gettonenazionale WHERE codatleti = ?");
 	}
 	
 	private int getNextCod () throws SQLException {
@@ -189,6 +192,20 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		return atleta;
 	}
 
+	public List<GettoneNazionale> getGettoniNazionali(int codAtleta) throws SQLException {
+		
+		List<GettoneNazionale> gettoniNazionale = new ArrayList<GettoneNazionale>();
+		
+		getGettoniNazionali.setInt(1, codAtleta);
+		ResultSet rs = getGettoniNazionali.executeQuery();
+		while (rs.next()) {
+			GettoneNazionale g = new GettoneNazionale (rs.getDate(1), rs.getDouble(2));
+			gettoniNazionale.add(g);
+		}
+		
+		
+		return gettoniNazionale;
+	}
 	
 	}
 

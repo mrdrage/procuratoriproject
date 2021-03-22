@@ -57,7 +57,8 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		JButton Indietro_B = new JButton("Indietro");
 		Indietro_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.TornaAGestioneProcuratore();
+				
+				controller.tornaAGestioneProcuratore();
 			}
 		});
 		Indietro_B.setBackground(Color.WHITE);
@@ -141,5 +142,11 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		while (i.hasNext()) {
 			ScegliAtleta_CO.addItem(i.next()); 
 		}
+	}
+	
+	public void clearContrattiComboBox () {
+		
+		ScegliAtleta_CO.removeAllItems();
+	
 	}
 }

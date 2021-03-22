@@ -19,6 +19,8 @@ import java.awt.Font;
 import java.util.Iterator;
 import java.util.List;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class M_ListaIntroitiProcuratore extends JFrame {
 	
@@ -52,6 +54,12 @@ public class M_ListaIntroitiProcuratore extends JFrame {
 		scrollPane.setViewportView(ListaGuadagni_list);
 		
 		JButton Indietro_B = new JButton("Indietro");
+		Indietro_B.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				controller.TornaGestioneProcuratore();
+			}
+		});
 		Indietro_B.setBounds(684, 242, 89, 23);
 		contentPane.add(Indietro_B);
 		

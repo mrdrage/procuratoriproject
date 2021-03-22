@@ -5,16 +5,19 @@ import java.sql.Date;
 public class GettoneNazionale {
 
 
-	private String Presenza;
 	private Date Data;
 	private double Gudagno;	
 	
-	public String getPresenza() {
-		return Presenza;
-	}
 	
-	public void setPresenza(String presenza) {
-		Presenza = presenza;
+	
+	public GettoneNazionale(Date data, double gudagno) {
+		super();
+		Data = data;
+		Gudagno = gudagno;
+	}
+
+	public GettoneNazionale() {
+		
 	}
 	
 	public Date getData() {

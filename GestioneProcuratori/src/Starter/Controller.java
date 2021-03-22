@@ -30,6 +30,7 @@ import entita.Atleti;
 import entita.Collaborazione;
 import entita.ContrattoClub;
 import entita.ContrattoSponsor;
+import entita.GettoneNazionale;
 import entita.Procuratori;
 
 
@@ -70,6 +71,7 @@ public class Controller {
 	      
 	      //Finestre atleti
 	      M_CercaAtletaDettagli CercaAtletaDettagli;
+	      M_GestioneGettoneNazionale GestioneGettoneNazionale;
 	      
 	     
 	      
@@ -106,6 +108,8 @@ public class Controller {
 	      NuovoAtletaCollab = new M_NuovoAtletaCollab(this);
 	      CercaAtletaDettagli = new M_CercaAtletaDettagli(this);
 	      ListaCollaborazioni = new M_ListaCollaborazioni(this);
+	      
+	      GestioneGettoneNazionale = new M_GestioneGettoneNazionale(this);
 	      
 	      //Finestre Collaborazioni
 	      nuovaCollaborazione = new M_NuovaCollaborazione(this);
@@ -263,6 +267,15 @@ public class Controller {
      /**
   	 * METODI GUADAGNI
   	 */
+     
+     public void TornaGestioneProcuratore() {
+    	 
+    	 ListaIntroitiProcuratore.setVisible(false);
+    	 //pulisco la lista
+    	 ListaIntroitiProcuratore.clearListIntroiti();
+    	 
+    	 GestioneProcuratore.setVisible(true);
+     }
 
      public double CalcolaGuadagniCollaborazioneProcuratore(int codprocuratori) throws SQLException {
     	
@@ -289,106 +302,126 @@ public class Controller {
 	  
     	 return GuadagnoFinaleSponsor;
   }
-  
-
  
   
-  
-  public void VisualizzaIntroitiProcuratore(String InfoAtleta) throws SQLException {
+ 
+     public void VisualizzaIntroitiProcuratore(String InfoAtleta) throws SQLException {
 	  
-	  double GuadagnoCollaborazione = 0;
-	  double GuadagnoSponsor = 0;
-	  double Totale = 0;
 	  
-	  VisualizzaContrattiAtleta.setVisible(false);
+    	 double GuadagnoCollaborazione = 0;	  
+    	 double GuadagnoSponsor = 0;	  
+    	 double Totale = 0;
+	  	 
+    	 VisualizzaContrattiAtleta.setVisible(false);	  
 	  
-	  String CfAtleta = InfoAtleta;
- 	 
- 	  //Split della stringa
- 	  String[] cfs = CfAtleta.split(" ");
- 	  String CfAtletaSplit = cfs[2] ;
+    	 String CfAtleta = InfoAtleta;
  	 
  	
- 	  setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));
+    	 //Split della stringa 	 
+    	 String[] cfs = CfAtleta.split(" "); 	  
+    	 String CfAtletaSplit = cfs[2] ;
+ 	 
  	
+ 	 
+    	 setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));
+ 	 
+    	 GuadagnoCollaborazione = CalcolaGuadagniCollaborazioneProcuratore(getCodprocuratori());	
+    	 GuadagnoSponsor = CalcolaGuadagniSponsorProcuratore(getCodprocuratori());	 
+    	 Totale = GuadagnoCollaborazione + GuadagnoSponsor;
 
- 	  GuadagnoCollaborazione = CalcolaGuadagniCollaborazioneProcuratore(getCodprocuratori());
- 	  GuadagnoSponsor = CalcolaGuadagniSponsorProcuratore(getCodprocuratori());
- 	  Totale = GuadagnoCollaborazione + GuadagnoSponsor;
- 	
- 	
- 	
- 	  visualizzaIntroitiProcuratore.inserisciCampi(ProcuratoriDAOPostgresImpl.getProcuratoriByID(getCodprocuratori()), GuadagnoCollaborazione, GuadagnoSponsor, Totale);
- 	 
- 	
- 	  visualizzaIntroitiProcuratore.setVisible(true);
+    	 visualizzaIntroitiProcuratore.inserisciCampi(ProcuratoriDAOPostgresImpl.getProcuratoriByID(getCodprocuratori()), GuadagnoCollaborazione, GuadagnoSponsor, Totale);
+ 	  
+    	 visualizzaIntroitiProcuratore.setVisible(true);
  	
   }
   
   
-  public void CalcolaListaIntroitiProcuratore() throws SQLException {
+  
+     public void CalcolaListaIntroitiProcuratore() throws SQLException {
 	  
-	  GestioneProcuratore.setVisible(false);
 	  
-	  double GuadagnoCollaborazione = 0;
-	  double GuadagnoSponsor = 0;
-	  double Totale = 0;
-	  Atleti atleta = new Atleti();
+    	 GestioneProcuratore.setVisible(false);  
 	  
-	  List<String> listaResoconto = new ArrayList<String>(); 
-	  List<Integer> listaCollaborazioni;
-	  
-	  //Prendiamo una lista di collaborazioni in base al codprocuratore
-	  listaCollaborazioni = CollaborazioneDAOPostgresImpl.getIDCollaborazioniByProcuratore(getCodprocuratori());
-	  
-	  // Dalla lista di collaborazioni, ci ricaviamo i codatleti singolarmente
-	  Iterator<Integer> iCollab = listaCollaborazioni.iterator();
-	  while (iCollab.hasNext()) {
-		  //setto l'atleta che ha collaborazione col procuratore selezionato in precedenza, in modo che sia impostato su codatleti locale
-		  setCodatleti(AtletiDAOPostgresImpl.getIDAtletiByIDCollaborazione(iCollab.next()));
-		
-		  // Per ogni codatleta, ci calcoliamo guadagni collaborazione, sponsor e totale del procuratore
-		  GuadagnoCollaborazione = CalcolaGuadagniCollaborazioneProcuratore(getCodprocuratori());
-     	  GuadagnoSponsor = CalcolaGuadagniSponsorProcuratore(getCodprocuratori());
-		  Totale = GuadagnoCollaborazione + GuadagnoSponsor;
-		  
-		  
-		  atleta = AtletiDAOPostgresImpl.getAtletiByID(getCodatleti());
-		  // Aggiungiamo i risultati ad una lista
-	     // Alla fine otteniamo una lista di atleti con i relativi guadagni del procuratore e la passiamo al la jlist
-		  
-		  listaResoconto.add(atleta.getNome()+" "+atleta.getCognome()+" "+ GuadagnoCollaborazione +" "+ GuadagnoSponsor +" "+ Totale);
-		  
-	  }
-	
+    	 double GuadagnoCollaborazione = 0;	  
+    	 double GuadagnoSponsor = 0;	  
+    	 double Totale = 0;	  
+    	 Atleti atleta = new Atleti();	  
+	 
+    	 List<String> listaResoconto = new ArrayList<String>();  
+    	 List<Integer> listaCollaborazioni;
+	  	 
+    	 //Prendiamo una lista di collaborazioni in base al codprocuratore	 
+    	 listaCollaborazioni = CollaborazioneDAOPostgresImpl.getIDCollaborazioniByProcuratore(getCodprocuratori());
 	  
 	 
-	  ListaIntroitiProcuratore.setListaIntroiti(listaResoconto);
+    	 // Dalla lista di collaborazioni, ci ricaviamo i codatleti singolarmente	 
+    	 Iterator<Integer> iCollab = listaCollaborazioni.iterator(); 
+    	 while (iCollab.hasNext()) {
+		  
+    		 //setto l'atleta che ha collaborazione col procuratore selezionato in precedenza, in modo che sia impostato su codatleti locale		 
+    		 setCodatleti(AtletiDAOPostgresImpl.getIDAtletiByIDCollaborazione(iCollab.next()));	
+		 
+    		 // Per ogni codatleta, ci calcoliamo guadagni collaborazione, sponsor e totale del procuratore	 
+    		 GuadagnoCollaborazione = CalcolaGuadagniCollaborazioneProcuratore(getCodprocuratori());    
+    		 GuadagnoSponsor = CalcolaGuadagniSponsorProcuratore(getCodprocuratori());		 
+    		 Totale = GuadagnoCollaborazione + GuadagnoSponsor;
+		  
+		  
+		
+    		 atleta = AtletiDAOPostgresImpl.getAtletiByID(getCodatleti());		
+    		 // Aggiungiamo i risultati ad una lista	   
+    		 // Alla fine otteniamo una lista di atleti con i relativi guadagni del procuratore e la passiamo al la jlist		  		 
+    		 listaResoconto.add(atleta.getNome()+" "+atleta.getCognome()+" "+ GuadagnoCollaborazione +" "+ GuadagnoSponsor +" "+ Totale);	  
 	  
-	  ListaIntroitiProcuratore.setVisible(true);
+    	 } 
+	
+    	 ListaIntroitiProcuratore.setListaIntroiti(listaResoconto);
+  
+    	 ListaIntroitiProcuratore.setVisible(true);
 
   }
   
 
      
      
+    
      
      /**
  	 * METODI ATLETI
  	 */
   
   
-  public void TornaASelezionaAtletaContratto() {
+  
+     public void TornagestioneProcuratore() {
+    	 
+    	 CercaAtletaDettagli.setVisible(false);
+    	 //ripulisco la combobox
+    	 CercaAtletaDettagli.clearAtletiComboBox();
+    	 
+    	 GestioneProcuratore.setVisible(true);
+     }
+     
+     public void TornaAllaGestioneProcuratore() {
+    	 
+    	 DettagliAtleta.setVisible(false);
+    	 
+    	 GestioneProcuratore.setVisible(true);
+     }
+
+     public void TornaASelezionaAtletaContratto() {
 	  
-	  VisualizzaContrattiAtleta.setVisible(false);
-	  //pulisco le liste dai risultati precedenti
-	  VisualizzaContrattiAtleta.clearListContrattiClub();
-	  VisualizzaContrattiAtleta.clearListContrattiSponsor();
-	  //apro la selezione atleti
-	  SelezionaAtletaContratto.setVisible(true);
+    	 VisualizzaContrattiAtleta.setVisible(false);	
+    	 
+    	 //pulisco le liste dai risultati precedenti	 
+    	 VisualizzaContrattiAtleta.clearListContrattiClub();	 
+    	 VisualizzaContrattiAtleta.clearListContrattiSponsor();
+	 
+    	 //apro la selezione atleti	
+    	 SelezionaAtletaContratto.setVisible(true);
   }
      
      public void iniziaRicercaDettagliAtleta() throws SQLException {
+    	 
     	 GestioneProcuratore.setVisible(false);
     	 
          //Dichiarazioni
@@ -396,10 +429,7 @@ public class Controller {
          listacollaborazioni = CollaborazioneDAOPostgresImpl.getIDCollaborazioniByProcuratore(codprocuratori);
          List<Atleti> atleti = new ArrayList<Atleti>();
          List<String> ListaAtleti = new ArrayList<String>();
-      
-        
-         
-
+       
          //Prende gli atleti dalle collaborazioni del procuratore scelto in precedenza   
          Iterator<Integer> iCollab = listacollaborazioni.iterator();
              while(iCollab.hasNext()) {
@@ -461,6 +491,39 @@ public class Controller {
     	 
  	}
 
+     
+     public void VisualizzaGettoniNazionale() throws SQLException {
+    	 
+    	 DettagliAtleta.setVisible(false);
+    	 
+    	 List<String> gettoni = new ArrayList<String>();
+    	 List<GettoneNazionale> gettoniN;
+    	 gettoniN = AtletiDAOPostgresImpl.getGettoniNazionali(getCodatleti());
+    	 
+    	 Iterator<GettoneNazionale> iG = gettoniN.iterator();
+    	 while (iG.hasNext()) {
+    		 GettoneNazionale g = iG.next();
+    		 //convertire date e double in string
+    		 gettoni.add(g.getData()+" "+g.getGudagno());
+    		 //!!
+    	 }
+    	
+    	 //popolo la Jlist dei gettoni
+    	 GestioneGettoneNazionale.setListaGettoniNazionale(gettoni);
+    	 
+    	 //visualizzo la finestra
+    	 GestioneGettoneNazionale.setVisible(true);
+     }
+     
+     public void TornaADettagliAtleta() {
+    	 
+    	 GestioneGettoneNazionale.setVisible(false);
+    	 //pulisco la lista
+    	 GestioneGettoneNazionale.clearListGettoniNazionale();
+    	 
+    	 DettagliAtleta.setVisible(true);
+    	 
+     }
     
      /**
  	 * METODI COLLABORAZIONI
@@ -611,6 +674,15 @@ public class Controller {
      /**
   	 * METODI CONTRATTI
   	 */   
+     
+     public void tornaAGestioneProcuratore() {
+    	 
+    	 SelezionaAtletaContratto.setVisible(false);
+    	 //pulisco combobox
+    	 SelezionaAtletaContratto.clearContrattiComboBox();
+    	 
+    	 GestioneProcuratore.setVisible(true);
+     }
      
    
      public void IniziaInserimentoContrattoClub() {
