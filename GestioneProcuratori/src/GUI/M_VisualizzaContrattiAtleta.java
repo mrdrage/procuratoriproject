@@ -59,8 +59,9 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 		JButton Indietro_B = new JButton("Indietro");
 		Indietro_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				controller.TornaASelezionaAtletaContratto();
-				setVisible(false);
+				
 			}
 		});
 		Indietro_B.setBounds(928, 602, 84, 23);
@@ -122,5 +123,13 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 		indice++;	
 		}	 
 		 
+	}
+	
+	public void clearListContrattiClub () {
+		listmodelClub.removeAllElements();
+	}
+	
+	public void clearListContrattiSponsor () {
+		listmodelSponsor.removeAllElements();
 	}
 }

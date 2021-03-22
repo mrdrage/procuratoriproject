@@ -18,14 +18,10 @@ import java.awt.Font;
 import java.awt.Color;
 
 public class M_ListaIntroitiProcuratore extends JFrame {
-	Controller controller = null;
+	
+	Controller controller;
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	
 
 	/**
 	 * Create the frame.

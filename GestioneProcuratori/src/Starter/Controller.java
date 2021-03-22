@@ -269,13 +269,23 @@ public class Controller {
     	 double GuadagnoFinale = StipendioMensile * mesiCollab;
     	 
     	 return GuadagnoFinale;
-    	 // Mi prendo lo stipendio mensile
-    	 // Moltiplico lo stipendio mensile per i mesi di collaborazione
-    	 // Mi prendo i guadagni sponsor
-    	 // Faccio il totale
+    	
      }
   
-  
+ 
+  public double CalcolaGuadagniCollaborazioneProcuratore(int codprocuratori, int codAtleta) throws SQLException {
+  	
+  	// Prendo lo stipendio mensile
+  	 double StipendioMensile = ProcuratoriDAOPostgresImpl.getStipendioMensileProcuratore(getCodprocuratori());
+  	 // Prendo i mesi della collaborazione
+  	 long mesiCollab = CollaborazioneDAOPostgresImpl.getMesiCollaborazione(codAtleta);
+  	 // Calcolo il guadagno finale della collaborazione
+  	 double GuadagnoFinale = StipendioMensile * mesiCollab;
+  	 
+  	 return GuadagnoFinale;
+  	
+   }
+
   public double CalcolaGuadagniSponsorProcuratore(int codprocuratori) throws SQLException {
 	  
 	  //Prendo i guadagni sponsor
@@ -284,8 +294,18 @@ public class Controller {
 	  return GuadagnoFinaleSponsor;
   }
   
+
+  public double CalcolaGuadagniSponsorProcuratore(int codprocuratori, int codAtleta) throws SQLException {
+	  
+	  //Prendo i guadagni sponsor
+	  double GuadagnoFinaleSponsor = ProcuratoriDAOPostgresImpl.getGuadagnoSponsorProcuratore(codAtleta);
+	  
+	  return GuadagnoFinaleSponsor;
+  }
+  
   
   public void VisualizzaIntroitiProcuratore(String InfoAtleta) throws SQLException {
+	  
 	  double GuadagnoCollaborazione = 0;
 	  double GuadagnoSponsor = 0;
 	  double Totale = 0;
@@ -298,7 +318,8 @@ public class Controller {
  	 String[] cfs = CfAtleta.split(" ");
  	 String CfAtletaSplit = cfs[2] ;
  	 
- 	setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));
+ 	
+ 	 setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));
  	
 
  	GuadagnoCollaborazione = CalcolaGuadagniCollaborazioneProcuratore(getCodprocuratori());
@@ -315,11 +336,39 @@ public class Controller {
   }
   
   
-  public void CalcolaListaIntroitiProcuratore() {
+  public void CalcolaListaIntroitiProcuratore() throws SQLException {
 	  
+	  double GuadagnoCollaborazione = 0;
+	  double GuadagnoSponsor = 0;
+	  double Totale = 0;
+	  Atleti atleta = new Atleti();
+	  
+	  int CodAtleta = 0;
+	  //List<double> listaCodici = 
+	  List<Integer> listaCollaborazioni;
 	  //Prendiamo una lista di collaborazioni in base al codprocuratore
+	  listaCollaborazioni = CollaborazioneDAOPostgresImpl.getIDCollaborazioniByProcuratore(getCodprocuratori());
+	  
 	  // Dalla lista di collaborazioni, ci ricaviamo i codatleti singolarmente
-	  // Per ogni codatleta, ci calcoliamo guadagni collaborazione, sponsor e totale del procuratore
+	  Iterator<Integer> iCollab = listaCollaborazioni.iterator();
+	  while (iCollab.hasNext()) {
+		  //setto l'atleta che ha collaborazione col procuratore selezionato in precedenza, in modo che sia impostato su codatleti locale
+		  setCodatleti(AtletiDAOPostgresImpl.getIDAtletiByIDCollaborazione(iCollab.next()));
+		
+		  // Per ogni codatleta, ci calcoliamo guadagni collaborazione, sponsor e totale del procuratore
+		  GuadagnoCollaborazione = CalcolaGuadagniCollaborazioneProcuratore(getCodprocuratori());
+		  GuadagnoSponsor = CalcolaGuadagniSponsorProcuratore(getCodprocuratori());
+		  Totale = GuadagnoCollaborazione + GuadagnoSponsor;
+		  
+		  
+		  atleta = AtletiDAOPostgresImpl.getAtletiByID(getCodatleti());
+		  
+	  }
+	  
+	  
+	  
+	  
+	 
 	  // Aggiungiamo i risultati ad una lista
 	  // Alla fine otteniamo una lista di atleti con i relativi guadagni del procuratore e la passiamo alla jlist
 	  
@@ -336,6 +385,12 @@ public class Controller {
   
   
   public void TornaASelezionaAtletaContratto() {
+	  
+	  VisualizzaContrattiAtleta.setVisible(false);
+	  //pulisco le liste dai risultati precedenti
+	  VisualizzaContrattiAtleta.clearListContrattiClub();
+	  VisualizzaContrattiAtleta.clearListContrattiSponsor();
+	  //apro la selezione atleti
 	  SelezionaAtletaContratto.setVisible(true);
   }
      
