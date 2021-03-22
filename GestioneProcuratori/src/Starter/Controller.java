@@ -436,31 +436,45 @@ public class Controller {
     	 setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));
     	 
     	 //richiamo il metodo per inseriro sul db
-    	 InserisciCollaborazioneDB (datainizio, datafine, stipendiomensile);
+    	int CodiceCollaborazione; 
+    	 
+     	SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
+   		Date dataInizio = format.parse(datainizio);
+   		Date dataFine = format.parse(datafine);
+   		
+   		Collaborazione collaborazione = new Collaborazione(dataInizio, dataFine, stipendiomensile);
+   		
+   		
+   		//Gli passo il codice atleta ed il codice procuratore
+   		CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione,getCodprocuratori(), getCodatleti());
+   		//ricavo il codice della collaborazione che sto inserendo
+   		CodiceCollaborazione = CollaborazioneDAOPostgresImpl.getCodiceCollaborazione();
+   		//e lo setto sull'atleta inserito 
+   		AtletiDAOPostgresImpl.setCodCollaborazione(CodiceCollaborazione, getCodatleti());
     	 
     	 
     	 nuovaCollaborazione.setVisible(false);
      }
      
-     public void InserisciCollaborazioneDB(String datainizio, String datafine, double stipendiomensile) throws ParseException, SQLException {
-    	 
-    	int CodiceCollaborazione; 
-    	 
-    	SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
-  		Date dataInizio = format.parse(datainizio);
-  		Date dataFine = format.parse(datafine);
-  		
-  		Collaborazione collaborazione = new Collaborazione(dataInizio, dataFine, stipendiomensile);
-  		
-  		
-  		//Gli passo il codice atleta ed il codice procuratore
-  		CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione, getCodatleti(), codprocuratori);
-  		//ricavo il codice della collaborazione che sto inserendo
-  		CodiceCollaborazione = CollaborazioneDAOPostgresImpl.getCodiceCollaborazione();
-  		//e lo setto sull'atleta inserito 
-  		AtletiDAOPostgresImpl.setCodCollaborazione(CodiceCollaborazione, getCodatleti());
-  		
-     }
+//     public void InserisciCollaborazioneDB(String datainizio, String datafine, double stipendiomensile) throws ParseException, SQLException {
+//    	 
+//    	int CodiceCollaborazione; 
+//    	 
+//    	SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
+//  		Date dataInizio = format.parse(datainizio);
+//  		Date dataFine = format.parse(datafine);
+//  		
+//  		Collaborazione collaborazione = new Collaborazione(dataInizio, dataFine, stipendiomensile);
+//  		
+//  		
+//  		//Gli passo il codice atleta ed il codice procuratore
+//  		CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione, getCodatleti(), codprocuratori);
+//  		//ricavo il codice della collaborazione che sto inserendo
+//  		CodiceCollaborazione = CollaborazioneDAOPostgresImpl.getCodiceCollaborazione();
+//  		//e lo setto sull'atleta inserito 
+//  		AtletiDAOPostgresImpl.setCodCollaborazione(CodiceCollaborazione, getCodatleti());
+//  		
+//     }
      
    
      
