@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
 
 public class M_AggiungiContrattoSponsor extends JFrame {
 	
@@ -162,8 +163,8 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 			}
 		});
 		
-		Avanti_B.setBackground(new Color(0, 0, 0));
-		Avanti_B.setBounds(459, 450, 71, 23);
+		Avanti_B.setBackground(UIManager.getColor("Button.background"));
+		Avanti_B.setBounds(444, 436, 86, 23);
 		contentPane.add(Avanti_B);
 		
 		JButton Indietr_B = new JButton("Indietro");
@@ -181,8 +182,8 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 				VincoliContrattuali_TF.setText("");
 			}
 		});
-		Indietr_B.setBackground(new Color(0, 0, 0));
-		Indietr_B.setBounds(378, 450, 71, 23);
+		Indietr_B.setBackground(UIManager.getColor("Button.background"));
+		Indietr_B.setBounds(350, 436, 86, 23);
 		contentPane.add(Indietr_B);
 	}
 

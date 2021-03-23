@@ -16,6 +16,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class M_VisualizzaIntroitiProcuratore extends JFrame {
 	
@@ -37,8 +38,9 @@ public class M_VisualizzaIntroitiProcuratore extends JFrame {
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 797, 158);
+		setBounds(100, 100, 797, 166);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(250, 235, 215));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -95,6 +97,21 @@ public class M_VisualizzaIntroitiProcuratore extends JFrame {
 		});
 		Ok_B.setBounds(684, 97, 66, 23);
 		contentPane.add(Ok_B);
+		
+		JLabel lblNewLabel = new JLabel("\u20AC");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setBounds(402, 56, 16, 28);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("\u20AC");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(215, 56, 16, 28);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("\u20AC");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_2.setBounds(627, 56, 26, 28);
+		contentPane.add(lblNewLabel_2);
 		
 		
 	}

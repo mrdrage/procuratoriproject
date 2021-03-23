@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 public class M_NuovoAtletaCollaborazione extends JFrame {
 	
@@ -42,7 +43,7 @@ public class M_NuovoAtletaCollaborazione extends JFrame {
 		controller = c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 309, 354);
+		setBounds(100, 100, 309, 376);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(250, 240, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -131,8 +132,8 @@ public class M_NuovoAtletaCollaborazione extends JFrame {
 			}
 		});
 		
-		Indietro_B.setBackground(Color.WHITE);
-		Indietro_B.setBounds(129, 291, 75, 23);
+		Indietro_B.setBackground(UIManager.getColor("Button.background"));
+		Indietro_B.setBounds(106, 299, 87, 23);
 		contentPane.add(Indietro_B);
 		
 		JButton Avanti_B = new JButton("Avanti");
@@ -164,8 +165,8 @@ public class M_NuovoAtletaCollaborazione extends JFrame {
 			}
 		});
 		
-		Avanti_B.setBackground(Color.WHITE);
-		Avanti_B.setBounds(214, 291, 71, 23);
+		Avanti_B.setBackground(UIManager.getColor("Button.background"));
+		Avanti_B.setBounds(198, 299, 87, 23);
 		contentPane.add(Avanti_B);
 	}
 }

@@ -655,7 +655,7 @@ public class Controller {
     	 
     	 while(iC.hasNext()) {
     		 Collaborazione c = iC.next();
-    		 listCollaborazioni.add(c.getDataInizio()+"  "+c.getDataFine()+"  "+c.getStipendioMensile());
+    		 listCollaborazioni.add(c.getDataInizio()+"            "+c.getDataFine()+"            "+c.getStipendioMensile());
     		 
     	 }
           

@@ -28,6 +28,7 @@ import javax.swing.JTextPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 public class M_NuovaCollaborazione extends JFrame {
 	
@@ -91,8 +92,8 @@ public class M_NuovaCollaborazione extends JFrame {
 			}
 		});
 		
-		Indietro_B.setBackground(Color.WHITE);
-		Indietro_B.setBounds(367, 220, 71, 23);
+		Indietro_B.setBackground(UIManager.getColor("Button.background"));
+		Indietro_B.setBounds(335, 220, 86, 23);
 		contentPane.add(Indietro_B);
 		
 		JButton Avanti_B = new JButton("Avanti");
@@ -130,8 +131,8 @@ public class M_NuovaCollaborazione extends JFrame {
 			}
 		});
 		
-		Avanti_B.setBackground(Color.WHITE);
-		Avanti_B.setBounds(448, 220, 69, 23);
+		Avanti_B.setBackground(UIManager.getColor("Button.background"));
+		Avanti_B.setBounds(431, 220, 86, 23);
 		contentPane.add(Avanti_B);
 		
 		DataInizio_TF = new JTextField();
