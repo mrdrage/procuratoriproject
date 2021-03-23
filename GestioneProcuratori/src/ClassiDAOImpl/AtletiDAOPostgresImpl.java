@@ -34,7 +34,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		
 		getAllAtleti = connection.prepareStatement("SELECT * from atleti");
 		getAtletiByIDCollaborazione = connection.prepareStatement("SELECT * FROM atleti WHERE codcollaborazione = ?");
-		inserisciAtleta = connection.prepareStatement("INSERT INTO atleti VALUES (?, ?, ?, ?, ?, ?, ?, ?, null)");
+		inserisciAtleta = connection.prepareStatement("INSERT INTO atleti VALUES (?, ?, ?, ?, ?, ?, ?, null)");
 		getAtletaByCf = connection.prepareStatement("SELECT * FROM atleti WHERE codicefiscale = ?");
 		getAtletiLiberi = connection.prepareStatement("SELECT * FROM atleti WHERE codcollaborazione is null");
 		setCodCollaborazione = connection.prepareStatement("UPDATE atleti SET codcollaborazione = ? WHERE codatleti = ?");
@@ -73,11 +73,11 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		   ResultSet rs = getAtletaByCf.executeQuery();
 		   int codatleti =0;
 		   
-		   //Essendo il cf unico basta utilizzare solo una volta il next(), che punterà quindi all'unica tupla presente
+		   
 		   while(rs.next()) {
 		   Atleti a = new Atleti(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
 		   atleta = a;
-		   codatleti = rs.getInt(8);
+		   codatleti = rs.getInt(7);
 		
 		   }
 		   
@@ -124,8 +124,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		inserisciAtleta.setString(4, atleta.getCodiceFiscale());
 		inserisciAtleta.setString(5, atleta.getSport());
 		inserisciAtleta.setString(6, atleta.getClubAttuale());
-		inserisciAtleta.setString(7, atleta.getSerieClub());
-		inserisciAtleta.setInt(8, CodAtleta);
+		inserisciAtleta.setInt(7, CodAtleta);
 		
 		inserisciAtleta.executeUpdate();
 	}
@@ -140,7 +139,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		   
 		   //Essendo il cf unico basta utilizzare solo una volta il next(), che punterà quindi all'unica tupla presente
 		   while(rs.next()) {
-			   codatleti = rs.getInt(8);
+			   codatleti = rs.getInt(7);
 		   }
 		   rs.close();
 		   

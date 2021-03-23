@@ -262,12 +262,7 @@ public class Controller {
     	 //setto la scheda del procuratore
     	 GestioneProcuratore.setProcuratore(procuratore);
     	 
-    	 //getidprocuratorebycf 
-    	 //utilizziamo l id per le collaborazioni
-    	 // utilizziamo l id per gli atleti
-    	 // utilizziamo l id degli atleti per i contratti
-    	 
-    
+  
     	  //visualizzio la finestra
     	  GestioneProcuratore.setVisible(true);
     	  //Prendo il codiceprocuratori dal codice fiscale del procuratore
@@ -334,7 +329,7 @@ public class Controller {
  	 
  	
     	 //Split della stringa 	 
-    	 String[] cfs = CfAtleta.split(" "); 	  
+    	 String[] cfs = CfAtleta.split("-"); 	  
     	 String CfAtletaSplit = cfs[2] ;
  	 
  	
@@ -459,7 +454,7 @@ public class Controller {
     	 Iterator<Atleti> iAtleti = atleti.iterator();
     	 while (iAtleti.hasNext()) {
     		 Atleti a = iAtleti.next();
-    		 ListaAtleti.add(a.getNome()+" "+a.getCognome()+" "+a.getCodiceFiscale());
+    		 ListaAtleti.add(a.getNome()+"-"+a.getCognome()+"-"+a.getCodiceFiscale());
     	 }
     	 //Setto la combo box
     	 CercaAtletaDettagli.setAtletiComboBox(ListaAtleti);
@@ -494,7 +489,7 @@ public class Controller {
     	 Atleti atleta = new Atleti();
     	 String CfAtleta = InfoAtleta;
     	 //Split della stringa
-    	 String[] cfs = CfAtleta.split(" ");
+    	 String[] cfs = CfAtleta.split("-");
     	 String CfAtletaSplit = cfs[2];
     	 
     	 //ottengo l'atleta usando il codice fiscale preso dalla stringa della combobox
@@ -546,7 +541,7 @@ public class Controller {
      
      /**
  	 * METODI COLLABORAZIONI
-     * @throws SQLException 
+     * 
  	 */
      
      
@@ -557,6 +552,8 @@ public class Controller {
     	 DataFineCollaborazione = CollaborazioneDAOPostgresImpl.getDataFineCollaborazione(getCodatleti());
     	 if (CollaborazioneDAOPostgresImpl.controllaFineCollaborazione(getCodatleti())){
     		 codCollab  =  CollaborazioneDAOPostgresImpl.getIDCollaborazioneByIDAtleta(getCodatleti());
+    		 System.out.println(codCollab);
+    		 System.out.println("prova");
     		 AtletiDAOPostgresImpl.setAtletaNull(getCodatleti());
     		 CollaborazioneDAOPostgresImpl.cancellaCollaborazione(codCollab);
     	 }
@@ -622,7 +619,7 @@ public class Controller {
     	
     	 String CfAtleta = InfoAtleta;
     	 //Split della stringa
-    	 String[] cfs = CfAtleta.split(" ");
+    	 String[] cfs = CfAtleta.split("-");
     	 String CfAtletaSplit = cfs[2];
     	 
     	 //setto l'atleta selezionato dalla combo box
@@ -722,7 +719,7 @@ public class Controller {
     	 Iterator<Atleti> iA = listaAtleti.iterator();
     	 while (iA.hasNext()) {
     		 Atleti a = iA.next();
-    		 InfoAtleti.add(a.getNome()+" "+ a.getCognome()+" "+ a.getCodiceFiscale());
+    		 InfoAtleti.add(a.getNome()+"-"+ a.getCognome()+"-"+ a.getCodiceFiscale());
     	 }
     	 
     	 //passo le info alla combobox
@@ -815,7 +812,7 @@ public class Controller {
     	 //ricavo il codice fiscale dalla stringa selezionata dalla combobox
     	 String CfAtleta = InfoAtleta;
     	 //Split della stringa
-    	 String[] cfs = CfAtleta.split(" ");
+    	 String[] cfs = CfAtleta.split("-");
     	 String CfAtletaSplit = cfs[2];
     	 
     	 //setto il codice atleta selezionato
@@ -832,7 +829,7 @@ public class Controller {
     	 //ricavo il codice fiscale dalla stringa selezionata dalla combobox
     	 String CfAtleta = InfoAtleta;
     	 //Split della stringa
-    	 String[] cfs = CfAtleta.split(" ");
+    	 String[] cfs = CfAtleta.split("-");
     	 String CfAtletaSplit = cfs[2];
     	 
     	 //setto il codice atleta selezionato
@@ -864,7 +861,7 @@ public class Controller {
     	 Iterator<Atleti> iAtleti = atleti.iterator();
     	 while (iAtleti.hasNext()) {
     		 Atleti a = iAtleti.next();
-    		 ListaAtleti.add(a.getNome()+" "+a.getCognome()+" "+a.getCodiceFiscale());
+    		 ListaAtleti.add(a.getNome()+"-"+a.getCognome()+"-"+a.getCodiceFiscale());
     	 }
     	 
     	 //Setto la combo box
@@ -885,7 +882,7 @@ public class Controller {
     	 //ricavo il codice fiscale dalla stringa selezionata dalla combobox
     	 String CfAtleta = InfoAtleta;
     	 //Split della stringa
-    	 String[] cfs = CfAtleta.split(" ");
+    	 String[] cfs = CfAtleta.split("-");
     	 String CfAtletaSplit = cfs[2];
     	 
     	 //setto il codice atleta selezionato

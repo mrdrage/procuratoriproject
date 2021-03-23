@@ -183,7 +183,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
        
         CodCollaborazione = CodC;
         
-         System.out.println (CodProcuratori + " "+ CodCollaborazione + " "+CodC);
+         System.out.println (CodProcuratori + "-"+ CodCollaborazione + "-"+CodC+"-" + CodAtleti);
          
         InserisciCollaborazione.executeUpdate();
  

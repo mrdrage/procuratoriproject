@@ -45,7 +45,6 @@ public class M_ErroreDatabase extends JDialog {
 			JButton Ok_B = new JButton("Ok");
 			Ok_B.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					controller.IniziaInserimentoProcuratore();
 					setVisible(false);
 				}
 			});
