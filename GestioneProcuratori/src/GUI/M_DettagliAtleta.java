@@ -34,7 +34,6 @@ public class M_DettagliAtleta extends JFrame {
 	private JTextField CodiceFiscale_TF;
 	private JTextField Sport_TF;
 	private JTextField ClubAttuale_TF;
-	private JTextField SerieClub_TF;
 
 	/**
 	 * Create the frame.
@@ -65,7 +64,7 @@ public class M_DettagliAtleta extends JFrame {
 		
 		JLabel Cognome_L = new JLabel("Cognome:");
 		Cognome_L.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		Cognome_L.setBounds(10, 107, 102, 14);
+		Cognome_L.setBounds(10, 107, 102, 20);
 		contentPane.add(Cognome_L);
 		
 		JLabel Nazione_L = new JLabel("Nazione:");
@@ -75,23 +74,18 @@ public class M_DettagliAtleta extends JFrame {
 		
 		JLabel CodiceFiscale_L = new JLabel("Codice Fiscale:");
 		CodiceFiscale_L.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		CodiceFiscale_L.setBounds(10, 188, 171, 14);
+		CodiceFiscale_L.setBounds(10, 185, 171, 20);
 		contentPane.add(CodiceFiscale_L);
 		
 		JLabel Sport_L = new JLabel("Sport:");
 		Sport_L.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		Sport_L.setBounds(10, 233, 171, 14);
+		Sport_L.setBounds(10, 230, 171, 20);
 		contentPane.add(Sport_L);
 		
 		JLabel ClubAttuale_L = new JLabel("Club attuale:");
 		ClubAttuale_L.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		ClubAttuale_L.setBounds(10, 277, 171, 14);
 		contentPane.add(ClubAttuale_L);
-		
-		JLabel SerieClub_L = new JLabel("Serie Club");
-		SerieClub_L.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		SerieClub_L.setBounds(10, 329, 171, 14);
-		contentPane.add(SerieClub_L);
 		
 		Nome_TF = new JTextField();
 		Nome_TF.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -134,25 +128,6 @@ public class M_DettagliAtleta extends JFrame {
 		contentPane.add(ClubAttuale_TF);
 		ClubAttuale_TF.setColumns(10);
 		
-		SerieClub_TF = new JTextField();
-		SerieClub_TF.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		SerieClub_TF.setEditable(false);
-		SerieClub_TF.setBounds(210, 326, 150, 20);
-		contentPane.add(SerieClub_TF);
-		SerieClub_TF.setColumns(10);
-		
-		JButton Ok_B = new JButton("Ok");
-		Ok_B.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				controller.TornaAllaGestioneProcuratore();
-			}
-		});
-		
-		Ok_B.setBackground(new Color(0, 0, 0));
-		Ok_B.setBounds(423, 444, 52, 23);
-		contentPane.add(Ok_B);
-		
 		JButton GestisciGettoneNazionale_B = new JButton("Visualizza gettoni nazionale");
 		GestisciGettoneNazionale_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,12 +142,17 @@ public class M_DettagliAtleta extends JFrame {
 			}
 		});
 		
-		GestisciGettoneNazionale_B.setBackground(new Color(0, 0, 0));
+		GestisciGettoneNazionale_B.setBackground(Color.WHITE);
 		GestisciGettoneNazionale_B.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		GestisciGettoneNazionale_B.setBounds(108, 392, 253, 35);
+		GestisciGettoneNazionale_B.setBounds(107, 353, 253, 35);
 		contentPane.add(GestisciGettoneNazionale_B);
 		
 		JButton Indietro_B = new JButton("Indietro");
+		Indietro_B.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.tornaGestioneProcuratoreIndietro();
+			}
+		});
 		Indietro_B.setBounds(10, 438, 117, 29);
 		contentPane.add(Indietro_B);
 	}
@@ -185,7 +165,7 @@ public class M_DettagliAtleta extends JFrame {
 		CodiceFiscale_TF.setText(atleta.getCodiceFiscale());
 		Sport_TF.setText(atleta.getSport());
 		ClubAttuale_TF.setText(atleta.getClubAttuale());
-		SerieClub_TF.setText(atleta.getSerieClub());
+		
         
 				
 		

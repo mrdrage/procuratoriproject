@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
 
 public class M_SelezionaAtletaContratto extends JFrame {
 	
@@ -67,11 +68,16 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		contentPane.add(Indietro_B);
 		
 		JButton VisualizzaContratti_B = new JButton("Visualizza i contratti");
+		VisualizzaContratti_B.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		VisualizzaContratti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
+					if(((String) ScegliAtleta_CO.getSelectedItem()) == null ) {
+						controller.erroreComboBoxAtletiVuota();
+					}else {
 					controller.iniziaRicercaContrattiAtleta((String) ScegliAtleta_CO.getSelectedItem());
+					}
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -82,17 +88,22 @@ public class M_SelezionaAtletaContratto extends JFrame {
 			}
 		});
 		
-		VisualizzaContratti_B.setBackground(Color.WHITE);
+		VisualizzaContratti_B.setBackground(UIManager.getColor("Button.background"));
 		VisualizzaContratti_B.setBounds(10, 109, 188, 23);
 		contentPane.add(VisualizzaContratti_B);
 		
 		JButton InserisciContrattoClub_B = new JButton("Inserisci contratto Club");
-		InserisciContrattoClub_B.setBackground(Color.WHITE);
+		InserisciContrattoClub_B.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		InserisciContrattoClub_B.setBackground(UIManager.getColor("Button.background"));
 		InserisciContrattoClub_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
+					if(((String) ScegliAtleta_CO.getSelectedItem()) == null ) {
+						controller.erroreComboBoxAtletiVuota();
+					}else {
 					controller.InserisciContrattoClub((String) ScegliAtleta_CO.getSelectedItem());
+					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -104,11 +115,17 @@ public class M_SelezionaAtletaContratto extends JFrame {
 		contentPane.add(InserisciContrattoClub_B);
 		
 		JButton InserisciContrattoSponsor_B = new JButton("Inserisci contratto Sponsor");
+		InserisciContrattoSponsor_B.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		InserisciContrattoSponsor_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
+					if(((String) ScegliAtleta_CO.getSelectedItem()) == null ) {
+						controller.erroreComboBoxAtletiVuota();
+					}else {
 					controller.InserisciContrattoSponsor((String) ScegliAtleta_CO.getSelectedItem());
+					}
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -116,15 +133,20 @@ public class M_SelezionaAtletaContratto extends JFrame {
 			}
 		});
 		
-		InserisciContrattoSponsor_B.setBackground(Color.WHITE);
+		InserisciContrattoSponsor_B.setBackground(UIManager.getColor("Button.background"));
 		InserisciContrattoSponsor_B.setBounds(10, 177, 188, 23);
 		contentPane.add(InserisciContrattoSponsor_B);
 		
 		JButton Introiti_B = new JButton("Visualizza gli introiti");
+		Introiti_B.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		Introiti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(((String) ScegliAtleta_CO.getSelectedItem()) == null ) {
+						controller.erroreComboBoxAtletiVuota();
+					}else {
 					controller.VisualizzaIntroitiProcuratore((String) ScegliAtleta_CO.getSelectedItem());
+					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

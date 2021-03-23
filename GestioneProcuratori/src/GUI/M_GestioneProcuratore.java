@@ -243,6 +243,7 @@ public class M_GestioneProcuratore extends JFrame {
 
 				
 		//Conversione da Date a String
+		
 		DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		String dataN = formatter.format(procuratore.getDataN());
 		DataN_TF.setText(dataN);

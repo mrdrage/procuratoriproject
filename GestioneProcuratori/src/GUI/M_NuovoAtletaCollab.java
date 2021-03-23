@@ -31,7 +31,6 @@ public class M_NuovoAtletaCollab extends JFrame {
 	private JTextField CodiceFiscale_TF;
 	private JTextField Sport_TF;
 	private JTextField ClubAttuale_TF;
-	private JTextField SerieClub_TF;
 
 	/**
 	 * Create the frame.
@@ -43,7 +42,7 @@ public class M_NuovoAtletaCollab extends JFrame {
 		controller = c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 309, 407);
+		setBounds(100, 100, 309, 354);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(250, 240, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -86,11 +85,6 @@ public class M_NuovoAtletaCollab extends JFrame {
 		ClubAttuale_L.setBounds(10, 230, 100, 27);
 		contentPane.add(ClubAttuale_L);
 		
-		JLabel SerieClub_L = new JLabel("Serie Club:");
-		SerieClub_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		SerieClub_L.setBounds(10, 268, 100, 27);
-		contentPane.add(SerieClub_L);
-		
 		Nome_TF = new JTextField();
 		Nome_TF.setBackground(new Color(255, 255, 255));
 		Nome_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -128,12 +122,6 @@ public class M_NuovoAtletaCollab extends JFrame {
 		contentPane.add(ClubAttuale_TF);
 		ClubAttuale_TF.setColumns(10);
 		
-		SerieClub_TF = new JTextField();
-		SerieClub_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		SerieClub_TF.setBounds(129, 271, 156, 20);
-		contentPane.add(SerieClub_TF);
-		SerieClub_TF.setColumns(10);
-		
 		JButton btnNewButton = new JButton("Indietro");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -142,8 +130,8 @@ public class M_NuovoAtletaCollab extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBackground(new Color(0, 0, 0));
-		btnNewButton.setBounds(133, 334, 71, 23);
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setBounds(129, 291, 75, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton Avanti_B = new JButton("Avanti");
@@ -151,26 +139,28 @@ public class M_NuovoAtletaCollab extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				//Se ï¿½ giï¿½ presente un atleta con i dati inseriti, appare la dialog ErroreAtletaPresente
+				//Se é giá presente un atleta con i dati inseriti, appare la dialog ErroreAtletaPresente
 				//oppure
 				//Carica i dati inseriti nel database
 				try {
 					
 					controller.InserisciAtleta(Nome_TF.getText(), Cognome_TF.getText(), Nazione_TF.getText(), 
-							CodiceFiscale_TF.getText(), Sport_TF.getText(),ClubAttuale_TF.getText(), SerieClub_TF.getText());
+							CodiceFiscale_TF.getText(), Sport_TF.getText(),ClubAttuale_TF.getText());
 					
-					//svuoto i campi dopo che ï¿½ stato premuto avanti
+					//svuoto i campi dopo che é stato premuto avanti
 					Nome_TF.setText("");
 					Cognome_TF.setText("");
+					Nazione_TF.setText("");
 					CodiceFiscale_TF.setText("");
 					Sport_TF.setText("");
 					ClubAttuale_TF.setText("");
-					SerieClub_TF.setText("");
+					
 					
 					
 					
 				} catch (SQLException e1) {
                      //finestre di errore
+					controller.ErroreInserimentoDatabase();
 					e1.printStackTrace();
 				}
 
@@ -179,9 +169,8 @@ public class M_NuovoAtletaCollab extends JFrame {
 			}
 		});
 		
-		Avanti_B.setBackground(new Color(0, 0, 0));
-		Avanti_B.setBounds(214, 334, 71, 23);
+		Avanti_B.setBackground(Color.WHITE);
+		Avanti_B.setBounds(214, 291, 71, 23);
 		contentPane.add(Avanti_B);
 	}
-
 }

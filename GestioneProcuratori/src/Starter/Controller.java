@@ -72,6 +72,7 @@ public class Controller {
 	      //Finestre atleti
 	      M_CercaAtletaDettagli CercaAtletaDettagli;
 	      M_GestioneGettoneNazionale GestioneGettoneNazionale;
+	      M_ErroreComboBoxVuota erroreComboBoxVuota;
 	      
 	     
 	      
@@ -108,6 +109,7 @@ public class Controller {
 	      NuovoAtletaCollab = new M_NuovoAtletaCollab(this);
 	      CercaAtletaDettagli = new M_CercaAtletaDettagli(this);
 	      ListaCollaborazioni = new M_ListaCollaborazioni(this);
+	      erroreComboBoxVuota = new M_ErroreComboBoxVuota(this);
 	      
 	      GestioneGettoneNazionale = new M_GestioneGettoneNazionale(this);
 	      
@@ -158,6 +160,10 @@ public class Controller {
     	 ErroreDataInserita.setVisible(true);
      }
      
+     public void erroreComboBoxAtletiVuota() {
+    	erroreComboBoxVuota.setVisible(true);
+     }
+     
      
     
      
@@ -170,6 +176,10 @@ public class Controller {
     	 benvenuto.setVisible(false);
     	 nuovoProcuratore.setVisible(true);
     	 
+     }
+     
+     public void tornaGestioneProcuratoreIndietro() {
+    	 GestioneProcuratore.setVisible(true);
      }
      
      public void TornaAGestioneProcuratore() {
@@ -218,7 +228,7 @@ public class Controller {
     	 
     	       while (i.hasNext()) {  
     		        Procuratori p = i.next();
-    		        InfoProcuratori.add(p.getCognome()+" "+p.getNome()+" "+p.getCodiceFiscale());
+    		        InfoProcuratori.add(p.getCognome()+"-"+p.getNome()+"-"+p.getCodiceFiscale());
     	       }
     	       
     	 //li imposto sulla combobox
@@ -241,13 +251,14 @@ public class Controller {
     	 String CfProcuratore = InfoProcuratore;
     	 
     	 //Split della stringa
-    	 String[] cfs = CfProcuratore.split(" ");
+    	 String[] cfs = CfProcuratore.split("-");
     	 String CfProcuratoreSplit = cfs[2] ;
     	
     	 //lo passo al dao ottenendo tutte le info in un oggetto Procuratori grazie alla query
     	 procuratore = ProcuratoriDAOPostgresImpl.getProcuratoreByCf(CfProcuratoreSplit);
     	 
-    	 
+    	 System.out.println(procuratore.getNome() + procuratore.getCognome() + procuratore.getEmail() + procuratore.getNumeroTelefonico() + procuratore.getDataN());
+    	 System.out.println(procuratore.toString());
     	 //setto la scheda del procuratore
     	 GestioneProcuratore.setProcuratore(procuratore);
     	 
@@ -443,7 +454,7 @@ public class Controller {
     		 atleti.add(AtletiDAOPostgresImpl.getAtletiByIDCollaborazione(iCollab.next()));
     		 
     	 }
-    	 
+    	   
     	 //Prende le info degli atleti in stringhe da passare alla finestra CercaAtletiDettagli 
     	 Iterator<Atleti> iAtleti = atleti.iterator();
     	 while (iAtleti.hasNext()) {
@@ -461,9 +472,9 @@ public class Controller {
      
      
      
-     public void InserisciAtletaDB(String nome, String cognome, String nazione, String codicefiscale, String sport, String clubattuale, String serieclub) throws SQLException {
+     public void InserisciAtletaDB(String nome, String cognome, String nazione, String codicefiscale, String sport, String clubattuale) throws SQLException {
     	 
-        Atleti atleta = new Atleti(nome, cognome, nazione, codicefiscale, sport, clubattuale, serieclub);
+        Atleti atleta = new Atleti(nome, cognome, nazione, codicefiscale, sport, clubattuale);
     	
 		//setto il codice atleta localmente		
     	setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(codicefiscale));
@@ -545,9 +556,9 @@ public class Controller {
     	 int codCollab = 0;
     	 DataFineCollaborazione = CollaborazioneDAOPostgresImpl.getDataFineCollaborazione(getCodatleti());
     	 if (CollaborazioneDAOPostgresImpl.controllaFineCollaborazione(getCodatleti())){
-    		/* codCollab  = */ CollaborazioneDAOPostgresImpl.getIDCollaborazioneByIDAtleta(getCodatleti());
+    		 codCollab  =  CollaborazioneDAOPostgresImpl.getIDCollaborazioneByIDAtleta(getCodatleti());
     		 AtletiDAOPostgresImpl.setAtletaNull(getCodatleti());
-    		 //CollaborazioneDAOPostgresImpl.cancellaCollaborazione(codCollab);
+    		 CollaborazioneDAOPostgresImpl.cancellaCollaborazione(codCollab);
     	 }
      }
     	 
@@ -724,11 +735,11 @@ public class Controller {
      }
      
     
-     public void InserisciAtleta (String Nome,String Cognome,String Nazione, String CodiceFiscale,String Sport,String ClubAttuale,String SerieClub) throws SQLException {
+     public void InserisciAtleta (String Nome,String Cognome,String Nazione, String CodiceFiscale,String Sport,String ClubAttuale) throws SQLException {
     	 
     	  
     	 //aggiungo nel db l'atleta
-    	 Atleti atleta = new Atleti(Nome, Cognome, Nazione, CodiceFiscale, Sport, ClubAttuale, SerieClub);
+    	 Atleti atleta = new Atleti(Nome, Cognome, Nazione, CodiceFiscale, Sport, ClubAttuale);
     	 AtletiDAOPostgresImpl.inserisciAtleta(atleta);
     	  
     	 aggiungiCollaborazione();
@@ -753,7 +764,7 @@ public class Controller {
     	 
     	 AggiungiContrattoClub.setVisible(false);
     	 
-    	 SelezionaAtletaContratto.setVisible(false);
+    	 SelezionaAtletaContratto.setVisible(true);
      }
      
      public void TornaASelezionaAtletacontratto () {
