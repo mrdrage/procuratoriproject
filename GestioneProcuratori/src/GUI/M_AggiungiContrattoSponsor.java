@@ -37,6 +37,7 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public M_AggiungiContrattoSponsor(Controller c) {
 		
 		controller = c;
@@ -146,16 +147,20 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 				try {
 					controller.InserisciContrattoSponsorDB(DataInizio_TF.getText(), DataFine_TF.getText(), guadagno, percentualeprocuratore, TipologiaSponsor_TF.getText(), MarcaSponsor_TF.getText(), VincoliContrattuali_TF.getText());
 					controller.ContrattoSponsorInseritoCorrettamente();
-				} catch (ParseException | SQLException e1) {
-					// finestre di errore
-					//Se cé un errore nella data, appare la dialog ErroreDataSponsor
-					e1.printStackTrace();
-				}
-				
-				
+					
+				} catch (NumberFormatException | SQLException e1) {
+					
+					controller.ErroreInserimentoDatabase();
+					
+				} catch (ParseException  e2) {
+					
+					controller.ErroreInserimentoDataContratto();
+					
+				} 
 				
 			}
 		});
+		
 		Avanti_B.setBackground(new Color(0, 0, 0));
 		Avanti_B.setBounds(459, 450, 71, 23);
 		contentPane.add(Avanti_B);
@@ -163,8 +168,16 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 		JButton Indietr_B = new JButton("Indietro");
 		Indietr_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Torna alla finestra GestioneProcuratore
-				//setVisible(false);
+				
+				controller.TornaASelezionaAtletacontratto();
+				
+				DataInizio_TF.setText("");
+				DataFine_TF.setText("");
+				Guadagno_TF.setText("");
+				PercentualeProcuratore_TF.setText("");
+				TipologiaSponsor_TF.setText("");
+				MarcaSponsor_TF.setText("");
+				VincoliContrattuali_TF.setText("");
 			}
 		});
 		Indietr_B.setBackground(new Color(0, 0, 0));

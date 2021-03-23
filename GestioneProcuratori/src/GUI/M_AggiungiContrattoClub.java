@@ -127,30 +127,29 @@ public class M_AggiungiContrattoClub extends JFrame {
 				double stipendioatleta = Double.parseDouble(StipendioAtleta_TF.getText());
 				double guadagnobonus = Double.parseDouble(GuadagnoBonus_TF.getText());
 				
-				//Se l'atleta selezionato ha giá un contratto club, appare la finestra M_checkclub
+				//Se l'atleta selezionato ha giï¿½ un contratto club, appare la finestra M_checkclub
 				//oppure viene inserito  il contratto
 				
 				try {
+					
 					controller.InserisciContrattoClubDB(DataInizio_TF.getText(), DataFine_TF.getText(), stipendioatleta, BonusStagione_TF.getText(), guadagnobonus, VincoloContrattuale_TF.getText());
 					controller.ContrattoClubInseritoCorrettamente();
-				} // finestre di errore
+				} 
 				  catch (ParseException e1) {
-					
+					  
+					// finestre di errore
 					e1.printStackTrace();
 					controller.ErroreInserimentoDataContratto();
 					
-				} catch (SQLException e2) {
-					controller.ErroreInserimentoDatabase();
+				} catch (SQLException | NumberFormatException e2) {
 					
-				}
-				
-				//oppure appare la dialog ContrattoClubInserito
-				
-				
-				
+					controller.ErroreInserimentoDatabase();
+				}	
+
 				
 			}
 		});
+		
 		Avanti_B.setBackground(new Color(0, 0, 0));
 		Avanti_B.setBounds(393, 433, 93, 23);
 		contentPane.add(Avanti_B);
@@ -158,8 +157,15 @@ public class M_AggiungiContrattoClub extends JFrame {
 		JButton Indietro_B = new JButton("Indietro");
 		Indietro_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//torna alla finestra GestioneProcuratore
-				//setVisible(false);
+
+				controller.tornaAselezionaAtletaContratto();
+				
+				DataInizio_TF.setText("");
+				DataFine_TF.setText("");
+				StipendioAtleta_TF.setText("");
+				BonusStagione_TF.setText("");
+				GuadagnoBonus_TF.setText("");
+				VincoloContrattuale_TF.setText("");
 			}
 		});
 		Indietro_B.setBackground(new Color(0, 0, 0));

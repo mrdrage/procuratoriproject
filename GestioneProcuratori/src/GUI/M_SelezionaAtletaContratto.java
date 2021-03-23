@@ -31,6 +31,7 @@ public class M_SelezionaAtletaContratto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public M_SelezionaAtletaContratto(Controller c) {
 		setResizable(false);
 		controller = c;
