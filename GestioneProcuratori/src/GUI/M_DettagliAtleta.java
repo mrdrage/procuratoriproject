@@ -150,7 +150,9 @@ public class M_DettagliAtleta extends JFrame {
 		JButton Indietro_B = new JButton("Indietro");
 		Indietro_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				controller.tornaGestioneProcuratoreIndietro();
+				setVisible(false);
 			}
 		});
 		Indietro_B.setBounds(10, 438, 117, 29);

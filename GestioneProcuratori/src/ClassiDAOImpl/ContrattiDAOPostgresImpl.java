@@ -61,7 +61,6 @@ public class ContrattiDAOPostgresImpl implements ContrattiDAO {
 		return codSponsor;
 	}
 	
-	
 	public void inserisciContrattoClub(ContrattoClub contrattoclub, int codatleti) throws SQLException {
 	    //nextval del codice contratto
 		int CodClub = getNextCodClub();
@@ -82,8 +81,6 @@ public class ContrattiDAOPostgresImpl implements ContrattiDAO {
 		
 		inserisciContrattoClubPS.executeUpdate();
 	}
-
-
 
 	public void inserisciContrattoSponsor(ContrattoSponsor contrattosponsor, int codatleti) throws SQLException {
 	    //nextval del codice contratto
