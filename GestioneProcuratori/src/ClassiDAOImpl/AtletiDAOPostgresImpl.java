@@ -72,21 +72,24 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 	
 	public Atleti getAtletaByCf (String CodiceFiscale) throws SQLException {
 		  
-		   Atleti atleta = new Atleti();
-		   getAtletaByCf.setString(1, CodiceFiscale);
-		   ResultSet rs = getAtletaByCf.executeQuery();
-		   int codatleti =0;
+		   
+		Atleti atleta = new Atleti();
+		getAtletaByCf.setString(1, CodiceFiscale);
+        ResultSet rs = getAtletaByCf.executeQuery();
+	    int codatleti =0;
 		   
 		   
-		   while(rs.next()) {
-		   Atleti a = new Atleti(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
-		   atleta = a;
-		   codatleti = rs.getInt(7);
-		
-		   }
-		   
-		   return atleta;
-	   }
+		  
+	    while(rs.next()) {
+		 
+	    	Atleti a = new Atleti(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));		 
+	    	atleta = a;		
+	    	codatleti = rs.getInt(7);		
+		  
+	    }
+		   		  
+	    return atleta;  
+	}
 	
 	public List<Atleti> getAllAtleti() throws SQLException{
 		
@@ -135,23 +138,26 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 
 	public int getIdAtletaByCf (String CodiceFiscale) throws SQLException {
 		  
-		   getAtletaByCf.setString(1, CodiceFiscale);
-		   ResultSet rs = getAtletaByCf.executeQuery();
-		   int codatleti = 0;
-		   
-		   //Essendo il cf unico basta utilizzare solo una volta il next(), che punterà quindi all'unica tupla presente
-		   while(rs.next()) {
-			   codatleti = rs.getInt(7);
-		   }
-		   rs.close();
-		   
-		   return codatleti;
-	   }
+		  
+		getAtletaByCf.setString(1, CodiceFiscale);		  
+		ResultSet rs = getAtletaByCf.executeQuery();		  
+		int codatleti = 0;		 
+		
+		//Essendo il cf unico basta utilizzare solo una volta il next(), che punterà quindi all'unica tupla presente		 
+		while(rs.next()) {
+			
+			codatleti = rs.getInt(7);		   
+		}
+		  
+		rs.close();		   
+		return codatleti;
+	  
+	}
 	
 	public List<Atleti> getAtletiLiberi () throws SQLException{
 		
 		List<Atleti> lista = new ArrayList<Atleti>();
-
+	
 		ResultSet rs = getAtletiLiberi.executeQuery();
 		while (rs.next()) {
 			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"));
@@ -163,17 +169,12 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 	}
 
 	public void setCodCollaborazione (int codCollaborazione, int codAtleta) throws SQLException {
-		
+				
 		int row = 0;
 		setCodCollaborazione.setInt(2, codAtleta);
 		setCodCollaborazione.setInt(1, codCollaborazione);
-		
 	
-		
-//		setCodCollaborazione.setInt(1, codCollaborazione);
-//		setCodCollaborazione.setInt(2, codAtleta);
-//		
-	row = setCodCollaborazione.executeUpdate();
+		row = setCodCollaborazione.executeUpdate();
 		
 	}
 
@@ -221,5 +222,6 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 	
 	
 	
-	}
+	
+}
 

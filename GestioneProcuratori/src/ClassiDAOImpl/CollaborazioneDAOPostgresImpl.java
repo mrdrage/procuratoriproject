@@ -30,9 +30,9 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	private PreparedStatement getDataFineCollaborazione;
 	private PreparedStatement cancellaCollaborazione;
 	private PreparedStatement getIDCollaborazioneByIDAtleta;
-	String ciao;
 	
-
+	
+	
 	public CollaborazioneDAOPostgresImpl(Connection connection) throws SQLException{
 		
 		this.connection = connection;
@@ -50,51 +50,9 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		getIDCollaborazioneByIDAtleta = connection.prepareStatement("SELECT codcollaborazione FROM collaborazione WHERE codatleti = ?");
 	}
 	
-	public int getIDCollaborazioneByIDAtleta(int codatleti) throws SQLException {
-		
-		int codCollab = 0;
-		getIDCollaborazioneByIDAtleta.setInt(1, codatleti);
-		ResultSet rs = getIDCollaborazioneByIDAtleta.executeQuery();
-		while(rs.next()) {
-			codCollab = rs.getInt(1);
-		}
-		
-		return codCollab;
-	}
-	
-	public void cancellaCollaborazione(int codcollaborazione) throws SQLException {
-		
-		int row = 0;
-		
-		cancellaCollaborazione.setInt(1, codcollaborazione);
-		row = cancellaCollaborazione.executeUpdate();
-	}
-	
-	public Date getDataFineCollaborazione (int codatleti) throws SQLException {
-		
-		Date DataFineCollaborazione = new Date();
-		getDataFineCollaborazione.setInt(1, codatleti);
-		ResultSet rs = getDataFineCollaborazione.executeQuery();
-		while(rs.next()) {
-			DataFineCollaborazione = rs.getDate(1);
-		}
-		return DataFineCollaborazione;
-		
-	}
-	
-	public boolean controllaFineCollaborazione(int codatleti) throws SQLException {
-		 Date DataFineCollaborazione = null;
-		 Date date = new Date();
-		 DataFineCollaborazione = getDataFineCollaborazione(codatleti);
-		 if (DataFineCollaborazione.compareTo(date) < 0)
-			 return true;
-		 
-		 return false;
-	}
-	
 	
 	private int getNextCod () throws SQLException {
-		
+			
 		int codCollab = 0;
 		ResultSet rs = getMaxId.executeQuery();
 		
@@ -105,9 +63,66 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
        
 		return codCollab;
 	}
+
+	
+	public int getIDCollaborazioneByIDAtleta(int codatleti) throws SQLException {
+		
+		int codCollab = 0;
+		
+		getIDCollaborazioneByIDAtleta.setInt(1, codatleti);
+		ResultSet rs = getIDCollaborazioneByIDAtleta.executeQuery();
+		
+		while(rs.next()) {
+			codCollab = rs.getInt(1);
+		}
+		
+		return codCollab;
+	}
+	
+	
+	public void cancellaCollaborazione(int codcollaborazione) throws SQLException {		
+		
+		int row = 0;
+		
+		cancellaCollaborazione.setInt(1, codcollaborazione);
+		
+		row = cancellaCollaborazione.executeUpdate();
+	}
+	
+	
+	public Date getDataFineCollaborazione (int codatleti) throws SQLException {
+		
+		Date DataFineCollaborazione = new Date();
+		getDataFineCollaborazione.setInt(1, codatleti);
+		ResultSet rs = getDataFineCollaborazione.executeQuery();
+		
+		while(rs.next()) {
+			DataFineCollaborazione = rs.getDate(1);
+		}
+		
+		return DataFineCollaborazione;
+		
+	}
+	
+	
+	public boolean controllaFineCollaborazione(int codatleti) throws SQLException {
+		
+		
+		Date DataFineCollaborazione = null;		
+		Date date = new Date();		
+		DataFineCollaborazione = getDataFineCollaborazione(codatleti);
+		 
+		
+		if (DataFineCollaborazione.compareTo(date) < 0)		
+			return true;
+		 	
+		return false;
+	
+	}
 	
 	
 	public int getCodiceCollaborazione () {
+
 		return CodCollaborazione;
 	}
 
@@ -144,6 +159,8 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		return CollabIDList;
 	}
 	
+	
+	
 	public List<Collaborazione> getAllCollaborazioniByProcuratore(int CodProcuratori) throws SQLException {
 		
 		//Passo il codice procuratore all'interrogazione
@@ -164,7 +181,6 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	}
 
 	
-
 	public void InserisciCollaborazione(Collaborazione collaborazione, int CodProcuratori, int CodAtleti) throws SQLException {
 		
 		int CodC = getNextCod();
@@ -182,21 +198,21 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		InserisciCollaborazione.setInt(5, CodAtleti);
         InserisciCollaborazione.setInt(6, CodProcuratori);
 		
-       
+        //copio il codice per usarlo nel controller
         CodCollaborazione = CodC;
-        
-         System.out.println (CodProcuratori + "-"+ CodCollaborazione + "-"+CodC+"-" + CodAtleti);
          
         InserisciCollaborazione.executeUpdate();
  
         
 	}
 	
+	
 	public  long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
-		
-	    long diffInMillies = date2.getTime() - date1.getTime();
+		    
+		long diffInMillies = date2.getTime() - date1.getTime();
 	    return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
 	}
+	
 	
 	public long getMesiCollaborazione(int codatleti) throws SQLException {
 		
@@ -210,12 +226,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 			datainizio = rs.getDate(1);
 			datafine = rs.getDate(2);
 		}
-//		
-//		  java.sql.Date dataInizio = new java.sql.Date(datainizio.getTime());
-//		  java.sql.Date dataFine = new java.sql.Date(datafine.getTime());
-//		
-		  
-		 
+
           return (getDateDiff(datainizio,datafine,TimeUnit.HOURS)/720);
   }
 }
