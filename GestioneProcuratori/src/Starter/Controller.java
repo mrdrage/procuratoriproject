@@ -428,7 +428,7 @@ public class Controller {
     	 
          //Dichiarazioni
     	 List<Integer>listacollaborazioni;
-         listacollaborazioni = CollaborazioneDAOPostgresImpl.getIDCollaborazioniByProcuratore(codprocuratori);
+         listacollaborazioni = CollaborazioneDAOPostgresImpl.getIDCollaborazioniByProcuratore(getCodprocuratori());
          List<Atleti> atleti = new ArrayList<Atleti>();
          List<String> ListaAtleti = new ArrayList<String>();
        
@@ -530,7 +530,47 @@ public class Controller {
      
      /**
  	 * METODI COLLABORAZIONI
+     * @throws SQLException 
  	 */
+     
+     
+     public void gestisciCollaborazione() throws SQLException {
+    	 
+    	 Date DataFineCollaborazione = null;
+    	 int codCollab = 0;
+    	 DataFineCollaborazione = CollaborazioneDAOPostgresImpl.getDataFineCollaborazione(getCodatleti());
+    	 if (CollaborazioneDAOPostgresImpl.controllaFineCollaborazione(getCodatleti())){
+    		/* codCollab  = */ CollaborazioneDAOPostgresImpl.getIDCollaborazioneByIDAtleta(getCodatleti());
+    		 AtletiDAOPostgresImpl.setAtletaNull(getCodatleti());
+    		 //CollaborazioneDAOPostgresImpl.cancellaCollaborazione(codCollab);
+    	 }
+     }
+    	 
+    	 public void effettuaControlloCollaborazione() throws SQLException {
+    		 
+    		 // Mi prendo gli id collaborazioni del procuratore
+    		 List<Integer>listacollaborazioni;
+    		 listacollaborazioni = CollaborazioneDAOPostgresImpl.getIDCollaborazioniByProcuratore(getCodprocuratori());
+    		 
+    		 // Setto il codice atleti per ogni id collaborazione
+    		 Iterator<Integer> iCollab = listacollaborazioni.iterator(); 
+        	 while (iCollab.hasNext()) {
+    		  
+        		 //setto l'atleta che ha collaborazione col procuratore selezionato in precedenza, in modo che sia impostato su codatleti locale		 
+        		 setCodatleti(AtletiDAOPostgresImpl.getIDAtletiByIDCollaborazione(iCollab.next()));	
+        		// Faccio il controllo gestionecollaborazione e passo al codiceatleti successivo
+        		 gestisciCollaborazione();
+        	 }
+    		 
+    		 
+    	 }
+    	 
+    	 
+    	 
+    	 //Prende la data di fine della collaborazione
+    	 //setta a null codcollaborazione dell'atleta
+    	 //cancello la collaborazione
+     
      
 //     public void iniziaInserimentoCollaborazione() {
 //    	 nuovaCollaborazione.setVisible(true);

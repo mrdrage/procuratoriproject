@@ -27,6 +27,10 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	private PreparedStatement getIDCollaborazioniByProcuratore;
 	private PreparedStatement getMaxId;
 	private PreparedStatement getMesiCollaborazione;
+	private PreparedStatement getDataFineCollaborazione;
+	private PreparedStatement cancellaCollaborazione;
+	private PreparedStatement getIDCollaborazioneByIDAtleta;
+	
 
 	public CollaborazioneDAOPostgresImpl(Connection connection) throws SQLException{
 		
@@ -40,7 +44,50 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 		InserisciCollaborazione = connection.prepareStatement("INSERT INTO collaborazione VALUES (?,?,?,?,?,?) ");
 		getIDCollaborazioniByProcuratore = connection.prepareStatement("SELECT codcollaborazione FROM collaborazione WHERE codprocuratori = ?");
 		getMesiCollaborazione = connection.prepareStatement("SELECT datainizio, datafine FROM collaborazione WHERE codatleti = ?");
+		getDataFineCollaborazione = connection.prepareStatement("SELECT datafine FROM collaborazione WHERE codatleti = ?");
+		cancellaCollaborazione = connection.prepareStatement("DELETE FROM collaborazione WHERE codcollaborazione = ?");
+		getIDCollaborazioneByIDAtleta = connection.prepareStatement("SELECT codcollaborazione FROM collaborazione WHERE codatleti = ?");
+	}
+	
+	public int getIDCollaborazioneByIDAtleta(int codatleti) throws SQLException {
 		
+		int codCollab = 0;
+		getIDCollaborazioneByIDAtleta.setInt(1, codatleti);
+		ResultSet rs = getIDCollaborazioneByIDAtleta.executeQuery();
+		while(rs.next()) {
+			codCollab = rs.getInt(1);
+		}
+		
+		return codCollab;
+	}
+	
+	public void cancellaCollaborazione(int codcollaborazione) throws SQLException {
+		
+		int row = 0;
+		cancellaCollaborazione.setInt(1, codcollaborazione);
+		row = cancellaCollaborazione.executeUpdate();
+	}
+	
+	public Date getDataFineCollaborazione (int codatleti) throws SQLException {
+		
+		Date DataFineCollaborazione = new Date();
+		getDataFineCollaborazione.setInt(1, codatleti);
+		ResultSet rs = getDataFineCollaborazione.executeQuery();
+		while(rs.next()) {
+			DataFineCollaborazione = rs.getDate(1);
+		}
+		return DataFineCollaborazione;
+		
+	}
+	
+	public boolean controllaFineCollaborazione(int codatleti) throws SQLException {
+		 Date DataFineCollaborazione = null;
+		 Date date = new Date();
+		 DataFineCollaborazione = getDataFineCollaborazione(codatleti);
+		 if (DataFineCollaborazione.compareTo(date) < 0)
+			 return true;
+		 
+		 return false;
 	}
 	
 	

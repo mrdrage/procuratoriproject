@@ -25,6 +25,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 	private PreparedStatement  getIDAtletiByIDCollaborazione;
 	private PreparedStatement  getAtletiByID;
 	private PreparedStatement  getGettoniNazionali;
+	private PreparedStatement  setAtletaNull;
 	
 	public AtletiDAOPostgresImpl(Connection connection) throws SQLException {
 		
@@ -40,7 +41,11 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		getIDAtletiByIDCollaborazione = connection.prepareStatement("SELECT codatleti FROM atleti WHERE codcollaborazione = ?");
 		getAtletiByID = connection.prepareStatement("SELECT * FROM atleti WHERE codatleti = ?");
 		getGettoniNazionali = connection.prepareStatement("SELECT * FROM gettonenazionale WHERE codatleti = ?");
+		setAtletaNull = connection.prepareStatement("UPDATE atleti SET codcollaborazione = null WHERE codatleti = ?");
 	}
+	
+	
+	
 	
 	private int getNextCod () throws SQLException {
 		int codAtleti = 0;
@@ -52,6 +57,13 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		codAtleti++;
        
 		return codAtleti;
+	}
+	
+	public void setAtletaNull (int codatleti) throws SQLException {
+		int row = 0;
+		setAtletaNull.setInt(1, codatleti);
+		row = setAtletaNull.executeUpdate();
+		
 	}
 	
 	public Atleti getAtletaByCf (String CodiceFiscale) throws SQLException {

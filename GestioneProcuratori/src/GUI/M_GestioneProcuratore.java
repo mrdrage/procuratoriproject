@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Starter.Controller;
+import entita.Collaborazione;
 import entita.Procuratori;
 
 import javax.swing.JTextPane;
@@ -21,6 +22,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class M_GestioneProcuratore extends JFrame {
@@ -146,6 +149,11 @@ public class M_GestioneProcuratore extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
+					
+					controller.effettuaControlloCollaborazione();
+					
+					//controller.gestisciCollaborazione();
+					
 				controller.ApriListaCollaborazioni();
 				
 				//Se non � presente nessuna collaborazione, apre la dialog NessunaCollaborazione
