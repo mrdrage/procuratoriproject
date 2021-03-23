@@ -17,9 +17,9 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class M_ErroreDatabase extends JDialog {
+public class M_ErroreInserimentoDatabase extends JDialog {
     
-    Controller controller = null;
+    Controller controller;
      
 	private final JPanel contentPanel = new JPanel();
    
@@ -27,7 +27,9 @@ public class M_ErroreDatabase extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public M_ErroreDatabase(Controller c) {
+	
+	public M_ErroreInserimentoDatabase(Controller c) {
+		setAlwaysOnTop(true);
 		controller = c;
 		setBounds(100, 100, 412, 157);
 		getContentPane().setLayout(new BorderLayout());
@@ -48,6 +50,7 @@ public class M_ErroreDatabase extends JDialog {
 					setVisible(false);
 				}
 			});
+			
 			Ok_B.setBackground(Color.WHITE);
 			Ok_B.setBounds(332, 84, 54, 23);
 			contentPanel.add(Ok_B);

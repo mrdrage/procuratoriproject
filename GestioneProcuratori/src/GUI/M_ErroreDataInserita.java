@@ -24,8 +24,6 @@ public class M_ErroreDataInserita extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
-	
-
 	/**
 	 * Create the dialog.
 	 */
@@ -58,6 +56,7 @@ public class M_ErroreDataInserita extends JDialog {
 					setVisible(false);
 				}
 			});
+			
 			Ok_B.setBounds(379, 68, 45, 23);
 			contentPanel.add(Ok_B);
 		}

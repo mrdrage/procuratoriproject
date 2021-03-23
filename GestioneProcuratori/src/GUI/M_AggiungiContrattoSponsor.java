@@ -151,11 +151,12 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 				} catch (NumberFormatException | SQLException e1) {
 					
 					controller.ErroreInserimentoDatabase();
+					e1.printStackTrace();
 					
 				} catch (ParseException  e2) {
 					
-					controller.ErroreInserimentoDataContratto();
-					
+					controller.ErroreInserimentoData();
+					e2.printStackTrace();
 				} 
 				
 			}
@@ -185,4 +186,5 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 		contentPane.add(Indietr_B);
 	}
 
+	
 }

@@ -40,6 +40,7 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 	 */
     
 	public M_VisualizzaContrattiAtleta(Controller c) {
+		
 		controller = c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,7 +56,7 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 		ListaContratti_L.setHorizontalAlignment(SwingConstants.CENTER);
 		ListaContratti_L.setFont(new Font("Verdana", Font.PLAIN, 20));
 		contentPane.add(ListaContratti_L);
-		//va aggiunta una jlist anche per i contratti sposnor (passandogli listmodelSponsor similmente come fatto coi club
+
 		JButton Indietro_B = new JButton("Indietro");
 		Indietro_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -64,6 +65,7 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 				
 			}
 		});
+		
 		Indietro_B.setBounds(928, 602, 84, 23);
 		Indietro_B.setBackground(Color.WHITE);
 		contentPane.add(Indietro_B);
@@ -126,10 +128,12 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 	}
 	
 	public void clearListContrattiClub () {
+		
 		listmodelClub.removeAllElements();
 	}
 	
 	public void clearListContrattiSponsor () {
+		
 		listmodelSponsor.removeAllElements();
 	}
 }

@@ -22,11 +22,9 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	private PreparedStatement inserisciProcuratorePS;
 	private PreparedStatement getAllProcuratori;
 	private PreparedStatement getAllCFProcuratori;
-	private PreparedStatement getCodProcuratore;
 	private PreparedStatement getProcuratoreByCf;
 	private PreparedStatement getIDProcuratoreByCf;
 	private PreparedStatement getMaxId;
-	private PreparedStatement isNewId;
 	private PreparedStatement getStipendioMensileProcuratore;
 	private PreparedStatement getGuadagnoSponsorProcuratore;
 	private PreparedStatement getProcuratoreByID;
@@ -48,9 +46,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 		getStipendioMensileProcuratore = connection.prepareStatement("SELECT stipendiomensileprocuratore FROM collaborazione where codprocuratori = ?");
 		getGuadagnoSponsorProcuratore = connection.prepareStatement("SELECT guadagnoatleta, percentualeprocuratore FROM contrattosponsor where codatleti = ?");
 		getProcuratoreByID = connection.prepareStatement("SELECT * from procuratori WHERE codprocuratori = ?");
-		
-		
-	//	isNewId = connection.prepareStatement("SELECT MAX(codprocuratori)  FROM procuratori WHERE ? NOT IN (SELECT codprocuratori FROM procuratori) ");
+			
 	}
 	
 	
@@ -66,6 +62,9 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
        
 		return codP;
 	}
+	
+	
+	
 	
 	public void InserisciProcuratore(Procuratori procuratore) throws SQLException {
         //prendo il nextval 
@@ -90,7 +89,8 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 		
 	}
 	
-    public List<Procuratori> getAllProcuratori() throws SQLException{
+  
+	public List<Procuratori> getAllProcuratori() throws SQLException{
 	 
 	   ResultSet rs  = getAllProcuratori.executeQuery();
 	   List<Procuratori> lista = new ArrayList<Procuratori>();
@@ -102,10 +102,9 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	   rs.close();
 	   return lista;
    }
+
 	
-
-
-   public List<String> getAllCFProcuratori() throws SQLException{
+	public List<String> getAllCFProcuratori() throws SQLException{
 
 	
 	   ResultSet rs = getAllCFProcuratori.executeQuery();
@@ -120,7 +119,8 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	   return lista;
    }  
    
-   public Procuratori getProcuratoreByCf (String CodiceFiscale) throws SQLException {
+	
+	public Procuratori getProcuratoreByCf (String CodiceFiscale) throws SQLException {
 	   
 	  
 	   int codprocuratori =0;
@@ -140,7 +140,8 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	   return procuratore;
    }
    
-   public Procuratori getProcuratoriByID (int codprocuratori) throws SQLException{
+	
+	public Procuratori getProcuratoriByID (int codprocuratori) throws SQLException{
 	   
 	   Procuratori procuratore = new Procuratori();
 	   getProcuratoreByID.setInt(1, codprocuratori);
@@ -155,7 +156,8 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	   
    }
    
-   public int getIDProcuratoreByCf (String CodiceFiscale) throws SQLException {
+
+	public int getIDProcuratoreByCf (String CodiceFiscale) throws SQLException {
 	  
 	   getIDProcuratoreByCf.setString(1, CodiceFiscale);
 	   ResultSet rs = getIDProcuratoreByCf.executeQuery();
@@ -168,7 +170,8 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	   return codprocuratori;
  }
    
-   public double getStipendioMensileProcuratore(int codprocuratori) throws SQLException {
+	
+	public double getStipendioMensileProcuratore(int codprocuratori) throws SQLException {
 	   getStipendioMensileProcuratore.setInt(1, codprocuratori);
 	   ResultSet rs = getStipendioMensileProcuratore.executeQuery();
 	   double stipendiomensile = 0;
@@ -178,7 +181,8 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	   return stipendiomensile;
    }
    
-   public double getGuadagnoSponsorProcuratore(int codatleti) throws SQLException {
+	
+	public double getGuadagnoSponsorProcuratore(int codatleti) throws SQLException {
 	   getGuadagnoSponsorProcuratore.setInt(1, codatleti);
 	   ResultSet rs = getGuadagnoSponsorProcuratore.executeQuery();
 	   double guadagnoatleta = 0;

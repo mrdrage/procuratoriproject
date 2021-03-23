@@ -60,8 +60,10 @@ public class M_CercaAtletaDettagli extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				controller.TornagestioneProcuratore();
+				
 			}
 		});
+		
 		Indietro_B.setBackground(Color.WHITE);
 		Indietro_B.setBounds(249, 137, 93, 23);
 		contentPane.add(Indietro_B);
@@ -70,21 +72,22 @@ public class M_CercaAtletaDettagli extends JFrame {
 		Avanti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				
 				try {
 					if(((String)CercaAtletaDettagli_CB.getSelectedItem()) == null ) {
 						controller.erroreComboBoxAtletiVuota();
+						
 					} else {
 					
 					controller.VisualizzaInfoAtleta((String)CercaAtletaDettagli_CB.getSelectedItem());
 				  }
+					
 				}catch (SQLException e1) {
 					
+					controller.ErroreLetturaDatabase();
 					e1.printStackTrace();
 				}
 				//Apre la finestra DettagliAtleta, caricando prima i dati dell'atleta selezionato 
-				//setVisible(false);
+				
 			}
 		});
 		

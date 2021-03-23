@@ -49,19 +49,21 @@ public class Controller {
 	      M_NuovoProcuratore nuovoProcuratore;
 	      M_ProcuratoreInseritoOk procuratoreInseritoOK;
 	      M_CercaProcuratore CercaProcuratore;
-	      M_DettagliAtleta DettagliAtleta;
-	      M_ErroreDatabase erroreDatabase;
+	      M_DettagliAtleta DettagliAtleta;	     
 	      M_VisualizzaIntroitiProcuratore visualizzaIntroitiProcuratore;
 	      
+	      //Finestre errori DB	      
+	      M_ErroreLetturaDatabase ErroreLetturaDatabase;	      
+	      M_ErroreInserimentoDatabase erroreDatabase;
+	       
 	      //Finestre collaborazioni
-	      M_NuovoAtletaCollab NuovoAtletaCollab;
+	      M_NuovoAtletaCollaborazione NuovoAtletaCollab;
 	      M_NuovaCollaborazione nuovaCollaborazione;
 	      M_ListaCollaborazioni ListaCollaborazioni;
 	      
 	      //Finestre contratti
 	      M_AggiungiContrattoClub AggiungiContrattoClub;
-	      M_AggiungiContrattoSponsor AggiungiContrattoSponsor;
-	      M_ContrattoClubEsistente ContrattoClubEsistente;
+	      M_AggiungiContrattoSponsor AggiungiContrattoSponsor;     
 	      M_ContrattoClubInserito contrattoClubInserito;
 	      M_ContrattoSponsorInserito ContrattoSponsorInserito;
 	      M_SelezionaAtletaContratto SelezionaAtletaContratto;
@@ -74,9 +76,7 @@ public class Controller {
 	      M_GestioneGettoneNazionale GestioneGettoneNazionale;
 	      M_ErroreComboBoxVuota erroreComboBoxVuota;
 	      
-	     
-	      
-		  
+	   
 	      //Codice del procuratore selezionato dall'utente in precedenza 
 	      public int codprocuratori;
 	      public int codatleti;
@@ -89,8 +89,6 @@ public class Controller {
 
 	public Controller () throws SQLException {
 
-     
-    	 
     	  //Avvio dell'app
 	      benvenuto = new M_Benvenuto(this);
 	      benvenuto.setVisible(true);
@@ -99,55 +97,58 @@ public class Controller {
 	      GestioneProcuratore = new M_GestioneProcuratore(this);
 	      nuovoProcuratore = new M_NuovoProcuratore(this);
 	      procuratoreInseritoOK = new M_ProcuratoreInseritoOk(this);
-	      CercaProcuratore = new M_CercaProcuratore(this);
-	      erroreDatabase = new M_ErroreDatabase(this);
+	      CercaProcuratore = new M_CercaProcuratore(this);    
 	      visualizzaIntroitiProcuratore = new M_VisualizzaIntroitiProcuratore(this);
 	    
 	      //Finestre Atleti
 	      CercaAtletaDettagli = new M_CercaAtletaDettagli(this);
 	      DettagliAtleta = new M_DettagliAtleta(this);
-	      NuovoAtletaCollab = new M_NuovoAtletaCollab(this);
-	      CercaAtletaDettagli = new M_CercaAtletaDettagli(this);
-	      ListaCollaborazioni = new M_ListaCollaborazioni(this);
-	      erroreComboBoxVuota = new M_ErroreComboBoxVuota(this);
-	      
+	      NuovoAtletaCollab = new M_NuovoAtletaCollaborazione(this);
+	      CercaAtletaDettagli = new M_CercaAtletaDettagli(this);           
 	      GestioneGettoneNazionale = new M_GestioneGettoneNazionale(this);
 	      
 	      //Finestre Collaborazioni
 	      nuovaCollaborazione = new M_NuovaCollaborazione(this);
+	      ListaCollaborazioni = new M_ListaCollaborazioni(this);	
 	      
 	      //Finestre Contratti
 	      AggiungiContrattoClub = new M_AggiungiContrattoClub(this);
 	      AggiungiContrattoSponsor = new M_AggiungiContrattoSponsor(this);
-	      ContrattoClubEsistente = new M_ContrattoClubEsistente(this);
 	      contrattoClubInserito = new M_ContrattoClubInserito(this);
 	      ContrattoSponsorInserito = new M_ContrattoSponsorInserito(this);
 	      SelezionaAtletaContratto = new M_SelezionaAtletaContratto(this);
 	      VisualizzaContrattiAtleta = new M_VisualizzaContrattiAtleta(this);
 	      ErroreDataInserita = new M_ErroreDataInserita(this);
 	      ListaIntroitiProcuratore = new M_ListaIntroitiProcuratore(this);
+	      
+	      //Finestre Errori 
+	      ErroreLetturaDatabase = new M_ErroreLetturaDatabase(this); 
+	      erroreDatabase = new M_ErroreInserimentoDatabase(this);
+	      erroreComboBoxVuota = new M_ErroreComboBoxVuota(this);
      }
      
 	 /**
   	 * JDIALOGS 
   	 */
 	
-    
      
      public void ContrattoClubInseritoCorrettamente() {
     	 
     	 contrattoClubInserito.setVisible(true);
      }
      
+     
      public void ContrattoSponsorInseritoCorrettamente() {
     	 
     	 ContrattoSponsorInserito.setVisible(true);
      }
      
+     
      public void ErroreInserimentoDatabase() {
     	 
     	 erroreDatabase.setVisible(true);
      }
+     
      
      public void ProcuratoreInseritoCorrettamente() {
     	 
@@ -155,16 +156,23 @@ public class Controller {
     	 nuovoProcuratore.setVisible(false);
      }
      
-     public void ErroreInserimentoDataContratto() {
+     
+     public void ErroreInserimentoData() {
     	 
     	 ErroreDataInserita.setVisible(true);
      }
      
+     
      public void erroreComboBoxAtletiVuota() {
+    	 
     	erroreComboBoxVuota.setVisible(true);
      }
      
      
+     public void ErroreLetturaDatabase() {
+    	 
+    	 ErroreLetturaDatabase.setVisible(true);
+     }
     
      
      /**
@@ -178,9 +186,11 @@ public class Controller {
     	 
      }
      
+     
      public void tornaGestioneProcuratoreIndietro() {
     	 GestioneProcuratore.setVisible(true);
      }
+     
      
      public void TornaAGestioneProcuratore() {
     	 
@@ -193,10 +203,12 @@ public class Controller {
     	 
      }
      
+     
      public void TornaAllaHome() {
     	 benvenuto.setVisible(true);
      }
       
+     
      public void InserisciProcuratoreDB (String nome, String cognome, String CF, String Ntel, String Ntel2, String email, String dataN) throws SQLException, ParseException {
     	
     	//Conversione da String a Date della dataN
@@ -213,7 +225,7 @@ public class Controller {
       
      }
      
-
+     
      public void RicercaProcuratori () throws SQLException {
     	 
     	 benvenuto.setVisible(false);
@@ -235,12 +247,10 @@ public class Controller {
          CercaProcuratore.setProcuratoriComboBox(InfoProcuratori);
          
     	 //visualizzo la  finestra 
-   	     CercaProcuratore.setVisible(true);
-    		 
-   	     
-    	
+   	     CercaProcuratore.setVisible(true);	
     	 
      }
+     
      
      public void VisualizzaInfoProcuratore (String InfoProcuratore) throws SQLException {
     	 Procuratori procuratore = new Procuratori();
@@ -288,6 +298,7 @@ public class Controller {
     	 GestioneProcuratore.setVisible(true);
      }
 
+     
      public double CalcolaGuadagniCollaborazioneProcuratore(int codprocuratori) throws SQLException {
     	
     	// Prendo lo stipendio mensile
@@ -301,10 +312,6 @@ public class Controller {
     	
      }
   
- 
-
-
-  
 
      public double CalcolaGuadagniSponsorProcuratore(int codprocuratori) throws SQLException {
 	   
@@ -313,8 +320,7 @@ public class Controller {
 	  
     	 return GuadagnoFinaleSponsor;
   }
- 
-  
+   
  
      public void VisualizzaIntroitiProcuratore(String InfoAtleta) throws SQLException {
 	  
@@ -345,8 +351,7 @@ public class Controller {
     	 visualizzaIntroitiProcuratore.setVisible(true);
  	
   }
-  
-  
+    
   
      public void CalcolaListaIntroitiProcuratore() throws SQLException {
 	  
@@ -401,8 +406,6 @@ public class Controller {
  	 * METODI ATLETI
  	 */
   
-  
-  
      public void TornagestioneProcuratore() {
     	 
     	 CercaAtletaDettagli.setVisible(false);
@@ -411,6 +414,7 @@ public class Controller {
     	 
     	 GestioneProcuratore.setVisible(true);
      }
+     
      
      public void TornaAllaGestioneProcuratore() {
     	 
@@ -421,6 +425,7 @@ public class Controller {
     	 GestioneProcuratore.setVisible(true);
      }
 
+     
      public void TornaASelezionaAtletaContratto() {
 	  
     	 VisualizzaContrattiAtleta.setVisible(false);	
@@ -432,6 +437,7 @@ public class Controller {
     	 //apro la selezione atleti	
     	 SelezionaAtletaContratto.setVisible(true);
   }
+     
      
      public void iniziaRicercaDettagliAtleta() throws SQLException {
     	 
@@ -464,9 +470,6 @@ public class Controller {
      }
      
    
-     
-     
-     
      public void InserisciAtletaDB(String nome, String cognome, String nazione, String codicefiscale, String sport, String clubattuale) throws SQLException {
     	 
         Atleti atleta = new Atleti(nome, cognome, nazione, codicefiscale, sport, clubattuale);
@@ -481,6 +484,7 @@ public class Controller {
         nuovaCollaborazione.setVisible(true);
         
      }
+     
      
      public void VisualizzaInfoAtleta(String InfoAtleta) throws SQLException {
     	 
@@ -528,6 +532,7 @@ public class Controller {
     	 GestioneGettoneNazionale.setVisible(true);
      }
      
+     
      public void TornaADettagliAtleta() {
     	 
     	 GestioneGettoneNazionale.setVisible(false);
@@ -541,54 +546,45 @@ public class Controller {
      
      /**
  	 * METODI COLLABORAZIONI
-     * 
  	 */
      
-     
+
      public void gestisciCollaborazione() throws SQLException {
-    	 
+    	 	
     	 Date DataFineCollaborazione = null;
     	 int codCollab = 0;
+    	 
     	 DataFineCollaborazione = CollaborazioneDAOPostgresImpl.getDataFineCollaborazione(getCodatleti());
     	 if (CollaborazioneDAOPostgresImpl.controllaFineCollaborazione(getCodatleti())){
+    		 
     		 codCollab  =  CollaborazioneDAOPostgresImpl.getIDCollaborazioneByIDAtleta(getCodatleti());
-    		 System.out.println(codCollab);
-    		 System.out.println("prova");
     		 AtletiDAOPostgresImpl.setAtletaNull(getCodatleti());
     		 CollaborazioneDAOPostgresImpl.cancellaCollaborazione(codCollab);
     	 }
      }
     	 
-    	 public void effettuaControlloCollaborazione() throws SQLException {
+    	
+     public void effettuaControlloCollaborazione() throws SQLException {
     		 
-    		 // Mi prendo gli id collaborazioni del procuratore
-    		 List<Integer>listacollaborazioni;
-    		 listacollaborazioni = CollaborazioneDAOPostgresImpl.getIDCollaborazioniByProcuratore(getCodprocuratori());
-    		 
-    		 // Setto il codice atleti per ogni id collaborazione
-    		 Iterator<Integer> iCollab = listacollaborazioni.iterator(); 
-        	 while (iCollab.hasNext()) {
-    		  
-        		 //setto l'atleta che ha collaborazione col procuratore selezionato in precedenza, in modo che sia impostato su codatleti locale		 
-        		 setCodatleti(AtletiDAOPostgresImpl.getIDAtletiByIDCollaborazione(iCollab.next()));	
-        		// Faccio il controllo gestionecollaborazione e passo al codiceatleti successivo
-        		 gestisciCollaborazione();
-        	 }
-    		 
-    		 
+    		
+    	 // Mi prendo gli id collaborazioni del procuratore   		
+    	 List<Integer>listacollaborazioni;    		
+    	 listacollaborazioni = CollaborazioneDAOPostgresImpl.getIDCollaborazioniByProcuratore(getCodprocuratori());    		 
+    		
+    	 // Setto il codice atleti per ogni id collaborazione    		
+    	 Iterator<Integer> iCollab = listacollaborazioni.iterator();        
+    	 while (iCollab.hasNext()) {
+    		        
+    		 //setto l'atleta che ha collaborazione col procuratore selezionato in precedenza, in modo che sia impostato su codatleti locale		      	
+    		 setCodatleti(AtletiDAOPostgresImpl.getIDAtletiByIDCollaborazione(iCollab.next()));	        
+    		 // Faccio il controllo gestionecollaborazione e passo al codiceatleti successivo       
+    		 gestisciCollaborazione();
+        	   	 
     	 }
+    		 	 
+     }
     	 
     	 
-    	 
-    	 //Prende la data di fine della collaborazione
-    	 //setta a null codcollaborazione dell'atleta
-    	 //cancello la collaborazione
-     
-     
-//     public void iniziaInserimentoCollaborazione() {
-//    	 nuovaCollaborazione.setVisible(true);
-//     }
-     
      public void TornaAlistaCollaborazioni() {
     
     	 nuovaCollaborazione.setVisible(false);
@@ -597,6 +593,7 @@ public class Controller {
     	 
     	 ListaCollaborazioni.setVisible(true);
      }
+    
      
      public void TornaAListaCollaborazioni() {
     	 
@@ -606,15 +603,12 @@ public class Controller {
     	 
      }
      
+     
      public void tornaAllaListaCollaborazioni () {
     	 ListaCollaborazioni.setVisible(true);
      }
      
-     public void prova() throws SQLException {
-    	 
-    	 System.out.println(CollaborazioneDAOPostgresImpl.getMesiCollaborazione(1));
-     }
-       
+    
      public void InserisciCollaborazione(String datainizio, String datafine, double stipendiomensile, String InfoAtleta) throws ParseException, SQLException {
     	
     	 String CfAtleta = InfoAtleta;
@@ -626,48 +620,26 @@ public class Controller {
     	 setCodatleti(AtletiDAOPostgresImpl.getIdAtletaByCf(CfAtletaSplit));
     	 
     	 //richiamo il metodo per inseriro sul db
-    	int CodiceCollaborazione; 
-    	 
-     	SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
-   		Date dataInizio = format.parse(datainizio);
-   		Date dataFine = format.parse(datafine);
-   		
-   		Collaborazione collaborazione = new Collaborazione(dataInizio, dataFine, stipendiomensile);
-   		
-   		
-   		//Gli passo il codice atleta ed il codice procuratore
-   		CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione,getCodprocuratori(), getCodatleti());
-   		//ricavo il codice della collaborazione che sto inserendo
-   		CodiceCollaborazione = CollaborazioneDAOPostgresImpl.getCodiceCollaborazione();
-   		//e lo setto sull'atleta inserito 
-   		AtletiDAOPostgresImpl.setCodCollaborazione(CodiceCollaborazione, getCodatleti());
-    	 
-    	 
+    	
+    	 int CodiceCollaborazione; 
+    	     	
+    	 SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");   		
+    	 Date dataInizio = format.parse(datainizio);  		
+    	 Date dataFine = format.parse(datafine);
+   				
+    	 Collaborazione collaborazione = new Collaborazione(dataInizio, dataFine, stipendiomensile);
+   	
+    	 //Gli passo il codice atleta ed il codice procuratore   		
+    	 CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione,getCodprocuratori(), getCodatleti());  		
+    	 //ricavo il codice della collaborazione che sto inserendo  		
+    	 CodiceCollaborazione = CollaborazioneDAOPostgresImpl.getCodiceCollaborazione();  		
+    	 //e lo setto sull'atleta inserito 		
+    	 AtletiDAOPostgresImpl.setCodCollaborazione(CodiceCollaborazione, getCodatleti());
+  	 
     	 nuovaCollaborazione.setVisible(false);
+     
      }
-     
-//     public void InserisciCollaborazioneDB(String datainizio, String datafine, double stipendiomensile) throws ParseException, SQLException {
-//    	 
-//    	int CodiceCollaborazione; 
-//    	 
-//    	SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
-//  		Date dataInizio = format.parse(datainizio);
-//  		Date dataFine = format.parse(datafine);
-//  		
-//  		Collaborazione collaborazione = new Collaborazione(dataInizio, dataFine, stipendiomensile);
-//  		
-//  		
-//  		//Gli passo il codice atleta ed il codice procuratore
-//  		CollaborazioneDAOPostgresImpl.InserisciCollaborazione(collaborazione, getCodatleti(), codprocuratori);
-//  		//ricavo il codice della collaborazione che sto inserendo
-//  		CodiceCollaborazione = CollaborazioneDAOPostgresImpl.getCodiceCollaborazione();
-//  		//e lo setto sull'atleta inserito 
-//  		AtletiDAOPostgresImpl.setCodCollaborazione(CodiceCollaborazione, getCodatleti());
-//  		
-//     }
-     
-   
-     
+         
 
      public void ApriListaCollaborazioni() throws SQLException {
     	
@@ -691,10 +663,11 @@ public class Controller {
     	 
     	 //visualizzo la jlist
     	 ListaCollaborazioni.setVisible(true);
+    	 
      }
      
      
-     public void aggiungiAtletaCollab() throws SQLException {
+     public void aggiungiAtletaCollab () {
     	 
     	 ListaCollaborazioni.setVisible(false);
     	 
@@ -703,6 +676,7 @@ public class Controller {
     	 
     	 
      }
+     
      
      public void aggiungiCollaborazione() throws SQLException {
     	 
@@ -744,6 +718,7 @@ public class Controller {
     	 
      }
      
+     
      /**
   	 * METODI CONTRATTI
   	 */   
@@ -757,12 +732,14 @@ public class Controller {
     	 GestioneProcuratore.setVisible(true);
      }
      
+     
      public void tornaAselezionaAtletaContratto () {
     	 
     	 AggiungiContrattoClub.setVisible(false);
     	 
     	 SelezionaAtletaContratto.setVisible(true);
      }
+     
      
      public void TornaASelezionaAtletacontratto () {
     	 
@@ -771,9 +748,11 @@ public class Controller {
     	 SelezionaAtletaContratto.setVisible(false);
      }
    
+     
      public void IniziaInserimentoContrattoClub() {
     	 AggiungiContrattoClub.setVisible(true);
      }
+     
      
      public void InserisciContrattoClubDB(String datainizio, String datafine, double stipendioatletastagione, String bonusstagione, double guadagnobonus, String vincolicontrattuali ) throws ParseException, SQLException {
     	 
@@ -792,6 +771,7 @@ public class Controller {
     	 
      }
      
+     
      public void InserisciContrattoSponsorDB(String datainizio, String datafine, double guadagno, double percentualeprocuratore, String tipologiasponsor, String marcasponsor, String vincolicontrattuali) throws ParseException, SQLException {
     	 
     	 SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy");
@@ -806,6 +786,7 @@ public class Controller {
     	 
     	 
      }
+     
      
      public void InserisciContrattoClub(String InfoAtleta) throws SQLException {
     	 
@@ -824,6 +805,7 @@ public class Controller {
     	 
      }
      
+     
      public void InserisciContrattoSponsor(String InfoAtleta) throws SQLException {
     	 
     	 //ricavo il codice fiscale dalla stringa selezionata dalla combobox
@@ -838,6 +820,7 @@ public class Controller {
     	 SelezionaAtletaContratto.setVisible(false);
     	 AggiungiContrattoSponsor.setVisible(true);
      }
+     
      
      public void VisualizzaInfoContratti() throws SQLException {
 
@@ -870,6 +853,7 @@ public class Controller {
     	 //Visualizzo la finestra
     	 SelezionaAtletaContratto.setVisible(true);
      }
+     
      
      public void iniziaRicercaContrattiAtleta(String InfoAtleta) throws SQLException {
     	 
@@ -920,6 +904,8 @@ public class Controller {
    	 * GETTER & SETTER
    	 */   
      
+     
+
      public CollaborazioneDAOPostgresImpl getCollaborazioneDAOPostgresImpl() {
 			return CollaborazioneDAOPostgresImpl;
 		}
@@ -982,15 +968,17 @@ public class Controller {
 
 	public static void main(String[] args) throws SQLException, ParseException 
 	{
-	//	ProcuratoriDAOPostgresImpl procuratoriDAOpostgresImpl; 
-		
+	
 		
 
 		try {
+			
+			//Stabilisco una conessione 
  			Connection conn= null;
  			DBConnection dbc = DBConnection.getInstance();
  			conn = dbc.getConnection();
  			
+ 			//Passo la connesssione alle classi dao 
  			ProcuratoriDAOPostgresImpl  procuratoriDAOpostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
  			CollaborazioneDAOPostgresImpl collaborazioneDAOPostgresImpl = new CollaborazioneDAOPostgresImpl(conn);
  			AtletiDAOPostgresImpl atletiDAOPostgresImpl = new AtletiDAOPostgresImpl(conn);
@@ -998,48 +986,20 @@ public class Controller {
  			
  			Controller controller = new Controller();
  			
+ 			//setto le classi sul controller
  			controller.setCollaborazioneDAOPostgresImpl(collaborazioneDAOPostgresImpl);
  			controller.setProcuratoriDAO(procuratoriDAOpostgresImpl);
  			controller.setAtletiDAOPostgresImpl(atletiDAOPostgresImpl); 
  			controller.setContrattiDAOPostgresImpl(contrattiDAOPostgresImpl);
  			
  			}catch (SQLException e) {
+ 				
  				e.printStackTrace();
- 				System.out.println ("errore�? " + e.getMessage());
+ 				
  				return;
  			}
     	  
-		
- 			
-		
-	   
-		
-//		
-//		SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd");
-//		Date parsedate = format.parse("2000-01-01");
-//		java.sql.Date sqlDate = new java.sql.Date(parsedate.getTime());
-//		
-//
-//		Procuratori procuratore = new Procuratori("sevio","mast","CF1234569890edfg","9911088189","1234567890","sani@mail.it",parsedate);
-//		
-//		try {
-//			Connection conn= null;
-//			DBConnection dbc = DBConnection.getInstance();
-//			conn = dbc.getConnection();
-//			
-////			ProcuratoriDAOPostgresImpl procuaratoriDAOPostgresImpl  = new ProcuratoriDAOPostgresImpl(conn);
-//			ProcuratoriDAOPostgresImpl procuratoriDAOPostgresImpl = new ProcuratoriDAOPostgresImpl(conn);
-//			
-//			procuratoriDAOPostgresImpl.InserisciProcuratore(procuratore);
-//			
-//			}catch (SQLException e) {
-//				e.printStackTrace();
-//				System.out.println ("errore�? " + e.getMessage());
-//				return;
-//			}
-		
-		
-		
+	
 	}
 
 

@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 
 public class M_Benvenuto extends JFrame {
 
-	Controller controller = null;
+	Controller controller;
 
 	private JPanel contentPane;
 	
@@ -51,10 +51,10 @@ public class M_Benvenuto extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
      			controller.IniziaInserimentoProcuratore();
-     			
- 
+    
 			}
 		});
+		
 		InserisciProcuratore_B.setToolTipText("");
 		InserisciProcuratore_B.setForeground(new Color(0, 0, 0));
 		InserisciProcuratore_B.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -70,8 +70,11 @@ public class M_Benvenuto extends JFrame {
 				//Caricare tutti i procuratori nella combobox
 				try {
 				    controller.RicercaProcuratori();
+				    
 			    }catch(SQLException E) {
-				    E.printStackTrace();
+			    	
+				   controller.ErroreLetturaDatabase();
+				   E.printStackTrace();
 			    }
  			}
 		});

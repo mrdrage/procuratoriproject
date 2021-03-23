@@ -63,6 +63,7 @@ public class M_SelezionaAtletaContratto extends JFrame {
 				controller.tornaAGestioneProcuratore();
 			}
 		});
+		
 		Indietro_B.setBackground(Color.WHITE);
 		Indietro_B.setBounds(331, 177, 93, 23);
 		contentPane.add(Indietro_B);
@@ -80,11 +81,11 @@ public class M_SelezionaAtletaContratto extends JFrame {
 					}
 					
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					
+					controller.ErroreLetturaDatabase();
 					e1.printStackTrace();
 				}
 				//Apre la finestra SelezionaAtletaContratto, caricando prima i contratti relativi a quell'atleta
-				//setVisible(false);
 			}
 		});
 		
@@ -107,7 +108,8 @@ public class M_SelezionaAtletaContratto extends JFrame {
 					}
 
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					
+					controller.ErroreInserimentoDatabase();
 					e1.printStackTrace();
 				}
 			}
@@ -129,7 +131,8 @@ public class M_SelezionaAtletaContratto extends JFrame {
 					}
 					
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					
+					controller.ErroreInserimentoDatabase();
 					e1.printStackTrace();
 				}
 			}

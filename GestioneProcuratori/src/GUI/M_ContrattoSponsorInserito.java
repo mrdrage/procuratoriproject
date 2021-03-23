@@ -18,19 +18,17 @@ import java.awt.event.ActionEvent;
 
 public class M_ContrattoSponsorInserito extends JDialog {
 	
-	Controller controller = null;
+	Controller controller;
 
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
-
-
+	
 	/**
 	 * Create the dialog.
 	 */
+	
 	public M_ContrattoSponsorInserito(Controller c) {
+		
 		controller = c;
 		
 		setBounds(100, 100, 549, 152);
@@ -53,6 +51,7 @@ public class M_ContrattoSponsorInserito extends JDialog {
 					setVisible(false);
 				}
 			});
+			
 			Ok_B.setBackground(Color.WHITE);
 			Ok_B.setBounds(458, 80, 54, 23);
 			contentPanel.add(Ok_B);

@@ -132,13 +132,10 @@ public class M_AggiungiContrattoClub extends JFrame {
 				double stipendioatleta = Double.parseDouble(StipendioAtleta_TF.getText());
 				double guadagnobonus = Double.parseDouble(GuadagnoBonus_TF.getText());
 				
-				//Se l'atleta selezionato ha gi� un contratto club, appare la finestra M_checkclub
-				//oppure viene inserito  il contratto
-				
 				try {
 					
 					controller.InserisciContrattoClubDB(DataInizio_TF.getText(), DataFine_TF.getText(), stipendioatleta, BonusStagione_TF.getText(), guadagnobonus, VincoloContrattuale_TF.getText());
-					
+					//svuoto i campi
 					DataInizio_TF.setText("");
 					DataFine_TF.setText("");
 					StipendioAtleta_TF.setText("");
@@ -150,13 +147,14 @@ public class M_AggiungiContrattoClub extends JFrame {
 				} 
 				  catch (ParseException e1) {
 					  
-					// finestre di errore
+					// finestra di errore
+					controller.ErroreInserimentoData();
 					e1.printStackTrace();
-					controller.ErroreInserimentoDataContratto();
 					
 				} catch (SQLException | NumberFormatException e2) {
 					
 					controller.ErroreInserimentoDatabase();
+					e2.printStackTrace();
 				}	
 
 				

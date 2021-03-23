@@ -37,10 +37,9 @@ public class M_ListaCollaborazioni extends JFrame {
 	
 	public M_ListaCollaborazioni(Controller c) {
 
-		setResizable(false);
-
 		controller = c;
 		
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 612, 474);
 		contentPane = new JPanel();
@@ -64,15 +63,8 @@ public class M_ListaCollaborazioni extends JFrame {
 		Aggiungi_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				try {
-					
 					controller.aggiungiAtletaCollab();
 					
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
- 				
 			}
 		});
 		
@@ -84,8 +76,7 @@ public class M_ListaCollaborazioni extends JFrame {
 		Indietro_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				controller.TornaAGestioneProcuratore();
-				
+				controller.TornaAGestioneProcuratore();	
 				
 			}
 		});
@@ -115,6 +106,7 @@ public class M_ListaCollaborazioni extends JFrame {
 	}
 	
 	public void clearListCollaborazioni() {
+		
 		listmodelCollaborazioni.removeAllElements();
 	}
 }

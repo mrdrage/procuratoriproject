@@ -20,7 +20,7 @@ import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
-public class M_NuovoAtletaCollab extends JFrame {
+public class M_NuovoAtletaCollaborazione extends JFrame {
 	
 	Controller controller = null;
 
@@ -36,7 +36,7 @@ public class M_NuovoAtletaCollab extends JFrame {
 	 * Create the frame.
 	 */
 	
-	public M_NuovoAtletaCollab(Controller c) {
+	public M_NuovoAtletaCollaborazione(Controller c) {
 		setResizable(false);
 		
 		controller = c;
@@ -122,49 +122,44 @@ public class M_NuovoAtletaCollab extends JFrame {
 		contentPane.add(ClubAttuale_TF);
 		ClubAttuale_TF.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Indietro");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton Indietro_B = new JButton("Indietro");
+		Indietro_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 			controller.TornaAListaCollaborazioni();
 				
 			}
 		});
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setBounds(129, 291, 75, 23);
-		contentPane.add(btnNewButton);
+		
+		Indietro_B.setBackground(Color.WHITE);
+		Indietro_B.setBounds(129, 291, 75, 23);
+		contentPane.add(Indietro_B);
 		
 		JButton Avanti_B = new JButton("Avanti");
 		Avanti_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				//Se é giá presente un atleta con i dati inseriti, appare la dialog ErroreAtletaPresente
-				//oppure
-				//Carica i dati inseriti nel database
 				try {
 					
 					controller.InserisciAtleta(Nome_TF.getText(), Cognome_TF.getText(), Nazione_TF.getText(), 
 							CodiceFiscale_TF.getText(), Sport_TF.getText(),ClubAttuale_TF.getText());
 					
-					//svuoto i campi dopo che é stato premuto avanti
+					//svuoto i campi dopo che ï¿½ stato premuto avanti
 					Nome_TF.setText("");
 					Cognome_TF.setText("");
 					Nazione_TF.setText("");
 					CodiceFiscale_TF.setText("");
 					Sport_TF.setText("");
 					ClubAttuale_TF.setText("");
-					
-					
-					
+				
 					
 				} catch (SQLException e1) {
-                     //finestre di errore
+					
+                     //finestra di errore
 					controller.ErroreInserimentoDatabase();
 					e1.printStackTrace();
 				}
-
-			
 
 			}
 		});
