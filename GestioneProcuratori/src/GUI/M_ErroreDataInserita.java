@@ -31,10 +31,11 @@ public class M_ErroreDataInserita extends JDialog {
 	 */
 	
 	public M_ErroreDataInserita(Controller c) {
-		setType(Type.POPUP);
-		setAlwaysOnTop(true);
 		
 		controller = c;
+		
+		setType(Type.POPUP);
+		setAlwaysOnTop(true);
 		
 		setBounds(100, 100, 450, 141);
 		getContentPane().setLayout(new BorderLayout());

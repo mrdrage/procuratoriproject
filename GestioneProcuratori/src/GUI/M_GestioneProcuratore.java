@@ -40,10 +40,12 @@ public class M_GestioneProcuratore extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+
 	public M_GestioneProcuratore(Controller c) {
-		setResizable(false);
+		
 		controller  = c;
 		
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 688, 391);
 		contentPane = new JPanel();
@@ -146,6 +148,7 @@ public class M_GestioneProcuratore extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
+					
 				controller.ApriListaCollaborazioni();
 				
 				//Se non � presente nessuna collaborazione, apre la dialog NessunaCollaborazione
@@ -170,6 +173,7 @@ public class M_GestioneProcuratore extends JFrame {
 				
 				try {
 					controller.CalcolaListaIntroitiProcuratore();
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -226,6 +230,7 @@ public class M_GestioneProcuratore extends JFrame {
 	}
 	
 	public void setProcuratore (Procuratori procuratore) {
+		
 		Nome_TF.setText(procuratore.getNome());
 		Cognome_TF.setText(procuratore.getCognome());
 		CodiceFiscale_TF.setText(procuratore.getCodiceFiscale());
