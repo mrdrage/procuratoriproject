@@ -66,7 +66,7 @@ public class Controller {
 	      M_ContrattoSponsorInserito ContrattoSponsorInserito;
 	      M_SelezionaAtletaContratto SelezionaAtletaContratto;
 	      M_VisualizzaContrattiAtleta VisualizzaContrattiAtleta;
-	      M_ErroreDataClub erroreDataClub;
+	      M_ErroreDataInserita ErroreDataInserita;
 	      M_ListaIntroitiProcuratore ListaIntroitiProcuratore;
 	      
 	      //Finestre atleti
@@ -122,7 +122,7 @@ public class Controller {
 	      ContrattoSponsorInserito = new M_ContrattoSponsorInserito(this);
 	      SelezionaAtletaContratto = new M_SelezionaAtletaContratto(this);
 	      VisualizzaContrattiAtleta = new M_VisualizzaContrattiAtleta(this);
-	      erroreDataClub = new M_ErroreDataClub(this);
+	      ErroreDataInserita = new M_ErroreDataInserita(this);
 	      ListaIntroitiProcuratore = new M_ListaIntroitiProcuratore(this);
      }
      
@@ -133,24 +133,29 @@ public class Controller {
     
      
      public void ContrattoClubInseritoCorrettamente() {
+    	 
     	 contrattoClubInserito.setVisible(true);
      }
      
      public void ContrattoSponsorInseritoCorrettamente() {
+    	 
     	 ContrattoSponsorInserito.setVisible(true);
      }
      
      public void ErroreInserimentoDatabase() {
+    	 
     	 erroreDatabase.setVisible(true);
      }
      
      public void ProcuratoreInseritoCorrettamente() {
+    	 
     	 procuratoreInseritoOK.setVisible(true);
     	 nuovoProcuratore.setVisible(false);
      }
      
      public void ErroreInserimentoDataContratto() {
-    	 erroreDataClub.setVisible(true);
+    	 
+    	 ErroreDataInserita.setVisible(true);
      }
      
      
@@ -744,6 +749,19 @@ public class Controller {
     	 GestioneProcuratore.setVisible(true);
      }
      
+     public void tornaAselezionaAtletaContratto () {
+    	 
+    	 AggiungiContrattoClub.setVisible(false);
+    	 
+    	 SelezionaAtletaContratto.setVisible(false);
+     }
+     
+     public void TornaASelezionaAtletacontratto () {
+    	 
+    	 AggiungiContrattoSponsor.setVisible(false);
+    	 
+    	 SelezionaAtletaContratto.setVisible(false);
+     }
    
      public void IniziaInserimentoContrattoClub() {
     	 AggiungiContrattoClub.setVisible(true);

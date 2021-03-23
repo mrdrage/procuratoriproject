@@ -14,22 +14,28 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Window.Type;
 
-public class M_ErroreDataClub extends JDialog {
-	Controller controller = null;
+public class M_ErroreDataInserita extends JDialog {
+	
+	Controller controller;
 
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
 	
 
 	/**
 	 * Create the dialog.
 	 */
-	public M_ErroreDataClub(Controller c) {
+	
+	public M_ErroreDataInserita(Controller c) {
+		setType(Type.POPUP);
+		setAlwaysOnTop(true);
+		
 		controller = c;
+		
 		setBounds(100, 100, 450, 141);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(250, 235, 215));
@@ -45,6 +51,12 @@ public class M_ErroreDataClub extends JDialog {
 		}
 		{
 			JButton Ok_B = new JButton("Ok");
+			Ok_B.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					setVisible(false);
+				}
+			});
 			Ok_B.setBounds(379, 68, 45, 23);
 			contentPanel.add(Ok_B);
 		}

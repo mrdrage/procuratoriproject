@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 
 public class M_NuovoProcuratore extends JFrame {
 
-	Controller controller = null;
+	Controller controller;
 	
 	
 	private JPanel contentPane;
@@ -32,8 +32,6 @@ public class M_NuovoProcuratore extends JFrame {
 	private JTextField CodiceFiscale_TF;
 	private JTextField Cognome_TF;
 	private JTextField Nome_TF;
-
-	//private M_ProcuratoreInseritoOk OK;
 
 
 
@@ -96,7 +94,7 @@ public class M_NuovoProcuratore extends JFrame {
 					controller.InserisciProcuratoreDB(Nome_TF.getText(), Cognome_TF.getText(), CodiceFiscale_TF.getText(), 
 							NumeroTelefono_TF.getText(), NumeroTelefono2_TF.getText(),Email_TF.getText(), DataN_TF.getText());
 					
-					//svuoto i campi dopo che é stato premuto avanti
+					//svuoto i campi dopo che ï¿½ stato premuto avanti
 					Nome_TF.setText("");
 					Cognome_TF.setText("");
 					CodiceFiscale_TF.setText("");
@@ -112,14 +110,6 @@ public class M_NuovoProcuratore extends JFrame {
 					e1.printStackTrace();
 				}
 				
-//				//svuoto i campi dopo che é stato premuto avanti
-//				Nome_TF.setText("");
-//				Cognome_TF.setText("");
-//				CodiceFiscale_TF.setText("");
-//				NumeroTelefono_TF.setText("");
-//				NumeroTelefono2_TF.setText("");
-//				Email_TF.setText("");
-//				DataN_TF.setText("");
 			
 				//messaggio di inserimento effettuato 
 				//OK.setVisible(true);
