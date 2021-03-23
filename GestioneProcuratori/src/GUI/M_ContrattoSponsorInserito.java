@@ -28,6 +28,7 @@ public class M_ContrattoSponsorInserito extends JDialog {
 	 */
 	
 	public M_ContrattoSponsorInserito(Controller c) {
+		setResizable(false);
 		
 		controller = c;
 		

@@ -42,6 +42,7 @@ public class M_CercaProcuratore extends JFrame {
 	 */
 	
 	public M_CercaProcuratore(Controller c) {
+		setResizable(false);
 		
 		controller = c;
 		

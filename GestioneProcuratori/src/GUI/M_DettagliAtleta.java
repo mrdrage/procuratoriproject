@@ -40,6 +40,7 @@ public class M_DettagliAtleta extends JFrame {
 	 */
 	
 	public M_DettagliAtleta(Controller c) {
+		setResizable(false);
 		
 		controller = c;
 		

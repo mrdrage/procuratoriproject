@@ -29,6 +29,7 @@ public class M_ContrattoClubInserito extends JDialog {
 	 */
 	
 	public M_ContrattoClubInserito(Controller c) {
+		setResizable(false);
 		
 		controller = c;
 		

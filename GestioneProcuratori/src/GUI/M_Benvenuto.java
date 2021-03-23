@@ -15,6 +15,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class M_Benvenuto extends JFrame {
 
@@ -29,6 +30,7 @@ public class M_Benvenuto extends JFrame {
 	 */
 	
 	public M_Benvenuto(Controller c) {
+		setResizable(false);
 		
 		controller = c;
 		
@@ -42,8 +44,9 @@ public class M_Benvenuto extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel Benvenuto_L = new JLabel("Benvenuto !");
+		Benvenuto_L.setHorizontalAlignment(SwingConstants.CENTER);
 		Benvenuto_L.setFont(new Font("Verdana", Font.PLAIN, 25));
-		Benvenuto_L.setBounds(10, 11, 163, 47);
+		Benvenuto_L.setBounds(10, 11, 325, 47);
 		contentPane.add(Benvenuto_L);
 		
 		JButton InserisciProcuratore_B = new JButton("Inserisci Procuratore");

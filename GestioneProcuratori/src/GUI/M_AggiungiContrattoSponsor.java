@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
+import javax.swing.JTextArea;
 
 public class M_AggiungiContrattoSponsor extends JFrame {
 	
@@ -32,7 +33,7 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 	private JTextField PercentualeProcuratore_TF;
 	private JTextField TipologiaSponsor_TF;
 	private JTextField MarcaSponsor_TF;
-	private JTextField VincoliContrattuali_TF;
+	private JTextArea VincoliContrattuali_TF;
 
 
 	/**
@@ -40,6 +41,7 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 	 */
 	
 	public M_AggiungiContrattoSponsor(Controller c) {
+		setResizable(false);
 		
 		controller = c;
 		
@@ -128,11 +130,12 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 		contentPane.add(MarcaSponsor_TF);
 		MarcaSponsor_TF.setColumns(10);
 		
-		VincoliContrattuali_TF = new JTextField();
-		VincoliContrattuali_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		VincoliContrattuali_TF.setBounds(288, 273, 242, 125);
+		VincoliContrattuali_TF= new JTextArea();
+		VincoliContrattuali_TF.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		VincoliContrattuali_TF.setBounds(288, 276, 241, 118);
 		contentPane.add(VincoliContrattuali_TF);
-		VincoliContrattuali_TF.setColumns(10);
+		
+		 
 		
 		JButton Avanti_B = new JButton("Avanti");
 		Avanti_B.addActionListener(new ActionListener() {
@@ -185,7 +188,12 @@ public class M_AggiungiContrattoSponsor extends JFrame {
 		Indietr_B.setBackground(UIManager.getColor("Button.background"));
 		Indietr_B.setBounds(350, 436, 86, 23);
 		contentPane.add(Indietr_B);
+		
+		JLabel lblNewLabel = new JLabel("%");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel.setBounds(377, 170, 40, 28);
+		contentPane.add(lblNewLabel);
+		
+		
 	}
-
-	
 }

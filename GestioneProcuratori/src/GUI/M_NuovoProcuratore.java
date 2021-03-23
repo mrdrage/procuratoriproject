@@ -40,6 +40,7 @@ public class M_NuovoProcuratore extends JFrame {
 	 */
 	
 	public M_NuovoProcuratore(Controller c) {
+		setResizable(false);
 		
 		controller = c;
 		

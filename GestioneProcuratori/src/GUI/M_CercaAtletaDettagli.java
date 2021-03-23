@@ -33,6 +33,7 @@ public class M_CercaAtletaDettagli extends JFrame {
 	 */
 	
 	public M_CercaAtletaDettagli(Controller c) {
+		setResizable(false);
 		
 		controller = c;
 		

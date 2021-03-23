@@ -30,6 +30,7 @@ public class M_ProcuratoreInseritoOk extends JDialog {
 	 */
 	
 	public M_ProcuratoreInseritoOk(Controller c) {
+		setResizable(false);
 		controller = c;
 		setBounds(100, 100, 383, 151);
 		getContentPane().setLayout(new BorderLayout());

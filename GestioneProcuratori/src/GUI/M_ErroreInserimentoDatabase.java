@@ -29,6 +29,7 @@ public class M_ErroreInserimentoDatabase extends JDialog {
 	 */
 	
 	public M_ErroreInserimentoDatabase(Controller c) {
+		setResizable(false);
 		setAlwaysOnTop(true);
 		controller = c;
 		setBounds(100, 100, 412, 157);

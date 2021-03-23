@@ -381,7 +381,7 @@ public class Controller {
     		 atleta = AtletiDAOPostgresImpl.getAtletiByID(getCodatleti());		
     		 // Aggiungiamo i risultati ad una lista	   
     		 // Alla fine otteniamo una lista di atleti con i relativi guadagni del procuratore e la passiamo al la jlist		  		 
-    		 listaResoconto.add(atleta.getNome()+" "+atleta.getCognome()+" "+ GuadagnoCollaborazione +" "+ GuadagnoSponsor +" "+ Totale);	  
+    		 listaResoconto.add(atleta.getNome()+"   "+atleta.getCognome()+"                   "+"€" +GuadagnoCollaborazione +"                   "+ "€"+GuadagnoSponsor +"                   "+ "€"+Totale);	  
 	  
     	 } 
 	
@@ -521,9 +521,9 @@ public class Controller {
     		 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     		 String data = formatter.format(g.getData());
     			
-    		// gettoni.add(g.getData()+" "+g.getGudagno());
-    		 gettoni.add(data +" "+Guadagno);
-    		 //!!
+    		
+    		 gettoni.add(data +"                    "+Guadagno);
+    		
     		 
     	 }
     	

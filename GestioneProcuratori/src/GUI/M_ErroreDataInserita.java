@@ -29,6 +29,7 @@ public class M_ErroreDataInserita extends JDialog {
 	 */
 	
 	public M_ErroreDataInserita(Controller c) {
+		setResizable(false);
 		
 		controller = c;
 		
