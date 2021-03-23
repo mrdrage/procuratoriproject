@@ -64,6 +64,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	public void cancellaCollaborazione(int codcollaborazione) throws SQLException {
 		
 		int row = 0;
+		
 		cancellaCollaborazione.setInt(1, codcollaborazione);
 		row = cancellaCollaborazione.executeUpdate();
 	}

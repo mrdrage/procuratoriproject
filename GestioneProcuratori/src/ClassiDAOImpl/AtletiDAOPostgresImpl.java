@@ -134,8 +134,6 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		inserisciAtleta.executeUpdate();
 	}
 
-	
-
 	public int getIdAtletaByCf (String CodiceFiscale) throws SQLException {
 		  
 		   getAtletaByCf.setString(1, CodiceFiscale);
@@ -165,7 +163,6 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		return lista;
 	}
 
-	
 	public void setCodCollaborazione (int codCollaborazione, int codAtleta) throws SQLException {
 		
 		int row = 0;
