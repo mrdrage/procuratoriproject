@@ -36,7 +36,9 @@ public class M_ListaCollaborazioni extends JFrame {
 	 */
 	
 	public M_ListaCollaborazioni(Controller c) {
-		
+
+		setResizable(false);
+
 		controller = c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,9 +49,10 @@ public class M_ListaCollaborazioni extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel ListaCollaborazioni_L = new JLabel("Ecco la lista delle collaborazioni del procuratore:");
+		JLabel ListaCollaborazioni_L = new JLabel("Lista collaborazioni del procuratore:");
+		ListaCollaborazioni_L.setHorizontalAlignment(SwingConstants.CENTER);
 		ListaCollaborazioni_L.setFont(new Font("Verdana", Font.PLAIN, 22));
-		ListaCollaborazioni_L.setBounds(10, -22, 576, 91);
+		ListaCollaborazioni_L.setBounds(10, 0, 576, 37);
 		contentPane.add(ListaCollaborazioni_L);
 		
 		ListaCollaborazioni_list = new JList<String>(listmodelCollaborazioni);
@@ -74,7 +77,7 @@ public class M_ListaCollaborazioni extends JFrame {
 		});
 		
 		Aggiungi_B.setBackground(Color.WHITE);
-		Aggiungi_B.setBounds(20, 376, 166, 37);
+		Aggiungi_B.setBounds(10, 376, 166, 37);
 		contentPane.add(Aggiungi_B);
 		
 		JButton Indietro_B = new JButton("Indietro");
@@ -88,8 +91,13 @@ public class M_ListaCollaborazioni extends JFrame {
 		});
 		
 		Indietro_B.setBackground(Color.WHITE);
-		Indietro_B.setBounds(514, 401, 72, 23);
+		Indietro_B.setBounds(497, 390, 89, 23);
 		contentPane.add(Indietro_B);
+		
+		JLabel lblNewLabel = new JLabel("(Data di inizio, Data di fine, Stipendio mensile del procuratore)");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblNewLabel.setBounds(10, 37, 257, 14);
+		contentPane.add(lblNewLabel);
 	}
 	
 	 
@@ -109,5 +117,4 @@ public class M_ListaCollaborazioni extends JFrame {
 	public void clearListCollaborazioni() {
 		listmodelCollaborazioni.removeAllElements();
 	}
-	
 }

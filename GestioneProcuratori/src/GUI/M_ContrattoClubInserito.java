@@ -14,6 +14,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class M_ContrattoClubInserito extends JDialog {
 	Controller controller = null;
@@ -45,8 +47,14 @@ public class M_ContrattoClubInserito extends JDialog {
 		}
 		{
 			JButton Ok_B = new JButton("Ok");
-			Ok_B.setBackground(new Color(0, 0, 0));
-			Ok_B.setBounds(430, 83, 45, 23);
+			Ok_B.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					controller.tornaGestioneProcuratoreIndietro();
+					setVisible(false);
+				}
+			});
+			Ok_B.setBackground(Color.WHITE);
+			Ok_B.setBounds(420, 75, 55, 23);
 			contentPanel.add(Ok_B);
 		}
 	}

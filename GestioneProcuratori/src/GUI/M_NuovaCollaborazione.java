@@ -27,6 +27,7 @@ import javax.swing.JList;
 import javax.swing.JTextPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 
 public class M_NuovaCollaborazione extends JFrame {
 	
@@ -43,11 +44,12 @@ public class M_NuovaCollaborazione extends JFrame {
 	 */
 	
 	public M_NuovaCollaborazione(Controller c) {
+		setResizable(false);
 		
 		controller  = c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 381, 286);
+		setBounds(100, 100, 566, 286);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(250, 240, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -55,8 +57,9 @@ public class M_NuovaCollaborazione extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Aggiungi collaborazione");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
-		lblNewLabel.setBounds(46, 0, 273, 31);
+		lblNewLabel.setBounds(10, 0, 540, 31);
 		contentPane.add(lblNewLabel);
 		
 		JLabel Atleta_L = new JLabel("Atleta:");
@@ -64,19 +67,19 @@ public class M_NuovaCollaborazione extends JFrame {
 		Atleta_L.setBounds(10, 65, 69, 14);
 		contentPane.add(Atleta_L);
 		
-		JLabel DataInizio_L = new JLabel("Data di inizio");
+		JLabel DataInizio_L = new JLabel("Data di inizio:");
 		DataInizio_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		DataInizio_L.setBounds(10, 90, 99, 14);
 		contentPane.add(DataInizio_L);
 		
-		JLabel DataFine_L = new JLabel("Data di fine");
+		JLabel DataFine_L = new JLabel("Data di fine:");
 		DataFine_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		DataFine_L.setBounds(10, 115, 89, 14);
 		contentPane.add(DataFine_L);
 		
 		JLabel StipendioMensile_T = new JLabel("Stipendio mensile del procuratore:");
-		StipendioMensile_T.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		StipendioMensile_T.setBounds(10, 153, 207, 14);
+		StipendioMensile_T.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		StipendioMensile_T.setBounds(10, 150, 217, 18);
 		contentPane.add(StipendioMensile_T);
 		
 		JButton Indietro_B = new JButton("Indietro");
@@ -87,8 +90,8 @@ public class M_NuovaCollaborazione extends JFrame {
 				//setVisible(false);
 			}
 		});
-		Indietro_B.setBackground(new Color(0, 0, 0));
-		Indietro_B.setBounds(205, 220, 71, 23);
+		Indietro_B.setBackground(Color.WHITE);
+		Indietro_B.setBounds(367, 220, 71, 23);
 		contentPane.add(Indietro_B);
 		
 		JButton Avanti_B = new JButton("Avanti");
@@ -125,8 +128,8 @@ public class M_NuovaCollaborazione extends JFrame {
 			}
 		});
 		
-		Avanti_B.setBackground(new Color(0, 0, 0));
-		Avanti_B.setBounds(286, 220, 69, 23);
+		Avanti_B.setBackground(Color.WHITE);
+		Avanti_B.setBounds(448, 220, 69, 23);
 		contentPane.add(Avanti_B);
 		
 		DataInizio_TF = new JTextField();
@@ -136,24 +139,29 @@ public class M_NuovaCollaborazione extends JFrame {
 			}
 		});
 		
-		DataInizio_TF.setBounds(227, 89, 108, 20);
+		DataInizio_TF.setBounds(249, 89, 108, 20);
 		contentPane.add(DataInizio_TF);
 		DataInizio_TF.setColumns(10);
 		
 		DataFine_TF = new JTextField();
-		DataFine_TF.setBounds(227, 114, 108, 20);
+		DataFine_TF.setBounds(249, 114, 108, 20);
 		contentPane.add(DataFine_TF);
 		DataFine_TF.setColumns(10);
 		
 		Atleta_CB = new JComboBox<String>();
-		Atleta_CB.setBounds(227, 65, 108, 18);
+		Atleta_CB.setBounds(249, 65, 268, 18);
 		contentPane.add(Atleta_CB);
 		
 		
 		StipendioMensile_TF = new JTextField();
-		StipendioMensile_TF.setBounds(227, 151, 86, 20);
+		StipendioMensile_TF.setBounds(249, 148, 86, 20);
 		contentPane.add(StipendioMensile_TF);
 		StipendioMensile_TF.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("\u20AC");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_1.setBounds(237, 149, 22, 18);
+		contentPane.add(lblNewLabel_1);
 	}
 	
 	public void setAtletiLiberiComboBox (List<String> atleti) {

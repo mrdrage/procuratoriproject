@@ -20,6 +20,12 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
+import javax.swing.DropMode;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Cursor;
+import java.awt.Point;
+import javax.swing.JTextArea;
 
 public class M_AggiungiContrattoClub extends JFrame {
 	
@@ -29,19 +35,20 @@ public class M_AggiungiContrattoClub extends JFrame {
 	private JTextField DataInizio_TF;
 	private JTextField DataFine_TF;
 	private JTextField StipendioAtleta_TF;
-	private JTextField BonusStagione_TF;
+	private JTextArea BonusStagione_TF;
 	private JTextField GuadagnoBonus_TF;
-	private JTextField VincoloContrattuale_TF;
+	private JTextArea VincoloContrattuale_TF;
 
 	/**
 	 * Create the frame.
 	 */
 	public M_AggiungiContrattoClub(Controller c) {
+		setResizable(false);
 		
 		controller = c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 502, 504);
+		setBounds(100, 100, 560, 504);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(250, 235, 215));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,14 +71,15 @@ public class M_AggiungiContrattoClub extends JFrame {
 		DataFine_L.setBounds(10, 92, 153, 19);
 		contentPane.add(DataFine_L);
 		
-		JLabel StipendioAtleta_L = new JLabel("Stipendio dell'atleta:");
+		
+		JLabel StipendioAtleta_L = new JLabel("Stipendio stagionale dell'atleta:");
 		StipendioAtleta_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		StipendioAtleta_L.setBounds(10, 122, 174, 19);
+		StipendioAtleta_L.setBounds(10, 122, 235, 19);
 		contentPane.add(StipendioAtleta_L);
 		
-		JLabel BonusStagione_L = new JLabel("Bonus stagionali:");
+		JLabel BonusStagione_L = new JLabel("Obiettivi bonus stagionale*:");
 		BonusStagione_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		BonusStagione_L.setBounds(10, 152, 153, 19);
+		BonusStagione_L.setBounds(10, 152, 216, 19);
 		contentPane.add(BonusStagione_L);
 		
 		JLabel GuadagnoBonus_L = new JLabel("Guadagno bonus dell'atleta:");
@@ -79,46 +87,43 @@ public class M_AggiungiContrattoClub extends JFrame {
 		GuadagnoBonus_L.setBounds(10, 271, 216, 19);
 		contentPane.add(GuadagnoBonus_L);
 		
-		JLabel VincoliContrattuali_L = new JLabel("Vincoli contrattuali:");
+		JLabel VincoliContrattuali_L = new JLabel("Vincoli contrattuali con il club:");
 		VincoliContrattuali_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		VincoliContrattuali_L.setBounds(10, 317, 163, 19);
+		VincoliContrattuali_L.setBounds(10, 317, 216, 19);
 		contentPane.add(VincoliContrattuali_L);
 		
 		DataInizio_TF = new JTextField();
 		DataInizio_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		DataInizio_TF.setBounds(254, 63, 119, 20);
+		DataInizio_TF.setBounds(351, 61, 119, 20);
 		contentPane.add(DataInizio_TF);
 		DataInizio_TF.setColumns(10);
 		
 		DataFine_TF = new JTextField();
 		DataFine_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		DataFine_TF.setBounds(254, 93, 119, 20);
+		DataFine_TF.setBounds(351, 91, 119, 20);
 		contentPane.add(DataFine_TF);
 		DataFine_TF.setColumns(10);
 		
 		StipendioAtleta_TF = new JTextField();
 		StipendioAtleta_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		StipendioAtleta_TF.setBounds(254, 123, 119, 20);
+		StipendioAtleta_TF.setBounds(351, 121, 119, 20);
 		contentPane.add(StipendioAtleta_TF);
 		StipendioAtleta_TF.setColumns(10);
 		
-		BonusStagione_TF = new JTextField();
+		BonusStagione_TF = new JTextArea();
 		BonusStagione_TF.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		BonusStagione_TF.setBounds(254, 153, 216, 88);
+		BonusStagione_TF.setBounds(254, 151, 216, 88);
 		contentPane.add(BonusStagione_TF);
-		BonusStagione_TF.setColumns(10);
 		
 		GuadagnoBonus_TF = new JTextField();
 		GuadagnoBonus_TF.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		GuadagnoBonus_TF.setBounds(254, 272, 119, 20);
+		GuadagnoBonus_TF.setBounds(351, 270, 119, 20);
 		contentPane.add(GuadagnoBonus_TF);
 		GuadagnoBonus_TF.setColumns(10);
 		
-		VincoloContrattuale_TF = new JTextField();
-		VincoloContrattuale_TF.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		VincoloContrattuale_TF.setBounds(254, 318, 216, 88);
+		VincoloContrattuale_TF = new JTextArea();
+		VincoloContrattuale_TF.setBounds(254, 316, 216, 88);
 		contentPane.add(VincoloContrattuale_TF);
-		VincoloContrattuale_TF.setColumns(10);
 		
 		JButton Avanti_B = new JButton("Avanti");
 		Avanti_B.addActionListener(new ActionListener() {
@@ -133,6 +138,14 @@ public class M_AggiungiContrattoClub extends JFrame {
 				try {
 					
 					controller.InserisciContrattoClubDB(DataInizio_TF.getText(), DataFine_TF.getText(), stipendioatleta, BonusStagione_TF.getText(), guadagnobonus, VincoloContrattuale_TF.getText());
+					
+					DataInizio_TF.setText("");
+					DataFine_TF.setText("");
+					StipendioAtleta_TF.setText("");
+					BonusStagione_TF.setText("");
+					GuadagnoBonus_TF.setText("");
+					VincoloContrattuale_TF.setText("");
+					
 					controller.ContrattoClubInseritoCorrettamente();
 				} 
 				  catch (ParseException e1) {
@@ -150,27 +163,42 @@ public class M_AggiungiContrattoClub extends JFrame {
 			}
 		});
 		
-		Avanti_B.setBackground(new Color(0, 0, 0));
-		Avanti_B.setBounds(393, 433, 93, 23);
+		Avanti_B.setBackground(Color.WHITE);
+		Avanti_B.setBounds(377, 433, 93, 23);
 		contentPane.add(Avanti_B);
 		
 		JButton Indietro_B = new JButton("Indietro");
 		Indietro_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				controller.tornaAselezionaAtletaContratto();
-				
 				DataInizio_TF.setText("");
 				DataFine_TF.setText("");
 				StipendioAtleta_TF.setText("");
 				BonusStagione_TF.setText("");
 				GuadagnoBonus_TF.setText("");
 				VincoloContrattuale_TF.setText("");
+				
+				controller.tornaAselezionaAtletaContratto();
+				
+				
 			}
 		});
-		Indietro_B.setBackground(new Color(0, 0, 0));
-		Indietro_B.setBounds(288, 433, 93, 23);
+		Indietro_B.setBackground(Color.WHITE);
+		Indietro_B.setBounds(274, 433, 93, 23);
 		contentPane.add(Indietro_B);
+		
+		JLabel lblNewLabel = new JLabel("%");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setBounds(474, 270, 25, 17);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("*Indicare gli obiettivi per ottenere il bonus");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblNewLabel_1.setBounds(10, 182, 216, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		
+		
+	
 	}
-
 }

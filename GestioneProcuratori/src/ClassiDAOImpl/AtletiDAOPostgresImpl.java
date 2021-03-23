@@ -25,7 +25,9 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 	private PreparedStatement  getIDAtletiByIDCollaborazione;
 	private PreparedStatement  getAtletiByID;
 	private PreparedStatement  getGettoniNazionali;
-	private PreparedStatement  setClubAtleta;
+
+	private PreparedStatement  setAtletaNull;
+
 	
 	public AtletiDAOPostgresImpl(Connection connection) throws SQLException {
 		
@@ -42,8 +44,12 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		getIDAtletiByIDCollaborazione = connection.prepareStatement("SELECT codatleti FROM atleti WHERE codcollaborazione = ?");
 		getAtletiByID = connection.prepareStatement("SELECT * FROM atleti WHERE codatleti = ?");
 		getGettoniNazionali = connection.prepareStatement("SELECT * FROM gettonenazionale WHERE codatleti = ?");
-		setClubAtleta = connection.prepareStatement("UPDATE atleti SET clubattuale = ? WHERE codatleti = ?");
+		setAtletaNull = connection.prepareStatement("UPDATE atleti SET codcollaborazione = null WHERE codatleti = ?");
+
 	}
+	
+	
+	
 	
 	private int getNextCod () throws SQLException {
 		int codAtleti = 0;
@@ -57,6 +63,13 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		return codAtleti;
 	}
 	
+	public void setAtletaNull (int codatleti) throws SQLException {
+		int row = 0;
+		setAtletaNull.setInt(1, codatleti);
+		row = setAtletaNull.executeUpdate();
+		
+	}
+	
 	public Atleti getAtletaByCf (String CodiceFiscale) throws SQLException {
 		  
 		   Atleti atleta = new Atleti();
@@ -66,7 +79,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		   
 		   //Essendo il cf unico basta utilizzare solo una volta il next(), che punterà quindi all'unica tupla presente
 		   while(rs.next()) {
-		   Atleti a = new Atleti(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+		   Atleti a = new Atleti(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
 		   atleta = a;
 		   codatleti = rs.getInt(8);
 		
@@ -82,7 +95,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		
 		while(rs.next())
 		{
-			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"), rs.getString("serieclub"));
+			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"));
 			lista.add(a);
 		}
 		rs.close();
@@ -97,7 +110,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		ResultSet rs = getAtletiByIDCollaborazione.executeQuery();
 		
 		while(rs.next()) {
-			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"), rs.getString("serieclub"));
+			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"));
 			atleta = a;
 		}
 	    rs.close();
@@ -144,7 +157,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 
 		ResultSet rs = getAtletiLiberi.executeQuery();
 		while (rs.next()) {
-			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"), rs.getString("serieclub"));
+			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"));
 			lista.add(a);
 		
 		}
@@ -188,7 +201,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		getAtletiByID.setInt(1, codAtleta);
 		ResultSet rs = getAtletiByID.executeQuery();
 		while (rs.next()) {
-			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"), rs.getString("serieclub"));
+			Atleti a = new Atleti(rs.getString("nome"), rs.getString("cognome"), rs.getString("nazione"), rs.getString("codicefiscale"), rs.getString("sport"), rs.getString("clubattuale"));
 			atleta = a;
 		}
 		
