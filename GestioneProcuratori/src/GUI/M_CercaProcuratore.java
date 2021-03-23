@@ -31,7 +31,7 @@ public class M_CercaProcuratore extends JFrame {
 	Controller controller;
  
 	private JPanel contentPane;
-	private JComboBox<String> CercaProcuratore_CO;
+	private JComboBox<String> CercaProcuratore_CB;
 	
 	TextField TF = new TextField();
 
@@ -64,7 +64,7 @@ public class M_CercaProcuratore extends JFrame {
 				
 				//Apre GestioneProcuratore con i dati del procuratore inserito
 				try {
-				controller.VisualizzaInfoProcuratore((String) CercaProcuratore_CO.getSelectedItem());
+				controller.VisualizzaInfoProcuratore((String) CercaProcuratore_CB.getSelectedItem());
 				
 
 				}catch (SQLException e3) {
@@ -79,10 +79,10 @@ public class M_CercaProcuratore extends JFrame {
 		contentPane.add(CercaProcuratore_B);
 		
 		
-	    CercaProcuratore_CO = new JComboBox <String>();
-		CercaProcuratore_CO.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		CercaProcuratore_CO.setBounds(85, 67, 234, 23);
-		contentPane.add(CercaProcuratore_CO);
+	    CercaProcuratore_CB = new JComboBox <String>();
+		CercaProcuratore_CB.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		CercaProcuratore_CB.setBounds(85, 67, 234, 23);
+		contentPane.add(CercaProcuratore_CB);
 		
 		
 		
@@ -91,7 +91,7 @@ public class M_CercaProcuratore extends JFrame {
 	public void setProcuratoriComboBox (List<String> procuratori) {
 		Iterator<String> i = procuratori.iterator();
 		while (i.hasNext()) {
-		     CercaProcuratore_CO.addItem(i.next()); 
+		     CercaProcuratore_CB.addItem(i.next()); 
 		}
 	}
 	

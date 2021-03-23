@@ -67,25 +67,25 @@ public class M_VisualizzaIntroitiProcuratore extends JFrame {
 		contentPane.add(Totale_TF);
 		Totale_TF.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Procuratore");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setBounds(10, 32, 129, 14);
-		contentPane.add(lblNewLabel);
+		JLabel Procuratore_L = new JLabel("Procuratore");
+		Procuratore_L.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		Procuratore_L.setBounds(10, 32, 129, 14);
+		contentPane.add(Procuratore_L);
 		
-		JLabel lblNewLabel_1 = new JLabel("Guadagno collaborazione");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(231, 31, 157, 16);
-		contentPane.add(lblNewLabel_1);
+		JLabel GuadagnoCollab_L = new JLabel("Guadagno collaborazione");
+		GuadagnoCollab_L.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		GuadagnoCollab_L.setBounds(231, 31, 157, 16);
+		contentPane.add(GuadagnoCollab_L);
 		
-		JLabel lblNewLabel_2 = new JLabel("Guadagno dagli sponsor");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_2.setBounds(417, 31, 157, 16);
-		contentPane.add(lblNewLabel_2);
+		JLabel GuadagnoSponsor_L = new JLabel("Guadagno dagli sponsor");
+		GuadagnoSponsor_L.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		GuadagnoSponsor_L.setBounds(417, 31, 157, 16);
+		contentPane.add(GuadagnoSponsor_L);
 		
-		JLabel lblNewLabel_3 = new JLabel("Totale");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_3.setBounds(641, 32, 109, 14);
-		contentPane.add(lblNewLabel_3);
+		JLabel Totale_L = new JLabel("Totale");
+		Totale_L.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		Totale_L.setBounds(641, 32, 109, 14);
+		contentPane.add(Totale_L);
 		
 		JButton Ok_B = new JButton("Ok");
 		Ok_B.addActionListener(new ActionListener() {
@@ -99,7 +99,7 @@ public class M_VisualizzaIntroitiProcuratore extends JFrame {
 		
 	}
 	
-	public void inserisciCampi(Procuratori Procuratore, double guadagnocollaborazione, double guadagnosponsor, double totale) {
+	public void setCampi(Procuratori Procuratore, double guadagnocollaborazione, double guadagnosponsor, double totale) {
 		
 		
 		Procuratore_TF.setText(Procuratore.getNome() + Procuratore.getCognome());

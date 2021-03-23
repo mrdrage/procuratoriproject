@@ -36,11 +36,11 @@ public class M_ErroreComboBoxVuota extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel lblNewLabel = new JLabel("Nessun atleta selezionato.");
-			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
-			lblNewLabel.setBounds(0, 0, 444, 76);
-			contentPanel.add(lblNewLabel);
+			JLabel NessunAtleta_L = new JLabel("Nessun atleta selezionato.");
+			NessunAtleta_L.setHorizontalAlignment(SwingConstants.CENTER);
+			NessunAtleta_L.setFont(new Font("Verdana", Font.PLAIN, 20));
+			NessunAtleta_L.setBounds(0, 0, 444, 76);
+			contentPanel.add(NessunAtleta_L);
 		}
 		{
 			JPanel buttonPane = new JPanel();

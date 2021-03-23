@@ -82,6 +82,7 @@ public class M_GestioneGettoneNazionale extends JFrame {
 	}
 	
 	public void clearListGettoniNazionale () {
+		
 		listmodelGettoni.removeAllElements();
 	}
 

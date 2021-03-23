@@ -42,11 +42,11 @@ public class M_ErroreDataInserita extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JLabel ErroreDataClub_L = new JLabel("Le date inserite non sono corrette.");
-			ErroreDataClub_L.setHorizontalAlignment(SwingConstants.CENTER);
-			ErroreDataClub_L.setFont(new Font("Verdana", Font.PLAIN, 23));
-			ErroreDataClub_L.setBounds(0, -11, 434, 72);
-			contentPanel.add(ErroreDataClub_L);
+			JLabel ErroreDataInserita_L = new JLabel("Le date inserite non sono corrette.");
+			ErroreDataInserita_L.setHorizontalAlignment(SwingConstants.CENTER);
+			ErroreDataInserita_L.setFont(new Font("Verdana", Font.PLAIN, 23));
+			ErroreDataInserita_L.setBounds(0, -11, 434, 72);
+			contentPanel.add(ErroreDataInserita_L);
 		}
 		{
 			JButton Ok_B = new JButton("Ok");

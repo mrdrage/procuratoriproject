@@ -340,7 +340,7 @@ public class Controller {
     	 GuadagnoSponsor = CalcolaGuadagniSponsorProcuratore(getCodprocuratori());	 
     	 Totale = GuadagnoCollaborazione + GuadagnoSponsor;
 
-    	 visualizzaIntroitiProcuratore.inserisciCampi(ProcuratoriDAOPostgresImpl.getProcuratoriByID(getCodprocuratori()), GuadagnoCollaborazione, GuadagnoSponsor, Totale);
+    	 visualizzaIntroitiProcuratore.setCampi(ProcuratoriDAOPostgresImpl.getProcuratoriByID(getCodprocuratori()), GuadagnoCollaborazione, GuadagnoSponsor, Totale);
  	  
     	 visualizzaIntroitiProcuratore.setVisible(true);
  	
