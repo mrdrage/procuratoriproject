@@ -103,7 +103,9 @@ public class M_SelezionaAtletaContratto extends JFrame {
 						controller.erroreComboBoxAtletiVuota();
 					}else {
 					controller.InserisciContrattoClub((String) ScegliAtleta_CO.getSelectedItem());
+
 					}
+
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
