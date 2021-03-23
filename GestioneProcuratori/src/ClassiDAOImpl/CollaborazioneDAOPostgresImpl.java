@@ -30,6 +30,7 @@ public class CollaborazioneDAOPostgresImpl implements CollaborazioneDAO {
 	private PreparedStatement getDataFineCollaborazione;
 	private PreparedStatement cancellaCollaborazione;
 	private PreparedStatement getIDCollaborazioneByIDAtleta;
+	String ciao;
 	
 
 	public CollaborazioneDAOPostgresImpl(Connection connection) throws SQLException{
