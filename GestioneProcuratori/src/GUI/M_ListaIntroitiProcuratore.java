@@ -39,7 +39,7 @@ public class M_ListaIntroitiProcuratore extends JFrame {
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 799, 305);
+		setBounds(100, 100, 799, 321);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(248, 248, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -47,28 +47,32 @@ public class M_ListaIntroitiProcuratore extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 53, 763, 175);
+		scrollPane.setBounds(10, 68, 763, 175);
 		contentPane.add(scrollPane);
 		
 		ListaGuadagni_list = new JList<String>(listmodelIntroiti);
 		scrollPane.setViewportView(ListaGuadagni_list);
 		
 		JButton Indietro_B = new JButton("Indietro");
+		Indietro_B.setBounds(684, 258, 89, 23);
 		Indietro_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				controller.TornaGestioneProcuratore();
 			}
 		});
-		
-		Indietro_B.setBounds(684, 242, 89, 23);
 		contentPane.add(Indietro_B);
 		
-		JLabel ListaGuadagni_L = new JLabel("Ecco la lista di tutti i guadagni del procuratore, divisi per atleta");
+		JLabel ListaGuadagni_L = new JLabel("Lista di tutti i guadagni del procuratore, divisi per atleta");
+		ListaGuadagni_L.setBounds(10, 0, 763, 31);
 		ListaGuadagni_L.setFont(new Font("Verdana", Font.PLAIN, 20));
 		ListaGuadagni_L.setHorizontalAlignment(SwingConstants.CENTER);
-		ListaGuadagni_L.setBounds(10, 11, 763, 31);
 		contentPane.add(ListaGuadagni_L);
+		
+		JLabel lblNewLabel = new JLabel("(Nome atleta, Cognome atleta, Guadagno procuratore dalla collaborazione, Guadagno dai contratti sponsor dell'atleta, Totale guadagni)");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 9));
+		lblNewLabel.setBounds(10, 52, 697, 14);
+		contentPane.add(lblNewLabel);
 	}
 	
 	public void setListaIntroiti(List <String> introiti) {

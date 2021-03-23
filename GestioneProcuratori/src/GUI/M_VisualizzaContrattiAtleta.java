@@ -40,11 +40,12 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 	 */
     
 	public M_VisualizzaContrattiAtleta(Controller c) {
+		setResizable(false);
 		
 		controller = c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1050, 675);
+		setBounds(100, 100, 1050, 551);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(250, 235, 215));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -54,7 +55,7 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 		JLabel ListaContratti_L = new JLabel("Contratti Atleta");
 		ListaContratti_L.setBounds(10, 0, 1014, 42);
 		ListaContratti_L.setHorizontalAlignment(SwingConstants.CENTER);
-		ListaContratti_L.setFont(new Font("Verdana", Font.PLAIN, 20));
+		ListaContratti_L.setFont(new Font("Verdana", Font.PLAIN, 24));
 		contentPane.add(ListaContratti_L);
 
 		JButton Indietro_B = new JButton("Indietro");
@@ -66,18 +67,18 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 			}
 		});
 		
-		Indietro_B.setBounds(928, 602, 84, 23);
+		Indietro_B.setBounds(940, 488, 84, 23);
 		Indietro_B.setBackground(Color.WHITE);
 		contentPane.add(Indietro_B);
 		
 		JLabel ContrattiClub_L = new JLabel("Contratti club");
-		ContrattiClub_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		ContrattiClub_L.setBounds(10, 267, 122, 16);
+		ContrattiClub_L.setFont(new Font("Verdana", Font.PLAIN, 20));
+		ContrattiClub_L.setBounds(10, 195, 172, 16);
 		contentPane.add(ContrattiClub_L);
 		
 		JLabel ContrattiSponsor_L = new JLabel("Contratti sponsor");
-		ContrattiSponsor_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		ContrattiSponsor_L.setBounds(10, 541, 133, 15);
+		ContrattiSponsor_L.setFont(new Font("Verdana", Font.PLAIN, 20));
+		ContrattiSponsor_L.setBounds(10, 456, 204, 23);
 		contentPane.add(ContrattiSponsor_L);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -85,18 +86,28 @@ public class M_VisualizzaContrattiAtleta extends JFrame {
 		contentPane.add(scrollPane);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 333, 1014, 197);
+		scrollPane_1.setBounds(10, 255, 1014, 197);
 		contentPane.add(scrollPane_1);
 		
 		listaContrattiSponsor_List = new JList<String>(listmodelSponsor);
 		scrollPane_1.setViewportView(listaContrattiSponsor_List);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(10, 67, 1014, 197);
+		scrollPane_2.setBounds(10, 69, 1014, 115);
 		contentPane.add(scrollPane_2);
 		
 		listaContrattiClub_List = new JList<String>(listmodelClub);
 		scrollPane_2.setViewportView(listaContrattiClub_List);
+		
+		JLabel lblNewLabel = new JLabel("(Data inizio, Data fine, Stipendio dell'atleta, Obiettivi bonus stagionali,  Guadagno bonus dell'atleta, Vincoli contrattuali con il club) ");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 9));
+		lblNewLabel.setBounds(10, 53, 713, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("(Data inizio, Data fine, Guadagno dell'atleta, Percentuale del procuratore,  Tipologia dello sponsor, Marca dello sponsor,  Vincoli contrattuali) ");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 9));
+		lblNewLabel_1.setBounds(10, 237, 713, 16);
+		contentPane.add(lblNewLabel_1);
 		
 	}
 	
