@@ -66,7 +66,7 @@ public class M_CercaProcuratore extends JFrame {
 				try {
 				controller.VisualizzaInfoProcuratore((String) CercaProcuratore_CO.getSelectedItem());
 				
-				
+
 				}catch (SQLException e3) {
 					
 					controller.ErroreLetturaDatabase();

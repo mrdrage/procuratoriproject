@@ -13,6 +13,9 @@ import entita.Procuratori;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class M_VisualizzaIntroitiProcuratore extends JFrame {
 	
@@ -84,6 +87,15 @@ public class M_VisualizzaIntroitiProcuratore extends JFrame {
 		lblNewLabel_3.setBounds(641, 32, 109, 14);
 		contentPane.add(lblNewLabel_3);
 		
+		JButton Ok_B = new JButton("Ok");
+		Ok_B.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		Ok_B.setBounds(684, 97, 66, 23);
+		contentPane.add(Ok_B);
+		
 		
 	}
 	
@@ -101,5 +113,4 @@ public class M_VisualizzaIntroitiProcuratore extends JFrame {
 		GuadagnoSponsor_TF.setText(guadagnoSponsor);
 		Totale_TF.setText(Totale);
 	}
-	
 }
