@@ -220,12 +220,14 @@ public class M_GestioneProcuratore extends JFrame {
 				controller.iniziaRicercaDettagliAtleta();
 				
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				
+				controller.ErroreLetturaDatabase();
 				e1.printStackTrace();
 			}
+			
 			setVisible(false);
 			// caricando tutti gli atleti del procuratore nella combobox
-				//setVisible(false);
+				
 			}
 		});
 		

@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -219,9 +220,6 @@ public class Controller {
     	 
         ProcuratoriDAOPostgresImpl.InserisciProcuratore(procuratore);
         
-        //Se tutto va bene
-      
-        
       
      }
      
@@ -253,11 +251,12 @@ public class Controller {
      
      
      public void VisualizzaInfoProcuratore (String InfoProcuratore) throws SQLException {
+    	 
     	 Procuratori procuratore = new Procuratori();
     	 
     	 CercaProcuratore.setVisible(false);
+    	 
     	 //Ricavo il codice fiscale
-
     	 String CfProcuratore = InfoProcuratore;
     	 
     	 //Split della stringa
@@ -267,20 +266,15 @@ public class Controller {
     	 //lo passo al dao ottenendo tutte le info in un oggetto Procuratori grazie alla query
     	 procuratore = ProcuratoriDAOPostgresImpl.getProcuratoreByCf(CfProcuratoreSplit);
     	 
-    	 System.out.println(procuratore.getNome() + procuratore.getCognome() + procuratore.getEmail() + procuratore.getNumeroTelefonico() + procuratore.getDataN());
-    	 System.out.println(procuratore.toString());
     	 //setto la scheda del procuratore
     	 GestioneProcuratore.setProcuratore(procuratore);
     	 
-  
-    	  //visualizzio la finestra
-    	  GestioneProcuratore.setVisible(true);
-    	  //Prendo il codiceprocuratori dal codice fiscale del procuratore
-          setCodprocuratori(ProcuratoriDAOPostgresImpl.getIDProcuratoreByCf(CfProcuratoreSplit));
-          
-          //stampe di prova
-          System.out.println(codprocuratori);
-    	  System.out.println(CfProcuratoreSplit);
+    	 //visualizzio la finestra   	 
+    	 GestioneProcuratore.setVisible(true);
+    	 
+    	 //Prendo il codiceprocuratori dal codice fiscale del procuratore         
+    	 setCodprocuratori(ProcuratoriDAOPostgresImpl.getIDProcuratoreByCf(CfProcuratoreSplit));
+         
 
      }
      
@@ -520,9 +514,17 @@ public class Controller {
     	 Iterator<GettoneNazionale> iG = gettoniN.iterator();
     	 while (iG.hasNext()) {
     		 GettoneNazionale g = iG.next();
-    		 //convertire date e double in string
-    		 gettoni.add(g.getData()+" "+g.getGudagno());
+    		 
+    		 //converto date e double in string
+    		 String Guadagno = Double.toString(g.getGudagno());
+    		 
+    		 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    		 String data = formatter.format(g.getData());
+    			
+    		// gettoni.add(g.getData()+" "+g.getGudagno());
+    		 gettoni.add(data +" "+Guadagno);
     		 //!!
+    		 
     	 }
     	
     	 //popolo la Jlist dei gettoni
