@@ -18,18 +18,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class M_ContrattoClubInserito extends JDialog {
-	Controller controller = null;
+	
+	Controller controller;
 
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
-
+	
 	/**
 	 * Create the dialog.
 	 */
+	
 	public M_ContrattoClubInserito(Controller c) {
+		
 		controller = c;
 		
 		setBounds(100, 100, 501, 148);
@@ -53,6 +53,7 @@ public class M_ContrattoClubInserito extends JDialog {
 					setVisible(false);
 				}
 			});
+			
 			Ok_B.setBackground(Color.WHITE);
 			Ok_B.setBounds(420, 75, 55, 23);
 			contentPanel.add(Ok_B);

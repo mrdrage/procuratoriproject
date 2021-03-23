@@ -60,6 +60,7 @@ public class M_ListaIntroitiProcuratore extends JFrame {
 				controller.TornaGestioneProcuratore();
 			}
 		});
+		
 		Indietro_B.setBounds(684, 242, 89, 23);
 		contentPane.add(Indietro_B);
 		
@@ -84,6 +85,7 @@ public class M_ListaIntroitiProcuratore extends JFrame {
 	}
 	
 	public void clearListIntroiti () {
+		
 		listmodelIntroiti.removeAllElements();
 	}
 }

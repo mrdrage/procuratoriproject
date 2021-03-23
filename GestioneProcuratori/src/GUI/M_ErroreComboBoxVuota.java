@@ -26,10 +26,10 @@ public class M_ErroreComboBoxVuota extends JDialog {
 	 * Create the dialog.
 	 */
 	public M_ErroreComboBoxVuota(Controller c) {
-		setResizable(false);
 		
 		controller = c;
 		
+		setResizable(false);
 		setBounds(100, 100, 470, 142);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -54,6 +54,7 @@ public class M_ErroreComboBoxVuota extends JDialog {
 						setVisible(false);
 					}
 				});
+				
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);

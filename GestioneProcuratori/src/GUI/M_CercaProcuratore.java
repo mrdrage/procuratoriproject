@@ -28,11 +28,11 @@ import java.awt.event.ActionEvent;
 
 public class M_CercaProcuratore extends JFrame {
     
-	Controller controller = null;
-	//public ArrayList <Procuratori> P =new ArrayList<Procuratori>();
- 	
+	Controller controller;
+ 
 	private JPanel contentPane;
 	private JComboBox<String> CercaProcuratore_CO;
+	
 	TextField TF = new TextField();
 
 	
@@ -40,7 +40,9 @@ public class M_CercaProcuratore extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public M_CercaProcuratore(Controller c) {
+		
 		controller = c;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,12 +65,16 @@ public class M_CercaProcuratore extends JFrame {
 				//Apre GestioneProcuratore con i dati del procuratore inserito
 				try {
 				controller.VisualizzaInfoProcuratore((String) CercaProcuratore_CO.getSelectedItem());
-				//setVisible(false);
+				
+				
 				}catch (SQLException e3) {
+					
+					controller.ErroreLetturaDatabase();
 					e3.printStackTrace();
 				}
 			}
 		});
+		
 		CercaProcuratore_B.setBounds(329, 101, 69, 23);
 		contentPane.add(CercaProcuratore_B);
 		

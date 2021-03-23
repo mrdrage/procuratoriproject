@@ -44,10 +44,10 @@ public class M_NuovaCollaborazione extends JFrame {
 	 */
 	
 	public M_NuovaCollaborazione(Controller c) {
-		setResizable(false);
 		
 		controller  = c;
 		
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 566, 286);
 		contentPane = new JPanel();
@@ -87,9 +87,10 @@ public class M_NuovaCollaborazione extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				controller.TornaAlistaCollaborazioni();
-				//setVisible(false);
+				
 			}
 		});
+		
 		Indietro_B.setBackground(Color.WHITE);
 		Indietro_B.setBounds(367, 220, 71, 23);
 		contentPane.add(Indietro_B);
@@ -105,22 +106,23 @@ public class M_NuovaCollaborazione extends JFrame {
 				try {
 					
 					controller.InserisciCollaborazione(DataInizio_TF.getText(), DataFine_TF.getText(), stipendiomensile, InfoAtleta);
-					//svuoto i campi
-				
+					
+					//svuoto i campi				
 					DataInizio_TF.setText("");
 					DataFine_TF.setText("");
 					StipendioMensile_TF.setText("");
 					
-				} catch (SQLException | ParseException e1) {
-                     //finestre di errore
+				} catch (SQLException  e1) {
+                     
+					controller.ErroreInserimentoDatabase();
 					e1.printStackTrace();
+					
+				} catch (ParseException e2) {
+					
+					controller.ErroreInserimentoData();
+					e2.printStackTrace();
+					
 				}
-				
-				//Se � gia presente una collaborazione con i dati inseriti, apre la dialog ErroreCollaborazionePresente
-				
-				
-				
-				
 				
 				
 				controller.tornaAllaListaCollaborazioni();
@@ -165,6 +167,7 @@ public class M_NuovaCollaborazione extends JFrame {
 	}
 	
 	public void setAtletiLiberiComboBox (List<String> atleti) {
+		
 		Iterator<String> i = atleti.iterator();
 		
 		while (i.hasNext()) {

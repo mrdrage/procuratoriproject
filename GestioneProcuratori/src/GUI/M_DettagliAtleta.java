@@ -131,12 +131,16 @@ public class M_DettagliAtleta extends JFrame {
 		JButton GestisciGettoneNazionale_B = new JButton("Visualizza gettoni nazionale");
 		GestisciGettoneNazionale_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				//Apre la finestra GestioneGettoneNazionale, caricando prima i dati del gettone relativo all'atleta di cui si stanno guardando i dettagli
 				try {
+					
 					controller.VisualizzaGettoniNazionale();
 					
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
+					
+					controller.ErroreLetturaDatabase();
+					
 					e1.printStackTrace();
 				}
 			}

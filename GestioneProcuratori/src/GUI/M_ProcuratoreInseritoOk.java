@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 
 public class M_ProcuratoreInseritoOk extends JDialog {
 
-	Controller controller = null;
+	Controller controller;
 	
 	private final JPanel contentPanel = new JPanel();
 
@@ -56,6 +56,7 @@ public class M_ProcuratoreInseritoOk extends JDialog {
 					setVisible(false);
 					}
 				});
+				
 				ok_B.setActionCommand("OK");
 				buttonPane.add(ok_B);
 				getRootPane().setDefaultButton(ok_B);

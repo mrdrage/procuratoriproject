@@ -152,19 +152,17 @@ public class M_GestioneProcuratore extends JFrame {
 				
 				try {
 					
-
 					controller.effettuaControlloCollaborazione();
-					
-					//controller.gestisciCollaborazione();
-
-				controller.ApriListaCollaborazioni();
+				
+					controller.ApriListaCollaborazioni();
 				
 				//Se non � presente nessuna collaborazione, apre la dialog NessunaCollaborazione
 				//oppure
 				//Apre la finestra ListaCollaborazioni
-				//setVisible(false);
+				
 				}catch(SQLException e3) {
 					
+					controller.ErroreLetturaDatabase();
 					e3.printStackTrace();
 				}
 			}

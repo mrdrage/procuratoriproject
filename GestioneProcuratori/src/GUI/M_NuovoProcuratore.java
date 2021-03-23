@@ -38,6 +38,7 @@ public class M_NuovoProcuratore extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public M_NuovoProcuratore(Controller c) {
 		
 		controller = c;
@@ -105,14 +106,16 @@ public class M_NuovoProcuratore extends JFrame {
 					
 					controller.ProcuratoreInseritoCorrettamente();
 				
-				} catch (SQLException | ParseException e1) {
-                     controller.ErroreInserimentoDatabase();
-					e1.printStackTrace();
+				} catch (SQLException  e1) {
+					
+                     controller.ErroreInserimentoDatabase();					
+                     e1.printStackTrace();
+                     
+				} catch (ParseException e2) {
+					
+					controller.ErroreInserimentoData();
+					e2.printStackTrace();
 				}
-				
-			
-				//messaggio di inserimento effettuato 
-				//OK.setVisible(true);
 				
 				
 			}
