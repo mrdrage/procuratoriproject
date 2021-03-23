@@ -14,4 +14,5 @@ public interface AtletiDAO {
 	public int getIdAtletaByCf (String CodiceFiscale) throws SQLException;
 	public List<Atleti> getAtletiLiberi () throws SQLException;
 	public int getIDAtletiByIDCollaborazione (int codCollaborazione) throws SQLException;
+	
 }

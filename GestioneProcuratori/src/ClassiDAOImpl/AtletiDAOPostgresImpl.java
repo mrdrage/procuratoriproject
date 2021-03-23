@@ -25,10 +25,12 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 	private PreparedStatement  getIDAtletiByIDCollaborazione;
 	private PreparedStatement  getAtletiByID;
 	private PreparedStatement  getGettoniNazionali;
+	private PreparedStatement  setClubAtleta;
 	
 	public AtletiDAOPostgresImpl(Connection connection) throws SQLException {
 		
 		this.connection = connection;
+		
 		getMaxId = connection.prepareStatement("SELECT MAX(codatleti) FROM atleti");
 		
 		getAllAtleti = connection.prepareStatement("SELECT * from atleti");
@@ -40,6 +42,7 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		getIDAtletiByIDCollaborazione = connection.prepareStatement("SELECT codatleti FROM atleti WHERE codcollaborazione = ?");
 		getAtletiByID = connection.prepareStatement("SELECT * FROM atleti WHERE codatleti = ?");
 		getGettoniNazionali = connection.prepareStatement("SELECT * FROM gettonenazionale WHERE codatleti = ?");
+		setClubAtleta = connection.prepareStatement("UPDATE atleti SET clubattuale = ? WHERE codatleti = ?");
 	}
 	
 	private int getNextCod () throws SQLException {
@@ -206,6 +209,8 @@ public class AtletiDAOPostgresImpl implements AtletiDAO {
 		
 		return gettoniNazionale;
 	}
+	
+	
 	
 	}
 
