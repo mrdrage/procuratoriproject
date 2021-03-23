@@ -129,7 +129,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
 	   ResultSet rs = getProcuratoreByCf.executeQuery();
 	   
 	   
-	   //Essendo il cf unico basta utilizzare solo una volta il next(), che punterà quindi all'unica tupla presente
+	   
 	   while(rs.next()) {
 	   Procuratori p = new Procuratori(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7));
 	   procuratore = p;
@@ -172,6 +172,7 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
    
 	
 	public double getStipendioMensileProcuratore(int codprocuratori) throws SQLException {
+		
 	   getStipendioMensileProcuratore.setInt(1, codprocuratori);
 	   ResultSet rs = getStipendioMensileProcuratore.executeQuery();
 	   double stipendiomensile = 0;
@@ -183,8 +184,10 @@ public class ProcuratoriDAOPostgresImpl implements ProcuratoriDAO {
    
 	
 	public double getGuadagnoSponsorProcuratore(int codatleti) throws SQLException {
+		
 	   getGuadagnoSponsorProcuratore.setInt(1, codatleti);
 	   ResultSet rs = getGuadagnoSponsorProcuratore.executeQuery();
+	   
 	   double guadagnoatleta = 0;
 	   double percentualeprocuratore = 0;
 	   double guadagnofinale = 0;

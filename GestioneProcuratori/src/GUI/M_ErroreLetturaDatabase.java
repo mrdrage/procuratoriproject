@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Starter.Controller;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class M_ErroreLetturaDatabase extends JDialog {
 	
@@ -25,9 +27,18 @@ public class M_ErroreLetturaDatabase extends JDialog {
 		
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		
+		JLabel ErroreDatabase_L = new JLabel("Errore Database");
+		ErroreDatabase_L.setFont(new Font("Tahoma", Font.BOLD, 17));
+		ErroreDatabase_L.setBounds(27, 21, 306, 38);
+		contentPanel.add(ErroreDatabase_L);
+		
+		JLabel ErroreDatabase1_L = new JLabel("Si è verificato un errore durante la lettura dei dati, riprovare");
+		ErroreDatabase1_L.setBounds(37, 71, 390, 72);
+		contentPanel.add(ErroreDatabase1_L);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -45,5 +56,4 @@ public class M_ErroreLetturaDatabase extends JDialog {
 			}
 		}
 	}
-
 }

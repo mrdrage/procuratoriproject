@@ -185,15 +185,15 @@ public class M_AggiungiContrattoClub extends JFrame {
 		Indietro_B.setBounds(274, 433, 93, 23);
 		contentPane.add(Indietro_B);
 		
-		JLabel lblNewLabel = new JLabel("%");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(474, 270, 25, 17);
-		contentPane.add(lblNewLabel);
+		JLabel Percentuale_L = new JLabel("%");
+		Percentuale_L.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Percentuale_L.setBounds(474, 270, 25, 17);
+		contentPane.add(Percentuale_L);
 		
-		JLabel lblNewLabel_1 = new JLabel("*Indicare gli obiettivi per ottenere il bonus");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblNewLabel_1.setBounds(10, 182, 216, 14);
-		contentPane.add(lblNewLabel_1);
+		JLabel Suggerimento_L = new JLabel("*Indicare gli obiettivi per ottenere il bonus");
+		Suggerimento_L.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		Suggerimento_L.setBounds(10, 182, 216, 14);
+		contentPane.add(Suggerimento_L);
 		
 		
 		

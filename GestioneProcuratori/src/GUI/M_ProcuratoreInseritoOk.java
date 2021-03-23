@@ -61,11 +61,6 @@ public class M_ProcuratoreInseritoOk extends JDialog {
 				buttonPane.add(ok_B);
 				getRootPane().setDefaultButton(ok_B);
 			}
-			{
-				JButton cancel_B = new JButton("Cancel");
-				cancel_B.setActionCommand("Cancel");
-				buttonPane.add(cancel_B);
-			}
 		}
 	}
 

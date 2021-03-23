@@ -56,11 +56,11 @@ public class M_NuovaCollaborazione extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Aggiungi collaborazione");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
-		lblNewLabel.setBounds(10, 0, 540, 31);
-		contentPane.add(lblNewLabel);
+		JLabel AggiungiCollaborazione_L = new JLabel("Aggiungi collaborazione");
+		AggiungiCollaborazione_L.setHorizontalAlignment(SwingConstants.CENTER);
+		AggiungiCollaborazione_L.setFont(new Font("Verdana", Font.PLAIN, 20));
+		AggiungiCollaborazione_L.setBounds(10, 0, 540, 31);
+		contentPane.add(AggiungiCollaborazione_L);
 		
 		JLabel Atleta_L = new JLabel("Atleta:");
 		Atleta_L.setFont(new Font("Tahoma", Font.PLAIN, 16));
